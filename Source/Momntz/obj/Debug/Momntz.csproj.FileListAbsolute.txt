@@ -1,0 +1,5 @@
+F:\Projects\Momntz\Source\Momntz.UI\Momntz\bin\Debug\Momntz.dll
+F:\Projects\Momntz\Source\Momntz.UI\Momntz\bin\Debug\Momntz.pdb
+F:\Projects\Momntz\Source\Momntz.UI\Momntz\obj\Debug\Momntz.csprojResolveAssemblyReference.cache
+F:\Projects\Momntz\Source\Momntz.UI\Momntz\obj\Debug\Momntz.dll
+F:\Projects\Momntz\Source\Momntz.UI\Momntz\obj\Debug\Momntz.pdb
