@@ -130,6 +130,15 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Areas\Register\Controllers\IndexController.cs" />
+    <Compile Include="Areas\Register\Handlers\RegisterHandlers\RegisterPostIndexHandler.cs" />
+    <Compile Include="Areas\Register\Models\RegisterIndexModel.cs" />
+    <Compile Include="Areas\Register\RegisterAreaRegistration.cs" />
+    <Compile Include="Core\ActionResults\FormResult.cs" />
+    <Compile Include="Core\ActionResults\QueryResult.cs" />
+    <Compile Include="Core\HandlerBase.cs" />
+    <Compile Include="Core\IFormHandler.cs" />
+    <Compile Include="Core\IQueryHandler.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -195,11 +204,19 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Register\Views\Shared\" />
     <Folder Include="Controllers\" />
+    <Folder Include="Handlers\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Register\Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Register\Views\Index\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
