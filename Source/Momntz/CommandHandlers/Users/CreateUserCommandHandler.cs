@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Momntz
+namespace Momntz.CommandHandlers.Users
 {
-    public class Class1
+    class CreateUserCommandHandler
     {
     }
 }
