@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Hypersonic">
+      <HintPath>..\..\Dependencies\Hypersonic\Hypersonic.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,12 +43,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandHandlers\ICommandHandler.cs" />
+    <Compile Include="CommandHandlers\Users\CreateUserCommandHandler.cs" />
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Commands\Users\CreateUserCommand.cs" />
     <Compile Include="Model\Momento.cs" />
     <Compile Include="Model\MomentoBytes.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
