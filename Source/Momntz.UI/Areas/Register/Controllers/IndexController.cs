@@ -1,9 +1,10 @@
 ﻿using System.Web.Mvc;
 using Momntz.UI.Areas.Register.Models;
+using Momntz.UI.Core.Controllers;
 
 namespace Momntz.UI.Areas.Register.Controllers
 {
-    public class IndexController : Controller
+    public class IndexController : MomntzController
     {
         /// <summary> Gets the index. </summary>
         /// <returns> . </returns>
@@ -19,7 +20,8 @@ namespace Momntz.UI.Areas.Register.Controllers
         [HttpPost]
         public ActionResult Index(RegisterIndexModel model)
         {
-            return View();
+            var result = Redirect("/");
+            return Form(model, result);
         }
 
     }

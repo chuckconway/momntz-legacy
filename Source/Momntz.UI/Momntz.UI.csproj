@@ -43,13 +43,19 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.4.1.10331.0\lib\net40\EntityFramework.dll</HintPath>
+    <Reference Include="AutoMapper">
+      <HintPath>..\..\Dependencies\Automapper\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Hypersonic">
+      <HintPath>..\..\Dependencies\Hypersonic\Hypersonic.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap">
+      <HintPath>..\..\Dependencies\StructureMap\StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -134,11 +140,17 @@
     <Compile Include="Areas\Register\Handlers\RegisterHandlers\RegisterPostIndexHandler.cs" />
     <Compile Include="Areas\Register\Models\RegisterIndexModel.cs" />
     <Compile Include="Areas\Register\RegisterAreaRegistration.cs" />
+    <Compile Include="Areas\Users\Controllers\IndexController.cs" />
+    <Compile Include="Areas\Users\UsersAreaRegistration.cs" />
     <Compile Include="Core\ActionResults\FormResult.cs" />
     <Compile Include="Core\ActionResults\QueryResult.cs" />
+    <Compile Include="Core\Controllers\MomntzController.cs" />
     <Compile Include="Core\HandlerBase.cs" />
     <Compile Include="Core\IFormHandler.cs" />
     <Compile Include="Core\IQueryHandler.cs" />
+    <Compile Include="Core\RouteConstraints\UserRouteCache.cs" />
+    <Compile Include="Core\RouteConstraints\UserRouteConstraint.cs" />
+    <Compile Include="Core\StructureMapInjection.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -205,6 +217,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Register\Views\Shared\" />
+    <Folder Include="Areas\Users\Models\" />
+    <Folder Include="Areas\Users\Views\Shared\" />
     <Folder Include="Controllers\" />
     <Folder Include="Handlers\" />
     <Folder Include="Models\" />
@@ -217,6 +231,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Register\Views\Index\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Momntz\Momntz.csproj">
+      <Project>{77cc17df-c471-42bf-b5f6-d55eaf918891}</Project>
+      <Name>Momntz</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Users\Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Users\Views\Index\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

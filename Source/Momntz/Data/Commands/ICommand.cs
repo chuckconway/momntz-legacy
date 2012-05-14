@@ -1,4 +1,4 @@
-﻿namespace Momntz.Commands
+﻿namespace Momntz.Data.Commands
 {
     public interface ICommand {}
 }

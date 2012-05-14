@@ -4,34 +4,38 @@
     ViewBag.Title = "Momntz - Register";
     Layout = "../../../../Views/Shared/_Layout.cshtml";
 }
-<ul>
-    <li>
-        @Html.Label("Username")
-        @Html.TextBox("username")
-    </li>
-    
-    <li>
-        @Html.Label("Email")
-        @Html.TextBox("email")
-    </li>
 
-    <li>
-        @Html.Label("First Name")
-        @Html.TextBox("firstname")
-    </li>
-    
-    <li>
-        @Html.Label("Last Name")
-        @Html.TextBox("lastname")
-    </li>
-    
-    <li>
-        @Html.Label("Password")
-        @Html.TextBox("password")
-    </li>
-    
-    <li>
-        <input type="submit" value="Register" />
-    </li>
+@using (Html.BeginForm()){
 
-</ul>
+    <ul>
+        <li>
+            @Html.Label("Username")
+            @Html.TextBox("username")
+        </li>
+    
+        <li>
+            @Html.Label("Email")
+            @Html.TextBox("email")
+        </li>
+
+        <li>
+            @Html.Label("First Name")
+            @Html.TextBox("firstname")
+        </li>
+    
+        <li>
+            @Html.Label("Last Name")
+            @Html.TextBox("lastname")
+        </li>
+    
+        <li>
+            @Html.Label("Password")
+            @Html.TextBox("password")
+        </li>
+    
+        <li>
+            <input type="submit" value="Register" />
+        </li>
+
+    </ul>
+ }
