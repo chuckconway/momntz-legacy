@@ -1,8 +1,18 @@
-﻿using System.Web;
+﻿
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using AutoMapper;
+using Hypersonic;
+using Hypersonic.Session;
+using Momntz.Infrastructure;
+using Momntz.UI.Core;
+using StructureMap;
 
 namespace Momntz.UI
 {
@@ -24,11 +34,12 @@ namespace Momntz.UI
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
-            );
+            routes.MapRoute(
+            name: "Users",
+            url: "{controller}/{action}/{id}",
+            defaults: new { area="users", controller = "index", action = "Index", id = UrlParameter.Optional },
+            namespaces: new[] { "Momntz.UI.Areas.Users.Controllers" }
+);
 
             routes.MapRoute(
                 name: "Default",
@@ -41,11 +52,59 @@ namespace Momntz.UI
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
+            RegisterDependencyInjection();
 
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
 
             BundleTable.Bundles.RegisterTemplateBundles();
+        }
+
+        /// <summary> Registers the dependency injection. </summary>
+        private void RegisterDependencyInjection()
+        {
+            IContainer container = new Container();
+            container.Configure(x => x.Scan(s =>
+            {
+                x.AddRegistry<MomntzRegistry>();
+                x.For<IDatabase>().Use(new MsSqlDatabase());
+                x.For<ISession>().Use(SessionFactory.SqlServer());
+                x.For<IInjection>().Use(new StructureMapInjection());
+ 
+                s.TheCallingAssembly();
+                s.WithDefaultConventions();
+
+                s.ConnectImplementationsToTypesClosing(typeof(IFormHandler<>));
+                s.ConnectImplementationsToTypesClosing(typeof(IQueryHandler<,>));
+            }));
+
+            ObjectFactory.AssertConfigurationIsValid();
+            DependencyResolver.SetResolver(new StructureMapDependencyResolver(container));
+        }
+    }
+
+    internal class StructureMapDependencyResolver : IDependencyResolver
+    {
+        public StructureMapDependencyResolver(IContainer container)
+        {
+            _container = container;
+        }
+
+        private readonly IContainer _container;
+
+        public object GetService(Type serviceType)
+        {
+            if (serviceType.IsAbstract || serviceType.IsInterface)
+            {
+                return _container.TryGetInstance(serviceType);
+            }
+
+            return _container.GetInstance(serviceType);
+        }
+
+        public IEnumerable<object> GetServices(Type serviceType)
+        {
+            return _container.GetAllInstances(serviceType).Cast<object>();
         }
     }
 }

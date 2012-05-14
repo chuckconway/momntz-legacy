@@ -1,4 +1,4 @@
-﻿namespace Momntz.Commands.Users
+﻿namespace Momntz.Data.Commands.Users
 {
     public class CreateUserCommand : ICommand
     {
