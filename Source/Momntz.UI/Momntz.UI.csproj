@@ -54,6 +54,9 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
+    <Reference Include="RouteDebug">
+      <HintPath>..\..\Dependencies\RouteDebugger\RouteDebug.dll</HintPath>
+    </Reference>
     <Reference Include="StructureMap">
       <HintPath>..\..\Dependencies\StructureMap\StructureMap.dll</HintPath>
     </Reference>
@@ -142,6 +145,7 @@
     <Compile Include="Areas\Register\RegisterAreaRegistration.cs" />
     <Compile Include="Areas\Users\Controllers\IndexController.cs" />
     <Compile Include="Areas\Users\UsersAreaRegistration.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Core\ActionResults\FormResult.cs" />
     <Compile Include="Core\ActionResults\QueryResult.cs" />
     <Compile Include="Core\Controllers\MomntzController.cs" />
@@ -219,7 +223,6 @@
     <Folder Include="Areas\Register\Views\Shared\" />
     <Folder Include="Areas\Users\Models\" />
     <Folder Include="Areas\Users\Views\Shared\" />
-    <Folder Include="Controllers\" />
     <Folder Include="Handlers\" />
     <Folder Include="Models\" />
   </ItemGroup>

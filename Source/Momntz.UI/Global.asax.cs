@@ -12,6 +12,7 @@ using Hypersonic;
 using Hypersonic.Session;
 using Momntz.Infrastructure;
 using Momntz.UI.Core;
+using Momntz.UI.Core.RouteConstraints;
 using StructureMap;
 
 namespace Momntz.UI
@@ -36,9 +37,10 @@ namespace Momntz.UI
 
             routes.MapRoute(
             name: "Users",
-            url: "{controller}/{action}/{id}",
+            url: "{username}/Users/{controller}/{action}/{id}",
             defaults: new { area="users", controller = "index", action = "Index", id = UrlParameter.Optional },
-            namespaces: new[] { "Momntz.UI.Areas.Users.Controllers" }
+            namespaces: new[] { "Momntz.UI.Areas.Users.Controllers" },
+            constraints: new {username = new UserRouteConstraint(new ProjectionProcessor(new StructureMapInjection())) }
 );
 
             routes.MapRoute(
@@ -56,6 +58,7 @@ namespace Momntz.UI
 
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
+            //RouteDebug.RouteDebugger.RewriteRoutesForTesting(RouteTable.Routes);
 
             BundleTable.Bundles.RegisterTemplateBundles();
         }
