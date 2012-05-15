@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Hypersonic;
+using Momntz.Data.Projections.Users;
 using Momntz.Model;
 
 namespace Momntz.Data.ProjectionHandlers.Users
 {
-    public class GetActiveUsersHandler : IProjectionHandler<object, List<string>>
+    public class GetActiveUsersHandler : IProjectionHandler<object, IList<ActiveUsername>>
     {
         private readonly ISession _session;
 
@@ -19,14 +19,15 @@ namespace Momntz.Data.ProjectionHandlers.Users
         /// <summary> Executes. </summary>
         /// <param name="args"> The arguments. </param>
         /// <returns> . </returns>
-        public List<string> Execute(object args)
+        public IList<ActiveUsername> Execute(object args)
         {
-           return _session
-                .Query<User>(new[]{"Username"})
-                .Where(u => u.UserStatus == UserStatus.Active)
-                .List()
-                .Select(u => u.Username)
-                .ToList();
+            using (_session)
+            {
+              return  _session
+                       .Query<ActiveUsername, User>()
+                       .Where("UserStatus = 'Active'")
+                       .List();
+            }
         }
     }
 }

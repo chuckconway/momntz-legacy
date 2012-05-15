@@ -1,6 +1,6 @@
 ﻿namespace Momntz.Data.Projections.Users
 {
-    public class GetActiveUsers : IProjection
+    public class ActiveUsername : IProjection
     {
         /// <summary> Gets or sets the username. </summary>
         /// <value> The username. </value>
