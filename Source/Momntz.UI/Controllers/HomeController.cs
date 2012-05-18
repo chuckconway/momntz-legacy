@@ -13,7 +13,7 @@ namespace Momntz.UI.Controllers
 
         public ActionResult Index()
         {
-            return Content("This is Home");
+            return View();
         }
 
     }

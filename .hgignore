@@ -31,6 +31,7 @@ _ReSharper*/
 [Bb]uild[Ll]og.*
 *.[Pp]ublish.xml
 *.resharper
+*_Resharper*
 
 # ncrunch files
 *.ncrunchsolution
