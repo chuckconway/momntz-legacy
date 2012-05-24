@@ -1,6 +1,6 @@
 ﻿namespace Momntz.Model
 {
-    public class MomentoBytes
+    public class MomentoMedia
     {
         /// <summary> Gets or sets the identifier. </summary>
         /// <value> The identifier. </value>
@@ -16,10 +16,34 @@
 
         /// <summary> Gets or sets the bytes. </summary>
         /// <value> The bytes. </value>
-        public byte[] Bytes { get; set; }
+        public string Url { get; set; }
+
+        /// <summary>
+        /// Gets or sets the size.
+        /// </summary>
+        /// <value>
+        /// The size.
+        /// </value>
+        public string Size { get; set; }
 
         /// <summary> Gets or sets the date of the upload. </summary>
         /// <value> The date of the upload. </value>
-        public string UploadDate { get; set; }
+        public string CreateDate { get; set; }
+
+        /// <summary>
+        /// Gets or sets the username.
+        /// </summary>
+        /// <value>
+        /// The username.
+        /// </value>
+        public string Username { get; set; }
+
+        /// <summary>
+        /// Gets or sets the type of the media.
+        /// </summary>
+        /// <value>
+        /// The type of the media.
+        /// </value>
+        public string MediaType { get; set; }
     }
 }

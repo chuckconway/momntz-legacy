@@ -63,7 +63,8 @@
     <Compile Include="Infrastructure\IProjectionProcessor.cs" />
     <Compile Include="Infrastructure\ProjectionProcessor.cs" />
     <Compile Include="Model\Momento.cs" />
-    <Compile Include="Model\MomentoBytes.cs" />
+    <Compile Include="Model\MomentoMedia.cs" />
+    <Compile Include="Model\Tag.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="MomntzRegistry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -12,8 +12,8 @@ namespace Momntz.Tests
         [Test]
         public void GetUsersTest_GetAllUsers_AllUsersAreReturned()
         {
-            ISession session = SessionFactory.SqlServer();
-            var list = session.Query<GetActiveUsers, User>().Where("UserStatus = 'Active'").List();
+            //ISession session = SessionFactory.SqlServer();
+            //var list = session.Query<GetActiveUsers, User>().Where("UserStatus = 'Active'").List();
         }
     }
 }
