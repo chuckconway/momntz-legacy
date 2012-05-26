@@ -34,13 +34,6 @@ namespace Momntz.UI
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-            name: "Users",
-            url: "{username}/Users/{controller}/{action}/{id}",
-            defaults: new { area="users", controller = "index", action = "Index", id = UrlParameter.Optional },
-            namespaces: new[] { "Momntz.UI.Areas.Users.Controllers" },
-            constraints: new {username = new UserRouteConstraint(new ProjectionProcessor(new StructureMapInjection())) }
-);
-            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
@@ -55,7 +48,7 @@ namespace Momntz.UI
 
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
-            //RouteDebug.RouteDebugger.RewriteRoutesForTesting(RouteTable.Routes);
+            RouteDebug.RouteDebugger.RewriteRoutesForTesting(RouteTable.Routes);
 
             BundleTable.Bundles.RegisterTemplateBundles();
         }

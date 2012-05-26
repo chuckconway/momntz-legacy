@@ -20,9 +20,8 @@ namespace Momntz.UI.Areas.Users
             context.MapRoute(
                 "Users_default",
                 "{username}/{controller}/{action}/{id}",
-                new { area = "users", controller = "index", action = "Index", id = UrlParameter.Optional },
-                constraints: new UserRouteConstraint(new ProjectionProcessor(new StructureMapInjection())) 
-            );
+                new {  controller = "index", action = "Index", id = UrlParameter.Optional },
+                constraints: new {username = new UserRouteConstraint(new ProjectionProcessor(new StructureMapInjection())) });
         }
     }
 }
