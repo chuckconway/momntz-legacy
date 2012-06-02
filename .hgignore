@@ -36,3 +36,6 @@ _ReSharper*/
 # ncrunch files
 *.ncrunchsolution
 *.ncrunchproject
+Source/Momntz.Database/Momntz.Database.dbmdl
+Source/Momntz.Database/Sandbox/Momntz.ldf
+Source/Momntz.Database/Sandbox/Momntz.mdf
