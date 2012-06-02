@@ -49,8 +49,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\CommandHandlers\ICommandHandler.cs" />
+    <Compile Include="Data\CommandHandlers\Momentos\CreateMomentoCommandHandler.cs" />
+    <Compile Include="Data\CommandHandlers\Momentos\CreateMomentoMediaCommandHandler.cs" />
     <Compile Include="Data\CommandHandlers\Users\CreateUserCommandHandler.cs" />
     <Compile Include="Data\Commands\ICommand.cs" />
+    <Compile Include="Data\Commands\Momentos\CreateMomentoCommand.cs" />
+    <Compile Include="Data\Commands\Momentos\CreateMomentoMedia.cs" />
     <Compile Include="Data\Commands\Users\CreateUserCommand.cs" />
     <Compile Include="Data\ProjectionHandlers\IProjectionHandler.cs" />
     <Compile Include="Data\ProjectionHandlers\Users\GetActiveUsersHandler.cs" />
@@ -72,6 +76,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

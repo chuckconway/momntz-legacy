@@ -44,6 +44,15 @@
         /// <value>
         /// The type of the media.
         /// </value>
-        public string MediaType { get; set; }
+        public MediaType MediaType { get; set; }
+    }
+
+    public enum MediaType
+    {
+        WordDoc,
+        PDF,
+        Video,
+        Image,
+        Text
     }
 }

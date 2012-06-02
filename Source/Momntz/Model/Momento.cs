@@ -1,4 +1,6 @@
-﻿namespace Momntz.Model
+﻿using System;
+
+namespace Momntz.Model
 {
     public class Momento
     {
@@ -18,8 +20,24 @@
         /// <value> The visibility. </value>
         public string Visibility { get; set; }
 
+        public int? Day { get; set; }
+
+        public int? Month { get; set; }
+
+        public int? Year { get; set; }
+
         /// <summary> Gets or sets the story. </summary>
         /// <value> The story. </value>
         public string Story { get; set; }
+
+        public Guid InternalId { get; set; }
+
+        public string Title { get; set; }
+
+        public string Location { get; set; }
+
+        public decimal? Latitude { get; set; }
+
+        public decimal? Longitude { get; set; }
     }
 }

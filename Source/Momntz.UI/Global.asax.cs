@@ -10,7 +10,6 @@ using Hypersonic;
 using Hypersonic.Session;
 using Momntz.Infrastructure;
 using Momntz.UI.Core;
-using Momntz.UI.Core.RouteConstraints;
 using StructureMap;
 
 namespace Momntz.UI
@@ -32,7 +31,6 @@ namespace Momntz.UI
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-            //routes.IgnoreRoute("uploader/upload.mvc");
 
             var route = new Route("uploader/upload.mvc", new UploadRouteHandler());
             routes.Add(route);
