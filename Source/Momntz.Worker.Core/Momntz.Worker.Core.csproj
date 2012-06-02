@@ -35,6 +35,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Dependencies\WindowsAzure\Microsoft.WindowsAzure.StorageClient.dll</HintPath>
     </Reference>
+    <Reference Include="StructureMap">
+      <HintPath>..\..\Dependencies\StructureMap\StructureMap.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -45,14 +48,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AzureStorage.cs" />
-    <Compile Include="IMessageProcessor.cs" />
-    <Compile Include="Implementations\EmailProcessor\EmailMessage.cs" />
-    <Compile Include="Implementations\EmailProcessor\EmailMessageProcessor.cs" />
-    <Compile Include="Implementations\MediaProcessor\MediaMessage.cs" />
-    <Compile Include="Implementations\MediaProcessor\MediaMessageProcesser.cs" />
-    <Compile Include="IStorage.cs" />
+    <Compile Include="Implementations\Media\DocumentProcessor.cs" />
+    <Compile Include="Implementations\Media\ImageProcessor.cs" />
+    <Compile Include="Implementations\Media\IMediaProcessor.cs" />
+    <Compile Include="Implementations\Media\VideoProcessor.cs" />
+    <Compile Include="Implementations\Storage\AzureStorage.cs" />
+    <Compile Include="Implementations\MessageProcessors\IMessageProcessor.cs" />
+    <Compile Include="Implementations\MessageProcessors\EmailProcessor\EmailMessage.cs" />
+    <Compile Include="Implementations\MessageProcessors\EmailProcessor\EmailMessageProcessor.cs" />
+    <Compile Include="Implementations\MessageProcessors\MediaProcessor\MediaMessage.cs" />
+    <Compile Include="Implementations\MessageProcessors\MediaProcessor\MediaMessageProcesser.cs" />
+    <Compile Include="Implementations\Storage\IStorage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WorkerRegistry.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

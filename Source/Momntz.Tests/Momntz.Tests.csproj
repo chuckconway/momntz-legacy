@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CreateMomentoCommandTests.cs" />
     <Compile Include="CreateUserCommandTests.cs" />
     <Compile Include="GetUsersTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

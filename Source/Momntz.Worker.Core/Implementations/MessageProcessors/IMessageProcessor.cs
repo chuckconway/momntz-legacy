@@ -1,4 +1,4 @@
-﻿namespace Momntz.Worker
+﻿namespace Momntz.Worker.Core.Implementations.MessageProcessors
 {
     public interface IMessageProcessor
     {
