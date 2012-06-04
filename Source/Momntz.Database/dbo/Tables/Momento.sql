@@ -7,14 +7,16 @@
     [Story]      NVARCHAR (MAX)   NULL,
     [Title]      NVARCHAR (250)   NULL,
     [CreateDate] DATETIME2 (7)    CONSTRAINT [DF_Momento_CreateDate] DEFAULT (getutcdate()) NULL,
-    [Day]        INT              NOT NULL,
-    [Month]      INT              NOT NULL,
-    [Year]       INT              NOT NULL,
+    [Day]        INT              NULL,
+    [Month]      INT              NULL,
+    [Year]       INT              NULL,
     [Location]   NVARCHAR (250)   NULL,
     [Latitude]   NUMERIC (26, 13) NULL,
     [Longitude]  NUMERIC (26, 13) NULL,
     CONSTRAINT [PK_Momento] PRIMARY KEY CLUSTERED ([Id] ASC)
 );
+
+
 
 
 

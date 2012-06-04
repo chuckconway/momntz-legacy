@@ -1,6 +1,6 @@
 ﻿using System.IO;
 using Momntz.Worker.Core;
-using Momntz.Worker.Core.Implementations.Storage;
+using Momntz.Worker.Core.Storage;
 using NUnit.Framework;
 
 namespace Momntz.Worker.Tests.Integration

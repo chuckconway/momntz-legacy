@@ -53,11 +53,13 @@
     <Compile Include="Data\CommandHandlers\Momentos\CreateMomentoCommandHandler.cs" />
     <Compile Include="Data\CommandHandlers\Momentos\CreateMomentoMediaCommandHandler.cs" />
     <Compile Include="Data\CommandHandlers\Queue\CreateMediaCommandHandler.cs" />
+    <Compile Include="Data\CommandHandlers\Queue\CreateQueueCommandHandler.cs" />
     <Compile Include="Data\CommandHandlers\Users\CreateUserCommandHandler.cs" />
     <Compile Include="Data\Commands\ICommand.cs" />
     <Compile Include="Data\Commands\Momentos\CreateMomentoCommand.cs" />
     <Compile Include="Data\Commands\Momentos\CreateMomentoMedia.cs" />
     <Compile Include="Data\Commands\Queue\CreateMediaCommand.cs" />
+    <Compile Include="Data\Commands\Queue\CreateQueueCommand.cs" />
     <Compile Include="Data\Commands\Users\CreateUserCommand.cs" />
     <Compile Include="Data\PersistIntercepters\AuditPersistIntercepter.cs" />
     <Compile Include="Data\ProjectionHandlers\IProjectionHandler.cs" />

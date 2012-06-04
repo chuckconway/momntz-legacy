@@ -3,7 +3,7 @@ using System.Web;
 using System.Web.Mvc;
 using Momntz.Tests;
 using Momntz.Worker.Core;
-using Momntz.Worker.Core.Implementations.Storage;
+using Momntz.Worker.Core.Storage;
 
 namespace Momntz.UI.Areas.Users.Controllers
 {

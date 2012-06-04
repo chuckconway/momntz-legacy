@@ -23,7 +23,8 @@ namespace Momntz.Data.PersistIntercepters
         public Func<string, bool> Condition
         {
             get { return s => !string.Equals(s, _audit, StringComparison.InvariantCulture) &&
-                              !string.Equals(s, "Media", StringComparison.InvariantCulture);
+                              !string.Equals(s, "Media", StringComparison.InvariantCulture) &&
+                              !string.Equals(s, "Queue", StringComparison.InvariantCulture);
             }
         }
     }

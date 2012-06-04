@@ -3,26 +3,27 @@ using Momntz.Data.Commands.Queue;
 
 namespace Momntz.Data.CommandHandlers.Queue
 {
-    public class CreateMediaCommandHandler : ICommandHandler<CreateMediaCommand>
+    public class CreateQueueCommandHandler : ICommandHandler<CreateQueueCommand>
     {
         private readonly ISession _session;
 
-        public CreateMediaCommandHandler(ISession session)
+        public CreateQueueCommandHandler(ISession session)
         {
             _session = session;
         }
 
-        public void Execute(CreateMediaCommand command)
+        public void Execute(CreateQueueCommand command)
         {
             try
             {
                 _session.Database.ConnectionStringName = "queue";
-                _session.Save(command, "Media");
+                _session.Save(new {command.Implementation, command.Payload, MessageStatus = MessageStatus.Queued.ToString()}, "Queue");
             }
-            finally
+            finally 
             {
                 _session.Database.ConnectionStringName = null;
             }
+           
         }
     }
 }
