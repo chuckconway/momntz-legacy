@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO;
 
-namespace Momntz.Worker.Core
+namespace Momntz.Worker.Core.Storage
 {
     public interface IStorage
     {

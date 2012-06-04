@@ -5,7 +5,7 @@ using System.IO;
 using Microsoft.WindowsAzure;
 using Microsoft.WindowsAzure.StorageClient;
 
-namespace Momntz.Worker.Core.Implementations.Storage
+namespace Momntz.Worker.Core.Storage
 {
     public class AzureStorage : IStorage
     {

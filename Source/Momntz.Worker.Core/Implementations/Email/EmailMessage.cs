@@ -1,4 +1,4 @@
-﻿namespace Momntz.Worker.Core.Implementations.EmailProcessor
+﻿namespace Momntz.Worker.Core.Implementations.Email
 {
     public class EmailMessage
     {
