@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Routing;
 
-namespace Momntz.UI.Core
+namespace Momntz.UI.Core.RouteHandler
 {
     public class UploadRouteHandler : IRouteHandler
     {

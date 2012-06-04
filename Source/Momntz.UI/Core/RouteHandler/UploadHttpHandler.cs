@@ -1,12 +1,19 @@
 ﻿using System.Web;
 using Momntz.Worker.Core;
+using Momntz.Worker.Core.Implementations.Storage;
 
-namespace Momntz.UI.Core
+namespace Momntz.UI.Core.RouteHandler
 {
     public class UploadHttpHandler : IHttpHandler
     {
         public void ProcessRequest(HttpContext context)
         {
+            //Image formats
+            // jpg, jpeg, png, gif, tiff
+
+            //Documents Formats
+            //PDF, doc, docx, text
+
             var file = context.Request.Files["filedata"];
             
             IStorage storage = new AzureStorage();

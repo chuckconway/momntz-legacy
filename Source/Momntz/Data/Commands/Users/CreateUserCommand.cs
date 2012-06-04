@@ -6,6 +6,8 @@
         /// <value> The username. </value>
         public string Username { get; set; }
 
+        public string CreatedBy { get; set; }
+
         /// <summary> Gets or sets the email. </summary>
         /// <value> The email. </value>
         public string Email { get; set; }
@@ -28,9 +30,10 @@
         /// <param name="firstName"> Name of the first. </param>
         /// <param name="lastName">  Name of the last. </param>
         /// <param name="password">  The password. </param>
-        public CreateUserCommand(string username, string email, string firstName, string lastName, string password)
+        public CreateUserCommand(string username, string createdBy, string email, string firstName, string lastName, string password)
         {
             Username = username;
+            CreatedBy = createdBy;
             Email = email;
             FirstName = firstName;
             LastName = lastName;

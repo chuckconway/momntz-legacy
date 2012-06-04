@@ -4,6 +4,7 @@ using Hypersonic;
 using Hypersonic.Session;
 using Momntz.Data.CommandHandlers.Momentos;
 using Momntz.Data.Commands.Momentos;
+using Momntz.Data.PersistIntercepters;
 using Momntz.Model;
 using NUnit.Framework;
 
@@ -15,6 +16,8 @@ namespace Momntz.Tests
         [Test]
         public void CreateMomento_Insert_ItsCreated()
         {
+            SqlServerSession.AddPersistIntercepter(new AuditPersistIntercepter());
+
             string randomUsername = Guid.NewGuid().ToString();
             string filename = Guid.NewGuid().ToString();
 
