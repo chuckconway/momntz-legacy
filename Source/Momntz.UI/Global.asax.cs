@@ -8,8 +8,10 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using Hypersonic;
 using Hypersonic.Session;
+using Momntz.Data.PersistIntercepters;
 using Momntz.Infrastructure;
 using Momntz.UI.Core;
+using Momntz.UI.Core.RouteHandler;
 using StructureMap;
 
 namespace Momntz.UI
@@ -72,6 +74,8 @@ namespace Momntz.UI
                 s.ConnectImplementationsToTypesClosing(typeof(IFormHandler<>));
                 s.ConnectImplementationsToTypesClosing(typeof(IQueryHandler<,>));
             }));
+
+            SqlServerSession.AddPersistIntercepter(new AuditPersistIntercepter());
 
             ObjectFactory.AssertConfigurationIsValid();
             DependencyResolver.SetResolver(new StructureMapDependencyResolver(container));

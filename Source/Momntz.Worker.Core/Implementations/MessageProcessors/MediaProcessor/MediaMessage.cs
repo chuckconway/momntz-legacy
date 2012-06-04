@@ -1,6 +1,7 @@
-﻿namespace Momntz.Worker.Core.Implementations.MediaProcessor
+﻿namespace Momntz.Worker.Core.Implementations.MessageProcessors.MediaProcessor
 {
-    class MediaMessage
+    public class MediaMessage
     {
+
     }
 }

@@ -41,6 +41,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -51,11 +52,14 @@
     <Compile Include="Data\CommandHandlers\ICommandHandler.cs" />
     <Compile Include="Data\CommandHandlers\Momentos\CreateMomentoCommandHandler.cs" />
     <Compile Include="Data\CommandHandlers\Momentos\CreateMomentoMediaCommandHandler.cs" />
+    <Compile Include="Data\CommandHandlers\Queue\CreateMediaCommandHandler.cs" />
     <Compile Include="Data\CommandHandlers\Users\CreateUserCommandHandler.cs" />
     <Compile Include="Data\Commands\ICommand.cs" />
     <Compile Include="Data\Commands\Momentos\CreateMomentoCommand.cs" />
     <Compile Include="Data\Commands\Momentos\CreateMomentoMedia.cs" />
+    <Compile Include="Data\Commands\Queue\CreateMediaCommand.cs" />
     <Compile Include="Data\Commands\Users\CreateUserCommand.cs" />
+    <Compile Include="Data\PersistIntercepters\AuditPersistIntercepter.cs" />
     <Compile Include="Data\ProjectionHandlers\IProjectionHandler.cs" />
     <Compile Include="Data\ProjectionHandlers\Users\GetActiveUsersHandler.cs" />
     <Compile Include="Data\Projections\IProjection.cs" />

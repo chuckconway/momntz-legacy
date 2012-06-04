@@ -157,8 +157,8 @@
     <Compile Include="Core\RouteConstraints\UserRouteCache.cs" />
     <Compile Include="Core\RouteConstraints\UserRouteConstraint.cs" />
     <Compile Include="Core\StructureMapInjection.cs" />
-    <Compile Include="Core\UploadHttpHandler.cs" />
-    <Compile Include="Core\UploadRouteHandler.cs" />
+    <Compile Include="Core\RouteHandler\UploadHttpHandler.cs" />
+    <Compile Include="Core\RouteHandler\UploadRouteHandler.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -280,6 +280,10 @@
     <Content Include="Areas\Register\Views\Index\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Momntz.Tests\Momntz.Tests.csproj">
+      <Project>{45b7604f-7895-44bb-84e0-1ba1624d980d}</Project>
+      <Name>Momntz.Tests</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Momntz.Worker.Core\Momntz.Worker.Core.csproj">
       <Project>{8468247f-1c2b-4bd8-8d9f-d9303768759b}</Project>
       <Name>Momntz.Worker.Core</Name>

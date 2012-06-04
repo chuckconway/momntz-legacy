@@ -3,6 +3,7 @@ using Hypersonic;
 using Hypersonic.Session;
 using Momntz.Data.CommandHandlers.Users;
 using Momntz.Data.Commands.Users;
+using Momntz.Data.PersistIntercepters;
 using Momntz.Model;
 using NUnit.Framework;
 
@@ -15,8 +16,10 @@ namespace Momntz.Tests
         public void CreateUser_ValidData_UserIsCreated()
         {
             string username = Path.GetRandomFileName();
-            CreateUserCommand command = new CreateUserCommand(username,
+            CreateUserCommand command = new CreateUserCommand(username, username,
                 Path.GetRandomFileName(), Path.GetRandomFileName(), Path.GetRandomFileName(), Path.GetRandomFileName());
+
+            SqlServerSession.AddPersistIntercepter(new AuditPersistIntercepter());
 
             CreateUserCommandHandler handler = new CreateUserCommandHandler(SessionFactory.SqlServer());
             handler.Execute(command);
