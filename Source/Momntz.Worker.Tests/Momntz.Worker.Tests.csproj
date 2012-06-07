@@ -30,6 +30,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Chucksoft.Core">
+      <HintPath>..\..\Dependencies\Chucksoft\Chucksoft.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Chucksoft.Storage">
+      <HintPath>..\..\Dependencies\Chucksoft\Chucksoft.Storage.dll</HintPath>
+    </Reference>
+    <Reference Include="Hypersonic">
+      <HintPath>..\..\Dependencies\Hypersonic\Hypersonic.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\..\Dependencies\nUnit\nunit.framework.dll</HintPath>
     </Reference>
@@ -43,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Integration\AzureStorageTests.cs" />
+    <Compile Include="Integration\QueueServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

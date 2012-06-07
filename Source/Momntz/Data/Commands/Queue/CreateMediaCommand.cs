@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using Hypersonic.Attributes;
 
 namespace Momntz.Data.Commands.Queue
 {
@@ -33,6 +31,7 @@ namespace Momntz.Data.Commands.Queue
 
         public string MediaType { get; private set; }
 
+        [Ignore]
         public byte[] Bytes { get; private set; }
     }
 }

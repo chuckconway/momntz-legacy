@@ -4,6 +4,6 @@
     {
         string MessageType { get; }
 
-        void Process(object message);
+        void Process(string message);
     }
 }

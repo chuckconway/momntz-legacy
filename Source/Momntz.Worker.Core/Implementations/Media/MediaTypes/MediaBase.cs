@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
-using Momntz.Worker.Core.Storage;
+using Chucksoft.Storage;
+
 
 namespace Momntz.Worker.Core.Implementations.Media.MediaTypes
 {
@@ -20,5 +21,12 @@ namespace Momntz.Worker.Core.Implementations.Media.MediaTypes
 
             _storage.AddFile(storageContainer, name, string.Format("{0}/{1}", contenType, type), item.Bytes);
         }
+
+        //private byte[] HexToBinary(string hex)
+        //{
+        //    Convert.FromBase64String(hex);
+        //    //string binaryval = Convert.ToString(Convert.ToInt64(hex, 16), 2);
+
+        //}
     }
 }

@@ -7,7 +7,7 @@
             get { return typeof(EmailMessage).FullName; ; }
         }
 
-        public void Process(object message)
+        public void Process(string message)
         {
             
         }
