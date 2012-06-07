@@ -72,6 +72,7 @@
     <Compile Include="Infrastructure\IInjection.cs" />
     <Compile Include="Infrastructure\IProjectionProcessor.cs" />
     <Compile Include="Infrastructure\ProjectionProcessor.cs" />
+    <Compile Include="Infrastructure\StructureMapInjection.cs" />
     <Compile Include="Model\Momento.cs" />
     <Compile Include="Model\MomentoMedia.cs" />
     <Compile Include="Model\Tag.cs" />

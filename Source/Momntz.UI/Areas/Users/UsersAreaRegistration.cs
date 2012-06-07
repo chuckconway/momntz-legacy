@@ -2,11 +2,13 @@
 using Momntz.Infrastructure;
 using Momntz.UI.Core;
 using Momntz.UI.Core.RouteConstraints;
+using StructureMap;
 
 namespace Momntz.UI.Areas.Users
 {
     public class UsersAreaRegistration : AreaRegistration
     {
+
         public override string AreaName
         {
             get
@@ -21,7 +23,7 @@ namespace Momntz.UI.Areas.Users
                 "Users_default",
                 "{username}/{controller}/{action}/{id}",
                 new {  controller = "index", action = "Index", id = UrlParameter.Optional },
-                constraints: new {username = new UserRouteConstraint(new ProjectionProcessor(new StructureMapInjection())) });
+                constraints: new { username = new UserRouteConstraint(ObjectFactory.GetInstance<IProjectionProcessor>()) });
         }
     }
 }

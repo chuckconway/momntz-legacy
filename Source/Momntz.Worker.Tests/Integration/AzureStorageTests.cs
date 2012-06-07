@@ -1,6 +1,6 @@
 ﻿using System.IO;
-using Momntz.Worker.Core;
-using Momntz.Worker.Core.Storage;
+using Chucksoft.Core.Services;
+using Chucksoft.Storage;
 using NUnit.Framework;
 
 namespace Momntz.Worker.Tests.Integration
@@ -11,7 +11,7 @@ namespace Momntz.Worker.Tests.Integration
         [Test]
         public void Bucket_Create_BucketIsCreatedSuccessfully()
         {
-            IStorage storage = new AzureStorage();
+            IStorage storage = new AzureStorage(new ConfigurationService());
             string name = "img"; //Path.GetRandomFileName();
             storage.CreateBucket(name);
         }
@@ -19,7 +19,7 @@ namespace Momntz.Worker.Tests.Integration
         [Test]
         public void File_AddFile_FileIsAddedSuccessfully()
         {
-            IStorage storage = new AzureStorage();
+            IStorage storage = new AzureStorage(new ConfigurationService());
             storage.AddFile("img", Path.GetRandomFileName(), "image/jpg", new byte[128]);
         }
         

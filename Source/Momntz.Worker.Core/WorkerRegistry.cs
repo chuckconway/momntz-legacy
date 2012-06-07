@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Chucksoft.Core.Services;
+using Chucksoft.Storage;
+using Hypersonic;
+using Hypersonic.Session;
 using StructureMap.Configuration.DSL;
 
 namespace Momntz.Worker.Core
@@ -10,6 +10,10 @@ namespace Momntz.Worker.Core
     {
         public WorkerRegistry()
         {
+            For<ISession>().Use(SessionFactory.SqlServer());
+            For<IStorage>().Use<AzureStorage>();
+            For<IConfigurationService>().Use<ConfigurationService>();
+
             Scan(
                 s =>
                 {

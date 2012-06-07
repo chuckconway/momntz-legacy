@@ -6,6 +6,7 @@ using System.Web.Script.Serialization;
 using Momntz.Data.Commands.Queue;
 using Momntz.Infrastructure;
 using Momntz.Worker.Core.Implementations.Media;
+using StructureMap;
 
 
 namespace Momntz.UI.Core.RouteHandler
@@ -19,7 +20,7 @@ namespace Momntz.UI.Core.RouteHandler
 
         public UploadHttpHandler()
         {
-            _commandProcessor = new CommandProcessor(new StructureMapInjection());
+            _commandProcessor = ObjectFactory.GetInstance<ICommandProcessor>();
         }
 
         private MediaType GetMediaType(string extension)

@@ -1,5 +1,7 @@
 ﻿using System.Linq;
 using System.Collections.Generic;
+using System.Web.Script.Serialization;
+using Chucksoft.Storage;
 using Hypersonic;
 using Momntz.Worker.Core.Implementations.Media.MediaTypes;
 
@@ -8,20 +10,24 @@ namespace Momntz.Worker.Core.Implementations.Media
     public class MediaProcessor : IMessageProcessor
     {
         private readonly ISession _session;
+        private readonly IStorage _storage;
 
-        public MediaProcessor(ISession session)
+        public MediaProcessor(ISession session, IStorage storage)
         {
             _session = session;
+            _storage = storage;
         }
-
+         
         public string MessageType
         {
             get { return typeof (MediaMessage).FullName; }
         }
 
-        public void Process(object message)
+        public void Process(string message)
         {
-            MediaMessage msg = (MediaMessage)message;
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            MediaMessage msg = serializer.Deserialize<MediaMessage>(message);
+
             var list = GetMediaTypes();
             var single = list.Single(m => m.Media == msg.MediaType);
 
@@ -36,9 +42,9 @@ namespace Momntz.Worker.Core.Implementations.Media
         {
             return new List<IMedia>
                        {
-                           new DocumentProcessor(),
-                           new ImageProcessor(),
-                           new VideoProcessor()
+                           new DocumentProcessor(_storage, _session),
+                           new ImageProcessor(_storage, _session),
+                           new VideoProcessor(_storage, _session)
                        };
         }
     }

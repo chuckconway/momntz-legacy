@@ -1,9 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Web;
+﻿using System.Web;
 using System.Web.Mvc;
 using Momntz.Tests;
-using Momntz.Worker.Core;
-using Momntz.Worker.Core.Storage;
+
 
 namespace Momntz.UI.Areas.Users.Controllers
 {
@@ -18,8 +16,8 @@ namespace Momntz.UI.Areas.Users.Controllers
         [HttpPost]
         public ActionResult Index(HttpPostedFileBase filedata)
         {
-            IStorage storage = new AzureStorage();
-            storage.AddFile("img", filedata.FileName, filedata.ContentType, filedata.InputStream);
+            //IStorage storage = new AzureStorage();
+            //storage.AddFile("img", filedata.FileName, filedata.ContentType, filedata.InputStream);
             
             return Content("Error");
         }

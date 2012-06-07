@@ -47,8 +47,8 @@ namespace Momntz.UI
         /// <summary> Application start. </summary>
         protected void Application_Start()
         {
-            AreaRegistration.RegisterAllAreas();
             RegisterDependencyInjection();
+            AreaRegistration.RegisterAllAreas();
 
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
@@ -60,23 +60,27 @@ namespace Momntz.UI
         /// <summary> Registers the dependency injection. </summary>
         private void RegisterDependencyInjection()
         {
-            IContainer container = new Container();
-            container.Configure(x => x.Scan(s =>
+            IContainer container = ObjectFactory.Container;
+
+            ObjectFactory.Initialize(x => x.Scan(s =>
             {
                 x.AddRegistry<MomntzRegistry>();
                 x.For<IDatabase>().Use(new MsSqlDatabase());
                 x.For<ISession>().Use(SessionFactory.SqlServer());
-                x.For<IInjection>().Use(new StructureMapInjection());
+                
+                x.For<IProjectionProcessor>().Use<ProjectionProcessor>();
  
                 s.TheCallingAssembly();
                 s.WithDefaultConventions();
 
                 s.ConnectImplementationsToTypesClosing(typeof(IFormHandler<>));
                 s.ConnectImplementationsToTypesClosing(typeof(IQueryHandler<,>));
+
+                x.For<IInjection>().Use(new StructureMapInjection());
             }));
 
             SqlServerSession.AddPersistIntercepter(new AuditPersistIntercepter());
-
+            
             ObjectFactory.AssertConfigurationIsValid();
             DependencyResolver.SetResolver(new StructureMapDependencyResolver(container));
         }
