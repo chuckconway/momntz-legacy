@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Momntz.Worker.Core", "Momnt
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Momntz.Worker.Tests", "Momntz.Worker.Tests\Momntz.Worker.Tests.csproj", "{38DECA10-5091-4A6F-935C-ADF65C3EF8FD}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Momntz.Queue", "Momntz.Queue\Momntz.Queue.sqlproj", "{488B5F7D-FD74-4418-BCEF-26DED149A017}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM = Debug|ARM
@@ -49,6 +51,18 @@ Global
 		{45B7604F-7895-44BB-84E0-1BA1624D980D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{45B7604F-7895-44BB-84E0-1BA1624D980D}.Release|x64.ActiveCfg = Release|Any CPU
 		{45B7604F-7895-44BB-84E0-1BA1624D980D}.Release|x86.ActiveCfg = Release|Any CPU
+		{488B5F7D-FD74-4418-BCEF-26DED149A017}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{488B5F7D-FD74-4418-BCEF-26DED149A017}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{488B5F7D-FD74-4418-BCEF-26DED149A017}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{488B5F7D-FD74-4418-BCEF-26DED149A017}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{488B5F7D-FD74-4418-BCEF-26DED149A017}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{488B5F7D-FD74-4418-BCEF-26DED149A017}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{488B5F7D-FD74-4418-BCEF-26DED149A017}.Release|ARM.ActiveCfg = Release|Any CPU
+		{488B5F7D-FD74-4418-BCEF-26DED149A017}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{488B5F7D-FD74-4418-BCEF-26DED149A017}.Release|Any CPU.Build.0 = Release|Any CPU
+		{488B5F7D-FD74-4418-BCEF-26DED149A017}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{488B5F7D-FD74-4418-BCEF-26DED149A017}.Release|x64.ActiveCfg = Release|Any CPU
+		{488B5F7D-FD74-4418-BCEF-26DED149A017}.Release|x86.ActiveCfg = Release|Any CPU
 		{77CC17DF-C471-42BF-B5F6-D55EAF918891}.Debug|ARM.ActiveCfg = Debug|Any CPU
 		{77CC17DF-C471-42BF-B5F6-D55EAF918891}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{77CC17DF-C471-42BF-B5F6-D55EAF918891}.Debug|Any CPU.Build.0 = Debug|Any CPU
