@@ -54,7 +54,10 @@ namespace Momntz.Model
         WordDoc,
         PDF,
         Video,
-        Image,
+        SmallImage,
+        MediumImage,
+        LargeImage,
+        OriginalImage,
         Text
     }
 }

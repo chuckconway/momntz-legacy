@@ -4,26 +4,23 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <Name>Momntz.Database</Name>
+    <Name>Momntz.Queue</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
-    <ProjectGuid>{9c3a140f-1634-4ffb-a1aa-7fb1c4702bee}</ProjectGuid>
+    <ProjectGuid>{488b5f7d-fd74-4418-bcef-26ded149a017}</ProjectGuid>
     <DSP>Microsoft.Data.Tools.Schema.Sql.Sql110DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
-    <RootNamespace>Momntz.Database</RootNamespace>
-    <AssemblyName>Momntz.Database</AssemblyName>
-    <ModelCollation>1033,CI</ModelCollation>
+    <RootNamespace>Momntz.Queue</RootNamespace>
+    <AssemblyName>Momntz.Queue</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
     <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
     <DeployToDatabase>True</DeployToDatabase>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetLanguage>CS</TargetLanguage>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <SqlServerVerification>False</SqlServerVerification>
-    <DefaultCollation>SQL_Latin1_General_CP1_CI_AS</DefaultCollation>
-    <DefaultFilegroup>PRIMARY</DefaultFilegroup>
-    <IncludeSchemaNameInFileName>False</IncludeSchemaNameInFileName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -57,21 +54,9 @@
     <Folder Include="Properties" />
     <Folder Include="dbo\" />
     <Folder Include="dbo\Tables\" />
-    <Folder Include="Security\" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="dbo\Tables\User.sql" />
-    <Build Include="dbo\Tables\Momento.sql" />
-    <Build Include="dbo\Tables\Tag.sql" />
-    <Build Include="dbo\Tables\TagMomento.sql" />
-    <Build Include="dbo\Tables\MomentoMedia.sql" />
-    <Build Include="Security\momntz.sql" />
-    <Build Include="Security\RoleMemberships.sql" />
-    <Build Include="dbo\Tables\TagPerson.sql" />
-    <Build Include="dbo\Tables\TagAlbum.sql" />
-    <Build Include="dbo\Tables\Audit.sql" />
-    <Build Include="Security\momntz_1.sql" />
-    <Build Include="Security\momntz_2.sql" />
-    <Build Include="dbo\Tables\Configuration.sql" />
+    <Build Include="dbo\Tables\Queue.sql" />
+    <Build Include="dbo\Tables\Media.sql" />
   </ItemGroup>
 </Project>

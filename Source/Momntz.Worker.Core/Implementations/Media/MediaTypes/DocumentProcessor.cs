@@ -16,9 +16,9 @@ namespace Momntz.Worker.Core.Implementations.Media.MediaTypes
             _session = session;
         }
 
-        public MediaType Media
+        public string Media
         {
-            get { return MediaType.Document; }
+            get { return "Document"; }
         }
 
         public void Process(MediaItem message)

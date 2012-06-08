@@ -6,15 +6,8 @@ namespace Momntz.Worker.Core.Implementations.Media
     {
         public Guid Id { get; set; }
 
-        public MediaType MediaType { get; set; }
+        public string MediaType { get; set; }
     }
 
-    public enum MediaType
-    {
-        Image,
-        Video,
-        Document,
-        Unsupported
-    }
 }
 
