@@ -33,6 +33,12 @@
     <Reference Include="AutoMapper">
       <HintPath>..\..\Dependencies\Automapper\AutoMapper.dll</HintPath>
     </Reference>
+    <Reference Include="Chucksoft.Core">
+      <HintPath>..\..\Dependencies\Chucksoft\Chucksoft.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Chucksoft.Storage">
+      <HintPath>..\..\Dependencies\Chucksoft\Chucksoft.Storage.dll</HintPath>
+    </Reference>
     <Reference Include="Hypersonic">
       <HintPath>..\..\Dependencies\Hypersonic\Hypersonic.dll</HintPath>
     </Reference>
@@ -40,6 +46,7 @@
       <HintPath>..\..\Dependencies\StructureMap\StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
@@ -71,8 +78,12 @@
     <Compile Include="Infrastructure\ICommandProcessor.cs" />
     <Compile Include="Infrastructure\IInjection.cs" />
     <Compile Include="Infrastructure\IProjectionProcessor.cs" />
+    <Compile Include="Infrastructure\MomntzConfiguration.cs" />
     <Compile Include="Infrastructure\ProjectionProcessor.cs" />
     <Compile Include="Infrastructure\StructureMapInjection.cs" />
+    <Compile Include="Model\Configuration\ISettings.cs" />
+    <Compile Include="Model\Configuration\Setting.cs" />
+    <Compile Include="Model\Configuration\Settings.cs" />
     <Compile Include="Model\Momento.cs" />
     <Compile Include="Model\MomentoMedia.cs" />
     <Compile Include="Model\Tag.cs" />

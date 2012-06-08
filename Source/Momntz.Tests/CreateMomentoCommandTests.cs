@@ -21,7 +21,7 @@ namespace Momntz.Tests
             string randomUsername = Guid.NewGuid().ToString();
             string filename = Guid.NewGuid().ToString();
 
-            CreateMomentoMediaCommand media = new CreateMomentoMediaCommand(filename, "image/jpg", "img/fdsafasfdsf.jpg", 12343, randomUsername, MediaType.Image);
+            CreateMomentoMediaCommand media = new CreateMomentoMediaCommand(filename, "image/jpg", "img/fdsafasfdsf.jpg", 12343, randomUsername, MediaType.MediumImage);
             CreateMomentoCommand command = new CreateMomentoCommand(randomUsername, new List<CreateMomentoMediaCommand> { media });
             CreateMomentoCommandHandler handler = new CreateMomentoCommandHandler(SessionFactory.SqlServer());
             
