@@ -23,15 +23,15 @@ namespace Momntz.UI.Core.RouteHandler
             _commandProcessor = ObjectFactory.GetInstance<ICommandProcessor>();
         }
 
-        private MediaType GetMediaType(string extension)
+        private string GetMediaType(string extension)
         {
-            MediaType mediaType = MediaType.Unsupported;
+            string mediaType = "Unsupported";
 
             var types = new[]
                             {
-                                new{Types = _images, MediaType= MediaType.Image},
-                                new {Types = _documents, MediaType = MediaType.Document},
-                                new {Types = _videos, MediaType = MediaType.Video}
+                                new{Types = _images, MediaType = "Image"},
+                                new {Types = _documents, MediaType = "Document"},
+                                new {Types = _videos, MediaType = "Video"}
                             };
             
             extension = extension.TrimStart('.');
@@ -71,7 +71,7 @@ namespace Momntz.UI.Core.RouteHandler
             context.Response.Write("1");
         }
 
-        private string GetMediaMessage(Guid id, MediaType mediaType)
+        private string GetMediaMessage(Guid id, string mediaType)
         {
             MediaMessage mediaMessage = new MediaMessage {Id = id, MediaType = mediaType};
             JavaScriptSerializer serializer = new JavaScriptSerializer();

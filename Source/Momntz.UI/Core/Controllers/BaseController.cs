@@ -3,7 +3,7 @@ using Momntz.UI.Core.ActionResults;
 
 namespace Momntz.UI.Core.Controllers
 {
-    public class MomntzController : Controller
+    public class BaseController : Controller
     {
         /// <summary> Queries. </summary>
         /// <typeparam name="TArgs">   Type of the arguments. </typeparam>

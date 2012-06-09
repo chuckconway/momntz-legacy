@@ -2,6 +2,8 @@
 {
     public interface ISettings
     {
+        string CloudUrl { get; }
+
         string QueueDatabase { get; }
 
         int ImageSmallWidth { get; }

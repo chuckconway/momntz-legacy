@@ -51,7 +51,9 @@ namespace Momntz.UI.Core.ActionResults
         {
             try
             {
-                handler.Handle(args);
+                var model = handler.Handle(args);
+                context.Controller.ViewData.Model = model;
+                
                 Success.ExecuteResult(context);
             }
             catch (Exception)

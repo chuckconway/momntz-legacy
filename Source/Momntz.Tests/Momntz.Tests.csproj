@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Chucksoft.Core">
+      <HintPath>..\..\Dependencies\Chucksoft\Chucksoft.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Hypersonic">
       <HintPath>..\..\Dependencies\Hypersonic\Hypersonic.dll</HintPath>
     </Reference>
