@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Chucksoft.Core.Services;
 using Hypersonic;
 using Hypersonic.Session;
 using Momntz.Data.PersistIntercepters;
@@ -60,13 +61,12 @@ namespace Momntz.UI
         /// <summary> Registers the dependency injection. </summary>
         private void RegisterDependencyInjection()
         {
-            IContainer container = ObjectFactory.Container;
-
             ObjectFactory.Initialize(x => x.Scan(s =>
             {
                 x.AddRegistry<MomntzRegistry>();
                 x.For<IDatabase>().Use(new MsSqlDatabase());
                 x.For<ISession>().Use(SessionFactory.SqlServer());
+                x.For<IConfigurationService>().Use<MomntzConfiguration>();
                 
                 x.For<IProjectionProcessor>().Use<ProjectionProcessor>();
  
@@ -82,32 +82,25 @@ namespace Momntz.UI
             SqlServerSession.AddPersistIntercepter(new AuditPersistIntercepter());
             
             ObjectFactory.AssertConfigurationIsValid();
-            DependencyResolver.SetResolver(new StructureMapDependencyResolver(container));
+            DependencyResolver.SetResolver(new StructureMapDependencyResolver());
         }
     }
 
     internal class StructureMapDependencyResolver : IDependencyResolver
     {
-        public StructureMapDependencyResolver(IContainer container)
-        {
-            _container = container;
-        }
-
-        private readonly IContainer _container;
-
         public object GetService(Type serviceType)
         {
             if (serviceType.IsAbstract || serviceType.IsInterface)
             {
-                return _container.TryGetInstance(serviceType);
+                return ObjectFactory.TryGetInstance(serviceType);
             }
 
-            return _container.GetInstance(serviceType);
+            return ObjectFactory.GetInstance(serviceType);
         }
 
         public IEnumerable<object> GetServices(Type serviceType)
         {
-            return _container.GetAllInstances(serviceType).Cast<object>();
+            return ObjectFactory.GetAllInstances(serviceType).Cast<object>();
         }
     }
 }

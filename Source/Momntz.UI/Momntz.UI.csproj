@@ -46,6 +46,10 @@
     <Reference Include="AutoMapper">
       <HintPath>..\..\Dependencies\Automapper\AutoMapper.dll</HintPath>
     </Reference>
+    <Reference Include="Chucksoft.Core, Version=3.1.0.1, Culture=neutral, PublicKeyToken=3480c36974861ddd, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Dependencies\Chucksoft\Chucksoft.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Hypersonic">
       <HintPath>..\..\Dependencies\Hypersonic\Hypersonic.dll</HintPath>
     </Reference>
@@ -149,7 +153,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Core\ActionResults\FormResult.cs" />
     <Compile Include="Core\ActionResults\QueryResult.cs" />
-    <Compile Include="Core\Controllers\MomntzController.cs" />
+    <Compile Include="Core\Controllers\BaseController.cs" />
     <Compile Include="Core\FluentValidationIOCFactory.cs" />
     <Compile Include="Core\HandlerBase.cs" />
     <Compile Include="Core\IFormHandler.cs" />
@@ -161,6 +165,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Handlers\Home\GetHomeViewHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -266,7 +271,6 @@
     <Folder Include="Areas\Register\Views\Shared\" />
     <Folder Include="Areas\Users\Models\" />
     <Folder Include="Areas\Users\Views\Shared\" />
-    <Folder Include="Handlers\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

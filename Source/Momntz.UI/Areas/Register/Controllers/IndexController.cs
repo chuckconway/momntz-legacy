@@ -4,7 +4,7 @@ using Momntz.UI.Core.Controllers;
 
 namespace Momntz.UI.Areas.Register.Controllers
 {
-    public class IndexController : MomntzController
+    public class IndexController : BaseController
     {
         /// <summary> Gets the index. </summary>
         /// <returns> . </returns>

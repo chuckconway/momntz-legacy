@@ -8,13 +8,15 @@ namespace Momntz.Model
         /// <value> The identifier. </value>
         public int Id { get; set; }
 
+        public int MomentoId { get; set; }
+
         /// <summary> Gets or sets the filename of the file. </summary>
         /// <value> The filename. </value>
         public string Filename { get; set; }
 
         /// <summary> Gets or sets the type of the file. </summary>
         /// <value> The type of the file. </value>
-        public string FileType { get; set; }
+        public string Extension { get; set; }
 
         /// <summary> Gets or sets the bytes. </summary>
         /// <value> The bytes. </value>

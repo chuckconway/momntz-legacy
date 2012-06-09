@@ -50,17 +50,15 @@ namespace Momntz.Worker.Core.Implementations.Media.MediaTypes
             return null;
         }
 
-        private void Save(string name, MediaType mediaType, MediaItem image)
+        private void Save(int momentoId, string name, MediaType mediaType, MediaItem image)
         {
-            _session.Save(new {InternalId = image.Id, image.Username, UploadedBy = image.Username},"Momento");
-            var single = _session.Query<Momento>().Where(m => m.InternalId == image.Id).Single();
 
             _session.Save(
                 new
                     {
                         image.Filename,
                         image.Size,
-                        MomentoId = single.Id,
+                        MomentoId = momentoId,
                         image.Extension,
                         Url = "img/" + name,
                         image.Username,
@@ -72,11 +70,14 @@ namespace Momntz.Worker.Core.Implementations.Media.MediaTypes
         public void Process(MediaItem message)
         {
             ImageFormat format = GetFormat(message.Extension);
-            
-            SaveImage(MediaType.SmallImage, _settings.ImageSmallWidth, _settings.ImageSmallHeight, format, message);
-            SaveImage(MediaType.MediumImage, _settings.ImageMediumWidth, _settings.ImageMediumHeight, format, message);
-            SaveImage(MediaType.LargeImage, _settings.ImageLargeWidth, _settings.ImageLargeHeight, format, message);
-            SaveImage(MediaType.OriginalImage, int.MaxValue, int.MaxValue, format, message);
+
+            _session.Save(new { InternalId = message.Id, message.Username, UploadedBy = message.Username, Visibility = "Public" }, "Momento");
+            var single = _session.Query<Momento>().Where(m => m.InternalId == message.Id).Single();
+
+            SaveImage(single.Id, MediaType.SmallImage, _settings.ImageSmallWidth, _settings.ImageSmallHeight, format, message);
+            SaveImage(single.Id, MediaType.MediumImage, _settings.ImageMediumWidth, _settings.ImageMediumHeight, format, message);
+            SaveImage(single.Id, MediaType.LargeImage, _settings.ImageLargeWidth, _settings.ImageLargeHeight, format, message);
+            SaveImage(single.Id, MediaType.OriginalImage, int.MaxValue, int.MaxValue, format, message);
 
             _session.Database.ConnectionString = _settings.QueueDatabase;
             _session.Database.CommandType = CommandType.Text;
@@ -87,7 +88,7 @@ namespace Momntz.Worker.Core.Implementations.Media.MediaTypes
             _session.Database.ConnectionString = null;
         }
 
-        private void SaveImage(MediaType mediaType, int maxWidth, int maxHeight, ImageFormat format, MediaItem message)
+        private void SaveImage(int momentoId, MediaType mediaType, int maxWidth, int maxHeight, ImageFormat format, MediaItem message)
         {
             byte[] bytes = null;
 
@@ -100,7 +101,7 @@ namespace Momntz.Worker.Core.Implementations.Media.MediaTypes
             string name = string.Format("{0}_{1}{2}", Path.GetFileNameWithoutExtension(message.Filename), DateTime.Now.Ticks, message.Extension);
 
             AddToStorage("img", "image", name, type, bytes ?? message.Bytes);
-            Save(name, mediaType, message);
+            Save(momentoId, name, mediaType, message);
         }
 
         private class Format

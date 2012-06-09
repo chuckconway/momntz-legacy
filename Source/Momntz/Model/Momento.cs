@@ -1,10 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using Hypersonic.Attributes;
 
 namespace Momntz.Model
 {
     public class Momento
     {
+        [Ignore]
+        public List<MomentoMedia> Media { get; set; }
+
         /// <summary> Gets or sets the identifier. </summary>
         /// <value> The identifier. </value>
         public int Id { get; set; }

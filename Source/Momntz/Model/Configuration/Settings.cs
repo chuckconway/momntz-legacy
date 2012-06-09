@@ -12,6 +12,11 @@ namespace Momntz.Model.Configuration
             _service = service;
         }
 
+        public string CloudUrl
+        {
+            get { return _service.GetValueByKey("cloudurl"); }
+        }
+
         public string QueueDatabase
         {
             get { return _service.GetValueByKey("Database.Queue"); }
