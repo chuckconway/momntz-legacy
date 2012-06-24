@@ -21,6 +21,8 @@
         /// <summary> Gets or sets the user status. </summary>
         /// <value> The user status. </value>
         public UserStatus UserStatus { get; set; }
+
+        public string Password { get; set; }
     }
 
     public enum UserStatus

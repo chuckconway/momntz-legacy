@@ -6,17 +6,19 @@ using Momntz.Model.Configuration;
 
 namespace Momntz.Data.ProjectionHandlers.Momentos
 {
-    public class HomepageMomentosHandler : BaseMomentoHandler, IProjectionHandler<object, IList<MomentoWithMedia>>
+    public class UserPageMomentosHandler : BaseMomentoHandler, IProjectionHandler<string, List<MomentoWithMedia>>
     {
-        public HomepageMomentosHandler(ISession session, ISettings settings):base(session, settings){}
+        public UserPageMomentosHandler(ISession session, ISettings settings) : base(session, settings) { }
 
-        public IList<MomentoWithMedia> Execute(object args)
+        public List<MomentoWithMedia> Execute(string username)
         {
             List<MomentoWithMedia> homepages = new List<MomentoWithMedia>();
 
             using (Session)
             {
-                var momentos = Session.Database.List<Momento>("[dbo].[Momento_RetrieveRandom20]");
+                var momentos = Session
+                    .Database
+                    .List<Momento, object>("[dbo].[Momento_RetrieveRandom20ByUser]", new { username });
                 GetMedia(momentos, homepages);
             }
 

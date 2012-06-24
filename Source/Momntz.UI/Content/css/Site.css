@@ -30,7 +30,8 @@ custom.css (which is already included for you).
 @import "reset.css";
 
 body{
-	background:#f0f0f0 url(../images/noise-2.png) repeat;
+	background:#fff url(../images/noise-2.png) repeat;
+    /*background:#f0f0f0 url(../images/noise-2.png) repeat;*/
 	font-size:12px;
 	color:#4b5054;
 }
@@ -269,7 +270,7 @@ code {
 #header{
 	margin-bottom: 30px;
 	background:#FFF url(../images/header-gradient.png) bottom repeat-x;
-	padding: 30px 0 30px 15px;
+	/*padding: 30px 0 30px 15px;*/
 	border-bottom:1px solid #FFF;
 }
 
@@ -428,7 +429,7 @@ li.current_page_ancestor li a{
 	clear:right;
 	margin: 20px 10px 0 0;
 	
-	background:-webkit-gradient(
+	/*background:-webkit-gradient(
 		linear,
 		left bottom,
 		left top,
@@ -443,7 +444,7 @@ li.current_page_ancestor li a{
 	
 	-webkit-box-shadow:0 1px 0 #dddddd;
 	-moz-box-shadow:0 1px 0 #dddddd;
-	box-shadow:0 1px 0 #dddddd;
+	box-shadow:0 1px 0 #dddddd;*/
 }
 
 #social-networks a{
@@ -1583,10 +1584,16 @@ a.filter-btn, #filtering-nav li a, .share-icons, .navigation a{
 	box-shadow:0 1px 0 #FFF;
 }
 
-.flickr_badge_image, .jta-tweet-profile-image, .box-content, .post-thumb{
+/*.flickr_badge_image, .jta-tweet-profile-image, .box-content, .post-thumb{
 	-moz-box-shadow:0px 0px 3px rgba(0,0,0,0.15);
 	-webkit-box-shadow:0px 0px 3px rgba(0,0,0,0.15);
 	box-shadow:0px 0px 3px rgba(0,0,0,0.15);
+}*/
+
+.flickr_badge_image, .jta-tweet-profile-image, .box-content, .post-thumb{
+	-moz-box-shadow:0px 0px 4px rgba(0,0,0,0.4);
+	-webkit-box-shadow:0px 0px 4px rgba(0,0,0,0.4);
+	box-shadow:0px 0px 4px rgba(0,0,0,0.4);
 }
 
 .box:hover .box-content, .flickr_badge_image:hover, .jta-tweet-profile-image:hover{

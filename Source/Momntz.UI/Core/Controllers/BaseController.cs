@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using System.Web.Security;
 using Momntz.UI.Core.ActionResults;
 
 namespace Momntz.UI.Core.Controllers
@@ -24,6 +25,26 @@ namespace Momntz.UI.Core.Controllers
         protected ActionResult Form<TArgs>(TArgs args, ActionResult success)
         {
             return new FormResult<TArgs>(args, success, View());
+        }
+
+        protected string Username
+        {
+            get {return GetUsername();}
+        }
+
+        public static string GetUsername()
+        {
+            var cookie = System.Web.HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName];
+            string username = string.Empty;
+
+            if (cookie != null)
+            {
+                string cookieValue = cookie.Value;
+                var ticket = FormsAuthentication.Decrypt(cookieValue);
+                username = ticket.Name;
+            }
+
+            return username;
         }
     }
 }

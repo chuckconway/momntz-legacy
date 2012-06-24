@@ -70,11 +70,15 @@
     <Compile Include="Data\Commands\Users\CreateUserCommand.cs" />
     <Compile Include="Data\PersistIntercepters\AuditPersistIntercepter.cs" />
     <Compile Include="Data\ProjectionHandlers\IProjectionHandler.cs" />
+    <Compile Include="Data\ProjectionHandlers\Momentos\BaseMomentoHandler.cs" />
+    <Compile Include="Data\ProjectionHandlers\Momentos\UserPageMomentosHandler.cs" />
     <Compile Include="Data\ProjectionHandlers\Momentos\HomepageMomentosHandler.cs" />
+    <Compile Include="Data\ProjectionHandlers\Users\AuthenticatedUserHandler.cs" />
     <Compile Include="Data\ProjectionHandlers\Users\GetActiveUsersHandler.cs" />
     <Compile Include="Data\Projections\IProjection.cs" />
-    <Compile Include="Data\Projections\Momentos\HomepageMomentos.cs" />
+    <Compile Include="Data\Projections\Momentos\MomentoWithMedia.cs" />
     <Compile Include="Data\Projections\Users\ActiveUsername.cs" />
+    <Compile Include="Data\Projections\Users\AuthenticatedUser.cs" />
     <Compile Include="Infrastructure\CommandProcessor.cs" />
     <Compile Include="Infrastructure\Extensions\MapperExtensions.cs" />
     <Compile Include="Infrastructure\ICommandProcessor.cs" />

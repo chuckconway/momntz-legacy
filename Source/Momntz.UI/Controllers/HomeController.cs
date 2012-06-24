@@ -11,7 +11,7 @@ namespace Momntz.UI.Controllers
         public ActionResult Index()
         {
             var success = View();
-            return Query<object, IList<HomepageMomento>>(null, success);
+            return Query<object, IList<MomentoWithMedia>>(null, success);
         }
 
     }

@@ -1,7 +1,7 @@
 ﻿@model dynamic
 
 @{
-    ViewBag.Title = "Momntz - Register";
+    ViewBag.Title = "Momntz - Signup";
     Layout = "/Views/Shared/_Layout.cshtml";
 }
 
@@ -31,6 +31,11 @@
         <li>
             @Html.Label("Password")
             @Html.TextBox("password")
+        </li>
+        
+        <li>
+            @Html.Label("Confirm Password")
+            @Html.TextBox("confirmpassword")
         </li>
     
         <li>
