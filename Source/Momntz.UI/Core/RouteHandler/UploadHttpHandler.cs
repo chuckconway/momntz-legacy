@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Script.Serialization;
 using Momntz.Data.Commands.Queue;
 using Momntz.Infrastructure;
+using Momntz.UI.Core.Controllers;
 using Momntz.Worker.Core.Implementations.Media;
 using StructureMap;
 
@@ -59,9 +60,10 @@ namespace Momntz.UI.Core.RouteHandler
             var bytes = GetBytes(file);
             var extension = Path.GetExtension(file.FileName);
             var mediaType = GetMediaType(extension);
+            var username = BaseController.GetUsername(); 
 
             Guid id = Guid.NewGuid();
-            CreateMediaCommand command = new CreateMediaCommand(id, file.FileName, extension, file.ContentLength, string.Empty, file.ContentType, mediaType.ToString(), bytes);
+            CreateMediaCommand command = new CreateMediaCommand(id, file.FileName, extension, file.ContentLength, username, file.ContentType, mediaType, bytes);
             _commandProcessor.Process(command);
 
             string message = GetMediaMessage(id, mediaType);

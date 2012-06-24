@@ -32,7 +32,7 @@
         /// <value>
         /// The kind of tag.
         /// </value>
-        public KindOfTag KindOfTag { get; set; }
+        public KindOfTag Kind { get; set; }
 
     }
 

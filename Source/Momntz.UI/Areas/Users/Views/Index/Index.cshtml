@@ -1,6 +1,7 @@
-﻿@model dynamic
+﻿@model IList<Momntz.Data.Projections.Momentos.MomentoWithMedia>
 
 @{
-    ViewBag.Title = "User Landing PAge";
     Layout = "/Views/Shared/LoggedInUser.cshtml";
 }
+
+@{ Html.RenderPartial("_MomentoPartialView", Model); }

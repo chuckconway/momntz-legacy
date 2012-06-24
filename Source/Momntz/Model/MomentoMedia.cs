@@ -1,6 +1,4 @@
-﻿using Hypersonic.Attributes;
-
-namespace Momntz.Model
+﻿namespace Momntz.Model
 {
     public class MomentoMedia
     {

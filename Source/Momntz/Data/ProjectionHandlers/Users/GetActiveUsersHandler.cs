@@ -25,7 +25,7 @@ namespace Momntz.Data.ProjectionHandlers.Users
             {
               return  _session
                        .Query<ActiveUsername, User>()
-                       .Where("UserStatus = 'Active'")
+                       .Where("UserStatus = " + (int)UserStatus.Active)
                        .List();
             }
         }
