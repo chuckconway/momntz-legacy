@@ -17,6 +17,7 @@ namespace Momntz.Data.ProjectionHandlers.Momentos
             using (Session)
             {
                 var momentos = Session.Database.List<Momento>("[dbo].[Momento_RetrieveRandom20]");
+
                 GetMedia(momentos, homepages);
             }
 

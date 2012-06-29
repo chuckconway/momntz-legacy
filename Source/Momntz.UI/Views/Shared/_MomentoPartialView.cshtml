@@ -7,9 +7,9 @@
         <div class="post-53 post type-post status-publish format-standard hentry category-black-and-white category-photography tag-bw tag-fashion box-content has-content">
             <div class="img-container">
                 <a href="@item.Media.Url" rel="lightbox" >
-                    <img  src="@item.Media.Url" class="feat-img wp-post-image" alt="@item.Momento.Title" title="@item.Momento.Title" /></a>
+                    <img src="@item.Media.Url" class="feat-img wp-post-image" alt="@item.Momento.Title" title="@item.Momento.Title" /></a>
                 <div class="actions">
-                    <a class="share">Share</a><a href="/#comments" class="comment"><span>0</span> Comment</a>
+@*                    <a class="share">Share</a><a href="/#comments" class="comment"><span>0</span> Comment</a>
 
                     <div class="share-container">
                         <div class="share-icons">
@@ -18,14 +18,14 @@
                         </div>
                         <!-- #share-icons -->
                     </div>
-                    <!-- #share-container -->
+                    <!-- #share-container -->*@
                 </div>
                 <!-- #actions -->
             </div>
             <!-- #img-container -->
             <div class="post-content">
                 <h2><a href="#" title="A post with the minimal post template" rel="bookmark">@item.Momento.Title</a></h2>
-                <p>@item.Momento.Story</p>
+                <p>@(item.Momento.Story ?? string.Empty)</p>
             </div>
             <!-- #entry -->
             <div class="post-footer">

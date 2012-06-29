@@ -29,7 +29,9 @@
             <!-- #site-info -->
 
             <div class="header-nav">
-                <div class="menu"></div>
+                <div class="menu">
+                    @RenderSection("Navigation", required: false)
+                </div>
             </div>
 
             <div id="social-networks">
@@ -49,20 +51,7 @@
         <!-- #wrap -->
     </div>
     <div id="grid">
-
-        <div id="filtering-nav">
-            <a href="#" class="filter-btn"><span>Filter</span></a>
-            <ul>
-                <li><a href="#" data-filter="*">All</a></li>
-                <li><a href="#" data-filter=".black-and-white">Black and White</a></li>
-                <li><a href="#" data-filter=".design">Design</a></li>
-                <li><a href="#" data-filter=".moving-pictures">Moving Pictures</a></li>
-                <li><a href="#" data-filter=".photography">Photography</a></li>
-                <li><a href="#" data-filter=".quotes">Quotes</a></li>
-                <li><a href="#" data-filter=".uncategorized">Uncategorized</a></li>
-            </ul>
-            <div class="clearfix"></div>
-        </div>
+        
         <!-- #filtering-nav -->
 
         <div class="sort">
