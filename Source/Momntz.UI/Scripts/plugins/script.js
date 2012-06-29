@@ -117,11 +117,12 @@ jQuery.fn.quickEach = (function(){
 	    padding: 0,
 	    overlayColor: "#000",
 	    overlayOpacity: 0.85,
-	    titleShow: false
+	    title: '<a href="#">Edit</a> | <a href="#">Tag people</a>'
 	};
 	$('.gallery-icon a').attr('rel', 'post-gallery');
 	$("a[rel='gallery'], a[rel='lightbox'], .gallery-icon a, .colorbox").fancybox( fancyboxArgs );
 	
+
 	// Remove margins
 	$('.gallery-thumb:nth-child(3n)').addClass('last');
 	

@@ -1,11 +1,12 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 using Momntz.Tests;
+using Momntz.UI.Core.Controllers;
 
 
 namespace Momntz.UI.Areas.Users.Controllers
 {
-    public class UploadController : Controller
+    public class UploadController : BaseController
     {
         [HttpGet]
         public ActionResult Index()

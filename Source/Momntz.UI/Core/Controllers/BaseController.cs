@@ -32,6 +32,12 @@ namespace Momntz.UI.Core.Controllers
             get {return GetUsername();}
         }
 
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            ViewBag.Username = Username;
+            base.OnActionExecuting(filterContext);
+        }
+
         public static string GetUsername()
         {
             var cookie = System.Web.HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName];

@@ -29,10 +29,12 @@
             <!-- #site-info -->
 
             <div class="header-nav">
-                <div class="menu"></div>
+                <div class="menu">
+                    @RenderSection("Navigation", required: false)
+                </div>
             </div>
 
-            <div id="social-networks">
+            <div id="social-networks" style="margin-top: 13.5px;">
                 @if (string.IsNullOrEmpty(BaseController.GetUsername()))
                 {
                     <a href="/login" title="Home">Login</a>

@@ -38,7 +38,7 @@
 
     public enum KindOfTag
     {
-        User,
+        Person,
         Tag,
         Location,
         Album
