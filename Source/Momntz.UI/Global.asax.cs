@@ -65,7 +65,7 @@ namespace Momntz.UI
             {
                 x.AddRegistry<MomntzRegistry>();
                 x.For<IDatabase>().Use(new MsSqlDatabase());
-                x.For<ISession>().Use(SessionFactory.SqlServer());
+                x.For<ISession>().Use(SessionFactory.SqlServer(key:"sql"));
                 x.For<IConfigurationService>().Use<MomntzConfiguration>();
                 
                 x.For<IProjectionProcessor>().Use<ProjectionProcessor>();

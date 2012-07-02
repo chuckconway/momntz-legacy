@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using Hypersonic.Session;
+using Momntz.Data;
 using Momntz.Data.CommandHandlers.Queue;
 using Momntz.Data.Commands.Queue;
 using Momntz.Infrastructure;
@@ -30,7 +31,7 @@ namespace Momntz.Tests
                 new byte[123421]
                 );
 
-            CreateMediaCommandHandler handler = new CreateMediaCommandHandler(SessionFactory.SqlServer(), new Settings(new MomntzConfiguration(SessionFactory.SqlServer())));
+            CreateMediaCommandHandler handler = new CreateMediaCommandHandler(new MomntzQueueSession(SessionFactory.SqlServer(key:"queue")), new Settings(new MomntzConfiguration(SessionFactory.SqlServer())));
             handler.Execute(command);
         }
     }

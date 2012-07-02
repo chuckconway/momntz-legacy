@@ -35,7 +35,7 @@
             </div>
 
             <div id="social-networks" style="margin-top: 13.5px;">
-                @if (string.IsNullOrEmpty(BaseController.GetUsername()))
+                @if (string.IsNullOrEmpty(BaseController.AuthenticatedUsername()))
                 {
                     <a href="/login" title="Home">Login</a>
                 }

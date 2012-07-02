@@ -5,11 +5,11 @@ namespace Momntz.Data.CommandHandlers.Users
 {
     public class CreateUserCommandHandler : ICommandHandler<CreateUserCommand>
     {
-        private readonly ISession _session;
+        private readonly IMomntzSession _session;
 
         /// <summary> Constructor. </summary>
         /// <param name="session"> The session. </param>
-        public CreateUserCommandHandler(ISession session)
+        public CreateUserCommandHandler(IMomntzSession session)
         {
             _session = session;
         }
@@ -18,7 +18,7 @@ namespace Momntz.Data.CommandHandlers.Users
         /// <param name="command"> The command. </param>
         public void Execute(CreateUserCommand command)
         {
-            _session.Save(command, "User");
+            _session.Session.Save(command, "User");
         }
     }
 }

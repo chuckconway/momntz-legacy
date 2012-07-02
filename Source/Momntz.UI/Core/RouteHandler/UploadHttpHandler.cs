@@ -60,7 +60,7 @@ namespace Momntz.UI.Core.RouteHandler
             var bytes = GetBytes(file);
             var extension = Path.GetExtension(file.FileName);
             var mediaType = GetMediaType(extension);
-            var username = BaseController.GetUsername(); 
+            var username = BaseController.AuthenticatedUsername(); 
 
             Guid id = Guid.NewGuid();
             CreateMediaCommand command = new CreateMediaCommand(id, file.FileName, extension, file.ContentLength, username, file.ContentType, mediaType, bytes);
