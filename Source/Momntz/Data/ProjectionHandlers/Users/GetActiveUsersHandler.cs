@@ -23,7 +23,9 @@ namespace Momntz.Data.ProjectionHandlers.Users
         {
             using (_session)
             {
-              return  _session
+                _session.Database.ConnectionStringName = "sql";
+                _session.Database.ConnectionString = null;
+               return  _session
                        .Query<ActiveUsername, User>()
                        .Where("UserStatus = " + (int)UserStatus.Active)
                        .List();

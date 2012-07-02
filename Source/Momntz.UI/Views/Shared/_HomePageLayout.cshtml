@@ -36,7 +36,7 @@
                 
                <form action="POST" style="margin:0px; padding: 0px; display: inline;" > <input type="text" name="search" style="display: inline;" /><input type="submit" style="margin-left: 5px;margin-right: 30px;" value="Search" /></form>
 
-                @if (string.IsNullOrEmpty(BaseController.GetUsername()))
+                @if (string.IsNullOrEmpty(BaseController.AuthenticatedUsername()))
                 {
                     <a href="/login" title="Home">Login</a>
                 }

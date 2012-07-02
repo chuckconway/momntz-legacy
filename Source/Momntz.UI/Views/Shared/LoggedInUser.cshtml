@@ -35,7 +35,7 @@
             </div>
 
             <div id="social-networks">
-                @if (string.IsNullOrEmpty(BaseController.GetUsername()))
+                @if (string.IsNullOrEmpty(BaseController.AuthenticatedUsername()))
                 {
                     <a href="/login" title="Home">Login</a>
                 }

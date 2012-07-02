@@ -1,4 +1,6 @@
-﻿using Momntz.Data.CommandHandlers;
+﻿using Hypersonic.Session;
+using Momntz.Data;
+using Momntz.Data.CommandHandlers;
 using Momntz.Data.ProjectionHandlers;
 using StructureMap.Configuration.DSL;
 
@@ -8,6 +10,8 @@ namespace Momntz
     {
         public MomntzRegistry()
         {
+            this.For<IMomntzSession>().Use(new MomntzSession(SessionFactory.SqlServer("sql")));
+            this.For<IMomntzQueueSession>().Use(new MomntzQueueSession(SessionFactory.SqlServer("queue")));
             Scan(
                 s =>
                     {

@@ -9,10 +9,10 @@ namespace Momntz.Data.ProjectionHandlers.Momentos
 {
     public abstract class BaseMomentoHandler
     {
-      protected readonly ISession Session;
+        protected readonly IDatabaseSession Session;
         private readonly ISettings _settings;
 
-        protected BaseMomentoHandler(ISession session, ISettings settings)
+        protected BaseMomentoHandler(IDatabaseSession session, ISettings settings)
         {
             Session = session;
             _settings = settings;
@@ -24,8 +24,8 @@ namespace Momntz.Data.ProjectionHandlers.Momentos
 
             foreach (MomentoWithMedia item in
                 from momento in momentos
-                let media = Session.Query<MomentoMedia>().Where(m => m.MomentoId == momento.Id).And(string.Format("MediaType = '{0}'", MediaType.MediumImage)).Single()
-                let tags = Session.Database.List<Tag, object>("Momento_RetrieveTagsByMomentoId", new { MomentoId = momento.Id }).ToList()
+                let media = Session.Session.Query<MomentoMedia>().Where(m => m.MomentoId == momento.Id).And(string.Format("MediaType = '{0}'", MediaType.MediumImage)).Single()
+                let tags = Session.Session.Database.List<Tag, object>("Momento_RetrieveTagsByMomentoId", new { MomentoId = momento.Id }).ToList()
                 where media != null
                 select new MomentoWithMedia { Momento = momento, Media = media, Tags = tags})
                 {

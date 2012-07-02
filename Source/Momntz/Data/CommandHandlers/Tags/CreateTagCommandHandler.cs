@@ -8,9 +8,9 @@ namespace Momntz.Data.CommandHandlers.Tags
 {
     public class CreateTagCommandHandler : ICommandHandler<CreateTagCommand>
     {
-        private readonly ISession _session;
+        private readonly IMomntzSession _session;
 
-        public CreateTagCommandHandler(ISession session)
+        public CreateTagCommandHandler(IMomntzSession session)
         {
             _session = session;
         }
@@ -19,7 +19,7 @@ namespace Momntz.Data.CommandHandlers.Tags
         {
             string name = Regex.Replace(command.Name, @"\s", string.Empty);
             string fullName = command.Name;
-            _session.Database.NonQuery("TagPerson_CreateTag", new
+            _session.Session.Database.NonQuery("TagPerson_CreateTag", new
                                                                   {
                                                                       name,
                                                                       fullName,

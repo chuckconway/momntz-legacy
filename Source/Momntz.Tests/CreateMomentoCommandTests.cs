@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Hypersonic;
 using Hypersonic.Session;
+using Momntz.Data;
 using Momntz.Data.CommandHandlers.Momentos;
 using Momntz.Data.Commands.Momentos;
 using Momntz.Data.PersistIntercepters;
@@ -23,7 +24,7 @@ namespace Momntz.Tests
 
             CreateMomentoMediaCommand media = new CreateMomentoMediaCommand(filename, "image/jpg", "img/fdsafasfdsf.jpg", 12343, randomUsername, MediaType.MediumImage);
             CreateMomentoCommand command = new CreateMomentoCommand(randomUsername, new List<CreateMomentoMediaCommand> { media });
-            CreateMomentoCommandHandler handler = new CreateMomentoCommandHandler(SessionFactory.SqlServer());
+            CreateMomentoCommandHandler handler = new CreateMomentoCommandHandler(new MomntzSession(SessionFactory.SqlServer(key:"sql")));
             
             handler.Execute(command);
 

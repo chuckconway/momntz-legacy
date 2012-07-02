@@ -8,21 +8,17 @@ namespace Momntz.Data.ProjectionHandlers.Api
 {
     public class NameSearchByUsernameHandler : IProjectionHandler<NameAndUsername, List<NameSearchResult>>
     {
-        private readonly ISession _session;
+        private readonly IMomntzSession _session;
 
-        public NameSearchByUsernameHandler(ISession session)
+        public NameSearchByUsernameHandler(IMomntzSession session)
         {
             _session = session;
         }
 
         public List<NameSearchResult> Execute(NameAndUsername args)
         {
-            using (_session)
-            {
-                var items = _session.Database.List<Name, object>("AlsoKnownAs_FindNameByFirstLetersAndUsername", new {Search = args.Name, args.Username}).ToList();
+                var items = _session.Session.Database.List<Name, object>("AlsoKnownAs_FindNameByFirstLetersAndUsername", new {Search = args.Name, args.Username}).ToList();
                 return items.ConvertAll(ConvertToNameSearchResult);
-
-            }
         }
 
         private static NameSearchResult ConvertToNameSearchResult(Name name)

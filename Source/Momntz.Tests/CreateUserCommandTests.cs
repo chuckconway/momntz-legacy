@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using Hypersonic;
 using Hypersonic.Session;
+using Momntz.Data;
 using Momntz.Data.CommandHandlers.Users;
 using Momntz.Data.Commands.Users;
 using Momntz.Data.PersistIntercepters;
@@ -21,7 +22,7 @@ namespace Momntz.Tests
 
             SqlServerSession.AddPersistIntercepter(new AuditPersistIntercepter());
 
-            CreateUserCommandHandler handler = new CreateUserCommandHandler(SessionFactory.SqlServer());
+            CreateUserCommandHandler handler = new CreateUserCommandHandler(new MomntzSession(SessionFactory.SqlServer(key:"sql")));
             handler.Execute(command);
 
             ISession session = SessionFactory.SqlServer();

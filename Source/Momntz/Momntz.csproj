@@ -70,6 +70,9 @@
     <Compile Include="Data\Commands\Queue\CreateQueueCommand.cs" />
     <Compile Include="Data\Commands\Tags\AddTagCommand.cs" />
     <Compile Include="Data\Commands\Users\CreateUserCommand.cs" />
+    <Compile Include="Data\IDatabaseSession.cs" />
+    <Compile Include="Data\IMomntzQueueSession.cs" />
+    <Compile Include="Data\IMomntzSession.cs" />
     <Compile Include="Data\PersistIntercepters\AuditPersistIntercepter.cs" />
     <Compile Include="Data\ProjectionHandlers\IProjectionHandler.cs" />
     <Compile Include="Data\ProjectionHandlers\Momentos\BaseMomentoHandler.cs" />
