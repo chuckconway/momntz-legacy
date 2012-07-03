@@ -1606,8 +1606,14 @@ a.filter-btn, a.comment span{
 	text-shadow:0 1px #FFF;
 }
 
+/*********************************************
+    Added By Chuck Conway
+ *********************************************/
+
 li.loginname { background: transparent url("/content/images/downarrow.png")  95% center no-repeat;}
 .bold { font-weight: bold;}
+
+img#closefancybox{ padding: 10px;}
 
 @media screen and (max-width: 1024px) {
 	#sidebar{

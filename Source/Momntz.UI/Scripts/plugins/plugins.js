@@ -110,7 +110,7 @@ return this.each(function(){var myHeight=$(this).height();$(this).css('margin-to
                 iframe: '<iframe class="fancybox-iframe" name="fancybox-frame{rnd}" frameborder="0" hspace="0"' + ($.browser.msie ? ' allowtransparency="true"' : '') + '></iframe>',
                 swf: '<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="100%" height="100%"><param name="wmode" value="transparent" /><param name="allowfullscreen" value="true" /><param name="allowscriptaccess" value="always" /><param name="movie" value="{href}" /><embed src="{href}" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" width="100%" height="100%" wmode="transparent"></embed></object>',
                 error: '<p class="fancybox-error">The requested content cannot be loaded.<br/>Please try again later.</p>',
-                closeBtn: '<div class="fancybox-content"><div title="Close" class="fancybox-item fancybox-close"></div></div>',
+                closeBtn: '<div class="fancybox-content"><ul><li>edit</li><li>location</li><li>tag</li></ul></div>',
                 next: '<a title="Next" class="fancybox-nav fancybox-next"><span></span></a>',
                 prev: '<a title="Previous" class="fancybox-nav fancybox-prev"><span></span></a>'
             },
@@ -1118,7 +1118,8 @@ return this.each(function(){var myHeight=$(this).height();$(this).css('margin-to
 
             //Create a close button
             if (current.closeBtn) {
-                $(current.tpl.closeBtn).appendTo(F.skin).bind('click.fb', F.close);
+                //$(current.tpl.closeBtn).appendTo(F.skin); //.bind('click.fb', F.close);
+                $(current.tpl.closeBtn).prepend($('<img id="closefancybox" src="/content/images/close.png" title="click to close" />').bind('click.fb', F.close)).appendTo(F.skin);
             }
 
             //Create navigation arrows
