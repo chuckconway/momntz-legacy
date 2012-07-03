@@ -187,6 +187,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\css\custom.css" />
+    <Content Include="Content\css\menu.css" />
     <Content Include="Content\css\pt-sans.css" />
     <Content Include="Content\css\reset.css" />
     <Content Include="Content\css\uploadify\uploadifive-cancel.png" />
@@ -196,6 +197,7 @@
     <Content Include="Content\images\comments.png" />
     <Content Include="Content\images\delicious-ic-16.png" />
     <Content Include="Content\images\dotted-border.png" />
+    <Content Include="Content\images\downarrow.png" />
     <Content Include="Content\images\dribbble-ic-16.png" />
     <Content Include="Content\images\email-ic-16.png" />
     <Content Include="Content\images\enlarge-mini-ic.png" />
@@ -374,9 +376,6 @@
     <Content Include="Views\Shared\TagsLoggedInUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Users\Views\Tags\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Areas\Users\Views\Albums\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -387,6 +386,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Api\Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_LoginMaster.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\LoginPartialView.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\NavigationPartialView.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

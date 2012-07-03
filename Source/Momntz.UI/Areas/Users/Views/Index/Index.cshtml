@@ -4,15 +4,4 @@
     Layout = "/Views/Shared/LoggedInUser.cshtml";
 }
 
-@section Navigation
-{
-    <ul>
-        <li><a href="/@ViewBag.Username">Home</a></li>
-        <li><a href="/@ViewBag.Username/upload">Upload</a></li>
-        <li><a href="/@ViewBag.Username/albums">Albums</a></li>
-        <li><a href="/@ViewBag.Username/connections">People</a></li>
-        <li><a href="/@ViewBag.Username/settings">Settings</a></li>
-    </ul>
-}
-
 @{ Html.RenderPartial("_MomentoPartialView", Model); }

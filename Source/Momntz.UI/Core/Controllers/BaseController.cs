@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Web.Mvc;
 using System.Web.Security;
+using Momntz.Data.Projections.Users;
+using Momntz.Infrastructure;
 using Momntz.UI.Core.ActionResults;
+using StructureMap;
 
 namespace Momntz.UI.Core.Controllers
 {
@@ -37,6 +40,20 @@ namespace Momntz.UI.Core.Controllers
         {
             ViewBag.Username = Username;
             base.OnActionExecuting(filterContext);
+        }
+
+        public static string GetDisplayName(string username)
+        {
+            var processor = ObjectFactory.GetInstance<IProjectionProcessor>();
+            var name = processor.Process<string, DisplayName>(username);
+
+            return string.Format("{0} {1}", name.FirstName, name.LastName);
+        }
+
+        public static bool IsAuthenticatedUser(string name)
+        {
+            string username = AuthenticatedUsername();
+            return string.Equals(username, name);
         }
 
         public static string AuthenticatedUsername()

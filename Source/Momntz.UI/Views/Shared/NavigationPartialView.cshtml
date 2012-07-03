@@ -1,0 +1,19 @@
+﻿@using Momntz.UI.Core.Controllers
+
+@if (BaseController.IsAuthenticatedUser(ViewBag.Username))
+{
+    <ul>
+        <li><a href="/@ViewBag.Username">Home</a></li>
+        <li><a href="/@ViewBag.Username/upload">Upload</a></li>
+        <li><a href="/@ViewBag.Username/albums">Albums</a></li>
+        <li><a href="/@ViewBag.Username/connections">People</a></li>
+    </ul>
+}
+else
+{
+    <ul>
+        <li class="bold" ><a href="/@ViewBag.Username">@BaseController.GetDisplayName(ViewBag.Username)</a></li>
+        <li><a href="/@ViewBag.Username/albums">Albums</a></li>
+        <li><a href="/@ViewBag.Username/connections">People</a></li>
+    </ul>
+}
