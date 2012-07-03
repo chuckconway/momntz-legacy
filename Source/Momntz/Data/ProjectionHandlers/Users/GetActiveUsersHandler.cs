@@ -7,11 +7,11 @@ namespace Momntz.Data.ProjectionHandlers.Users
 {
     public class GetActiveUsersHandler : IProjectionHandler<object, IList<ActiveUsername>>
     {
-        private readonly ISession _session;
+        private readonly IMomntzSession _session;
 
         /// <summary> Constructor. </summary>
         /// <param name="session"> The session. </param>
-        public GetActiveUsersHandler(ISession session)
+        public GetActiveUsersHandler(IMomntzSession session)
         {
             _session = session;
         }
@@ -21,11 +21,9 @@ namespace Momntz.Data.ProjectionHandlers.Users
         /// <returns> . </returns>
         public IList<ActiveUsername> Execute(object args)
         {
-            using (_session)
+            using (_session.Session)
             {
-                _session.Database.ConnectionStringName = "sql";
-                _session.Database.ConnectionString = null;
-               return  _session
+               return  _session.Session
                        .Query<ActiveUsername, User>()
                        .Where("UserStatus = " + (int)UserStatus.Active)
                        .List();
