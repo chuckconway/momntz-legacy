@@ -1,39 +1,32 @@
 ﻿@using Momntz.UI.Core
 @model  IList<Momntz.Data.Projections.Momentos.MomentoWithMedia>
 
-@foreach (var item in Model)
+@if(Model != null)
 {
-<div class="all box black-and-white photography col2">
-        <div class="post-53 post type-post status-publish format-standard hentry category-black-and-white category-photography tag-bw tag-fashion box-content has-content">
-            <div class="img-container">
-                <a href="@item.Media.Url" rel="lightbox" >
-                    <img src="@item.Media.Url" class="feat-img wp-post-image" alt="@item.Momento.Title" title="@item.Momento.Title" /></a>
-                <div class="actions">
-@*                    <a class="share">Share</a><a href="/#comments" class="comment"><span>0</span> Comment</a>
-
-                    <div class="share-container">
-                        <div class="share-icons">
-                            <a href="#" class="share-window"><img src="/content/images/twitter-ic-16.png" alt="Share on Twitter" /></a>
-                            <a href="#" class="share-window"><img src="/Content/images/facebook-ic-16.png" alt="Share on Facebook" /></a>
-                        </div>
-                        <!-- #share-icons -->
-                    </div>
-                    <!-- #share-container -->*@
+    foreach (var item in Model)
+    {
+        <div class="all box black-and-white photography col2">
+            <div class="post-53 post type-post status-publish format-standard hentry category-black-and-white category-photography tag-bw tag-fashion box-content has-content">
+                <div class="img-container">
+                    <a href="@item.Media.Url" rel="lightbox" >
+                        <img src="@item.Media.Url" class="feat-img wp-post-image" alt="@item.Momento.Title" title="@item.Momento.Title" /></a>
+                    <div class="actions"></div>
+                    <!-- #actions -->
                 </div>
-                <!-- #actions -->
+                <!-- #img-container -->
+                <div class="post-content">
+                    <h2><a href="#" title="A post with the minimal post template" rel="bookmark">@item.Momento.Title</a></h2>
+                    <p>@(item.Momento.Story ?? string.Empty)</p>
+                </div>
+                <!-- #entry -->
+                <div class="post-footer">
+                    <span class="category-ic">@item.Tags.RenderTags(item.Momento.Username)</span>
+                    <a href="#" class="shortlink tooltip" title="Shortlink">Shortlink</a>
+                </div>
             </div>
-            <!-- #img-container -->
-            <div class="post-content">
-                <h2><a href="#" title="A post with the minimal post template" rel="bookmark">@item.Momento.Title</a></h2>
-                <p>@(item.Momento.Story ?? string.Empty)</p>
-            </div>
-            <!-- #entry -->
-            <div class="post-footer">
-                <span class="category-ic">@item.Tags.RenderTags(item.Momento.Username)</span>
-                <a href="#" class="shortlink tooltip" title="Shortlink">Shortlink</a>
-            </div>
+            <!-- #box-content -->
         </div>
-        <!-- #box-content -->
-    </div>
-    <!-- #box -->
+        <!-- #box -->
+    }
 }
+

@@ -1,16 +1,13 @@
 ﻿@model Momntz.UI.Models.Login.LoginView 
 
 @{
-    Layout = null;
-}
+    Layout = "/Views/Shared/_LoginMaster.cshtml";
+ }
 
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Momntz - Login</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        
-        <style type="text/css" >
+
+@section Head{
+
+            <style type="text/css" >
             .contact-form {margin: 0 0 10px;}
             .contact-form label { display: block; float: none; margin-bottom: 3px; font-size: 18px;}
 
@@ -23,25 +20,24 @@
 
             .centered { position: fixed; top: 50%; left: 50%; margin-top: -200px; margin-left: -200px;}
         </style>
-    
-    </head>
-    <body>
-        <div class="loginform centered" >
-            <form class="contact-form" method="POST"  >
-                <div>
-                    <label>Username</label>
-                    <input type="text" name="username" />
-                </div>
-                
-                <div>
-                    <label>Password</label>
-                    <input type="password" name="password" />
-                </div>
-                
-                <p>@Model.Message</p>
 
-                <input type="submit" value="Login" />
-            </form>
+}
+<div class="loginform centered" >
+    <form class="contact-form" method="POST"  >
+        <div>
+            <label>Username</label>
+            <input type="text" name="username" />
         </div>
-    </body>
-</html>
+                
+        <div>
+            <label>Password</label>
+            <input type="password" name="password" />
+        </div>
+                
+        <p>@Model.Message</p>
+
+        <input type="submit" value="Login" />
+    </form>
+</div>
+
+<br style="clear: both;" />

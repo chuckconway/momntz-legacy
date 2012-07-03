@@ -1606,6 +1606,9 @@ a.filter-btn, a.comment span{
 	text-shadow:0 1px #FFF;
 }
 
+li.loginname { background: transparent url("/content/images/downarrow.png")  95% center no-repeat;}
+.bold { font-weight: bold;}
+
 @media screen and (max-width: 1024px) {
 	#sidebar{
 		width: 240px;
