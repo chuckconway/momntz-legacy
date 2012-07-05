@@ -59,6 +59,7 @@
     <Compile Include="Data\CommandHandlers\ICommandHandler.cs" />
     <Compile Include="Data\CommandHandlers\Momentos\CreateMomentoCommandHandler.cs" />
     <Compile Include="Data\CommandHandlers\Momentos\CreateMomentoMediaCommandHandler.cs" />
+    <Compile Include="Data\CommandHandlers\Momentos\UpdateMomentoCommandHandler.cs" />
     <Compile Include="Data\CommandHandlers\Queue\CreateMediaCommandHandler.cs" />
     <Compile Include="Data\CommandHandlers\Queue\CreateQueueCommandHandler.cs" />
     <Compile Include="Data\CommandHandlers\Tags\CreateTagCommandHandler.cs" />
@@ -66,6 +67,7 @@
     <Compile Include="Data\Commands\ICommand.cs" />
     <Compile Include="Data\Commands\Momentos\CreateMomentoCommand.cs" />
     <Compile Include="Data\Commands\Momentos\CreateMomentoMedia.cs" />
+    <Compile Include="Data\Commands\Momentos\UpdateMomentoCommand.cs" />
     <Compile Include="Data\Commands\Queue\CreateMediaCommand.cs" />
     <Compile Include="Data\Commands\Queue\CreateQueueCommand.cs" />
     <Compile Include="Data\Commands\Tags\AddTagCommand.cs" />
@@ -74,6 +76,7 @@
     <Compile Include="Data\IMomntzQueueSession.cs" />
     <Compile Include="Data\IMomntzSession.cs" />
     <Compile Include="Data\PersistIntercepters\AuditPersistIntercepter.cs" />
+    <Compile Include="Data\ProjectionHandlers\Api\MomentoDetailHandler.cs" />
     <Compile Include="Data\ProjectionHandlers\IProjectionHandler.cs" />
     <Compile Include="Data\ProjectionHandlers\Momentos\BaseMomentoHandler.cs" />
     <Compile Include="Data\ProjectionHandlers\Momentos\UserPageMomentosHandler.cs" />
@@ -82,6 +85,7 @@
     <Compile Include="Data\ProjectionHandlers\Users\AuthenticatedUserHandler.cs" />
     <Compile Include="Data\ProjectionHandlers\Users\DisplayNameHandler.cs" />
     <Compile Include="Data\ProjectionHandlers\Users\GetActiveUsersHandler.cs" />
+    <Compile Include="Data\Projections\Api\MomentoDetail.cs" />
     <Compile Include="Data\Projections\Api\NameSearch.cs" />
     <Compile Include="Data\Projections\IProjection.cs" />
     <Compile Include="Data\Projections\Momentos\MomentoWithMedia.cs" />
@@ -103,6 +107,7 @@
     <Compile Include="Model\MomentoMedia.cs" />
     <Compile Include="Model\Name.cs" />
     <Compile Include="Model\Tag.cs" />
+    <Compile Include="Model\TagCollection.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="MomntzRegistry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

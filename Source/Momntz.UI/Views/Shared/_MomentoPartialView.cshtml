@@ -8,14 +8,14 @@
         <div class="all box black-and-white photography col2">
             <div class="post-53 post type-post status-publish format-standard hentry category-black-and-white category-photography tag-bw tag-fashion box-content has-content">
                 <div class="img-container">
-                    <a href="@item.Media.Url" rel="lightbox" >
+                    <a href="@item.Media.Url" id="@item.Momento.Id" rel="lightbox" >
                         <img src="@item.Media.Url" class="feat-img wp-post-image" alt="@item.Momento.Title" title="@item.Momento.Title" /></a>
                     <div class="actions"></div>
                     <!-- #actions -->
                 </div>
                 <!-- #img-container -->
                 <div class="post-content">
-                    <h2><a href="#" title="A post with the minimal post template" rel="bookmark">@item.Momento.Title</a></h2>
+                    <h2><a href="#" title="@item.Momento.Title" rel="bookmark">@item.Momento.Title</a></h2>
                     <p>@(item.Momento.Story ?? string.Empty)</p>
                 </div>
                 <!-- #entry -->

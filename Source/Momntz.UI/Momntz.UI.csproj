@@ -144,9 +144,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Areas\Api\ApiAreaRegistration.cs" />
+    <Compile Include="Areas\Api\Controllers\MomentoController.cs" />
     <Compile Include="Areas\Api\Controllers\TagsController.cs" />
     <Compile Include="Areas\Api\Handlers\Tags\AddTagHandler.cs" />
     <Compile Include="Areas\Api\Models\NewTag.cs" />
+    <Compile Include="Areas\Api\Models\PeopleView.cs" />
     <Compile Include="Areas\Register\Controllers\IndexController.cs" />
     <Compile Include="Areas\Register\Handlers\RegisterHandlers\RegisterPostIndexHandler.cs" />
     <Compile Include="Areas\Register\Models\RegisterIndexModel.cs" />
@@ -161,7 +163,6 @@
     <Compile Include="Areas\Users\Controllers\UploadController.cs" />
     <Compile Include="Areas\Users\Handlers\Index\GetMomentosUserPageHandler.cs" />
     <Compile Include="Areas\Users\UsersAreaRegistration.cs" />
-    <Compile Include="Controllers\ApiController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\SignoutController.cs" />
@@ -257,14 +258,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\css\Site.css" />
     <Content Include="Scripts\jQuery.js" />
-    <Content Include="Scripts\plugins\capty\css\jquery.capty.css" />
-    <Content Include="Scripts\plugins\capty\img\coffee.png" />
-    <Content Include="Scripts\plugins\capty\img\image-1.jpg" />
-    <Content Include="Scripts\plugins\capty\img\image-2.jpg" />
-    <Content Include="Scripts\plugins\capty\img\image-3.jpg" />
-    <Content Include="Scripts\plugins\capty\img\image.jpg" />
-    <Content Include="Scripts\plugins\capty\jquery.capty.js" />
-    <Content Include="Scripts\plugins\capty\jquery.js" />
+    <Content Include="Scripts\plugins\fancybox\afterLoad.js" />
     <Content Include="Scripts\plugins\fancybox\blank.gif" />
     <Content Include="Scripts\plugins\fancybox\fancybox-x.png" />
     <Content Include="Scripts\plugins\fancybox\fancybox-y.png" />
@@ -275,12 +269,6 @@
     <Content Include="Scripts\plugins\fancybox\fancy_title_main.png" />
     <Content Include="Scripts\plugins\fancybox\fancy_title_right.png" />
     <Content Include="Scripts\plugins\fancybox\jquery.fancybox-1.3.4.css" />
-    <Content Include="Scripts\plugins\imageoverlay\ImageOverlay.css" />
-    <Content Include="Scripts\plugins\imageoverlay\jquery.ImageOverlay.js" />
-    <Content Include="Scripts\plugins\imageoverlay\jquery.ImageOverlay.min.js">
-      <DependentUpon>jquery.ImageOverlay.js</DependentUpon>
-    </Content>
-    <Content Include="Scripts\plugins\imageoverlay\jquery.metadata.2.1\jquery.metadata.js" />
     <Content Include="Scripts\plugins\phototag\jquery-ui-1.8.17.custom.css" />
     <Content Include="Scripts\plugins\phototag\jquery-ui-1.8.17.custom.min.js" />
     <Content Include="Scripts\plugins\phototag\jquery.phototag.js" />
@@ -418,7 +406,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>57817</DevelopmentServerPort>
+          <DevelopmentServerPort>54252</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://momntz.com</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
