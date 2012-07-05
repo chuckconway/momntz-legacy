@@ -117,7 +117,11 @@ jQuery.fn.quickEach = (function(){
 	    padding: 0,
 	    overlayColor: "#000",
 	    overlayOpacity: 0.85,
-	    title: '<a href="#">edit</a> | <a href="#">tag people</a>'
+	    loadDetails: function (container) {
+
+	        var view = new afterLoad();
+	        view.load(this, container);
+	    }
 	};
 	$('.gallery-icon a').attr('rel', 'post-gallery');
 	$("a[rel='gallery'], a[rel='lightbox'], .gallery-icon a, .colorbox").fancybox( fancyboxArgs );
