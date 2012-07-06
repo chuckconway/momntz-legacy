@@ -7,6 +7,22 @@ namespace Momntz.Data.Projections.Api
 {
     public class MomentoDetail
     {
+        public MomentoDetail()
+        {
+            Title = string.Empty;
+            Story = string.Empty;
+            Day = string.Empty;
+            Month = string.Empty;
+            Year = string.Empty;
+            Location = string.Empty;
+            Username = string.Empty;
+            AddedUsername = string.Empty;
+            DisplayName = string.Empty;
+            People = new List<People>();
+            Albums = new TagCollection();
+
+        }
+
         public string Title { get; set; }
 
         public string Story { get; set; }
@@ -19,7 +35,7 @@ namespace Momntz.Data.Projections.Api
 
         public string Location { get; set; }
 
-        public DateTime Added { get; set; }
+        public DateTime? Added { get; set; }
 
         public string Username { get; set; }
 

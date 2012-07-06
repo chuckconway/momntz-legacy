@@ -6,18 +6,22 @@
 //2. story
 //3. albumns
 //4. date
+//5.location
 
 function editView() {
 
     this.load = function(data, container, refreshViewCallback) {
-        var tplt = jQuery(this.html());
+       // var tplt = jQuery(this.html());
+
+        container.append(this.html());
         
-        var title = tplt.find('input#title'); //.val(data.title);
-        var story = tplt.find('input#story'); //.val(data.story);
-        var day = tplt.find('select#day'); //.val(data.day);
-        var month = tplt.find('select#month'); //.val(data.month);
-        var year = tplt.find('input#year'); //.val(data.year);
-        var albums = tplt.find('input#albums'); //.val(data.albums);
+        var title = container.find('input#title'); //.val(data.title);
+        var story = container.find('input#story'); //.val(data.story);
+        var day = container.find('select#day'); //.val(data.day);
+        var month = container.find('select#month'); //.val(data.month);
+        var year = container.find('input#year'); //.val(data.year);
+        var albums = container.find('input#albums'); //.val(data.albums);
+        var location = container.find('input#location');
 
         title.val(data.title);
         story.val(data.story);
@@ -25,9 +29,10 @@ function editView() {
         month.val(data.month);
         year.val(data.year);
         albums.val(data.albums);
+        location.val(data.location);
 
-        tplt.find('input#save').click(function () {
-            jQuery.post('/api/momento/', { title: title.val(), story: story.val(), day: day.val(), month: month.val(), year: year.val(), albums: albums.val() });
+        container.find('input#done').click(function () {
+            jQuery.post('/api/momento/save', { id: data.Id, title: title.val(), story: story.val(), day: day.val(), month: month.val(), year: year.val(), albums: albums.val() });
 
             refreshViewCallback(container);
         });
@@ -91,8 +96,9 @@ function editView() {
             '</select>' +
             '<input id="year" maxlength="4" type="text" value="Year" />' +
             '</div>' +
+            '<input id="location" class="inputField" type="text" value="Location?" />' +
             '<input id="albumns" class="inputField" type="text" value="Add to an album" />' +
-            '<input id="save" type="submit" class="inputField" value="Save"  />';
+            '<input id="done" type="submit" class="inputField" value="Done"  />';
     };
 }
 
@@ -114,6 +120,12 @@ function readView() {
         var addedBy = container.find('span#addedBy');
         
         var edit = container.find('input#editdetails');
+        edit.click(function () {
+            var eview = new editView();
+            eview.load(data, container, new readView().load);
+            return false;
+        });
+
         var addlocation = container.find('input#addlocation');
         var tagpeople = container.find('input#tagpeople');
 
@@ -138,15 +150,21 @@ function readView() {
             albums.append(' albums.');
         }
 
-        if (data.Month != null) {
-            month.text('Taken ' + data.Month);
+        month.text('Taken ');
+
+
+        var monthSet = false;
+        if (data.Month != null && data.Month.length > 0) {
+            monthSet = true;
+            month.text(data.Month);
         }
 
         if (data.Day != null) {
             day.text(data.Day);
         }
         
-        if (data.Day != null) {
+        if (data.Day != null && monthSet) {
+            
             year.text(', ' +data.Year);
         }
         
