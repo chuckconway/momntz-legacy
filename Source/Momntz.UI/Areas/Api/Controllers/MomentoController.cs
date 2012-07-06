@@ -31,25 +31,28 @@ namespace Momntz.UI.Areas.Api.Controllers
         [HttpPost]
         public ActionResult ById(int id)
         {
-            MomentoDetail detail = _projection.Process<int, MomentoDetail>(id);
+            MomentoDetail detail = _projection.Process<int, MomentoDetail>(id) ?? new MomentoDetail();
 
-            //Dummy data
-            detail.Location = "Chico, California";
-            detail.People = GetPeople();
+                //Dummy data
+                detail.Location = "Chico, California";
+                detail.People = GetPeople();
 
-            return Json(new
-            {
-                Added = detail.Added.ToString("MMMM dd, yyyy"),
-                detail.AddedUsername,
-                Albums = Albums(detail.Albums),
-                detail.Day,
-                detail.DisplayName,
-                detail.Location,
-                Month = Month(detail.Month),
-                detail.People,
-                detail.Story,
-                detail.Username,
-            detail.Title, detail.Year});
+                return Json(new
+                                {
+                                    Added = detail.Added.HasValue ? detail.Added.Value.ToString("MMMM dd, yyyy") : string.Empty,
+                                    detail.AddedUsername,
+                                    Albums = Albums(detail.Albums),
+                                    detail.Day,
+                                    detail.DisplayName,
+                                    detail.Location,
+                                    Month = Month(detail.Month),
+                                    detail.People,
+                                    detail.Story,
+                                    detail.Username,
+                                    detail.Title,
+                                    detail.Year
+                                });
+
         }
 
         private static string[] Albums(TagCollection collection)
