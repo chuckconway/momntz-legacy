@@ -237,12 +237,12 @@
 div.fancybox-content { position:absolute; right:-200px; top:0px; z-index:100;width:170px;background-color:#fff;height: 100%;padding-left: 15px;padding-right: 15px;}
 div.fancybox-content a#editdetails, div.fancybox-content a#addlocation, div.fancybox-content a#tagpeople {}
 
-div.fancybox-content span#title{ font-weight: bold;display: block;}
-div.fancybox-content div#story{ font-size: 11px;color: #6F777D;margin-top: 3px;text-align: justify;margin-bottom: 20px;}
-div.fancybox-content span#month, div.fancybox-content span#location { font-size: 11px;}
-div.fancybox-content span#day { margin-left: 3px;font-size: 11px;}
-div.fancybox-content span#people {font-size: 11px;}
-div.fancybox-content span#year { margin-left: 3px;font-size: 11px;}
-div.fancybox-content span#addedBy { display: block; color: #6F777D;font-size: 11px;margin-top: 10px;}
-div.fancybox-content span#addedDate { display:block;margin-bottom:10px; color: #6F777D;font-size: 11px;}
-div.fancybox-content span#albums { display: block;margin-bottom: 20px;font-size: 11px;margin-top: 20px;}
+div.fancybox-editbox span#title{ font-weight: bold;display: block;}
+div.fancybox-editbox div#story{ font-size: 11px;color: #6F777D;margin-top: 3px;text-align: justify;margin-bottom: 20px;}
+div.fancybox-editbox span#month, div.fancybox-content span#location { font-size: 11px;}
+div.fancybox-editbox span#day { margin-left: 3px;font-size: 11px;}
+div.fancybox-editbox span#people {font-size: 11px;}
+div.fancybox-editbox span#year { margin-left: 3px;font-size: 11px;}
+div.fancybox-editbox span#addedBy { display: block; color: #6F777D;font-size: 11px;margin-top: 10px;}
+div.fancybox-editbox span#addedDate { display:block;margin-bottom:10px; color: #6F777D;font-size: 11px;}
+div.fancybox-editbox span#albums { display: block;margin-bottom: 20px;font-size: 11px;margin-top: 20px;}
