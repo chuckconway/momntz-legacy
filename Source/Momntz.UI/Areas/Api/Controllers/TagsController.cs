@@ -20,12 +20,37 @@ namespace Momntz.UI.Areas.Api.Controllers
             _processor = processor;
         }
 
-        public ActionResult NameAutoComplete(string name)
+        public ActionResult Names(string name)
         {
             NameAndUsername search = new NameAndUsername() { Name = name, Username = GetUsername() };
             var results = _processor.Process<NameAndUsername, List<NameSearchResult>>(search);
 
             return Json(results);
+        }
+
+        public ActionResult Retrieve(int momentoid)
+        {
+            var momentoTag = _processor.Process<int, IList<MomentoTag>>(momentoid);
+            var ts = GetTags(momentoTag);
+
+            var tags = new { Image = new[] { new{ id = momentoid, Tags = ts }} };
+
+            return Json(tags, JsonRequestBehavior.AllowGet);
+        }
+
+        private static List<object> GetTags(IEnumerable<MomentoTag> momentoTag)
+        {
+            List<object> ts = momentoTag.Select(o => new
+                {
+                    id = o.Id,
+                    text = o.DisplayName,
+                    left = o.YAxis,
+                    top = o.XAxis,
+                    url = "/" + o.Username,
+                    isDeleteEnable = true
+                }).Cast<object>().ToList();
+
+            return ts;
         }
 
         public ActionResult Add(NewTag tag)

@@ -26,7 +26,7 @@
 					label: 'Name'					
 				}
 			},
-			parametersForRequest : ['image-id','album-id'],
+			parametersForRequest : ['momento-id'],
 			literals:{
 				communicationProblem: 'Communication problem, your changes could not be saved',
 				saveTag: 'Ok',
