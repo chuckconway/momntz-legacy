@@ -77,6 +77,7 @@
     <Compile Include="Data\IMomntzSession.cs" />
     <Compile Include="Data\PersistIntercepters\AuditPersistIntercepter.cs" />
     <Compile Include="Data\ProjectionHandlers\Api\MomentoDetailHandler.cs" />
+    <Compile Include="Data\ProjectionHandlers\Api\MomentoTagHandler.cs" />
     <Compile Include="Data\ProjectionHandlers\IProjectionHandler.cs" />
     <Compile Include="Data\ProjectionHandlers\Momentos\BaseMomentoHandler.cs" />
     <Compile Include="Data\ProjectionHandlers\Momentos\UserPageMomentosHandler.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="Data\ProjectionHandlers\Users\DisplayNameHandler.cs" />
     <Compile Include="Data\ProjectionHandlers\Users\GetActiveUsersHandler.cs" />
     <Compile Include="Data\Projections\Api\MomentoDetail.cs" />
+    <Compile Include="Data\Projections\Api\MomentoTag.cs" />
     <Compile Include="Data\Projections\Api\NameSearch.cs" />
     <Compile Include="Data\Projections\IProjection.cs" />
     <Compile Include="Data\Projections\Momentos\MomentoWithMedia.cs" />

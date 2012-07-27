@@ -117,10 +117,10 @@ jQuery.fn.quickEach = (function(){
 	    padding: 0,
 	    overlayColor: "#000",
 	    overlayOpacity: 0.85,
-	    loadDetails: function (container) {
+	    loadDetails: function (container, image) {
 
 	        var view = new afterLoad();
-	        view.load(this, container);
+	        view.load(this, container, image);
 	    }
 	};
 	$('.gallery-icon a').attr('rel', 'post-gallery');

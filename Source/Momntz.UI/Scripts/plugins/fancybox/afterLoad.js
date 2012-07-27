@@ -11,12 +11,12 @@
 function editView() {
 
     this.load = function(data, container, refreshViewCallback) {
-       // var tplt = jQuery(this.html());
 
+        container.empty();
         container.append(this.html());
         
         var title = container.find('input#title'); //.val(data.title);
-        var story = container.find('input#story'); //.val(data.story);
+        var story = container.find('textarea#story'); //.val(data.story);
         var day = container.find('select#day'); //.val(data.day);
         var month = container.find('select#month'); //.val(data.month);
         var year = container.find('input#year'); //.val(data.year);
@@ -37,13 +37,15 @@ function editView() {
             refreshViewCallback(container);
         });
 
-        container.empty();
-        container.append(tplt);
     };
 
     this.html = function() {
-        return '<input id="title" type="text" class="inputField" value="Title?" /> ' +
-            '<input id="story" type="text" class="inputField" value="Is there a story?" />' +
+        return ' <br style="clear:both;" />' +
+            '<label>Title</label>' +
+            '<input id="title" type="text" class="inputField" /> ' +
+            '<label>Story</label>' +
+            '<textarea id="story" class="inputField" ></textarea>' +
+            '<label>Date</label>' +
             '<div id="date" class="inputField" >' +
             '<select id="day" >' +
             '<option>Day</option>' +
@@ -96,7 +98,9 @@ function editView() {
             '</select>' +
             '<input id="year" maxlength="4" type="text" value="Year" />' +
             '</div>' +
+            '<label>Location</label>' +
             '<input id="location" class="inputField" type="text" value="Location?" />' +
+            '<label>Albums</label>' +
             '<input id="albumns" class="inputField" type="text" value="Add to an album" />' +
             '<input id="done" type="submit" class="inputField" value="Done"  />';
     };
@@ -104,7 +108,9 @@ function editView() {
 
 function readView() {
 
-    this.load = function(data, container) {
+    this.load = function(data, container, image) {
+
+       //var item = jQuery('div.photoTag');
 
         container.append(this.html());
 
@@ -118,16 +124,23 @@ function readView() {
         var location = container.find('span#location');
         var addedDate = container.find('span#addedDate');
         var addedBy = container.find('span#addedBy');
+
+        var photoTag = container.find('a#tagpeople');
+        photoTag.click(function () {
+         
+            
+            
+        });
         
-        var edit = container.find('input#editdetails');
+        
+        var edit = container.find('a#editdetails');
         edit.click(function () {
             var eview = new editView();
             eview.load(data, container, new readView().load);
             return false;
         });
 
-        var addlocation = container.find('input#addlocation');
-        var tagpeople = container.find('input#tagpeople');
+        //var tagpeople = container.find('a#tagpeople');
 
         title.text(data.Title);
         story.text(data.Story);
@@ -156,7 +169,7 @@ function readView() {
         var monthSet = false;
         if (data.Month != null && data.Month.length > 0) {
             monthSet = true;
-            month.text(data.Month);
+            month.append(data.Month);
         }
 
         if (data.Day != null) {
@@ -191,6 +204,20 @@ function readView() {
         
         addedBy.text('Added by ').append(jQuery('<a>').attr('href', '/' + data.AddedUsername + '/').text(data.DisplayName));
         addedDate.text('on ' + data.Added);
+        
+        jQuery('img.phototag', image).photoTag({
+            requesTagstUrl: '/api/tags/retrieve',
+            deleteTagsUrl: '/api/tags/delete',
+            addTagUrl: '/api/tags/add',
+            parametersForNewTag: {
+                name: {
+                    parameterKey: 'name',
+                    isAutocomplete: true,
+                    autocompleteUrl: '/api/tags/names',
+                    label: 'Name'
+                }
+            }
+        });
      };
 
     this.html = function() {
@@ -206,8 +233,7 @@ function readView() {
             '<span id="addedBy"></span>' +
             '<span id="addedDate"></span>' +
             '<a id="editdetails" href="#" >Edit</a> &#183; ' +
-            '<a id="addlocation" href="#" >Location</a > &#183; ' +
-            '<a id="tagpeople" href="#" >Tag</a>';
+            '<a id="tagpeople" href="#" >Tag people</a>';
     };
     
 }
@@ -221,13 +247,13 @@ function readView() {
 //1. select people and their names.
 
 function afterLoad() {
-    this.load = function(fancybox, container) {
+    this.load = function(fancybox, container, image) {
         var id = jQuery(fancybox.element.outerHTML).attr('id');
         //var container = jQuery('div#fancybox-content');
 
         jQuery.post('/api/momento/byid?id=' + id, function(data) {
             var rv= new readView();
-            rv.load(data, container);
+            rv.load(data, container, image);
         });
 
     };
