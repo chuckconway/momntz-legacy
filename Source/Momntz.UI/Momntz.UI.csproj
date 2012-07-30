@@ -168,6 +168,7 @@
     <Compile Include="Controllers\SignoutController.cs" />
     <Compile Include="Core\ActionResults\FormResult.cs" />
     <Compile Include="Core\ActionResults\QueryResult.cs" />
+    <Compile Include="Core\Binders\NewTagModelBinder.cs" />
     <Compile Include="Core\Controllers\BaseController.cs" />
     <Compile Include="Core\FluentValidationIOCFactory.cs" />
     <Compile Include="Core\HandlerBase.cs" />
@@ -227,6 +228,7 @@
     <Content Include="Content\images\twitter-ic-16.png" />
     <Content Include="Content\images\vimeo.png" />
     <Content Include="Content\images\white-noise.png" />
+    <Content Include="Content\images\x2.png" />
     <Content Include="Content\images\youtube.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />

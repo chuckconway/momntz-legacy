@@ -8,8 +8,10 @@
     [YAxis]      INT              NULL,
     [InternalId] UNIQUEIDENTIFIER NOT NULL,
     [Username]   NVARCHAR (100)   NOT NULL,
-    CONSTRAINT [PK_TagPerson] PRIMARY KEY CLUSTERED ([Id] ASC)
+    CONSTRAINT [PK_TagPerson] PRIMARY KEY CLUSTERED ([Id] ASC, [TagId] ASC, [Username] ASC)
 );
+
+
 
 
 

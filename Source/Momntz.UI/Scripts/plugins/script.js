@@ -116,6 +116,7 @@ jQuery.fn.quickEach = (function(){
 	var fancyboxArgs = {
 	    padding: 0,
 	    overlayColor: "#000",
+	    autoScale:false,
 	    overlayOpacity: 0.85,
 	    loadDetails: function (container, image) {
 

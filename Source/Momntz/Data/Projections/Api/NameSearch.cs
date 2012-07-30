@@ -2,10 +2,10 @@
 {
     public class NameSearchResult
     {
-        public int Id { get; set; }
+        public int id { get; set; }
 
-        public string Label { get; set; }
+        public string label { get; set; }
 
-        public string Value { get; set; }
+        public string value { get; set; }
     }
 }

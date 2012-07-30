@@ -1595,7 +1595,7 @@ $this.wrap('<div class="fluid-width-video-wrapper"></div>').parent('.fluid-width
                 removeTag: 'Remove tag'
             },
             tag: {
-                tagIdParameter: 'tag-id',
+                tagIdParameter: 'tagid',
                 defaultWidth: 100,
                 defaultHeight: 100,
                 isResizable: true,
@@ -1608,7 +1608,7 @@ $this.wrap('<div class="fluid-width-video-wrapper"></div>').parent('.fluid-width
                 showDeleteLinkOnTag: true,
                 deleteLinkCssClass: 'photoTag-delete',
                 deleteLinkIdPrefix: 'photoTag-delete_',
-                flashAfterCreation: true,
+                flashAfterCreation: false,
                 newTagFormWidth: 120,
                 newTagFormClass: 'photoTag-newTagForm'
             },
@@ -1653,16 +1653,21 @@ $this.wrap('<div class="fluid-width-video-wrapper"></div>').parent('.fluid-width
         var registerEventsForTagBox = function (tagBox) {
             tagBox.mouseover(
 				function () {
-				    if (!$.browser.msie)
+				    if (!$.browser.msie) {
 				        $(this).stop().animate({ opacity: 1.0 }, 500);
-				    else
+				        $(this).children('div.innerTag').stop().animate({ opacity: 1.0 }, 500);
+				    } else
 				        $(this).css({ opacity: 1.0 });
+				    $(this).children('div.innerTag').css({ opacity: 1.0 });
 				}).mouseout(
 				function () {
-				    if (!$.browser.msie)
+				    if (!$.browser.msie) {
 				        $(this).stop().animate({ opacity: 0.0 }, 500);
-				    else
+				        $(this).children('div.innerTag').stop().animate({ opacity: 0.0 }, 500);
+				    } else {
 				        $(this).css({ opacity: 0.0 });
+				        $(this).children('div.innerTag').css({ opacity: 0.0 });
+				    }
 				});
 
         };
@@ -1700,6 +1705,9 @@ $this.wrap('<div class="fluid-width-video-wrapper"></div>').parent('.fluid-width
         var registerEventsForAddTagLink = function (link, image, image_id) {
             $(link).click(function (e) {
                 e.preventDefault();
+
+                $('div.phototagcanvas').addClass('zindex9999');
+
                 if ($('#' + options.tag.idPrefix + 'temp').length == 0) {
                     hideAllTags(image_id);
                     $('#' + options.imageWrapBox.idPrefix + image_id).append(createTempTag(image));
@@ -1778,6 +1786,7 @@ $this.wrap('<div class="fluid-width-video-wrapper"></div>').parent('.fluid-width
             var cancel = $('<input class="inputCancel" type="button" value="' + options.literals.cancelTag + '"/>');
             cancel.click(function (e) {
                 e.preventDefault();
+                $('div.phototagcanvas').removeClass('zindex9999');
                 removeNewTempTag();
                 showAllTags(image_id);
             });
@@ -1802,6 +1811,7 @@ $this.wrap('<div class="fluid-width-video-wrapper"></div>').parent('.fluid-width
                 });
                 removeNewTempTag();
                 showAllTags(image_id);
+                $('div.phototagcanvas').removeClass('zindex9999');
             });
 
         };
@@ -1812,7 +1822,7 @@ $this.wrap('<div class="fluid-width-video-wrapper"></div>').parent('.fluid-width
         };
 
         var createTagBox = function (tagId, dimension, position, opacity) {
-            var tagBox = $('<div class="' + options.tag.cssClass + '" id="' + options.tag.idPrefix + tagId + '"></div>');
+            var tagBox = $('<div class="zindex9999 ' + options.tag.cssClass + '" id="' + options.tag.idPrefix + tagId + '"></div>');
             var css = {
                 'position': 'absolute',
                 'top': position.top + 'px',
@@ -1822,7 +1832,7 @@ $this.wrap('<div class="fluid-width-video-wrapper"></div>').parent('.fluid-width
                 'opacity': opacity
             };
             tagBox.css(css);
-            return tagBox
+            return tagBox;
         };
 
         var createTagBoxFromJSON = function (tagJSON, image) {
@@ -1833,10 +1843,10 @@ $this.wrap('<div class="fluid-width-video-wrapper"></div>').parent('.fluid-width
             var dimension = { width: tagJSON.width, height: tagJSON.height };
             var position = { top: tagJSON.top, left: tagJSON.left };
             var tagBox = createTagBox(tagJSON.id, dimension, position, 0);
-            registerEventsForTagBox(tagBox);
             var innerElement = $("<div class='innerTag'></div>");
             innerElement.append(tagJSON.text);
             tagBox.append(innerElement);
+            registerEventsForTagBox(tagBox);
             if (options.isEnabledToEditTags && tagJSON.isDeleteEnable && options.tag.showDeleteLinkOnTag) {
                 var deleteLink = $('<a id="' + options.tag.deleteLinkIdPrefix + tagJSON.id + '" class="' + options.tag.deleteLinkCssClass + '" href="#' + tagJSON.id + '"></a>');
                 registerEventsForDeleteLink(deleteLink, image);
@@ -1896,11 +1906,9 @@ $this.wrap('<div class="fluid-width-video-wrapper"></div>').parent('.fluid-width
         var wrapImage = function (image, image_id) {
             var imageHeight = image.height();
             var imageWidth = image.width();
-            var canvas = $('<div id="' + options.imageWrapBox.canvasIdPrefix + image_id + '" style="z-index:9999;position:relative;height:' + (imageHeight + options.imageWrapBox.controlPanelHeight) + 'px;width:' + imageWidth + 'px;"></div>');
-            var wrapper = $('<div class="' + options.imageWrapBox.cssClass + '" id="' + options.imageWrapBox.idPrefix + image_id + '" style="position:absolute;top:20px;left:0;height:' + imageHeight + 'px;width:' + imageWidth + 'px;"></div>');
+            var canvas = $('<div class="phototagcanvas" id="' + options.imageWrapBox.canvasIdPrefix + image_id + '" style="position:relative;height:' + (imageHeight + options.imageWrapBox.controlPanelHeight) + 'px;width:' + imageWidth + 'px;"></div>');
+            var wrapper = $('<div class="' + options.imageWrapBox.cssClass + '" id="' + options.imageWrapBox.idPrefix + image_id + '" style="position:absolute;left:0;height:' + imageHeight + 'px;width:' + imageWidth + 'px;"></div>');
             canvas.append(wrapper);
-            var controlPane = $('<div id="' + options.imageWrapBox.controlPaneIdPrefix + image_id + '"></div>');
-            canvas.append(controlPane);
             image.wrap(canvas);
             if (!options.externalAddTagLinks.bind)
                 $('#' + options.imageWrapBox.controlPaneIdPrefix + image_id).append(createAddTagLink(image, image_id));
@@ -1913,8 +1921,11 @@ $this.wrap('<div class="fluid-width-video-wrapper"></div>').parent('.fluid-width
             var container = $('<div></div>');
             $('#' + options.imageWrapBox.canvasIdPrefix + image_id).wrap(container);
             if (options.imageWrapBox.showTagList) {
-                var tagList = $('<ul id="' + options.imageWrapBox.tagListIdPrefix + image_id + '" class="' + options.imageWrapBox.tagListCssClass + '"></ul>');
-                $('#' + options.imageWrapBox.canvasIdPrefix + image_id).parent().append(tagList);
+                
+                //TODO:Move tag list
+
+                //var tagList = $('<ul id="' + options.imageWrapBox.tagListIdPrefix + image_id + '" class="' + options.imageWrapBox.tagListCssClass + '"></ul>');
+                //$('#' + options.imageWrapBox.canvasIdPrefix + image_id).parent().append(tagList);
             }
         }
 
@@ -1961,10 +1972,6 @@ $this.wrap('<div class="fluid-width-video-wrapper"></div>').parent('.fluid-width
 					    if (response.options) {
 					        options = $.extend(true, options, response.options);
 					    }
-
-					    //for (var index = 0; index < response.Image.length; index++) {
-					    //    prepareImage(response.Image[index], $this);
-					    //}
 
 					    $.each(response.Image, function () {
 					        prepareImage(this, $this);

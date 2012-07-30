@@ -3,7 +3,7 @@
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-CREATE PROCEDURE AlsoKnownAs_FindNameByFirstLetersAndUsername
+CREATE PROCEDURE [dbo].[AlsoKnownAs_FindNameByFirstLetersAndUsername]
 (
 	@Search nvarchar(50),
 	@Username nvarchar(50)
@@ -14,10 +14,9 @@ BEGIN
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
 
-    -- Insert statements for procedure here
-	Select *
-	From AlsoKnownAs A
-	Where (A.FirstName Like  @Search + '%' OR  A.MiddleName Like @Search + '%' OR A.LastName Like @Search + '%')
-		AND A.Username = @Username
+
+	Select A.FullName, A.AlsoKnownAsId
+	From UserAliasView A
+	Where A.FullName LIKE @Search + '%' AND (A.Username = @Username OR (A.CreatedBy = @Username AND A.UserStatus = 2))
 
 END
