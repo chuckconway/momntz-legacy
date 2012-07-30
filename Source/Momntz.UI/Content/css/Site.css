@@ -517,13 +517,7 @@ body.blog .wrap, #filtering-nav, body.blog .navigation, .isotope{
     width: 50%;
     height: 20px;
     max-width:300px;
-    -webkit-box-shadow:0 15px 10px rgba(0, 0, 0, 0.5);   
-       -moz-box-shadow:0 15px 10px rgba(0, 0, 0, 0.5);
-            box-shadow:0 15px 10px rgba(0, 0, 0, 0.5);
-    -webkit-transform:rotate(-3deg);    
-       -moz-transform:rotate(-3deg);   
-        -ms-transform:rotate(-3deg);   
-            transform:rotate(-3deg);
+
 }
 .box:after, .content:after{
 	right:10px; 
@@ -1882,10 +1876,11 @@ img#closefancybox{ padding: 10px 0 15px 15px;cursor: pointer;float: right;}
 .photoTag-taglist{ list-style:none;}
 .photoTag-taglist li{margin-left:10px;}
 #tempNewTagForm{
-	background-color: #3476CE; 
+	background-color: #666; 
 	padding: 5px 15px;
 	overflow:hidden;
 	position: absolute;
+    border-radius: 5px;
 	-moz-border-radius-topleft: 5px;
 	-webkit-border-top-left-radius: 5px;
 	-moz-border-radius-topright: 5px;
@@ -1896,11 +1891,11 @@ img#closefancybox{ padding: 10px 0 15px 15px;cursor: pointer;float: right;}
 	-webkit-border-bottom-right-radius: 5px;
 }
 .photoTag-tag{
-	border: 3px #3476CE solid;
+	border: 2px #fff solid;
 	opacity: 0.8;
 }
 .photoTag-tag .photoTag-delete {
-	background:url(x2.png) no-repeat; 
+	background:url(/content/images/x2.png) no-repeat; 
 	width:25px; 
 	height:29px; 
 	display:inline; 
@@ -1912,14 +1907,13 @@ img#closefancybox{ padding: 10px 0 15px 15px;cursor: pointer;float: right;}
 	opacity: 0.8;
 }
 #tempNewTagForm input{
-	float: left;
-	display: inline;
 	margin-bottom: 10px;
+    width: auto;
 }
 #tempNewTagForm label{
 	width: auto;
-	float: left;
 	color: #ffffff;
+    display: block;
 }
 #tempNewTagForm .inputSubmit,
 #tempNewTagForm .inputCancel
@@ -1929,7 +1923,7 @@ img#closefancybox{ padding: 10px 0 15px 15px;cursor: pointer;float: right;}
 	margin-right: 5px;
 	color: #ffffff;
 	background-color: #6dba5d;
-	border: 1px #6dba5d solid;
+	border: 1px #999 solid;
 	-moz-border-radius-topleft: 5px;
 	-webkit-border-top-left-radius: 5px;
 	-moz-border-radius-topright: 5px;
@@ -1959,3 +1953,8 @@ img#closefancybox{ padding: 10px 0 15px 15px;cursor: pointer;float: right;}
 	-moz-border-radius-topright: 5px;
 	-webkit-border-top-right-radius: 5px;
 }
+
+
+
+
+div.zindex9999 { z-index: 9999;}

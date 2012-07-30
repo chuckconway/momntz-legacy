@@ -11,7 +11,9 @@ using Hypersonic;
 using Hypersonic.Session;
 using Momntz.Data.PersistIntercepters;
 using Momntz.Infrastructure;
+using Momntz.UI.Areas.Api.Models;
 using Momntz.UI.Core;
+using Momntz.UI.Core.Binders;
 using Momntz.UI.Core.RouteHandler;
 using StructureMap;
 
@@ -80,7 +82,8 @@ namespace Momntz.UI
             }));
 
             SqlServerSession.AddPersistIntercepter(new AuditPersistIntercepter());
-            
+            ModelBinders.Binders.Add(typeof(NewTag), new NewTagModelBinder());
+
             ObjectFactory.AssertConfigurationIsValid();
             DependencyResolver.SetResolver(new StructureMapDependencyResolver());
         }

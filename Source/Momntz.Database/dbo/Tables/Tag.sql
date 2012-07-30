@@ -4,8 +4,10 @@
     [Story]    NVARCHAR (4000) NULL,
     [Kind]     INT             NOT NULL,
     [Username] NVARCHAR (100)  NOT NULL,
-    CONSTRAINT [PK_Tag] PRIMARY KEY CLUSTERED ([Id] ASC)
+    CONSTRAINT [PK_Tag] PRIMARY KEY CLUSTERED ([Id] ASC, [Kind] ASC)
 );
+
+
 
 
 

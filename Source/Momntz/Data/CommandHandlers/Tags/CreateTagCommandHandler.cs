@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Data.Common;
-using System.Text.RegularExpressions;
-using Hypersonic;
+﻿using System.Text.RegularExpressions;
 using Momntz.Data.Commands.Tags;
 
 namespace Momntz.Data.CommandHandlers.Tags
@@ -17,18 +14,21 @@ namespace Momntz.Data.CommandHandlers.Tags
 
         public void Execute(CreateTagCommand command)
         {
-            string name = Regex.Replace(command.Name, @"\s", string.Empty);
+            string newUsername = Regex.Replace(command.Name, @"\s", string.Empty).ToLower();
             string fullName = command.Name;
             _session.Session.Database.NonQuery("TagPerson_CreateTag", new
                                                                   {
-                                                                      name,
+                                                                      newUsername,
                                                                       fullName,
                                                                       command.Height, 
-                                                                      command.Width, 
+                                                                      command.Width,
+                                                                      CreatedBy = command.Username, 
                                                                       command.Username, 
                                                                       command.InternalId, 
                                                                       XAxis = command.Left, 
-                                                                      YAxis = command.Top
+                                                                      YAxis = command.Top,
+                                                                      command.MomentoId
+
                                                                   });
         }
     }

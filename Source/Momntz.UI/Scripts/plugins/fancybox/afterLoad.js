@@ -209,6 +209,10 @@ function readView() {
             requesTagstUrl: '/api/tags/retrieve',
             deleteTagsUrl: '/api/tags/delete',
             addTagUrl: '/api/tags/add',
+            externalAddTagLinks: {
+                bind: true,
+                selector: "a.addTag"
+            },
             parametersForNewTag: {
                 name: {
                     parameterKey: 'name',
@@ -233,7 +237,7 @@ function readView() {
             '<span id="addedBy"></span>' +
             '<span id="addedDate"></span>' +
             '<a id="editdetails" href="#" >Edit</a> &#183; ' +
-            '<a id="tagpeople" href="#" >Tag people</a>';
+            '<a class="addTag" href="#" >Tag people</a>';
     };
     
 }

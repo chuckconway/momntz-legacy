@@ -2,14 +2,8 @@
 {
     public class Name
     {
-        public int Id { get; set; }
+        public int AlsoKnownAsId { get; set; }
 
-        public string First { get; set; }
-
-        public string Middle { get; set; }
-
-        public string Last { get; set; }
-
-        public string Suffix { get; set; }
+        public string FullName { get; set; }
     }
 }

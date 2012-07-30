@@ -61,6 +61,7 @@
     <Folder Include="Security\" />
     <Folder Include="dbo\Stored Procedures\" />
     <Folder Include="dbo\Views\" />
+    <Folder Include="dbo\Functions\" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\User.sql" />
@@ -82,5 +83,13 @@
     <Build Include="dbo\Tables\AlsoKnownAs.sql" />
     <Build Include="dbo\Views\GetUserView.sql" />
     <Build Include="dbo\Stored Procedures\AlsoKnownAs_FindNameByFirstLetersAndUsername.sql" />
+    <Build Include="dbo\Views\UserAliasView.sql" />
+    <Build Include="dbo\Views\TagPersonView.sql" />
+    <Build Include="dbo\Views\MomentoDetail.sql" />
+    <Build Include="Security\momntz_3.sql" />
+    <Build Include="dbo\Functions\GetUsernameFromFullName.sql" />
+    <Build Include="dbo\Stored Procedures\TagPerson_RetrieveTagsByMomentoId.sql" />
+    <Build Include="dbo\Stored Procedures\TagPerson_Delete.sql" />
+    <Build Include="dbo\Stored Procedures\TagPerson_CreateTag.sql" />
   </ItemGroup>
 </Project>

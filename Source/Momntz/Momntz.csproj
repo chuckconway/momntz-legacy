@@ -63,6 +63,7 @@
     <Compile Include="Data\CommandHandlers\Queue\CreateMediaCommandHandler.cs" />
     <Compile Include="Data\CommandHandlers\Queue\CreateQueueCommandHandler.cs" />
     <Compile Include="Data\CommandHandlers\Tags\CreateTagCommandHandler.cs" />
+    <Compile Include="Data\CommandHandlers\Tags\DeleteTagCommandHandler.cs" />
     <Compile Include="Data\CommandHandlers\Users\CreateUserCommandHandler.cs" />
     <Compile Include="Data\Commands\ICommand.cs" />
     <Compile Include="Data\Commands\Momentos\CreateMomentoCommand.cs" />
@@ -70,7 +71,8 @@
     <Compile Include="Data\Commands\Momentos\UpdateMomentoCommand.cs" />
     <Compile Include="Data\Commands\Queue\CreateMediaCommand.cs" />
     <Compile Include="Data\Commands\Queue\CreateQueueCommand.cs" />
-    <Compile Include="Data\Commands\Tags\AddTagCommand.cs" />
+    <Compile Include="Data\Commands\Tags\CreateTagCommand.cs" />
+    <Compile Include="Data\Commands\Tags\DeleteTagCommand.cs" />
     <Compile Include="Data\Commands\Users\CreateUserCommand.cs" />
     <Compile Include="Data\IDatabaseSession.cs" />
     <Compile Include="Data\IMomntzQueueSession.cs" />
