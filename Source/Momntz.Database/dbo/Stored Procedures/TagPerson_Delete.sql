@@ -3,9 +3,8 @@
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-CREATE PROCEDURE TagPerson_Delete
+CREATE PROCEDURE [dbo].[TagPerson_Delete]
 (
-	@Username nvarchar(100),
 	@MomentoId int,
 	@TagPersonId int
 )
@@ -14,6 +13,9 @@ BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
+
+	Declare @Username nvarchar(100)
+	Set @Username  = (Select Username From TagPerson Where Id = @TagPersonId)
 	
 	Declare @TagId int
 	Set @TagId = (Select TagId From TagPerson Where Id = @TagPersonId)
@@ -26,6 +28,13 @@ BEGIN
 
 	Declare @TagCount int
 	Set @TagCount = (Select count(*) From TagMomento Where TagId = @TagId)
+
+
+	exec MomentoUser_DeleteByUsernameAndMomentoId @Username, @MomentoId;
+
+	--Delete From 
+	--MomentoUser 
+	--Where Username = @Username AND MomentoId = @MomentoId
 
 	IF @TagCount = 0
 	BEGIN

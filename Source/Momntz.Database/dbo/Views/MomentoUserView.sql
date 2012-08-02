@@ -1,11 +1,12 @@
-﻿CREATE VIEW dbo.MomentoDetail
+﻿CREATE VIEW dbo.MomentoUserView
 AS
-SELECT        dbo.Momento.Title, dbo.Momento.Story, dbo.Momento.Day, dbo.Momento.Month, dbo.Momento.Year, dbo.Momento.Location, dbo.Momento.CreateDate AS Added, 
-                         dbo.Momento.UploadedBy AS AddedUsername, dbo.GetUserView.FullName AS DisplayName, dbo.Momento.Id, dbo.Momento.Username
+SELECT        dbo.MomentoUser.Username, dbo.MomentoUser.MomentoId, dbo.Momento.Id, dbo.Momento.InternalId, dbo.Momento.UploadedBy, dbo.Momento.Visibility, 
+                         dbo.Momento.Story, dbo.Momento.Title, dbo.Momento.CreateDate, dbo.Momento.Day, dbo.Momento.Month, dbo.Momento.Year, dbo.Momento.Location, 
+                         dbo.Momento.Latitude, dbo.Momento.Longitude
 FROM            dbo.Momento INNER JOIN
-                         dbo.GetUserView ON dbo.Momento.Username = dbo.GetUserView.Username
+                         dbo.MomentoUser ON dbo.Momento.Id = dbo.MomentoUser.MomentoId
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_DiagramPaneCount', @value = 1, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'MomentoDetail';
+EXECUTE sp_addextendedproperty @name = N'MS_DiagramPaneCount', @value = 1, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'MomentoUserView';
 
 
 GO
@@ -83,19 +84,19 @@ Begin DesignProperties =
          Begin Table = "Momento"
             Begin Extent = 
                Top = 6
-               Left = 38
-               Bottom = 325
-               Right = 227
+               Left = 41
+               Bottom = 317
+               Right = 208
             End
             DisplayFlags = 280
             TopColumn = 0
          End
-         Begin Table = "GetUserView"
+         Begin Table = "MomentoUser"
             Begin Extent = 
                Top = 6
-               Left = 265
-               Bottom = 298
-               Right = 435
+               Left = 246
+               Bottom = 222
+               Right = 416
             End
             DisplayFlags = 280
             TopColumn = 0
@@ -125,7 +126,5 @@ Begin DesignProperties =
          Or = 1350
       End
    End
-End', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'MomentoDetail';
-
-
+End', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'MomentoUserView';
 

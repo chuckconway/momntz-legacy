@@ -14,7 +14,7 @@ Begin DesignProperties =
    Begin PaneConfigurations = 
       Begin PaneConfiguration = 0
          NumPanes = 4
-         Configuration = "(H (1[40] 4[20] 2[20] 3) )"
+         Configuration = "(H (1[41] 4[34] 2[7] 3) )"
       End
       Begin PaneConfiguration = 1
          NumPanes = 3
@@ -80,22 +80,22 @@ Begin DesignProperties =
          Left = 0
       End
       Begin Tables = 
-         Begin Table = "T"
-            Begin Extent = 
-               Top = 6
-               Left = 38
-               Bottom = 264
-               Right = 208
-            End
-            DisplayFlags = 280
-            TopColumn = 0
-         End
          Begin Table = "TM"
             Begin Extent = 
                Top = 6
                Left = 246
                Bottom = 242
                Right = 416
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
+         Begin Table = "T"
+            Begin Extent = 
+               Top = 6
+               Left = 38
+               Bottom = 264
+               Right = 208
             End
             DisplayFlags = 280
             TopColumn = 0
@@ -136,4 +136,6 @@ Begin DesignProperties =
       End
    End
 End', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'TagPersonView';
+
+
 

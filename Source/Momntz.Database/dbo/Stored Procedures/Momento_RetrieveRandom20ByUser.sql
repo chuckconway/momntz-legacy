@@ -2,7 +2,7 @@
 -- Author: Chucksoft CodeGen
 -- Create date: Friday, October 30, 2009
 -- =============================================
-Create PROCEDURE  [dbo].[Momento_RetrieveRandom20ByUser]
+CREATE PROCEDURE  [dbo].[Momento_RetrieveRandom20ByUser]
 (
 	@Username nvarchar(50)
 )
@@ -13,7 +13,7 @@ BEGIN
 	SET NOCOUNT ON;
 
 	Select Top(20) *
-	From dbo.Momento
+	From dbo.MomentoUserView
 	Where Username = @Username
 	Order by NEWID() asc
 

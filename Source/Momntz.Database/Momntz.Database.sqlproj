@@ -91,5 +91,10 @@
     <Build Include="dbo\Stored Procedures\TagPerson_RetrieveTagsByMomentoId.sql" />
     <Build Include="dbo\Stored Procedures\TagPerson_Delete.sql" />
     <Build Include="dbo\Stored Procedures\TagPerson_CreateTag.sql" />
+    <Build Include="dbo\Tables\MomentoUser.sql" />
+    <Build Include="dbo\Views\TagAlbumView.sql" />
+    <Build Include="dbo\Views\MomentoUserView.sql" />
+    <Build Include="dbo\Stored Procedures\User_GetOwnerPasswordByUsername.sql" />
+    <Build Include="dbo\Stored Procedures\MomentoUser_DeleteByUsernameAndMomentoId.sql" />
   </ItemGroup>
 </Project>
