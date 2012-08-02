@@ -38,7 +38,7 @@ namespace Momntz.Worker.Core.Implementations.Media.MediaTypes
             get { return "Image"; }
         }
 
-        private ImageFormat GetFormat(string imageFormat)
+        private static ImageFormat GetFormat(string imageFormat)
         {
             var item = _formats.SingleOrDefault(f => f.Extensions.Any(s => string.Equals(s, imageFormat.Trim('.'), StringComparison.InvariantCulture)));
 
@@ -72,7 +72,10 @@ namespace Momntz.Worker.Core.Implementations.Media.MediaTypes
             ImageFormat format = GetFormat(message.Extension);
 
             _session.Save(new { InternalId = message.Id, message.Username, UploadedBy = message.Username, Visibility = "Public" }, "Momento");
+
             var single = _session.Query<Momento>().Where(m => m.InternalId == message.Id).Single();
+
+            _session.Save(new {MomentoId = single.Id, Username = message.Username}, "MomentoUser");
 
             SaveImage(single.Id, MediaType.SmallImage, _settings.ImageSmallWidth, _settings.ImageSmallHeight, format, message);
             SaveImage(single.Id, MediaType.MediumImage, _settings.ImageMediumWidth, _settings.ImageMediumHeight, format, message);

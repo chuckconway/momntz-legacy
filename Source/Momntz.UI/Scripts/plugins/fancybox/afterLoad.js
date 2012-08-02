@@ -189,7 +189,7 @@ function readView() {
             people.text(' with ');
 
             for (var i = 0; i < data.People.length; i++) {
-                people.append(jQuery('<a>').attr('href', '/' + data.People[i].Username).text(data.People[i].DisplayName));
+                people.append(jQuery('<a>').attr('href', '/' + data.People[i].Username).text(data.People[i].Name));
              
                 if (data.People.length > 2 && i < data.People.length - 1) {
                     people.append(', ');

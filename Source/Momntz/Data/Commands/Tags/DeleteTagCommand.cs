@@ -4,13 +4,11 @@
     {
         public int Momentoid { get; set; }
         public int TagPersonId { get; set; }
-        public string Username { get; set; }
 
-        public DeleteTagCommand(int momentoid, int tagPersonId, string username)
+        public DeleteTagCommand(int momentoid, int tagPersonId)
         {
             Momentoid = momentoid;
             TagPersonId = tagPersonId;
-            Username = username;
         }
     }
 }

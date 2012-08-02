@@ -26,7 +26,7 @@ namespace Momntz.UI.Areas.Api.Controllers
 
         public ActionResult Delete(int momentoId, int tagid)
         {
-            _commandProcessor.Process(new DeleteTagCommand(momentoId, tagid, GetUsername()));
+            _commandProcessor.Process(new DeleteTagCommand(momentoId, tagid));
             return Json(new {result=true}, JsonRequestBehavior.AllowGet);
         }
 

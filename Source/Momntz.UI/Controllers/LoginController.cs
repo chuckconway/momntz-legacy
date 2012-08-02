@@ -16,10 +16,10 @@ namespace Momntz.UI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(string username, string password)
+        public ActionResult Index(UsernameAndPassword usernameAndPassword)
         {
-            var success = Redirect(string.Format("/{0}", username));
-            return Form(new UsernameAndPassword(username, password), success);
+            var success = Redirect(string.Format("/{0}", usernameAndPassword.Username));
+            return Form(usernameAndPassword, success);
         }
     }
 }

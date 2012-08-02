@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Hypersonic.Attributes;
-using Momntz.Model;
 
 namespace Momntz.Data.Projections.Api
 {
@@ -18,8 +17,8 @@ namespace Momntz.Data.Projections.Api
             Username = string.Empty;
             AddedUsername = string.Empty;
             DisplayName = string.Empty;
-            People = new List<People>();
-            Albums = new TagCollection();
+            People = new List<Person>();
+            Albums = new List<Album>();
 
         }
 
@@ -44,15 +43,26 @@ namespace Momntz.Data.Projections.Api
         public string DisplayName { get; set; }
         
         [Ignore]
-        public List<People> People { get; set; }
+        public List<Person> People { get; set; }
 
         [Ignore]
-        public TagCollection Albums { get; set; }
+        public List<Album> Albums { get; set; }
     }
 
-    public class People
+    public class Album
     {
-        public String DisplayName { get; set; }
+        public string Name { get; set; }
+
+        public int TagId { get; set; }
+
+        public int MomentoId { get; set; }
+
+        public string Story { get; set; }
+    }
+
+    public class Person
+    {
+        public string Name { get; set; }
 
         public string Username { get; set; }
     }
