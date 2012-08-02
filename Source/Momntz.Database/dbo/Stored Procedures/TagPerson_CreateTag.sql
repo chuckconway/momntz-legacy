@@ -50,6 +50,7 @@ BEGIN
 				Insert Into [User](Username, UserStatus, CreatedBy)VALUES(@FindOrCreateUsername, 2, @Username)
 				INSERT INTO AlsoKnownAs(Fullname, Username, IsDefault)VALUES(@FullName, @FindOrCreateUsername, 1)
 			END
+			Insert into MomentoUser(MomentoId, Username) Values(@MomentoId,@FindOrCreateUsername)
 			Insert Into TagPerson(CreatedBy, TagId, Width, Height, XAxis, YAxis, InternalId, Username)Values(@CreatedBy, @TagId, @Width, @Height, @XAxis, @YAxis, @InternalId, @FindOrCreateUsername)
 		End
 

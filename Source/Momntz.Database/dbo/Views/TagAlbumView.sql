@@ -1,11 +1,11 @@
-﻿CREATE VIEW dbo.MomentoDetail
+﻿CREATE VIEW dbo.TagAlbumView
 AS
-SELECT        dbo.Momento.Title, dbo.Momento.Story, dbo.Momento.Day, dbo.Momento.Month, dbo.Momento.Year, dbo.Momento.Location, dbo.Momento.CreateDate AS Added, 
-                         dbo.Momento.UploadedBy AS AddedUsername, dbo.GetUserView.FullName AS DisplayName, dbo.Momento.Id, dbo.Momento.Username
-FROM            dbo.Momento INNER JOIN
-                         dbo.GetUserView ON dbo.Momento.Username = dbo.GetUserView.Username
+SELECT        T.Name, TM.MomentoId, TM.TagId, T.Story
+FROM            dbo.TagMomento AS TM INNER JOIN
+                         dbo.TagAlbum AS TA ON TM.TagId = TA.TagId INNER JOIN
+                         dbo.Tag AS T ON T.Id = TA.TagId AND T.Kind = 3
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_DiagramPaneCount', @value = 1, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'MomentoDetail';
+EXECUTE sp_addextendedproperty @name = N'MS_DiagramPaneCount', @value = 1, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'TagAlbumView';
 
 
 GO
@@ -80,22 +80,32 @@ Begin DesignProperties =
          Left = 0
       End
       Begin Tables = 
-         Begin Table = "Momento"
+         Begin Table = "T"
             Begin Extent = 
                Top = 6
                Left = 38
-               Bottom = 325
-               Right = 227
+               Bottom = 187
+               Right = 208
             End
             DisplayFlags = 280
             TopColumn = 0
          End
-         Begin Table = "GetUserView"
+         Begin Table = "TA"
             Begin Extent = 
                Top = 6
-               Left = 265
-               Bottom = 298
-               Right = 435
+               Left = 246
+               Bottom = 157
+               Right = 416
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
+         Begin Table = "TM"
+            Begin Extent = 
+               Top = 6
+               Left = 454
+               Bottom = 212
+               Right = 624
             End
             DisplayFlags = 280
             TopColumn = 0
@@ -125,7 +135,5 @@ Begin DesignProperties =
          Or = 1350
       End
    End
-End', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'MomentoDetail';
-
-
+End', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'TagAlbumView';
 
