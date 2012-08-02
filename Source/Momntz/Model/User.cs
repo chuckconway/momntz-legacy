@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Hypersonic.Attributes;
 
 namespace Momntz.Model
 {
@@ -12,6 +13,7 @@ namespace Momntz.Model
         /// <value> The email. </value>
         public string Email { get; set; }
 
+        [Ignore]
         public List<Name> Names { get; set; }
 
         /// <summary> Gets or sets the user status. </summary>

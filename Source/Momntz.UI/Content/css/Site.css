@@ -1958,3 +1958,7 @@ img#closefancybox{ padding: 10px 0 15px 15px;cursor: pointer;float: right;}
 
 
 div.zindex9999 { z-index: 9999;}
+
+ul#signup, ul#signup li  { margin: 0px;padding: 0px;}
+ul#signup { margin-top: 20px;}
+ul#signup li { list-style: none;}

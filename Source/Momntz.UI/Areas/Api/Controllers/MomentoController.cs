@@ -35,7 +35,6 @@ namespace Momntz.UI.Areas.Api.Controllers
 
                 //Dummy data
                 detail.Location = "Chico, California";
-                detail.People = GetPeople();
 
                 return Json(new
                                 {
@@ -55,15 +54,15 @@ namespace Momntz.UI.Areas.Api.Controllers
 
         }
 
-        private static string[] Albums(TagCollection collection)
+        private static string[] Albums(List<Album> albums )
         {
             return new[] {"Doggie", "Christmas 2005", "Kitty Cat"};
         }
 
-        private static List<People> GetPeople()
-        {
-            return new List<People> {new People() {DisplayName = "John Conway", Username = "johnconway"}, new People(){DisplayName = "Erin Meraz", Username = "erinmeraz"}, new People(){DisplayName = "Bill Gates", Username = "billgates"}};
-        }
+        //private static List<Person> GetPeople(int id)
+        //{
+        //    return new List<Person> { new Person() { Name = "John Conway", Username = "johnconway" }, new Person() { Name = "Erin Meraz", Username = "erinmeraz" }, new Person() { Name = "Bill Gates", Username = "billgates" } };
+        //}
 
         private static string Month(string month)
         {

@@ -10,6 +10,7 @@ using Chucksoft.Core.Services;
 using Hypersonic;
 using Hypersonic.Session;
 using Momntz.Data.PersistIntercepters;
+using Momntz.Data.ProjectionHandlers.Users;
 using Momntz.Infrastructure;
 using Momntz.UI.Areas.Api.Models;
 using Momntz.UI.Core;
@@ -83,6 +84,7 @@ namespace Momntz.UI
 
             SqlServerSession.AddPersistIntercepter(new AuditPersistIntercepter());
             ModelBinders.Binders.Add(typeof(NewTag), new NewTagModelBinder());
+            ModelBinders.Binders.Add(typeof(UsernameAndPassword), new UsernameAndPasswordModelBinder());
 
             ObjectFactory.AssertConfigurationIsValid();
             DependencyResolver.SetResolver(new StructureMapDependencyResolver());

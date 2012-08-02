@@ -103,6 +103,8 @@
     <Compile Include="Infrastructure\IProjectionProcessor.cs" />
     <Compile Include="Infrastructure\MomntzConfiguration.cs" />
     <Compile Include="Infrastructure\ProjectionProcessor.cs" />
+    <Compile Include="Infrastructure\Security\Crypto.cs" />
+    <Compile Include="Infrastructure\Security\ICrypto.cs" />
     <Compile Include="Infrastructure\StructureMapInjection.cs" />
     <Compile Include="Model\Configuration\ISettings.cs" />
     <Compile Include="Model\Configuration\Setting.cs" />

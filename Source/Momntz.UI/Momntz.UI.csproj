@@ -163,12 +163,14 @@
     <Compile Include="Areas\Users\Controllers\UploadController.cs" />
     <Compile Include="Areas\Users\Handlers\Index\GetMomentosUserPageHandler.cs" />
     <Compile Include="Areas\Users\UsersAreaRegistration.cs" />
+    <Compile Include="Controllers\ForgotController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\SignoutController.cs" />
     <Compile Include="Core\ActionResults\FormResult.cs" />
     <Compile Include="Core\ActionResults\QueryResult.cs" />
     <Compile Include="Core\Binders\NewTagModelBinder.cs" />
+    <Compile Include="Core\Binders\UsernameAndPasswordModelBinder.cs" />
     <Compile Include="Core\Controllers\BaseController.cs" />
     <Compile Include="Core\FluentValidationIOCFactory.cs" />
     <Compile Include="Core\HandlerBase.cs" />
@@ -385,6 +387,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\NavigationPartialView.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Forgot\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,4 +1,5 @@
 ﻿using Momntz.Data.Projections.Api;
+using System.Linq;
 
 namespace Momntz.Data.ProjectionHandlers.Api
 {
@@ -13,10 +14,25 @@ namespace Momntz.Data.ProjectionHandlers.Api
 
         public MomentoDetail Execute(int args)
         {
-           return _session.Session
+           var detail = _session.Session
                 .Query<MomentoDetail>()
                 .Where(string.Format("Id = {0}", args))
                 .Single();
+
+            if(detail != null)
+            {
+               detail.People = _session.Session
+                    .Query<Person>("TagPersonView")
+                    .Where("MomentoId = " + args)
+                    .List().ToList();
+
+               detail.Albums = _session.Session
+                .Query<Album>("TagAlbumView")
+                .Where("MomentoId = " + args)
+                .List().ToList();
+            }
+
+            return detail;
         }
     }
 }

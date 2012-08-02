@@ -38,9 +38,9 @@
 
     public enum KindOfTag
     {
-        Person,
-        Tag,
-        Location,
-        Album
+        Person = 0,
+        Tag = 1,
+        Location = 2,
+        Album = 3
     }
 }

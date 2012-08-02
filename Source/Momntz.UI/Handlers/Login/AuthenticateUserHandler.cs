@@ -1,4 +1,5 @@
-﻿using System.Web.Security;
+﻿using System;
+using System.Web.Security;
 using Momntz.Data.ProjectionHandlers.Users;
 using Momntz.Data.Projections.Users;
 using Momntz.Infrastructure;
@@ -22,7 +23,10 @@ namespace Momntz.UI.Handlers.Login
 
             if (user == null)
             {
-                Controller.ViewData.Model = new LoginView {Message = "Invalid username or password."};
+                const string message = "Invalid username or password.";
+
+                Controller.ViewData.Model = new LoginView { Message = message };
+                throw new Exception(message);
             }
             else
             {
