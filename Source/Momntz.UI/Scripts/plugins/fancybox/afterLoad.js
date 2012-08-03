@@ -10,7 +10,7 @@
 
 function editView() {
 
-    this.load = function(data, container, refreshViewCallback) {
+    this.load = function(data, container, image) {
 
         container.empty();
         container.append(this.html());
@@ -23,18 +23,19 @@ function editView() {
         var albums = container.find('input#albums'); //.val(data.albums);
         var location = container.find('input#location');
 
-        title.val(data.title);
-        story.val(data.story);
-        day.val(data.day);
-        month.val(data.month);
-        year.val(data.year);
-        albums.val(data.albums);
-        location.val(data.location);
+        title.val(data.Title);
+        story.val(data.Story);
+        day.val(data.Day);
+        month.val(data.Month);
+        year.val(data.Year);
+        albums.val(data.Albums);
+        location.val(data.Location);
 
         container.find('input#done').click(function () {
-            jQuery.post('/api/momento/save', { id: data.Id, title: title.val(), story: story.val(), day: day.val(), month: month.val(), year: year.val(), albums: albums.val() });
+            jQuery.post('/api/momento/save', { id: data.Id, title: title.val(), story: story.val(), day: day.val(), month: month.val(), year: year.val(), albums: albums.val(), location: location.val() });
 
-            refreshViewCallback(container);
+            var al = new afterLoad();
+            al.internalLoad(data.Id, container, image);
         });
 
     };
@@ -83,36 +84,36 @@ function editView() {
             '</select>' +
             '<select id="month" >' +
             '<option>Month</option>' +
-            '<option value="1">January</option>' +
-            '<option value="2">February</option>' +
-            '<option value="3">March</option>' +
-            '<option value="4">April</option>' +
+            '<option value="1">Jan</option>' +
+            '<option value="2">Feb</option>' +
+            '<option value="3">Mar</option>' +
+            '<option value="4">Apr</option>' +
             '<option value="5">May</option>' +
-            '<option value="6">June</option>' +
-            '<option value="7">July</option>' +
-            '<option value="8">August</option>' +
-            '<option value="9">September</option>' +
-            '<option value="10">October</option>' +
-            '<option value="11">November</option>' +
-            '<option value="12">December</option>' +
+            '<option value="6">Jun</option>' +
+            '<option value="7">Jul</option>' +
+            '<option value="8">Aug</option>' +
+            '<option value="9">Sep</option>' +
+            '<option value="10">Oct</option>' +
+            '<option value="11">Nov</option>' +
+            '<option value="12">Dec</option>' +
             '</select>' +
             '<input id="year" maxlength="4" type="text" value="Year" />' +
             '</div>' +
             '<label>Location</label>' +
-            '<input id="location" class="inputField" type="text" value="Location?" />' +
+            '<input id="location" class="inputField" type="text" value="" />' +
             '<label>Albums</label>' +
-            '<input id="albumns" class="inputField" type="text" value="Add to an album" />' +
+            '<input id="albums" class="inputField" type="text" value="" />' +
             '<input id="done" type="submit" class="inputField" value="Done"  />';
     };
 }
 
 function readView() {
-
+    var self = this;
     this.load = function(data, container, image) {
 
        //var item = jQuery('div.photoTag');
-
-        container.append(this.html());
+        container.empty();
+        container.append(self.html());
 
         var title = container.children('span#title');
         var story = container.find('div#story');
@@ -124,23 +125,14 @@ function readView() {
         var location = container.find('span#location');
         var addedDate = container.find('span#addedDate');
         var addedBy = container.find('span#addedBy');
-
-        var photoTag = container.find('a#tagpeople');
-        photoTag.click(function () {
-         
-            
-            
-        });
-        
+       
         
         var edit = container.find('a#editdetails');
         edit.click(function () {
             var eview = new editView();
-            eview.load(data, container, new readView().load);
+            eview.load(data, container, image);
             return false;
         });
-
-        //var tagpeople = container.find('a#tagpeople');
 
         title.text(data.Title);
         story.text(data.Story);
@@ -251,15 +243,20 @@ function readView() {
 //1. select people and their names.
 
 function afterLoad() {
+    var self = this;
     this.load = function(fancybox, container, image) {
         var id = jQuery(fancybox.element.outerHTML).attr('id');
         //var container = jQuery('div#fancybox-content');
 
-        jQuery.post('/api/momento/byid?id=' + id, function(data) {
-            var rv= new readView();
+        self.internalLoad(id, container, image);
+    };
+
+    this.internalLoad = function(id, container, image) {
+        jQuery.post('/api/momento/byid?id=' + id, function (data) {
+            var rv = new readView();
+            data.Id = id;
             rv.load(data, container, image);
         });
-
     };
 }
 

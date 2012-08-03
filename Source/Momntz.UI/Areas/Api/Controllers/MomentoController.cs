@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
+
 using System.Web.Mvc;
+using Momntz.Data.Commands.Momentos;
 using Momntz.Data.Projections.Api;
 using Momntz.Infrastructure;
-using Momntz.Model;
-using Momntz.UI.Areas.Api.Models;
+using Momntz.UI.Core.Controllers;
 
 namespace Momntz.UI.Areas.Api.Controllers
 {
-    public class MomentoController : Controller
+    public class MomentoController : BaseController
     {
-         static readonly string[] _months = new[] { "", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
         private readonly ICommandProcessor _processor;
         private readonly IProjectionProcessor _projection;
 
@@ -23,9 +20,10 @@ namespace Momntz.UI.Areas.Api.Controllers
         }
 
         [HttpPost]
-        public ActionResult Save(int id, string title, string story, string day, string month, string year, string albums)
+        public ActionResult Save(int id, string title, string story, int? day, int? month, int? year, string albums, string location)
         {
-            return Content(string.Empty);
+            _processor.Process(new SaveMomentoDetailsCommand(id, title, story, day, month, year, albums, location, GetUsername()));
+            return Content("1");
         }
 
         [HttpPost]
@@ -33,18 +31,15 @@ namespace Momntz.UI.Areas.Api.Controllers
         {
             MomentoDetail detail = _projection.Process<int, MomentoDetail>(id) ?? new MomentoDetail();
 
-                //Dummy data
-                detail.Location = "Chico, California";
-
                 return Json(new
                                 {
                                     Added = detail.Added.HasValue ? detail.Added.Value.ToString("MMMM dd, yyyy") : string.Empty,
                                     detail.AddedUsername,
-                                    Albums = Albums(detail.Albums),
+                                    Albums = detail.Albums.Select(a=> a.Name).ToArray(),
                                     detail.Day,
                                     detail.DisplayName,
                                     detail.Location,
-                                    Month = Month(detail.Month),
+                                    Month = detail.Month,
                                     detail.People,
                                     detail.Story,
                                     detail.Username,
@@ -53,27 +48,5 @@ namespace Momntz.UI.Areas.Api.Controllers
                                 });
 
         }
-
-        private static string[] Albums(List<Album> albums )
-        {
-            return new[] {"Doggie", "Christmas 2005", "Kitty Cat"};
-        }
-
-        //private static List<Person> GetPeople(int id)
-        //{
-        //    return new List<Person> { new Person() { Name = "John Conway", Username = "johnconway" }, new Person() { Name = "Erin Meraz", Username = "erinmeraz" }, new Person() { Name = "Bill Gates", Username = "billgates" } };
-        //}
-
-        private static string Month(string month)
-        {
-            if (!string.IsNullOrEmpty(month))
-            {
-                int m = Convert.ToInt32(month);
-                month = _months[m];
-            }
-
-            return month;
-        }
-
     }
 }
