@@ -79,7 +79,7 @@
     <Build Include="dbo\Tables\Configuration.sql" />
     <Build Include="dbo\Stored Procedures\Momento_RetrieveTagsByMomentoId.sql" />
     <Build Include="dbo\Stored Procedures\Momento_RetrieveRandom20ByUser.sql" />
-    <Build Include="dbo\Stored Procedures\Momento_RetrieveRandom20_1.sql" />
+    <Build Include="dbo\Stored Procedures\Momento_RetrieveRandom20.sql" />
     <Build Include="dbo\Tables\AlsoKnownAs.sql" />
     <Build Include="dbo\Views\GetUserView.sql" />
     <Build Include="dbo\Stored Procedures\AlsoKnownAs_FindNameByFirstLetersAndUsername.sql" />
@@ -96,5 +96,7 @@
     <Build Include="dbo\Views\MomentoUserView.sql" />
     <Build Include="dbo\Stored Procedures\User_GetOwnerPasswordByUsername.sql" />
     <Build Include="dbo\Stored Procedures\MomentoUser_DeleteByUsernameAndMomentoId.sql" />
+    <Build Include="dbo\Stored Procedures\TagAlbum_AddMomento.sql" />
+    <Build Include="dbo\Stored Procedures\Momento_SaveDetails.sql" />
   </ItemGroup>
 </Project>
