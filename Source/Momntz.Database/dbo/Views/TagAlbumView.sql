@@ -1,6 +1,6 @@
 ﻿CREATE VIEW dbo.TagAlbumView
 AS
-SELECT        T.Name, TM.MomentoId, TM.TagId, T.Story
+SELECT        T.Name, TM.MomentoId, TM.TagId, T.Story, T.Username
 FROM            dbo.TagMomento AS TM INNER JOIN
                          dbo.TagAlbum AS TA ON TM.TagId = TA.TagId INNER JOIN
                          dbo.Tag AS T ON T.Id = TA.TagId AND T.Kind = 3
@@ -80,12 +80,12 @@ Begin DesignProperties =
          Left = 0
       End
       Begin Tables = 
-         Begin Table = "T"
+         Begin Table = "TM"
             Begin Extent = 
                Top = 6
-               Left = 38
-               Bottom = 187
-               Right = 208
+               Left = 454
+               Bottom = 212
+               Right = 624
             End
             DisplayFlags = 280
             TopColumn = 0
@@ -100,12 +100,12 @@ Begin DesignProperties =
             DisplayFlags = 280
             TopColumn = 0
          End
-         Begin Table = "TM"
+         Begin Table = "T"
             Begin Extent = 
                Top = 6
-               Left = 454
-               Bottom = 212
-               Right = 624
+               Left = 38
+               Bottom = 187
+               Right = 208
             End
             DisplayFlags = 280
             TopColumn = 0
@@ -136,4 +136,6 @@ Begin DesignProperties =
       End
    End
 End', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'TagAlbumView';
+
+
 
