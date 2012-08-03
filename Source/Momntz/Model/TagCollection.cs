@@ -19,7 +19,7 @@ namespace Momntz.Model
 
             if (!string.IsNullOrEmpty(tags))
             {
-                string[] tagArray = tags.Trim().Split(',', ' ');
+                string[] tagArray = tags.Trim().Split(',');
                 tagCollection.AddRange(tagArray.Select(t => new Tag { Name = t.ToLower() }).Where(tag => !string.IsNullOrEmpty(tag.Name)));
             }
 
