@@ -23,7 +23,7 @@ BEGIN
 
   IF @count > 0
   BEGIN
-	Set @ReturnUserName = @NewUserName + Cast(@count as nvarchar)
+	Set @ReturnUserName = @NewUserName + '.' + Cast(@count as nvarchar)
   END
   Else
 	  BEGIN
