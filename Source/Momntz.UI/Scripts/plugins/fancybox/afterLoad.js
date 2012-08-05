@@ -155,7 +155,7 @@ function readView() {
             albums.append(' albums.');
         }
 
-        month.text('Taken ');
+        month.text('Taken');
 
 
         var monthSet = false;
