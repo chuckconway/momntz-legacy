@@ -144,6 +144,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Areas\Api\ApiAreaRegistration.cs" />
+    <Compile Include="Areas\Api\Controllers\AlbumsController.cs" />
     <Compile Include="Areas\Api\Controllers\MomentoController.cs" />
     <Compile Include="Areas\Api\Controllers\TagsController.cs" />
     <Compile Include="Areas\Api\Handlers\Tags\AddTagHandler.cs" />
@@ -157,6 +158,7 @@
     <Compile Include="Areas\Signup\SignupAreaRegistration.cs" />
     <Compile Include="Areas\Users\Controllers\AlbumsController.cs" />
     <Compile Include="Areas\Users\Controllers\ConnectionsController.cs" />
+    <Compile Include="Areas\Users\Controllers\DateController.cs" />
     <Compile Include="Areas\Users\Controllers\IndexController.cs" />
     <Compile Include="Areas\Users\Controllers\SettingsController.cs" />
     <Compile Include="Areas\Users\Controllers\TagsController.cs" />
@@ -278,6 +280,10 @@
     <Content Include="Scripts\plugins\phototag\jquery.phototag.js" />
     <Content Include="Scripts\plugins\plugins.js" />
     <Content Include="Scripts\plugins\script.js" />
+    <Content Include="Scripts\plugins\select2\select2.css" />
+    <Content Include="Scripts\plugins\select2\select2.js" />
+    <Content Include="Scripts\plugins\select2\select2.png" />
+    <Content Include="Scripts\plugins\select2\spinner.gif" />
     <Content Include="Scripts\plugins\uploadify\jquery.uploadifive-v1.0.js" />
     <Content Include="Scripts\plugins\uploadify\jquery.uploadifive-v1.0.min.js">
       <DependentUpon>jquery.uploadifive-v1.0.js</DependentUpon>

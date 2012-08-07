@@ -34,6 +34,7 @@ namespace Momntz.UI.Areas.Api.Controllers
                 return Json(new
                                 {
                                     Added = detail.Added.HasValue ? detail.Added.Value.ToString("MMMM dd, yyyy") : string.Empty,
+                                    AddedUrl = detail.Added.HasValue ? string.Format("{0}/{1}/{2}", detail.Added.Value.Year, detail.Added.Value.Month, detail.Added.Value.Day) : string.Empty,
                                     detail.AddedUsername,
                                     Albums = detail.Albums.Select(a=> a.Name).ToArray(),
                                     detail.Day,
