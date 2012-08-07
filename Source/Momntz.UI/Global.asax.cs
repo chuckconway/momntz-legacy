@@ -48,6 +48,7 @@ namespace Momntz.UI
             );
         }
 
+
         /// <summary> Application start. </summary>
         protected void Application_Start()
         {

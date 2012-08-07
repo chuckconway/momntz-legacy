@@ -28,9 +28,27 @@ function editView() {
         day.val(data.Day);
         month.val(data.Month);
         year.val(data.Year);
-        albums.val(data.Albums);
+        //albums.val(data.Albums);
         location.val(data.Location);
 
+        jQuery(albums).select2({
+            ajax: {
+                url: "/api/albums/index",
+                dataType: 'json',
+                data: function (term, page) {
+                    return {
+                        query: term,
+                    };
+                },
+                results: function (d, page) {
+                    return {
+                        results: d
+                    };
+                }
+            },
+            tags: data.Albums,
+        });
+        
         container.find('input#done').click(function () {
             jQuery.post('/api/momento/save', { id: data.Id, title: title.val(), story: story.val(), day: day.val(), month: month.val(), year: year.val(), albums: albums.val(), location: location.val() });
 
@@ -101,28 +119,42 @@ function editView() {
             '</div>' +
             '<label>Location</label>' +
             '<input id="location" class="inputField" type="text" value="" />' +
-            '<label>Albums</label>' +
-            '<input id="albums" class="inputField" type="text" value="" />' +
+            '<label>Albums <span style="font-weight:normal;">(<a href="#">?</a>)</span></label>' +
+            '<input id="albums" class="inputField" type="hidden" value="" />' +
             '<input id="done" type="submit" class="inputField" value="Done"  />';
     };
 }
 
 function readView() {
+
+    this.convertNumberToMonth = function(number) {
+        var month = new Array();
+        month[0] = "January";
+        month[1] = "February";
+        month[2] = "March";
+        month[3] = "April";
+        month[4] = "May";
+        month[5] = "June";
+        month[6] = "July";
+        month[7] = "August";
+        month[8] = "September";
+        month[9] = "October";
+        month[10] = "November";
+        month[11] = "December";
+
+        return month[number - 1];
+    };
+
     var self = this;
     this.load = function(data, container, image) {
 
-       //var item = jQuery('div.photoTag');
         container.empty();
         container.append(self.html());
 
         var title = container.children('span#title');
         var story = container.find('div#story');
-        var day = container.find('span#day');
-        var month = container.find('span#month');
-        var year = container.find('span#year');
+        var whowhenwhere = container.find('span#whowhenwhere');
         var albums = container.find('span#albums');
-        var people = container.find('span#people');
-        var location = container.find('span#location');
         var addedDate = container.find('span#addedDate');
         var addedBy = container.find('span#addedBy');
        
@@ -136,6 +168,14 @@ function readView() {
 
         title.text(data.Title);
         story.text(data.Story);
+        
+        if (title.text().length == 0) {
+            title.remove();
+        }
+        
+        if(story.text().length == 0) {
+            story.remove();
+        }
 
         if (data.Albums != null && data.Albums.length > 0) {
             albums.text('In ');
@@ -153,49 +193,73 @@ function readView() {
             }
 
             albums.append(' albums.');
+        } else {
+            albums.remove();
         }
 
-        month.text('Taken');
+        var yearSet = data.Year != null && data.Year.length > 0;
+        var monthSet = data.Month != null && data.Month.length > 0;
+        var daySet = data.Day != null && data.Day.length > 0;
 
+        if ((monthSet) ||
+            (yearSet) ||
+            (daySet) ||
+             data.People != null && data.People.length > 0 ||
+            (data.Location != null && data.Location.length > 0)) {
 
-        var monthSet = false;
-        if (data.Month != null && data.Month.length > 0) {
-            monthSet = true;
-            month.append(data.Month);
+            whowhenwhere.text('Taken ');
         }
 
-        if (data.Day != null) {
-            day.text(data.Day);
+        var text = '';
+        var value = '';
+        
+        if (yearSet & !monthSet & !daySet) {
+            text = data.Year;
+            value = data.Year;
         }
         
-        if (data.Day != null && monthSet) {
-            
-            year.text(', ' +data.Year);
+
+        if (monthSet & yearSet & !daySet) {
+            text = self.convertNumberToMonth(data.Month) + ' ' + data.Year;
+            value = data.Year + '/' + data.Month;
         }
         
-        if (data.Location != null) {
-            location.text(' in ' + data.Location);
+        if (daySet && monthSet && yearSet) {
+            text = self.convertNumberToMonth(data.Month) + ' ' + data.Day + ', ' + data.Year;
+            value = data.Year + '/' + data.Month + '/' + data.Day;
+        }
+        
+        if (text.length > 0) {
+            whowhenwhere.append(jQuery('<a>').attr('href', '/' + data.Username + '/' + value).text(text));
+        }
+        
+        if (data.Location != null && data.Location.length > 0) {
+            whowhenwhere.append(' in ' + data.Location);
+        }
+        
+        if (whowhenwhere.text().length == 0) {
+            whowhenwhere.remove();
         }
 
         if (data.People != null && data.People.length > 0) {
-            people.text(' with ');
+            whowhenwhere.append(' with ');
 
             for (var i = 0; i < data.People.length; i++) {
-                people.append(jQuery('<a>').attr('href', '/' + data.People[i].Username).text(data.People[i].Name));
+                whowhenwhere.append(jQuery('<a>').attr('href', '/' + data.People[i].Username).text(data.People[i].Name));
              
                 if (data.People.length > 2 && i < data.People.length - 1) {
-                    people.append(', ');
+                    whowhenwhere.append(', ');
                 }
 
                 if (data.People.length > 1 && i == data.People.length - 2) {
-                    people.append(' and ');
+                    whowhenwhere.append(' and ');
                 }
             }
 
         }
         
         addedBy.text('Added by ').append(jQuery('<a>').attr('href', '/' + data.AddedUsername + '/').text(data.DisplayName));
-        addedDate.text('on ' + data.Added);
+        addedDate.text('on ').append(jQuery('<a>').attr('href', '/' + data.AddedUsername + '/added/' + data.AddedUrl).text(data.Added));
         
         jQuery('img.phototag', image).photoTag({
             requesTagstUrl: '/api/tags/retrieve',
@@ -220,11 +284,7 @@ function readView() {
         return '<br style="clear:both;margin:0;padding:0;" />' +
             '<span id="title"></span>' +
             '<div id="story"></div>' +
-            '<span id="month"></span>' +
-            '<span id="day"></span>' +
-            '<span id="year"></span>' +
-            '<span id="location"></span>' +
-            '<span id="people"></span>' +
+            '<span id="whowhenwhere"></span>' +
             '<span id="albums"></span>' +
             '<span id="addedBy"></span>' +
             '<span id="addedDate"></span>' +
