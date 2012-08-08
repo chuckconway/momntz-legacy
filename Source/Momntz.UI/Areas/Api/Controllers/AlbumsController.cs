@@ -5,9 +5,9 @@ namespace Momntz.UI.Areas.Api.Controllers
 {
     public class AlbumsController : Controller
     {
-        public ActionResult Index(string query)
+        public ActionResult Index(string term)
         {
-            List<string> results = new List<string> {query};
+            List<string> results = new List<string> {term, "might", "man"};
 
             return Json(results, JsonRequestBehavior.AllowGet);
         }

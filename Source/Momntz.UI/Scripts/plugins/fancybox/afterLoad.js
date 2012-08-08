@@ -20,33 +20,36 @@ function editView() {
         var day = container.find('select#day'); //.val(data.day);
         var month = container.find('select#month'); //.val(data.month);
         var year = container.find('input#year'); //.val(data.year);
-        var albums = container.find('input#albums'); //.val(data.albums);
+        var albums = container.find('ul#albums');
         var location = container.find('input#location');
 
         title.val(data.Title);
         story.val(data.Story);
+        
         day.val(data.Day);
         month.val(data.Month);
         year.val(data.Year);
-        //albums.val(data.Albums);
-        location.val(data.Location);
 
-        jQuery(albums).select2({
-            ajax: {
-                url: "/api/albums/index",
-                dataType: 'json',
-                data: function (term, page) {
-                    return {
-                        query: term,
-                    };
-                },
-                results: function (d, page) {
-                    return {
-                        results: d
-                    };
-                }
-            },
-            tags: data.Albums,
+        location.val(data.Location);
+        
+        if (data.Albums.length > 0) {
+
+            for (var index = 0; index < data.Albums.length; index++) {
+                var name = data.Albums[index];
+                albums.append('<li>' + name + '</li>');
+            }
+        }
+
+        albums.tagit({
+            tagSource: function (input, showChoices) {
+                jQuery.ajax({
+                        url: "/api/albums/index",
+                        data: input,
+                        success: function (choices) {
+                            showChoices(choices);
+                        }
+                    });
+            }
         });
         
         container.find('input#done').click(function () {
@@ -120,7 +123,7 @@ function editView() {
             '<label>Location</label>' +
             '<input id="location" class="inputField" type="text" value="" />' +
             '<label>Albums <span style="font-weight:normal;">(<a href="#">?</a>)</span></label>' +
-            '<input id="albums" class="inputField" type="hidden" value="" />' +
+            '<ul id="albums"></ul>' +
             '<input id="done" type="submit" class="inputField" value="Done"  />';
     };
 }

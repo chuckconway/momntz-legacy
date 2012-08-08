@@ -280,10 +280,12 @@
     <Content Include="Scripts\plugins\phototag\jquery.phototag.js" />
     <Content Include="Scripts\plugins\plugins.js" />
     <Content Include="Scripts\plugins\script.js" />
-    <Content Include="Scripts\plugins\select2\select2.css" />
-    <Content Include="Scripts\plugins\select2\select2.js" />
-    <Content Include="Scripts\plugins\select2\select2.png" />
-    <Content Include="Scripts\plugins\select2\spinner.gif" />
+    <Content Include="Scripts\plugins\tagit\css\examples.css" />
+    <Content Include="Scripts\plugins\tagit\css\jquery.tagit.css" />
+    <Content Include="Scripts\plugins\tagit\css\master.css" />
+    <Content Include="Scripts\plugins\tagit\css\reset.css" />
+    <Content Include="Scripts\plugins\tagit\css\tagit.ui-zendesk.css" />
+    <Content Include="Scripts\plugins\tagit\tag-it.js" />
     <Content Include="Scripts\plugins\uploadify\jquery.uploadifive-v1.0.js" />
     <Content Include="Scripts\plugins\uploadify\jquery.uploadifive-v1.0.min.js">
       <DependentUpon>jquery.uploadifive-v1.0.js</DependentUpon>
