@@ -23,6 +23,19 @@ function editView() {
         var albums = container.find('ul#albums');
         var location = container.find('input#location');
 
+        location.autocomplete({
+            minLength: 2,
+            source: function (request, response) {
+                jQuery.ajax({
+                    url: "/api/momento/locationsearch",
+                    data: { term: request.term },
+                    success: function (data) {
+                        response(data);
+                    }
+                });
+            }
+        });
+
         title.val(data.Title);
         story.val(data.Story);
         
@@ -41,12 +54,24 @@ function editView() {
         }
 
         albums.tagit({
-            tagSource: function (input, showChoices) {
+            singleField: true,
+            singleFieldNode: jQuery('input#myalbums'),
+            allowSpaces: true,
+            minLength: 2,
+            removeConfirmation: true,
+            onTagAdded: function (event, tag) {
+                jQuery.get("/api/albums/add",{ tag: tag, momentoId: data.Id });
+            },
+            
+            onTagRemoved:function (event, tag) {
+                jQuery.get("/api/albums/remove", { tag: tag, momentoId: data.Id });
+            },
+            tagSource: function (request, response ) {
                 jQuery.ajax({
                         url: "/api/albums/index",
-                        data: input,
-                        success: function (choices) {
-                            showChoices(choices);
+                        data: { term: request.term},
+                        success: function (data) {
+                            response(data);
                         }
                     });
             }
@@ -123,6 +148,7 @@ function editView() {
             '<label>Location</label>' +
             '<input id="location" class="inputField" type="text" value="" />' +
             '<label>Albums <span style="font-weight:normal;">(<a href="#">?</a>)</span></label>' +
+            '<input type="hidden" name="tags" id="myalbums" disabled="true">' +
             '<ul id="albums"></ul>' +
             '<input id="done" type="submit" class="inputField" value="Done"  />';
     };

@@ -140,7 +140,7 @@
             // Add existing tags from the list, if any.
             this.tagList.children('li').each(function() {
                 if (!$(this).hasClass('tagit-new')) {
-                    that.createTag($(this).html(), $(this).attr('class'));
+                    that.createTag($(this).html(), $(this).attr('class'), false);
                     $(this).remove();
                 }
             });
@@ -153,7 +153,7 @@
                     var tags = node.val().split(this.options.singleFieldDelimiter);
                     node.val('');
                     $.each(tags, function(index, tag) {
-                        that.createTag(tag);
+                        that.createTag(tag, null, false);
                     });
                 } else {
                     // Create our single field input after our list.
@@ -201,7 +201,7 @@
                         )
                     ) {
                         event.preventDefault();
-                        that.createTag(that._cleanedInput());
+                        that.createTag(that._cleanedInput(), null, true);
 
                         // The autocomplete doesn't close automatically when TAB is pressed.
                         // So let's ensure that it closes.
@@ -231,7 +231,7 @@
                         // Preventing the tag input to be updated with the chosen value.
                         return false;
                     }
-                });
+                }).css('z-index',10000);
             }
         },
 
@@ -304,7 +304,7 @@
             return $.trim(str.toLowerCase());
         },
 
-        createTag: function(value, additionalClass) {
+        createTag: function(value, additionalClass, triggerAddTagEvent) {
             var that = this;
             // Automatically trims the value of leading and trailing whitespace.
             value = $.trim(value);
@@ -343,7 +343,9 @@
                 tag.append('<input type="hidden" style="display:none;" value="' + escapedValue + '" name="' + this.options.itemName + '[' + this.options.fieldName + '][]" />');
             }
 
-            this._trigger('onTagAdded', null, tag);
+            if (triggerAddTagEvent !== undefined && triggerAddTagEvent) {
+                this._trigger('onTagAdded', null, value);
+            }
 
             // Cleaning the input.
             this._tagInput.val('');
@@ -357,7 +359,11 @@
 
             tag = $(tag);
 
-            this._trigger('onTagRemoved', null, tag);
+            var text = tag.text();
+            var length = text.length;
+            text = text.slice(0, length - 1);
+
+            this._trigger('onTagRemoved', null, text);
 
             if (this.options.singleField) {
                 var tags = this.assignedTags();

@@ -29,6 +29,16 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'PREVIEW|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\PREVIEW\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="AutoMapper">
       <HintPath>..\..\Dependencies\Automapper\AutoMapper.dll</HintPath>
@@ -56,6 +66,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\CommandHandlers\Albums\AddAlbumCommandHandler.cs" />
+    <Compile Include="Data\CommandHandlers\Albums\RemoveAlbumCommandHandler.cs" />
     <Compile Include="Data\CommandHandlers\ICommandHandler.cs" />
     <Compile Include="Data\CommandHandlers\Momentos\CreateMomentoCommandHandler.cs" />
     <Compile Include="Data\CommandHandlers\Momentos\CreateMomentoMediaCommandHandler.cs" />
@@ -66,6 +78,8 @@
     <Compile Include="Data\CommandHandlers\Tags\CreateTagCommandHandler.cs" />
     <Compile Include="Data\CommandHandlers\Tags\DeleteTagCommandHandler.cs" />
     <Compile Include="Data\CommandHandlers\Users\CreateUserCommandHandler.cs" />
+    <Compile Include="Data\Commands\Albums\AddAlbumCommand.cs" />
+    <Compile Include="Data\Commands\Albums\RemoveAlbumCommand.cs" />
     <Compile Include="Data\Commands\ICommand.cs" />
     <Compile Include="Data\Commands\Momentos\CreateMomentoCommand.cs" />
     <Compile Include="Data\Commands\Momentos\CreateMomentoMedia.cs" />
@@ -80,20 +94,24 @@
     <Compile Include="Data\IMomntzQueueSession.cs" />
     <Compile Include="Data\IMomntzSession.cs" />
     <Compile Include="Data\PersistIntercepters\AuditPersistIntercepter.cs" />
+    <Compile Include="Data\ProjectionHandlers\Api\AlbumNameSearchHandler.cs" />
     <Compile Include="Data\ProjectionHandlers\Api\MomentoDetailHandler.cs" />
     <Compile Include="Data\ProjectionHandlers\Api\MomentoTagHandler.cs" />
     <Compile Include="Data\ProjectionHandlers\IProjectionHandler.cs" />
     <Compile Include="Data\ProjectionHandlers\Momentos\BaseMomentoHandler.cs" />
+    <Compile Include="Data\ProjectionHandlers\Momentos\LocationAutocompleteHandler.cs" />
     <Compile Include="Data\ProjectionHandlers\Momentos\UserPageMomentosHandler.cs" />
     <Compile Include="Data\ProjectionHandlers\Momentos\HomepageMomentosHandler.cs" />
     <Compile Include="Data\ProjectionHandlers\Api\NameSearchByUsernameHandler.cs" />
     <Compile Include="Data\ProjectionHandlers\Users\AuthenticatedUserHandler.cs" />
     <Compile Include="Data\ProjectionHandlers\Users\DisplayNameHandler.cs" />
     <Compile Include="Data\ProjectionHandlers\Users\GetActiveUsersHandler.cs" />
+    <Compile Include="Data\Projections\Api\AlbumNameResult.cs" />
     <Compile Include="Data\Projections\Api\MomentoDetail.cs" />
     <Compile Include="Data\Projections\Api\MomentoTag.cs" />
     <Compile Include="Data\Projections\Api\NameSearch.cs" />
     <Compile Include="Data\Projections\IProjection.cs" />
+    <Compile Include="Data\Projections\Momentos\LocationAutoComplete.cs" />
     <Compile Include="Data\Projections\Momentos\MomentoWithMedia.cs" />
     <Compile Include="Data\Projections\Users\ActiveUsername.cs" />
     <Compile Include="Data\Projections\Users\AuthenticatedUser.cs" />
