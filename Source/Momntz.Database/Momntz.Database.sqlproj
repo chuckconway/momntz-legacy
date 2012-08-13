@@ -103,9 +103,12 @@
     <Build Include="dbo\Views\MomentoUserView.sql" />
     <Build Include="dbo\Stored Procedures\User_GetOwnerPasswordByUsername.sql" />
     <Build Include="dbo\Stored Procedures\MomentoUser_DeleteByUsernameAndMomentoId.sql" />
-    <Build Include="dbo\Stored Procedures\TagAlbum_AddMomento.sql" />
     <Build Include="dbo\Stored Procedures\Momento_SaveDetails.sql" />
     <Build Include="Security\momntz.sql" />
     <Build Include="Security\RoleMemberships.sql" />
+    <Build Include="dbo\Stored Procedures\TagAlbum_Remove.sql" />
+    <Build Include="dbo\Stored Procedures\TagAlbum_GetTermByFirstCharactersAndUsername.sql" />
+    <Build Include="dbo\Stored Procedures\TagAlbum_Add.sql" />
+    <Build Include="dbo\Stored Procedures\Momento_GetLocationByFirstCharactersAndUsername.sql" />
   </ItemGroup>
 </Project>
