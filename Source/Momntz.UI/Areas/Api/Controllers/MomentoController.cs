@@ -1,9 +1,13 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 using System.Web.Mvc;
 using Momntz.Data.Commands.Momentos;
+using Momntz.Data.ProjectionHandlers.Momentos;
 using Momntz.Data.Projections.Api;
+using Momntz.Data.Projections.Momentos;
 using Momntz.Infrastructure;
+using Momntz.UI.Areas.Api.Models;
 using Momntz.UI.Core.Controllers;
 
 namespace Momntz.UI.Areas.Api.Controllers
@@ -24,6 +28,16 @@ namespace Momntz.UI.Areas.Api.Controllers
         {
             _processor.Process(new SaveMomentoDetailsCommand(id, title, story, day, month, year, albums, location, GetUsername()));
             return Content("1");
+        }
+
+        public ActionResult LocationSearch(string term)
+        {
+            string username = GetUsername();
+            var results =
+                _projection.Process<LocationAutoCompleteParameters, List<LocationAutoComplete>>(
+                    new LocationAutoCompleteParameters() {Term = term, Username = username});
+            
+            return Json(results.Select(a=> new AutoComplete(a.Location)), JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]

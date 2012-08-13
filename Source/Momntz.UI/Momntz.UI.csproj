@@ -148,6 +148,7 @@
     <Compile Include="Areas\Api\Controllers\MomentoController.cs" />
     <Compile Include="Areas\Api\Controllers\TagsController.cs" />
     <Compile Include="Areas\Api\Handlers\Tags\AddTagHandler.cs" />
+    <Compile Include="Areas\Api\Models\AutoComplete.cs" />
     <Compile Include="Areas\Api\Models\NewTag.cs" />
     <Compile Include="Areas\Api\Models\PeopleView.cs" />
     <Compile Include="Areas\Register\Controllers\IndexController.cs" />
@@ -399,9 +400,28 @@
   <ItemGroup>
     <Content Include="Views\Forgot\Index.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Web.PREVIEW.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\PublishProfiles\Preview.pubxml" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'PREVIEW|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <DeployIisAppPath>preview.momntz.com</DeployIisAppPath>
+    <DeployEncryptKey>Encryption password is used only if any deployment setting is marked as secure</DeployEncryptKey>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />

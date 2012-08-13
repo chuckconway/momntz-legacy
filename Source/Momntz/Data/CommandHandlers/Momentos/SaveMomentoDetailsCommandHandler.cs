@@ -1,27 +1,23 @@
-﻿using Momntz.Data.Commands.Momentos;
+﻿using System.Data;
+using Hypersonic;
+using Momntz.Data.Commands.Momentos;
 using Momntz.Model;
 
 namespace Momntz.Data.CommandHandlers.Momentos
 {
     public class SaveMomentoDetailsCommandHandler : ICommandHandler<SaveMomentoDetailsCommand>
     {
-        private readonly IMomntzSession _session;
+        private readonly IDatabase _database;
 
-        public SaveMomentoDetailsCommandHandler(IMomntzSession session )
+        public SaveMomentoDetailsCommandHandler(IDatabase database )
         {
-            _session = session;
+            _database = database;
         }
 
         public void Execute(SaveMomentoDetailsCommand command)
         {
-            _session.Session.Database.NonQuery("Momento_SaveDetails", new { command.Day,  command.Id, command.Location, command.Month, command.Story, command.Title, command.Year });
-
-            TagCollection collection = new TagCollection(command.Albums);
-
-            foreach (Tag s in collection)
-            {
-                _session.Session.Database.NonQuery("TagAlbum_AddMomento", new {command.Username, MomentoId = command.Id, AlbumName = s.Name});
-            }
+            _database.ConnectionStringName = "sql";
+            _database.NonQuery("Momento_SaveDetails", new { command.Day, command.Id, command.Location, command.Month, command.Story, command.Title, command.Year });
         }
     }
 }

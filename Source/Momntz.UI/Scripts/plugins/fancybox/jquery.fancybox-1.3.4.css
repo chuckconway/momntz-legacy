@@ -234,7 +234,7 @@
 	background: rgba(0, 0, 0, .8);
 }
 
-div.fancybox-content { position:absolute; right:-200px; top:0px; z-index:100;width:170px;background-color:#fff;height: 100%;padding-left: 15px;padding-right: 15px;}
+div.fancybox-content { position:absolute; right:-200px; top:0px; z-index:10000;width:170px;background-color:#fff;height: 100%;padding-left: 15px;padding-right: 15px;}
 
 div.fancybox-editbox span#title{ font-weight: bold;display: block;}
 div.fancybox-editbox div#story{ font-size: 11px;color: #6F777D;margin-top: 3px;text-align: justify;margin-bottom: 20px;}
