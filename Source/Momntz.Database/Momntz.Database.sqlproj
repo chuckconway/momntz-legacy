@@ -110,5 +110,6 @@
     <Build Include="dbo\Stored Procedures\TagAlbum_GetTermByFirstCharactersAndUsername.sql" />
     <Build Include="dbo\Stored Procedures\TagAlbum_Add.sql" />
     <Build Include="dbo\Stored Procedures\Momento_GetLocationByFirstCharactersAndUsername.sql" />
+    <Build Include="dbo\Stored Procedures\User_GetConnectionsByUsername.sql" />
   </ItemGroup>
 </Project>
