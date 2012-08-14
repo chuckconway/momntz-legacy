@@ -1,7 +1,7 @@
-﻿@model IList<Momntz.Data.Projections.Momentos.MomentoWithMedia>
+﻿@model List<Momntz.Data.Projections.IGroupItem>
 
 @{
     Layout = "/Views/Shared/LoggedInUser.cshtml";
 }
 
-@{ Html.RenderPartial("NavigationPartialView", Model); }
+@{ Html.RenderPartial("_AlbumPartialView", Model); }

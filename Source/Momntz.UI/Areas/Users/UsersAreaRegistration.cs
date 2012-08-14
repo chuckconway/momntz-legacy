@@ -20,6 +20,15 @@ namespace Momntz.UI.Areas.Users
         public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
+            "Users_albums",
+            "{username}/albums/{name}",
+            new { controller = "albums", action = "name"},
+            constraints: new
+            {
+                username = new UserRouteConstraint(ObjectFactory.GetInstance<IProjectionProcessor>()),
+            });
+
+            context.MapRoute(
             "Users_date",
             "{username}/{year}/{month}/{day}",
             new { controller = "date", action = "Index", month = UrlParameter.Optional, day = UrlParameter.Optional },
