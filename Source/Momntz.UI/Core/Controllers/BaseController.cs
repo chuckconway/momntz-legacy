@@ -39,6 +39,7 @@ namespace Momntz.UI.Core.Controllers
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             ViewBag.Username = Username;
+            ViewBag.CurrentLandingPageUsername = CurrentLandingPageUsername();
             base.OnActionExecuting(filterContext);
         }
 
@@ -82,5 +83,11 @@ namespace Momntz.UI.Core.Controllers
 
             return username;
         }
+
+        public string CurrentLandingPageUsername()
+        {
+            return Convert.ToString(RouteData.Values["username"]);
+        }
+
     }
 }

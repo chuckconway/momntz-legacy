@@ -97,6 +97,7 @@
     <Compile Include="Data\ProjectionHandlers\Api\AlbumNameSearchHandler.cs" />
     <Compile Include="Data\ProjectionHandlers\Api\MomentoDetailHandler.cs" />
     <Compile Include="Data\ProjectionHandlers\Api\MomentoTagHandler.cs" />
+    <Compile Include="Data\ProjectionHandlers\Connections\ConnectionResultHandler.cs" />
     <Compile Include="Data\ProjectionHandlers\IProjectionHandler.cs" />
     <Compile Include="Data\ProjectionHandlers\Momentos\BaseMomentoHandler.cs" />
     <Compile Include="Data\ProjectionHandlers\Momentos\LocationAutocompleteHandler.cs" />
@@ -110,6 +111,8 @@
     <Compile Include="Data\Projections\Api\MomentoDetail.cs" />
     <Compile Include="Data\Projections\Api\MomentoTag.cs" />
     <Compile Include="Data\Projections\Api\NameSearch.cs" />
+    <Compile Include="Data\Projections\Connections\ConnectionResult.cs" />
+    <Compile Include="Data\Projections\IGroupItem.cs" />
     <Compile Include="Data\Projections\IProjection.cs" />
     <Compile Include="Data\Projections\Momentos\LocationAutoComplete.cs" />
     <Compile Include="Data\Projections\Momentos\MomentoWithMedia.cs" />
