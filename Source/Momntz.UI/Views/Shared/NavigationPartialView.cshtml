@@ -1,19 +1,19 @@
 ﻿@using Momntz.UI.Core.Controllers
 
-@if (BaseController.IsAuthenticatedUser(ViewBag.Username))
+@if (BaseController.IsAuthenticatedUser(ViewBag.Username) && string.Equals(ViewBag.Username, ViewBag.CurrentLandingPageUsername, StringComparison.InvariantCultureIgnoreCase))
 {
     <ul>
-        <li><a href="/@ViewBag.Username">Home</a></li>
-        <li><a href="/@ViewBag.Username/upload">Upload</a></li>
-        <li><a href="/@ViewBag.Username/albums">Albums</a></li>
-        <li><a href="/@ViewBag.Username/connections">People</a></li>
+        <li><a href="/@ViewBag.CurrentLandingPageUsername">Home</a></li>
+        <li><a href="/@ViewBag.CurrentLandingPageUsername/upload">Upload</a></li>
+        <li><a href="/@ViewBag.CurrentLandingPageUsername/albums">Albums</a></li>
+        <li><a href="/@ViewBag.CurrentLandingPageUsername/connections">Connections</a></li>
     </ul>
 }
 else
 {
     <ul>
-        <li class="bold" ><a href="/@ViewBag.Username">@BaseController.GetDisplayName(ViewBag.Username)</a></li>
-        <li><a href="/@ViewBag.Username/albums">Albums</a></li>
-        <li><a href="/@ViewBag.Username/connections">People</a></li>
+        <li class="bold" ><a href="/@ViewBag.CurrentLandingPageUsername">@BaseController.GetDisplayName(ViewBag.Username)</a></li>
+        <li><a href="/@ViewBag.CurrentLandingPageUsername/albums">Albums</a></li>
+        <li><a href="/@ViewBag.CurrentLandingPageUsername/connections">Connections</a></li>
     </ul>
 }
