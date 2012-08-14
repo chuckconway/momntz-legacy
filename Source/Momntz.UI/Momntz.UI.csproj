@@ -406,8 +406,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Users\Views\Albums\Name.cshtml" />
     <None Include="Properties\PublishProfiles\Preview.pubxml" />
     <Content Include="Views\Shared\_GroupPartialView.cshtml" />
+    <Content Include="Views\Shared\_AlbumPartialView.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -10,7 +10,7 @@ using Momntz.Model.Configuration;
 
 namespace Momntz.Data.ProjectionHandlers.Connections
 {
-    public class ConnectionResultHandler : IProjectionHandler<string, List<IGroupItem>>
+    public class ConnectionResultHandler : IProjectionHandler<ConnectionResultParameters, List<IGroupItem>>
     {
         private readonly IDatabase _database;
         private readonly ISettings _settings;
@@ -22,13 +22,13 @@ namespace Momntz.Data.ProjectionHandlers.Connections
             _settings = settings;
         }
 
-        public List<IGroupItem> Execute(string args)
+        public List<IGroupItem> Execute(ConnectionResultParameters args)
         {
             _database.ConnectionStringName = "sql";
             _database.CommandType = CommandType.StoredProcedure;
             List<IGroupItem> items = new List<IGroupItem>();
-            
-            var results = _database.List<ConnectionResult, object>("User_GetConnectionsByUsername", new { Username = args }).ToList();
+
+            var results = _database.List<ConnectionResult, object>("User_GetConnectionsByUsername", args).ToList();
 
             string rootUrl = _settings.CloudUrl;
 
@@ -40,5 +40,10 @@ namespace Momntz.Data.ProjectionHandlers.Connections
 
             return items;
         }
+    }
+
+    public class ConnectionResultParameters
+    {
+        public string Username { get; set; }
     }
 }

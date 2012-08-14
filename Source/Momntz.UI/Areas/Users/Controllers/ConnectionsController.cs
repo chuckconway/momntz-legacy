@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
+using Momntz.Data.ProjectionHandlers.Connections;
 using Momntz.Data.Projections;
 using Momntz.Data.Projections.Connections;
 using Momntz.Infrastructure;
@@ -19,7 +20,7 @@ namespace Momntz.UI.Areas.Users.Controllers
         public ActionResult Index()
         {
             var username = CurrentLandingPageUsername();
-            var results = _processor.Process<string, List<IGroupItem>>(username);
+            var results = _processor.Process<ConnectionResultParameters, List<IGroupItem>>(new ConnectionResultParameters(){Username = username});
 
             return View(results);
         }

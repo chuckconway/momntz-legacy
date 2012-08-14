@@ -1961,4 +1961,4 @@ ul#signup { margin-top: 20px;}
 ul#signup li { list-style: none;}
 
 
-p.groupname{text-align:center;font-size: 16px;}
+p.groupname{color: #333333;font-size: 16px;font-weight: bold;text-align: center;}

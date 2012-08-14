@@ -94,9 +94,12 @@
     <Compile Include="Data\IMomntzQueueSession.cs" />
     <Compile Include="Data\IMomntzSession.cs" />
     <Compile Include="Data\PersistIntercepters\AuditPersistIntercepter.cs" />
+    <Compile Include="Data\ProjectionHandlers\Albums\AlbumMomentosHandler.cs" />
+    <Compile Include="Data\ProjectionHandlers\Albums\AlbumResultHandler.cs" />
     <Compile Include="Data\ProjectionHandlers\Api\AlbumNameSearchHandler.cs" />
     <Compile Include="Data\ProjectionHandlers\Api\MomentoDetailHandler.cs" />
     <Compile Include="Data\ProjectionHandlers\Api\MomentoTagHandler.cs" />
+    <Compile Include="Data\ProjectionHandlers\BaseGroupItem.cs" />
     <Compile Include="Data\ProjectionHandlers\Connections\ConnectionResultHandler.cs" />
     <Compile Include="Data\ProjectionHandlers\IProjectionHandler.cs" />
     <Compile Include="Data\ProjectionHandlers\Momentos\BaseMomentoHandler.cs" />
@@ -107,6 +110,7 @@
     <Compile Include="Data\ProjectionHandlers\Users\AuthenticatedUserHandler.cs" />
     <Compile Include="Data\ProjectionHandlers\Users\DisplayNameHandler.cs" />
     <Compile Include="Data\ProjectionHandlers\Users\GetActiveUsersHandler.cs" />
+    <Compile Include="Data\Projections\Albums\AlbumResult.cs" />
     <Compile Include="Data\Projections\Api\AlbumNameResult.cs" />
     <Compile Include="Data\Projections\Api\MomentoDetail.cs" />
     <Compile Include="Data\Projections\Api\MomentoTag.cs" />
