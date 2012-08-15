@@ -1,9 +1,8 @@
 ﻿CREATE VIEW dbo.TagAlbumView
 AS
-SELECT        T.Name, TM.MomentoId, TM.TagId, T.Story, T.Username
-FROM            dbo.TagMomento AS TM INNER JOIN
-                         dbo.TagAlbum AS TA ON TM.TagId = TA.TagId INNER JOIN
-                         dbo.Tag AS T ON T.Id = TA.TagId AND T.Kind = 3
+SELECT        T.Name, T.Username, A.MomentoId, A.TagId, T.Story, A.Id
+FROM            dbo.TagMomento AS A INNER JOIN
+                         dbo.Tag AS T ON A.TagId = T.Id AND T.Kind = 3
 GO
 EXECUTE sp_addextendedproperty @name = N'MS_DiagramPaneCount', @value = 1, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'TagAlbumView';
 
@@ -80,32 +79,22 @@ Begin DesignProperties =
          Left = 0
       End
       Begin Tables = 
-         Begin Table = "TM"
-            Begin Extent = 
-               Top = 6
-               Left = 454
-               Bottom = 212
-               Right = 624
-            End
-            DisplayFlags = 280
-            TopColumn = 0
-         End
-         Begin Table = "TA"
-            Begin Extent = 
-               Top = 6
-               Left = 246
-               Bottom = 157
-               Right = 416
-            End
-            DisplayFlags = 280
-            TopColumn = 0
-         End
          Begin Table = "T"
             Begin Extent = 
                Top = 6
                Left = 38
                Bottom = 187
                Right = 208
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
+         Begin Table = "A"
+            Begin Extent = 
+               Top = 6
+               Left = 246
+               Bottom = 207
+               Right = 416
             End
             DisplayFlags = 280
             TopColumn = 0
@@ -136,6 +125,10 @@ Begin DesignProperties =
       End
    End
 End', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'TagAlbumView';
+
+
+
+
 
 
 
