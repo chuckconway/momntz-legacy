@@ -170,6 +170,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\SignoutController.cs" />
+    <Compile Include="Controllers\SignupController.cs" />
     <Compile Include="Core\ActionResults\FormResult.cs" />
     <Compile Include="Core\ActionResults\QueryResult.cs" />
     <Compile Include="Core\Binders\NewTagModelBinder.cs" />
@@ -410,6 +411,7 @@
     <None Include="Properties\PublishProfiles\Preview.pubxml" />
     <Content Include="Views\Shared\_GroupPartialView.cshtml" />
     <Content Include="Views\Shared\_AlbumPartialView.cshtml" />
+    <Content Include="Views\Signup\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
