@@ -21,16 +21,13 @@ BEGIN
 	Declare @AlbumId int
 	Set @AlbumId = (Select T.Id From Tag T Where T.Name = @Tag AND T.Username = @Username AND Kind = 3)
 
-	IF @AlbumId Is NOT Null AND Exists( Select * From TagAlbum T Where T.MomentoId = @MomentoId AND T.TagId = @AlbumId)
+	IF @AlbumId Is NOT Null AND Exists( Select * From TagAlbumView T Where T.MomentoId = @MomentoId AND T.TagId = @AlbumId)
 	BEGIN
-		Delete From TagAlbum
-		Where MomentoId = @MomentoId AND TagId = @AlbumId
-
 		Delete From TagMomento
 		Where MomentoId = @MomentoId AND TagId = @AlbumId
 
 		Declare @ItemCount int
-		Set @ItemCount = (Select count(*) From TagAlbum T Where T.MomentoId = @MomentoId AND T.TagId = @AlbumId)
+		Set @ItemCount = (Select count(*) From TagAlbumView T Where T.MomentoId = @MomentoId AND T.TagId = @AlbumId)
 
 		IF @ItemCount = 0
 		BEGIN

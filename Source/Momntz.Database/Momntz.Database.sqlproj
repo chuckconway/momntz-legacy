@@ -82,7 +82,6 @@
     <Build Include="dbo\Tables\TagMomento.sql" />
     <Build Include="dbo\Tables\MomentoMedia.sql" />
     <Build Include="dbo\Tables\TagPerson.sql" />
-    <Build Include="dbo\Tables\TagAlbum.sql" />
     <Build Include="dbo\Tables\Audit.sql" />
     <Build Include="dbo\Tables\Configuration.sql" />
     <Build Include="dbo\Stored Procedures\Momento_RetrieveTagsByMomentoId.sql" />
@@ -111,5 +110,7 @@
     <Build Include="dbo\Stored Procedures\TagAlbum_Add.sql" />
     <Build Include="dbo\Stored Procedures\Momento_GetLocationByFirstCharactersAndUsername.sql" />
     <Build Include="dbo\Stored Procedures\User_GetConnectionsByUsername.sql" />
+    <Build Include="dbo\Stored Procedures\TagAlbum_GetMomentosByNameAndUsername.sql" />
+    <Build Include="dbo\Stored Procedures\TagAlbum_GetAlbumByUsername.sql" />
   </ItemGroup>
 </Project>

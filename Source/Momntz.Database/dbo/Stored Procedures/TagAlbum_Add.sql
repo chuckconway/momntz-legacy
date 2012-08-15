@@ -29,13 +29,12 @@ BEGIN
 		Declare @TagCount int
 
 		SET @TagCount = (Select Count(*)
-		FROM TagAlbum T
+		FROM TagMomento T
 		Where T.MomentoId = @MomentoId
 			AND T.TagId = @AlbumId)
 
 		IF @TagCount = 0
 			BEGIN
-				Insert Into TagAlbum(MomentoId, TagId)Values(@MomentoId, @AlbumId)
 				Insert Into TagMomento(MomentoId, TagId)Values(@MomentoId, @AlbumId)
 			END
 	END
@@ -44,7 +43,6 @@ BEGIN
 			Insert Into Tag (Name, Kind, Username) Values(@Tag, 3, @Username)
 			Set @AlbumId = SCOPE_IDENTITY()
 
-			Insert Into TagAlbum(MomentoId, TagId)Values(@MomentoId, @AlbumId)
 			Insert Into TagMomento(MomentoId, TagId)Values(@MomentoId, @AlbumId)
 		END
 END
