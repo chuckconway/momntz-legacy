@@ -113,5 +113,6 @@
     <Build Include="dbo\Stored Procedures\User_GetConnectionsByUsername.sql" />
     <Build Include="dbo\Stored Procedures\TagAlbum_GetMomentosByNameAndUsername.sql" />
     <Build Include="dbo\Stored Procedures\TagAlbum_GetAlbumByUsername.sql" />
+    <Build Include="dbo\Stored Procedures\User_Create.sql" />
   </ItemGroup>
 </Project>
