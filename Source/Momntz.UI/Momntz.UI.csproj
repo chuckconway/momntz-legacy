@@ -412,6 +412,7 @@
     <Content Include="Views\Shared\_GroupPartialView.cshtml" />
     <Content Include="Views\Shared\_AlbumPartialView.cshtml" />
     <Content Include="Views\Signup\Index.cshtml" />
+    <Content Include="Views\Signup\Success.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,24 +1,32 @@
-﻿using Hypersonic;
+﻿using System.Data;
+using Hypersonic;
 using Momntz.Data.Commands.Users;
+using Momntz.Infrastructure.Security;
 
 namespace Momntz.Data.CommandHandlers.Users
 {
     public class CreateUserCommandHandler : ICommandHandler<CreateUserCommand>
     {
-        private readonly IMomntzSession _session;
+        private readonly IDatabase _database;
+        private readonly ICrypto _crypto;
 
         /// <summary> Constructor. </summary>
         /// <param name="session"> The session. </param>
-        public CreateUserCommandHandler(IMomntzSession session)
+        public CreateUserCommandHandler(IDatabase database, ICrypto crypto)
         {
-            _session = session;
+            _database = database;
+            _crypto = crypto;
         }
 
         /// <summary> Handles. </summary>
         /// <param name="command"> The command. </param>
         public void Execute(CreateUserCommand command)
         {
-            _session.Session.Save(command, "User");
+            command.Password = _crypto.Hash(command.Password);  
+
+            _database.ConnectionStringName = "sql";
+            _database.CommandType = CommandType.StoredProcedure;
+            _database.NonQuery("User_Create", command);
         }
     }
 }
