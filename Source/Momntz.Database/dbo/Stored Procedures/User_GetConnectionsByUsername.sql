@@ -3,7 +3,7 @@
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-CREATE PROCEDURE User_GetConnectionsByUsername
+CREATE PROCEDURE [dbo].[User_GetConnectionsByUsername]
 	-- Add the parameters for the stored procedure here
 (
 	@Username nvarchar(100)
@@ -30,6 +30,6 @@ BEGIN
 			ON M.Id = R.Id
 
 	) M
-		On P.Username = M.Username		
+		On P.CreatedBy = M.Username		
 	Where U.CreatedBy = @Username
 END
