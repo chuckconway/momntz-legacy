@@ -48,7 +48,7 @@ namespace Momntz.UI.Core.Controllers
             var processor = ObjectFactory.GetInstance<IProjectionProcessor>();
             var name = processor.Process<string, DisplayName>(username);
 
-            return string.Format("{0} {1}", name.FirstName, name.LastName);
+            return name.Fullname;
         }
 
         public static bool IsAuthenticatedUser(string name)

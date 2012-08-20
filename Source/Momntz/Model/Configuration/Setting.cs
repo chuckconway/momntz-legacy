@@ -1,4 +1,4 @@
-﻿namespace Momntz.Model
+﻿namespace Momntz.Model.Configuration
 {
     public class Setting
     {

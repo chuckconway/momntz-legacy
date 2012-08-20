@@ -1,7 +1,10 @@
-﻿using Hypersonic.Session;
+﻿using Chucksoft.Core.Services;
+using Hypersonic.Session;
 using Momntz.Data;
 using Momntz.Data.CommandHandlers;
 using Momntz.Data.ProjectionHandlers;
+using Momntz.Infrastructure;
+using Momntz.Model.Configuration;
 using StructureMap.Configuration.DSL;
 
 namespace Momntz
@@ -11,7 +14,7 @@ namespace Momntz
         public MomntzRegistry()
         {
             this.For<IMomntzSession>().Use(new MomntzSession(SessionFactory.SqlServer("sql")));
-            this.For<IMomntzQueueSession>().Use(new MomntzQueueSession(SessionFactory.SqlServer("queue")));
+            this.For<IMomntzQueueSession>().Use<MomntzQueueSession>();
             Scan(
                 s =>
                     {

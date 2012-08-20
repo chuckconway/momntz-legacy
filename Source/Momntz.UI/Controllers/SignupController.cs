@@ -1,11 +1,17 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using System.Web.Security;
 using Momntz.Data.Commands.Users;
 using Momntz.Infrastructure;
+using Momntz.UI.Core.Controllers;
 using Momntz.UI.Models.Login;
 
 namespace Momntz.UI.Controllers
 {
-    public class SignupController : Controller
+    public class SignupController : BaseController
     {
         private readonly ICommandProcessor _processor;
 
@@ -14,14 +20,14 @@ namespace Momntz.UI.Controllers
             _processor = processor;
         }
 
+        public ActionResult Welcome()
+        {
+            return View();
+        }
+
         public ActionResult Index()
         {
             return View(new LoginView());
-        }
-
-        public ActionResult Success()
-        {
-            return View();
         }
 
         [HttpPost]
@@ -30,7 +36,10 @@ namespace Momntz.UI.Controllers
             var user = new CreateUserCommand(username, username, email, displayname, firstname, lastname, password);
             _processor.Process(user);
 
-            return Redirect("SignUp/Success");
+            FormsAuthentication.SetAuthCookie(username, true); 
+
+            return Redirect("SignUp/Welcome");
         }
+
     }
 }

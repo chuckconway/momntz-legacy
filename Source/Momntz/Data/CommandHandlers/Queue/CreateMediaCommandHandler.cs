@@ -9,12 +9,12 @@ namespace Momntz.Data.CommandHandlers.Queue
 {
     public class CreateMediaCommandHandler : ICommandHandler<CreateMediaCommand>
     {
-        private readonly IMomntzQueueSession _session;
+        private readonly IDatabase _database;
         private readonly ISettings _settings;
 
-        public CreateMediaCommandHandler(IMomntzQueueSession session, ISettings settings)
+        public CreateMediaCommandHandler(IDatabase database, ISettings settings)
         {
-            _session = session;
+            _database = database;
             _settings = settings;
         }
 
@@ -22,18 +22,19 @@ namespace Momntz.Data.CommandHandlers.Queue
         {
                 var parameters = new List<DbParameter>()
                                      {
-                                         _session.Session.Database.MakeParameter("@Id", command.Id),
-                                         _session.Session.Database.MakeParameter("@Filename", command.Filename),
-                                         _session.Session.Database.MakeParameter("@Extension", command.Extension),
-                                         _session.Session.Database.MakeParameter("@Size", command.Size),
-                                         _session.Session.Database.MakeParameter("@Username", command.Username),
-                                         _session.Session.Database.MakeParameter("@ContentType", command.ContentType),
-                                         _session.Session.Database.MakeParameter("@MediaType", command.MediaType),
-                                         _session.Session.Database.MakeParameter("@Bytes", DbType.Binary, command.Bytes.Length, command.Bytes)
+                                         _database.MakeParameter("@Id", command.Id),
+                                         _database.MakeParameter("@Filename", command.Filename),
+                                         _database.MakeParameter("@Extension", command.Extension),
+                                         _database.MakeParameter("@Size", command.Size),
+                                         _database.MakeParameter("@Username", command.Username),
+                                         _database.MakeParameter("@ContentType", command.ContentType),
+                                         _database.MakeParameter("@MediaType", command.MediaType),
+                                         _database.MakeParameter("@Bytes", DbType.Binary, command.Bytes.Length, command.Bytes)
                                      };
 
-                _session.Session.Database.CommandType = CommandType.Text;
-                _session.Session.Database.NonQuery("Insert Into Media(Id, Extension, Filename, Size, Username, ContentType, MediaType, Bytes) Values (@Id, @Extension, @Filename, @Size, @Username, @ContentType, @MediaType, @Bytes)", parameters);
+                _database.CommandType = CommandType.Text;
+                _database.ConnectionString = _settings.QueueDatabase;
+                _database.NonQuery("Insert Into Media(Id, Extension, Filename, Size, Username, ContentType, MediaType, Bytes) Values (@Id, @Extension, @Filename, @Size, @Username, @ContentType, @MediaType, @Bytes)", parameters);
         }
     }
 }
