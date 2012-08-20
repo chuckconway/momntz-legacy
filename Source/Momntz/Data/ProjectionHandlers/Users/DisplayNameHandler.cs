@@ -5,16 +5,16 @@ namespace Momntz.Data.ProjectionHandlers.Users
 {
     public class DisplayNameHandler : IProjectionHandler<string, DisplayName>
     {
-        private readonly ISession _session;
+        private readonly IMomntzSession _session;
 
-        public DisplayNameHandler(ISession session)
+        public DisplayNameHandler(IMomntzSession session)
         {
             _session = session;
         }
 
         public DisplayName Execute(string args)
         {
-          return  _session.Query<DisplayName>("GetUserView")
+          return  _session.Session.Query<DisplayName>("GetUserView")
                 .Where(string.Format("Username = '{0}'", args))
                 .Single();
         }

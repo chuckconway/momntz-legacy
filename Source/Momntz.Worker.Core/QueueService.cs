@@ -19,6 +19,7 @@ namespace Momntz.Worker.Core
         {
             IInjection injection = new StructureMapInjection();
             injection.AddManifest(new WorkerRegistry());
+            injection.AddManifest(new MomntzRegistry());
             _session = injection.Get<ISession>();
             _settings = injection.Get<ISettings>();
 
