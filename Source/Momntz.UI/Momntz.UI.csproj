@@ -200,6 +200,7 @@
     <Content Include="Content\css\uploadify\uploadifive.css" />
     <Content Include="Content\images\bigger.png" />
     <Content Include="Content\images\black75.png" />
+    <Content Include="Content\images\close.png" />
     <Content Include="Content\images\comments.png" />
     <Content Include="Content\images\delicious-ic-16.png" />
     <Content Include="Content\images\dotted-border.png" />
@@ -276,6 +277,7 @@
     <Content Include="Scripts\plugins\fancybox\fancy_title_right.png" />
     <Content Include="Scripts\plugins\fancybox\jquery.fancybox-1.3.4.css" />
     <Content Include="Scripts\plugins\phototag\images\ui-bg_highlight-soft_100_eeeeee_1x100.png" />
+    <Content Include="Scripts\plugins\phototag\images\ui-icons_222222_256x240.png" />
     <Content Include="Scripts\plugins\phototag\jquery-ui-1.8.17.custom.css" />
     <Content Include="Scripts\plugins\phototag\jquery-ui-1.8.17.custom.min.js" />
     <Content Include="Scripts\plugins\phototag\jquery.phototag.js" />
