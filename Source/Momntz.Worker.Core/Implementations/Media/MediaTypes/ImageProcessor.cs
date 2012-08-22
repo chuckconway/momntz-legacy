@@ -40,7 +40,7 @@ namespace Momntz.Worker.Core.Implementations.Media.MediaTypes
 
         private static ImageFormat GetFormat(string imageFormat)
         {
-            var item = _formats.SingleOrDefault(f => f.Extensions.Any(s => string.Equals(s, imageFormat.Trim('.'), StringComparison.InvariantCulture)));
+            var item = _formats.SingleOrDefault(f => f.Extensions.Any(s => string.Equals(s, imageFormat.ToLower().Trim('.'), StringComparison.InvariantCulture)));
 
             if(item != null)
             {
