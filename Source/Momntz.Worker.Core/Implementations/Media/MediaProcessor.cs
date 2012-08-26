@@ -5,6 +5,7 @@ using System.Web.Script.Serialization;
 using Chucksoft.Storage;
 using Hypersonic;
 using Momntz.Model.Configuration;
+using Momntz.Model.Core;
 using Momntz.Worker.Core.Implementations.Media.MediaTypes;
 
 namespace Momntz.Worker.Core.Implementations.Media

@@ -5,8 +5,8 @@ using System.Web;
 using System.Web.Script.Serialization;
 using Momntz.Data.Commands.Queue;
 using Momntz.Infrastructure;
+using Momntz.Model.Core;
 using Momntz.UI.Core.Controllers;
-using Momntz.Worker.Core.Implementations.Media;
 using StructureMap;
 
 
