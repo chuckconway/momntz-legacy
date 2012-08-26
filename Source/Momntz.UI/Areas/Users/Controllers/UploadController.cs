@@ -1,6 +1,5 @@
 ﻿using System.Web;
 using System.Web.Mvc;
-using Momntz.Tests;
 using Momntz.UI.Core.Controllers;
 
 
@@ -23,13 +22,13 @@ namespace Momntz.UI.Areas.Users.Controllers
             return Content("Error");
         }
 
-        public ActionResult Test()
-        {
-            CreateMediaCommandTests tests = new CreateMediaCommandTests();
-            tests.CreateMedia_InsertNewMedia_IsCorrectlyInsertedIntoTheQueueDatabase();
+        //public ActionResult Test()
+        //{
+        //    CreateMediaCommandTests tests = new CreateMediaCommandTests();
+        //    tests.CreateMedia_InsertNewMedia_IsCorrectlyInsertedIntoTheQueueDatabase();
 
-            return Content("");
-        }
+        //    return Content("");
+        //}
 
     }
 }
