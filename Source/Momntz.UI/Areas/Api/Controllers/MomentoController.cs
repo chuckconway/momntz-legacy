@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 using System.Web.Mvc;
@@ -45,6 +46,8 @@ namespace Momntz.UI.Areas.Api.Controllers
         {
             MomentoDetail detail = _projection.Process<int, MomentoDetail>(id) ?? new MomentoDetail();
 
+            Func<string, string> convertNullToEmptyString = (s => s ?? string.Empty); 
+
                 return Json(new
                                 {
                                     Added = detail.Added.HasValue ? detail.Added.Value.ToString("MMMM dd, yyyy") : string.Empty,
@@ -52,14 +55,14 @@ namespace Momntz.UI.Areas.Api.Controllers
                                     detail.AddedUsername,
                                     Albums = detail.Albums.Select(a=> a.Name).ToArray(),
                                     detail.Day,
-                                    detail.DisplayName,
-                                    detail.Location,
-                                    Month = detail.Month,
+                                    DisplayName = convertNullToEmptyString(detail.DisplayName),
+                                    Location = convertNullToEmptyString(detail.Location),
+                                    Month = convertNullToEmptyString(detail.Month),
                                     detail.People,
-                                    detail.Story,
-                                    detail.Username,
-                                    detail.Title,
-                                    detail.Year
+                                    Story = convertNullToEmptyString(detail.Story),
+                                    Username = convertNullToEmptyString(detail.Username),
+                                    Title = convertNullToEmptyString(detail.Title), 
+                                    Year = convertNullToEmptyString(detail.Year) 
                                 });
 
         }

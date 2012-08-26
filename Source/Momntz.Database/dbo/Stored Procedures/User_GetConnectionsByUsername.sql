@@ -15,21 +15,27 @@ BEGIN
 	SET NOCOUNT ON;
 
     -- Insert statements for procedure here
-	Select M.Username, Name, M.Url
-	From TagPersonView P
+
+	--Select Username
+	--From TagPersonView
+	--Group By Username
+
+	Select P.Username, Name, M.Url, U.CreatedBy
+	From (
+		
+		Select V.Username, MomentoId, Name
+		From TagPersonView V
+		Inner Join (Select Username, Max(Id) as Id
+		From TagPersonView
+		Group By Username) T
+		On T.Id = V.Id
+	)P
 	Inner Join [User] U
 		On P.Username = U.Username And U.UserStatus = 2
-	Inner Join (
-		 Select Url, R.Username
-		 From MomentoMedia M
-			Inner Join
-			(		Select Username, Max(ID) as Id
-		 From MomentoMedia 
-		 Where MediaType = 'MediumImage'
-		 Group By Username) R
-			ON M.Id = R.Id
+	Inner Join (Select * 
+	 From MomentoMedia M
+		Where M.MediaType = 'MediumImage') M
+	  ON M.MomentoId = P.MomentoId
 
-	) M
-		On P.CreatedBy = M.Username		
 	Where U.CreatedBy = @Username
 END
