@@ -1,11 +1,10 @@
-﻿CREATE VIEW dbo.TagPersonView
+﻿CREATE VIEW dbo.ConnectionView
 AS
-SELECT        T.Id, TM.MomentoId, T.Name, T.Story, TP.Username, TP.CreatedBy, TP.Height, TP.InternalId, TP.Width, TP.XAxis, TP.YAxis, TP.Id AS TagPersonId
-FROM            dbo.TagMomento AS TM INNER JOIN
-                         dbo.Tag AS T ON TM.TagId = T.Id AND T.Kind = 0 INNER JOIN
-                         dbo.TagPerson AS TP ON T.Id = TP.TagId
+SELECT        dbo.AlsoKnownAs.Username, dbo.Connection.Owner, dbo.AlsoKnownAs.FullName
+FROM            dbo.AlsoKnownAs INNER JOIN
+                         dbo.Connection ON dbo.AlsoKnownAs.Username = dbo.Connection.Username AND dbo.AlsoKnownAs.IsDefault = 1
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_DiagramPaneCount', @value = 1, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'TagPersonView';
+EXECUTE sp_addextendedproperty @name = N'MS_DiagramPaneCount', @value = 1, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'ConnectionView';
 
 
 GO
@@ -14,7 +13,7 @@ Begin DesignProperties =
    Begin PaneConfigurations = 
       Begin PaneConfiguration = 0
          NumPanes = 4
-         Configuration = "(H (1[42] 4[11] 2[31] 3) )"
+         Configuration = "(H (1[40] 4[20] 2[20] 3) )"
       End
       Begin PaneConfiguration = 1
          NumPanes = 3
@@ -80,32 +79,22 @@ Begin DesignProperties =
          Left = 0
       End
       Begin Tables = 
-         Begin Table = "TM"
-            Begin Extent = 
-               Top = 6
-               Left = 246
-               Bottom = 242
-               Right = 416
-            End
-            DisplayFlags = 280
-            TopColumn = 0
-         End
-         Begin Table = "T"
+         Begin Table = "AlsoKnownAs"
             Begin Extent = 
                Top = 6
                Left = 38
-               Bottom = 264
+               Bottom = 226
                Right = 208
             End
             DisplayFlags = 280
             TopColumn = 0
          End
-         Begin Table = "TP"
+         Begin Table = "Connection"
             Begin Extent = 
                Top = 6
-               Left = 454
-               Bottom = 248
-               Right = 624
+               Left = 246
+               Bottom = 243
+               Right = 416
             End
             DisplayFlags = 280
             TopColumn = 0
@@ -116,6 +105,17 @@ Begin DesignProperties =
    End
    Begin DataPane = 
       Begin ParameterDefaults = ""
+      End
+      Begin ColumnWidths = 9
+         Width = 284
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
       End
    End
    Begin CriteriaPane = 
@@ -135,9 +135,5 @@ Begin DesignProperties =
          Or = 1350
       End
    End
-End', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'TagPersonView';
-
-
-
-
+End', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'ConnectionView';
 
