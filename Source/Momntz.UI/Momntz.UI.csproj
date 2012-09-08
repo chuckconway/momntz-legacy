@@ -330,6 +330,7 @@
   <ItemGroup>
     <Content Include="Web.PREVIEW.config">
       <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>

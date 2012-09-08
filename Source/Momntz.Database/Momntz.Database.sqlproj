@@ -149,4 +149,7 @@
     <Build Include="dbo\Stored Procedures\TagAlbum_GetAlbumByUsername.sql" />
     <Build Include="dbo\Stored Procedures\User_Create.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Data.sql" />
+  </ItemGroup>
 </Project>
