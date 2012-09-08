@@ -29,6 +29,8 @@ BEGIN
 	Declare @TagCount int
 	Set @TagCount = (Select count(*) From TagMomento Where TagId = @TagId)
 
+	Declare @MomentoOwner nvarchar(100)
+	Set @MomentoOwner  = (Select Username From Momento Where Id = @MomentoId)
 
 	exec MomentoUser_DeleteByUsernameAndMomentoId @Username, @MomentoId;
 
@@ -40,6 +42,9 @@ BEGIN
 	BEGIN
 		Delete From Tag
 		Where Id = @TagId
+
+		Delete From Connection
+		Where Username = @Username AND [Owner] = @MomentoOwner
 	END
 
 END
