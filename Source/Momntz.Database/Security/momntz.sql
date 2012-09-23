@@ -1,2 +1,2 @@
-﻿CREATE USER [momntz] FOR LOGIN [momntz];
+﻿--EATE USER [momntz] FOR LOGIN [momntz];
 
