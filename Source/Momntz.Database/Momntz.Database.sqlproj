@@ -148,6 +148,11 @@
     <Build Include="dbo\Stored Procedures\TagAlbum_GetMomentosByNameAndUsername.sql" />
     <Build Include="dbo\Stored Procedures\TagAlbum_GetAlbumByUsername.sql" />
     <Build Include="dbo\Stored Procedures\User_Create.sql" />
+    <Build Include="dbo\Tables\Connection.sql" />
+    <Build Include="dbo\Views\ConnectionView.sql" />
+    <Build Include="Security\momntz.sql" />
+    <Build Include="dbo\Stored Procedures\Connection_Add.sql" />
+    <Build Include="dbo\Tables\Exif.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Data.sql" />
