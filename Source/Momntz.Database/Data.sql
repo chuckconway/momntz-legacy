@@ -1,17 +1,4 @@
-﻿/*
-Post-Deployment Script Template							
---------------------------------------------------------------------------------------
- This file contains SQL statements that will be appended to the build script.		
- Use SQLCMD syntax to include a file in the post-deployment script.			
- Example:      :r .\myfile.sql								
- Use SQLCMD syntax to reference a variable in the post-deployment script.		
- Example:      :setvar TableName MyTable							
-               SELECT * FROM [$(TableName)]					
---------------------------------------------------------------------------------------
-*/
-
-
-SET IDENTITY_INSERT [dbo].[Configuration] ON 
+﻿SET IDENTITY_INSERT [dbo].[Configuration] ON 
 
 GO
 INSERT [dbo].[Configuration] ([Id], [Key], [Value], [Environment]) VALUES (2, N'Image.Small.Width', N'240', NULL)
@@ -49,6 +36,14 @@ GO
 INSERT [dbo].[Configuration] ([Id], [Key], [Value], [Environment]) VALUES (19, N'Database.Queue', N'Data Source=localhost;Initial Catalog=NewMomntz.Queue;User Id=momntz;Password=folsom_1;', N'TEST')
 GO
 INSERT [dbo].[Configuration] ([Id], [Key], [Value], [Environment]) VALUES (20, N'Database.Queue', N'Data Source=192.168.1.109;Initial Catalog=PreviewMomntz.Queue;User Id=momntz;Password=folsom_1;', N'PREVIEW')
+GO
+INSERT [dbo].[Configuration] ([Id], [Key], [Value], [Environment]) VALUES (1003, N'Database.Queue', N'Server=tcp:gha9fb98fk.database.windows.net,1433;Database=Momntz.Queue;User ID=cconway;Password=Austin_1;Trusted_Connection=False;Encrypt=True;Connection Timeout=30', N'PROD')
+GO
+INSERT [dbo].[Configuration] ([Id], [Key], [Value], [Environment]) VALUES (1004, N'cloudurl', N'http://momntz.blob.core.windows.net/', N'PROD')
+GO
+INSERT [dbo].[Configuration] ([Id], [Key], [Value], [Environment]) VALUES (1005, N'cloudaccount', N'momntz', N'PROD')
+GO
+INSERT [dbo].[Configuration] ([Id], [Key], [Value], [Environment]) VALUES (1006, N'cloudkey', N'k9migT9gDlx2lzwLw+nXvq7AzFYdoPwhjUyQeHA/hDz37skLB4flSS79sD3MC7EGqwWBjfCKwtgPVyrOn692Jw==', N'PROD')
 GO
 SET IDENTITY_INSERT [dbo].[Configuration] OFF
 GO
