@@ -37,7 +37,7 @@ namespace Momntz.UI.Core.RouteHandler
             
             extension = extension.TrimStart('.');
 
-            foreach (var type in types.Where(type => type.Types.Any(s=> string.Equals(s, extension, StringComparison.InvariantCulture))))
+            foreach (var type in types.Where(type => type.Types.Any(s=> string.Equals(s, extension, StringComparison.InvariantCultureIgnoreCase))))
             {
                 mediaType = type.MediaType;
             }
@@ -67,7 +67,7 @@ namespace Momntz.UI.Core.RouteHandler
             _commandProcessor.Process(command);
 
             string message = GetMediaMessage(id, mediaType);
-            CreateQueueCommand queue = new CreateQueueCommand("Momntz.Worker.Core.Implementations.Media.MediaMessage", message);
+            CreateQueueCommand queue = new CreateQueueCommand("Momntz.Model.Core.MediaMessage", message);
             _commandProcessor.Process(queue);
             
             context.Response.Write("1");
