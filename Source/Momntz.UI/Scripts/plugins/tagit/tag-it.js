@@ -343,9 +343,9 @@
                 tag.append('<input type="hidden" style="display:none;" value="' + escapedValue + '" name="' + this.options.itemName + '[' + this.options.fieldName + '][]" />');
             }
 
-            if (triggerAddTagEvent !== undefined && triggerAddTagEvent) {
+
                 this._trigger('onTagAdded', null, value);
-            }
+
 
             // Cleaning the input.
             this._tagInput.val('');

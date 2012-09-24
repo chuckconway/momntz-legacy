@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Collections.Generic;
+using System.Web;
 using System.Web.Mvc;
 using Momntz.Data.Commands.Albums;
 using Momntz.Data.ProjectionHandlers.Api;
@@ -39,6 +40,8 @@ namespace Momntz.UI.Areas.Api.Controllers
 
         public ActionResult Add(string tag, int momentoId)
         {
+            tag = HttpUtility.HtmlEncode(tag);
+
             string username = GetUsername();
             _command.Process(new AddAlbumCommand(tag, username, momentoId));
             return Content(string.Empty);
