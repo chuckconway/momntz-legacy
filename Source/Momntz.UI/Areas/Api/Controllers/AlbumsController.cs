@@ -40,8 +40,6 @@ namespace Momntz.UI.Areas.Api.Controllers
 
         public ActionResult Add(string tag, int momentoId)
         {
-            tag = HttpUtility.HtmlEncode(tag);
-
             string username = GetUsername();
             _command.Process(new AddAlbumCommand(tag, username, momentoId));
             return Content(string.Empty);
