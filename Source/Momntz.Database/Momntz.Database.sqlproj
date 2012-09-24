@@ -110,6 +110,7 @@
     <Folder Include="dbo\Stored Procedures\" />
     <Folder Include="dbo\Views\" />
     <Folder Include="dbo\Functions\" />
+    <Folder Include="dbo\User Defined Types\" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\User.sql" />
@@ -153,6 +154,8 @@
     <Build Include="Security\momntz.sql" />
     <Build Include="dbo\Stored Procedures\Connection_Add.sql" />
     <Build Include="dbo\Tables\Exif.sql" />
+    <Build Include="dbo\Stored Procedures\Exif_InsertExif.sql" />
+    <Build Include="dbo\User Defined Types\ExifCollection.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Data.sql" />
