@@ -21,7 +21,7 @@ INSERT [dbo].[Configuration] ([Id], [Key], [Value], [Environment]) VALUES (11, N
 GO
 INSERT [dbo].[Configuration] ([Id], [Key], [Value], [Environment]) VALUES (12, N'cloudkey', N'Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==', N'LOCAL')
 GO
-INSERT [dbo].[Configuration] ([Id], [Key], [Value], [Environment]) VALUES (13, N'cloudurl', N'http://qamemorablemoments.blob.core.windows.net/', N'PREVIEW')
+INSERT [dbo].[Configuration] ([Id], [Key], [Value], [Environment]) VALUES (13, N'cloudurl', N'http://qamemorablemoments.blob.core.windows.net', N'PREVIEW')
 GO
 INSERT [dbo].[Configuration] ([Id], [Key], [Value], [Environment]) VALUES (14, N'cloudaccount', N'qamemorablemoments', N'PREVIEW')
 GO
@@ -39,7 +39,7 @@ INSERT [dbo].[Configuration] ([Id], [Key], [Value], [Environment]) VALUES (20, N
 GO
 INSERT [dbo].[Configuration] ([Id], [Key], [Value], [Environment]) VALUES (1003, N'Database.Queue', N'Server=tcp:gha9fb98fk.database.windows.net,1433;Database=Momntz.Queue;User ID=cconway;Password=Austin_1;Trusted_Connection=False;Encrypt=True;Connection Timeout=30', N'PROD')
 GO
-INSERT [dbo].[Configuration] ([Id], [Key], [Value], [Environment]) VALUES (1004, N'cloudurl', N'http://momntz.blob.core.windows.net/', N'PROD')
+INSERT [dbo].[Configuration] ([Id], [Key], [Value], [Environment]) VALUES (1004, N'cloudurl', N'http://momntz.blob.core.windows.net', N'PROD')
 GO
 INSERT [dbo].[Configuration] ([Id], [Key], [Value], [Environment]) VALUES (1005, N'cloudaccount', N'momntz', N'PROD')
 GO
