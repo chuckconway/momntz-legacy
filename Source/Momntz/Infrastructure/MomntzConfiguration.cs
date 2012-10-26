@@ -2,28 +2,36 @@
 using System.Collections.Generic;
 using System.Configuration;
 using Chucksoft.Core.Services;
-using Hypersonic;
-using Momntz.Data;
-using Momntz.Model;
 using System.Linq;
 using Momntz.Model.Configuration;
+using NHibernate;
+using NHibernate.Criterion;
 
 namespace Momntz.Infrastructure
 {
     public class MomntzConfiguration : IConfigurationService
     {
-        private readonly IMomntzSession _session;
+        private readonly ISessionFactory _session;
         private static IList<Setting> _settings;
 
-        public MomntzConfiguration(IMomntzSession session)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MomntzConfiguration" /> class.
+        /// </summary>
+        /// <param name="session">The session.</param>
+        public MomntzConfiguration(ISessionFactory session)
         {
             _session = session;
         }
 
+        /// <summary>
+        /// Gets the value by key.
+        /// </summary>
+        /// <param name="key">The key.</param>
+        /// <returns>System.String.</returns>
         public string GetValueByKey(string key)
         {
-            _settings = _settings ?? GetValues(); 
-            var singleOrDefault = _settings.SingleOrDefault(s => string.Equals(s.Key, key, StringComparison.CurrentCultureIgnoreCase));
+            _settings = GetValues(); 
+            var singleOrDefault = _settings.SingleOrDefault(s => string.Equals(s.Name, key, StringComparison.CurrentCultureIgnoreCase));
 
             string val = null;
             if (singleOrDefault != null)
@@ -34,12 +42,25 @@ namespace Momntz.Infrastructure
             return val;
         }
 
+        /// <summary>
+        /// Gets the values.
+        /// </summary>
+        /// <returns>IList{Setting}.</returns>
         private IList<Setting> GetValues()
         {
             string environment = ConfigurationManager.AppSettings["Environment"];
-            var settings = _session.Session.Query<Setting>("Configuration").Where(s => s.Environment == null || s.Environment == environment).List();
 
-            return settings;
+            using (var session =_session.OpenSession())
+            {
+             var list = session.QueryOver<Setting>()
+                    .Where(Restrictions.Or(
+                        Restrictions.Eq("Environment", null),
+                        Restrictions.Eq("Environment", environment)))
+                    .List();
+
+             return list;
+            }
+            
         }
     }
 }

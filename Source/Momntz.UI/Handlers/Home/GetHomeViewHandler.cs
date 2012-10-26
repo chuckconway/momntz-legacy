@@ -5,7 +5,7 @@ using Momntz.UI.Core;
 
 namespace Momntz.UI.Handlers.Home
 {
-    public class GetHomeViewHandler : HandlerBase, IQueryHandler<object, IList<MomentoWithMedia>>
+    public class GetHomeViewHandler : HandlerBase, IQueryHandler<object, List<MomentoWithMedia>>
     {
         private readonly IProjectionProcessor _processor;
 
@@ -14,9 +14,9 @@ namespace Momntz.UI.Handlers.Home
             _processor = processor;
         }
 
-        public IList<MomentoWithMedia> Handle(object args)
+        public List<MomentoWithMedia> Handle(object args)
         {
-            return _processor.Process<object, IList<MomentoWithMedia>>(args);
+            return _processor.Process<object, List<MomentoWithMedia>>(args);
         }
     }
 }

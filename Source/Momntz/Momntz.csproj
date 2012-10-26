@@ -73,8 +73,17 @@
     <Reference Include="Chucksoft.Core">
       <HintPath>..\..\Dependencies\Chucksoft\Chucksoft.Core.dll</HintPath>
     </Reference>
+    <Reference Include="FluentNHibernate">
+      <HintPath>..\..\Dependencies\nHibernate\FluentNHibernate.dll</HintPath>
+    </Reference>
     <Reference Include="Hypersonic">
       <HintPath>..\..\Dependencies\Hypersonic\Hypersonic.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\..\Dependencies\nHibernate\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\..\Dependencies\nHibernate\NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="StructureMap">
       <HintPath>..\..\Dependencies\StructureMap\StructureMap.dll</HintPath>
@@ -110,9 +119,13 @@
     <Compile Include="Data\Commands\Tags\CreateTagCommand.cs" />
     <Compile Include="Data\Commands\Tags\DeleteTagCommand.cs" />
     <Compile Include="Data\Commands\Users\CreateUserCommand.cs" />
-    <Compile Include="Data\IDatabaseSession.cs" />
-    <Compile Include="Data\IMomntzQueueSession.cs" />
-    <Compile Include="Data\IMomntzSession.cs" />
+    <Compile Include="Data\Mappings\AlbumMap.cs" />
+    <Compile Include="Data\Mappings\MomentoDetailMap.cs" />
+    <Compile Include="Data\Mappings\MomentoMap.cs" />
+    <Compile Include="Data\Mappings\MomentoMediaMap.cs" />
+    <Compile Include="Data\Mappings\PersonMap.cs" />
+    <Compile Include="Data\Mappings\SettingMap.cs" />
+    <Compile Include="Data\Mappings\UserMap.cs" />
     <Compile Include="Data\PersistIntercepters\AuditPersistIntercepter.cs" />
     <Compile Include="Data\ProjectionHandlers\Albums\AlbumMomentosHandler.cs" />
     <Compile Include="Data\ProjectionHandlers\Albums\AlbumResultHandler.cs" />
@@ -135,6 +148,7 @@
     <Compile Include="Data\Projections\Api\MomentoDetail.cs" />
     <Compile Include="Data\Projections\Api\MomentoTag.cs" />
     <Compile Include="Data\Projections\Api\NameSearch.cs" />
+    <Compile Include="Data\Projections\Api\Person.cs" />
     <Compile Include="Data\Projections\Connections\ConnectionResult.cs" />
     <Compile Include="Data\Projections\IGroupItem.cs" />
     <Compile Include="Data\Projections\IProjection.cs" />

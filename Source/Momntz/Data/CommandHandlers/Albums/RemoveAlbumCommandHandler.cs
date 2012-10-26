@@ -1,19 +1,28 @@
-﻿using Momntz.Data.Commands.Albums;
+﻿using Hypersonic;
+using Momntz.Data.Commands.Albums;
 
 namespace Momntz.Data.CommandHandlers.Albums
 {
     public class RemoveAlbumCommandHandler : ICommandHandler<RemoveAlbumCommand>
     {
-        private readonly IMomntzSession _session;
+        private readonly IDatabase _database;
 
-        public RemoveAlbumCommandHandler(IMomntzSession session)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RemoveAlbumCommandHandler" /> class.
+        /// </summary>
+        /// <param name="database">The database.</param>
+        public RemoveAlbumCommandHandler(IDatabase database)
         {
-            _session = session;
+            _database = database;
         }
 
+        /// <summary>
+        /// Executes the specified command.
+        /// </summary>
+        /// <param name="command">The command.</param>
         public void Execute(RemoveAlbumCommand command)
         {
-            _session.Session.Database.NonQuery("TagAlbum_Remove", command);
+            _database.NonQuery("TagAlbum_Remove", command);
         }
     }
 }

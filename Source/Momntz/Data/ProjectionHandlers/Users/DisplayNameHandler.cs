@@ -1,22 +1,39 @@
-﻿using Hypersonic;
+﻿using System.Linq;
+
 using Momntz.Data.Projections.Users;
+using Momntz.Model;
+using NHibernate;
 
 namespace Momntz.Data.ProjectionHandlers.Users
 {
     public class DisplayNameHandler : IProjectionHandler<string, DisplayName>
     {
-        private readonly IMomntzSession _session;
+        private readonly ISessionFactory _sessionFactory;
 
-        public DisplayNameHandler(IMomntzSession session)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DisplayNameHandler" /> class.
+        /// </summary>
+        /// <param name="sessionFactory">The session factory.</param>
+        public DisplayNameHandler(ISessionFactory sessionFactory)
         {
-            _session = session;
+            _sessionFactory = sessionFactory;
         }
 
+        /// <summary>
+        /// Executes the specified args.
+        /// </summary>
+        /// <param name="args">The args.</param>
+        /// <returns>DisplayName.</returns>
         public DisplayName Execute(string args)
         {
-          return  _session.Session.Query<DisplayName>("GetUserView")
-                .Where(string.Format("Username = '{0}'", args))
-                .Single();
+            using(ISession session = _sessionFactory.OpenSession())
+            {
+              var item =  session.QueryOver<User>()
+                    .Where(x => x.Username == args)
+                    .SingleOrDefault();
+
+                return new DisplayName() {Fullname = item.FullName};
+            }
         }
     }
 }

@@ -1,36 +1,53 @@
 ﻿using Momntz.Data.Projections.Api;
-using System.Linq;
+using NHibernate;
 
 namespace Momntz.Data.ProjectionHandlers.Api
 {
     public class MomentoDetailHandler : IProjectionHandler<int, MomentoDetail>
     {
-        private readonly IMomntzSession _session;
+        private readonly ISessionFactory _sessionFactory;
 
-        public MomentoDetailHandler(IMomntzSession session)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MomentoDetailHandler" /> class.
+        /// </summary>
+        /// <param name="sessionFactory">The session factory.</param>
+        public MomentoDetailHandler(ISessionFactory sessionFactory)
         {
-            _session = session;
+            _sessionFactory = sessionFactory;
         }
 
+        /// <summary>
+        /// Executes the specified args.
+        /// </summary>
+        /// <param name="args">The args.</param>
+        /// <returns>MomentoDetail.</returns>
         public MomentoDetail Execute(int args)
         {
-           var detail = _session.Session
-                .Query<MomentoDetail>()
-                .Where(string.Format("Id = {0}", args))
-                .Single();
+            MomentoDetail detail;
 
-            if(detail != null)
+            using(ISession session = _sessionFactory.OpenSession())
             {
-               detail.People = _session.Session
-                    .Query<Person>("TagPersonView")
-                    .Where("MomentoId = " + args)
-                    .List().ToList();
-
-               detail.Albums = _session.Session
-                .Query<Album>("TagAlbumView")
-                .Where("MomentoId = " + args)
-                .List().ToList();
+               detail = session.QueryOver<MomentoDetail>()
+                    .Where(x => x.Id == args)
+                    .SingleOrDefault();
             }
+           //var detail = _session.Session
+           //     .Query<MomentoDetail>()
+           //     .Where(string.Format("Id = {0}", args))
+           //     .Single();
+
+           // if(detail != null)
+           // {
+           //    detail.People = _session.Session
+           //         .Query<Person>("TagPersonView")
+           //         .Where("MomentoId = " + args)
+           //         .List().ToList();
+
+           //    detail.Albums = _session.Session
+           //     .Query<Album>("TagAlbumView")
+           //     .Where("MomentoId = " + args)
+           //     .List().ToList();
+           // }
 
             return detail;
         }

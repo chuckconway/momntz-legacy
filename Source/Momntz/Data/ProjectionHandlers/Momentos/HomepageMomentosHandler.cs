@@ -7,16 +7,21 @@ using Momntz.Model.Configuration;
 
 namespace Momntz.Data.ProjectionHandlers.Momentos
 {
-    public class HomepageMomentosHandler : BaseMomentoHandler, IProjectionHandler<object, IList<MomentoWithMedia>>
+    public class HomepageMomentosHandler : BaseMomentoHandler, IProjectionHandler<object, List<MomentoWithMedia>>
     {
-        public HomepageMomentosHandler(IMomntzSession session, ISettings settings) : base(session, settings) { }
+        private readonly IDatabase _database;
 
-        public IList<MomentoWithMedia> Execute(object args)
+        public HomepageMomentosHandler(IDatabase database, ISettings settings)
+            : base(database, settings)
+        {
+            _database = database;
+        }
+
+        public List<MomentoWithMedia> Execute(object args)
         {
             var homepages = new List<MomentoWithMedia>();
 
-                Session.Session.Database.CommandType = CommandType.StoredProcedure;
-                var momentos = Session.Session.Database.List<Momento>("[dbo].[Momento_RetrieveRandom20]");
+                var momentos = _database.List<Momento>("[dbo].[Momento_RetrieveRandom20]");
 
                 GetMedia(momentos, homepages);
 

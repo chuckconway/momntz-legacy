@@ -8,10 +8,14 @@ namespace Momntz.UI.Controllers
     public class HomeController : BaseController
     {
 
+        /// <summary>
+        /// Indexes this instance.
+        /// </summary>
+        /// <returns>ActionResult.</returns>
         public ActionResult Index()
         {
             var success = View();
-            return Query<object, IList<MomentoWithMedia>>(null, success);
+            return Query<object, List<MomentoWithMedia>>(null, success);
         }
 
     }
