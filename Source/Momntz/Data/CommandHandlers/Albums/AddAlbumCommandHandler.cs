@@ -1,19 +1,28 @@
-﻿using Momntz.Data.Commands.Albums;
+﻿using Hypersonic;
+using Momntz.Data.Commands.Albums;
 
 namespace Momntz.Data.CommandHandlers.Albums
 {
     public class AddAlbumCommandHandler : ICommandHandler<AddAlbumCommand>
     {
-        private readonly IMomntzSession _session;
+        private readonly IDatabase _database;
 
-        public AddAlbumCommandHandler(IMomntzSession session)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AddAlbumCommandHandler" /> class.
+        /// </summary>
+        /// <param name="database">The database.</param>
+        public AddAlbumCommandHandler(IDatabase database)
         {
-            _session = session;
+            _database = database;
         }
 
+        /// <summary>
+        /// Executes the specified command.
+        /// </summary>
+        /// <param name="command">The command.</param>
         public void Execute(AddAlbumCommand command)
         {
-            _session.Session.Database.NonQuery("TagAlbum_Add", command);
+            _database.NonQuery("TagAlbum_Add", command);
         }
     }
 }

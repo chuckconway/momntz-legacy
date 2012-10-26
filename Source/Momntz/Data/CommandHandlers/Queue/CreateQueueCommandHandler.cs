@@ -6,18 +6,23 @@ namespace Momntz.Data.CommandHandlers.Queue
 {
     public class CreateQueueCommandHandler : ICommandHandler<CreateQueueCommand>
     {
-        private readonly IMomntzQueueSession _session;
+        private readonly IDatabase _database;
         private readonly ISettings _settings;
 
-        public CreateQueueCommandHandler(IMomntzQueueSession session, ISettings settings)
+        public CreateQueueCommandHandler(IDatabase database, ISettings settings)
         {
-            _session = session;
+            _database = database;
             _settings = settings;
         }
 
+        /// <summary>
+        /// Executes the specified command.
+        /// </summary>
+        /// <param name="command">The command.</param>
         public void Execute(CreateQueueCommand command)
         {
-                _session.Session.Save(new {command.Implementation, command.Payload, MessageStatus = MessageStatus.Queued.ToString()}, "Queue");
+            _database.ConnectionString = _settings.QueueDatabase;
+            _database.NonQuery("Queue_Save", new { command.Implementation, command.Payload, MessageStatus = MessageStatus.Queued.ToString() });
         }
     }
 }

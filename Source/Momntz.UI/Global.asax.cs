@@ -52,6 +52,8 @@ namespace Momntz.UI
         /// <summary> Application start. </summary>
         protected void Application_Start()
         {
+            HibernatingRhinos.Profiler.Appender.NHibernate.NHibernateProfiler.Initialize();
+
             RegisterDependencyInjection();
             AreaRegistration.RegisterAllAreas();
 

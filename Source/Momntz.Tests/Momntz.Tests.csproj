@@ -69,8 +69,17 @@
     <Reference Include="Chucksoft.Core">
       <HintPath>..\..\Dependencies\Chucksoft\Chucksoft.Core.dll</HintPath>
     </Reference>
+    <Reference Include="FluentNHibernate">
+      <HintPath>..\..\Dependencies\nHibernate\FluentNHibernate.dll</HintPath>
+    </Reference>
     <Reference Include="Hypersonic">
       <HintPath>..\..\Dependencies\Hypersonic\Hypersonic.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\..\Dependencies\nHibernate\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\..\Dependencies\nHibernate\NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\..\Dependencies\nUnit\nunit.framework.dll</HintPath>
@@ -88,6 +97,7 @@
     <Compile Include="CreateMomentoCommandTests.cs" />
     <Compile Include="CreateUserCommandTests.cs" />
     <Compile Include="GetUsersTests.cs" />
+    <Compile Include="nHibernateTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

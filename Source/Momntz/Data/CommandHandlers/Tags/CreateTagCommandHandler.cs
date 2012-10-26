@@ -1,22 +1,23 @@
 ﻿using System.Text.RegularExpressions;
+using Hypersonic;
 using Momntz.Data.Commands.Tags;
 
 namespace Momntz.Data.CommandHandlers.Tags
 {
     public class CreateTagCommandHandler : ICommandHandler<CreateTagCommand>
     {
-        private readonly IMomntzSession _session;
+        private readonly IDatabase _database;
 
-        public CreateTagCommandHandler(IMomntzSession session)
+        public CreateTagCommandHandler(IDatabase database)
         {
-            _session = session;
+            _database = database;
         }
 
         public void Execute(CreateTagCommand command)
         {
             string newUsername = Regex.Replace(command.Name, @"\s", string.Empty).ToLower();
             string fullName = command.Name;
-            _session.Session.Database.NonQuery("TagPerson_CreateTag", new
+            _database.NonQuery("TagPerson_CreateTag", new
                                                                   {
                                                                       newUsername,
                                                                       fullName,

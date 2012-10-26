@@ -91,7 +91,7 @@ return this.each(function(){var myHeight=$(this).height();$(this).css('margin-to
             keys: {
                 next: [13, 32, 34, 39, 40], // enter, space, page down, right arrow, down arrow
                 prev: [8, 33, 37, 38], // backspace, page up, left arrow, up arrow
-                close: [27] // escape key
+                close: [27] // escape Name
             },
 
             // Override some properties
@@ -213,7 +213,7 @@ return this.each(function(){var myHeight=$(this).height();$(this).css('margin-to
             //Extend the defaults
             F.opts = $.extend(true, {}, F.defaults, opts);
 
-            //All options are merged recursive except keys
+            //All options are merged recursive except Names
             if ($.isPlainObject(opts) && opts.keys !== undefined) {
                 F.opts.keys = opts.keys ? $.extend({}, F.defaults.keys, opts.keys) : false;
             }
@@ -419,7 +419,7 @@ return this.each(function(){var myHeight=$(this).height();$(this).css('margin-to
         },
 
         hideLoading: function () {
-            D.unbind('keypress.fb');
+            D.unbind('Namepress.fb');
 
             $('#fancybox-loading').remove();
         },
@@ -428,7 +428,7 @@ return this.each(function(){var myHeight=$(this).height();$(this).css('margin-to
             F.hideLoading();
 
             //If user will press the escape-button, the request will be canceled
-            D.bind('keypress.fb', function (e) {
+            D.bind('Namepress.fb', function (e) {
                 if (e.keyCode === 27) {
                     e.preventDefault();
                     F.cancel();
@@ -448,7 +448,7 @@ return this.each(function(){var myHeight=$(this).height();$(this).css('margin-to
             };
         },
 
-        // Unbind the keyboard / clicking actions
+        // Unbind the Nameboard / clicking actions
         unbindEvents: function () {
             if (F.wrap) {
                 F.wrap.unbind('.fb');
@@ -469,10 +469,10 @@ return this.each(function(){var myHeight=$(this).height();$(this).css('margin-to
             W.bind('resize.fb orientationchange.fb' + (current.autoCenter && !current.fixed ? ' scroll.fb' : ''), F.update);
 
             if (keys) {
-                D.bind('keydown.fb', function (e) {
+                D.bind('Namedown.fb', function (e) {
                     var code, target = e.target || e.srcElement;
 
-                    // Ignore key combinations and key events within form elements
+                    // Ignore Name combinations and Name events within form elements
                     if (!e.ctrlKey && !e.altKey && !e.shiftKey && !e.metaKey && !(target && (target.type || $(target).is('[contenteditable]')))) {
                         code = e.keyCode;
 

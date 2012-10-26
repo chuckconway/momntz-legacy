@@ -1,21 +1,31 @@
 ﻿using System.Collections.Generic;
-using System.Data;
+using Hypersonic;
 using Momntz.Data.Projections.Api;
 
 namespace Momntz.Data.ProjectionHandlers.Api
 {
     public class MomentoTagHandler : IProjectionHandler<int, IList<MomentoTag>>
     {
-        private readonly IMomntzSession _session;
+        private readonly IDatabase _database;
 
-        public MomentoTagHandler(IMomntzSession session)
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MomentoTagHandler" /> class.
+        /// </summary>
+        /// <param name="database">The database.</param>
+        public MomentoTagHandler(IDatabase database)
         {
-            _session = session;
+            _database = database;
         }
 
+        /// <summary>
+        /// Executes the specified args.
+        /// </summary>
+        /// <param name="args">The args.</param>
+        /// <returns>IList{MomentoTag}.</returns>
         public IList<MomentoTag> Execute(int args)
         {
-            return _session.Session.Database.List<MomentoTag, object>("TagPerson_RetrieveTagsByMomentoId", new { MomentoId = args });
+            return _database.List<MomentoTag, object>("TagPerson_RetrieveTagsByMomentoId", new { MomentoId = args });
         }
     }
 }

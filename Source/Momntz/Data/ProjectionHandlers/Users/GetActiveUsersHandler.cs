@@ -1,19 +1,24 @@
 ﻿using System.Collections.Generic;
-using Hypersonic;
+using System.Linq;
 using Momntz.Data.Projections.Users;
 using Momntz.Model;
+using NHibernate;
+using NHibernate.Criterion;
 
 namespace Momntz.Data.ProjectionHandlers.Users
 {
     public class GetActiveUsersHandler : IProjectionHandler<object, IList<ActiveUsername>>
     {
-        private readonly IMomntzSession _session;
+        private readonly ISessionFactory _sessionFactory;
 
-        /// <summary> Constructor. </summary>
-        /// <param name="session"> The session. </param>
-        public GetActiveUsersHandler(IMomntzSession session)
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="sessionFactory">The session factory.</param>
+        public GetActiveUsersHandler(ISessionFactory sessionFactory)
         {
-            _session = session;
+            _sessionFactory = sessionFactory;
         }
 
         /// <summary> Executes. </summary>
@@ -21,12 +26,18 @@ namespace Momntz.Data.ProjectionHandlers.Users
         /// <returns> . </returns>
         public IList<ActiveUsername> Execute(object args)
         {
-            using (_session.Session)
+            using (var session = _sessionFactory.OpenSession())
             {
-               return  _session.Session
-                       .Query<ActiveUsername, User>()
-                       .Where("UserStatus = " + (int)UserStatus.Active + " OR UserStatus = " + (int)UserStatus.Ghost)
-                       .List();
+              return  session.QueryOver<User>()
+                    .Where(Restrictions.Or(Restrictions.Eq("UserStatus", UserStatus.Active), Restrictions.Eq("UserStatus", UserStatus.Ghost)))
+                    .List()
+                    .Select(r => new ActiveUsername() {Username = r.Username})
+                    .ToList();
+
+               //return  _session.Session
+               //        .Query<ActiveUsername, User>()
+               //        .Where("UserStatus = " + (int)UserStatus.Active + " OR UserStatus = " + (int)UserStatus.Ghost)
+               //        .List();
             }
         }
     }

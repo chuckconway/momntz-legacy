@@ -4,21 +4,21 @@
     {
         /// <summary> Gets or sets the identifier. </summary>
         /// <value> The identifier. </value>
-        public int Id { get; set; }
+        public virtual int Id { get; set; }
 
-        public int MomentoId { get; set; }
+        public virtual Momento Momento { get; set; }
 
         /// <summary> Gets or sets the filename of the file. </summary>
         /// <value> The filename. </value>
-        public string Filename { get; set; }
+        public virtual string Filename { get; set; }
 
         /// <summary> Gets or sets the type of the file. </summary>
         /// <value> The type of the file. </value>
-        public string Extension { get; set; }
+        public virtual string Extension { get; set; }
 
         /// <summary> Gets or sets the bytes. </summary>
         /// <value> The bytes. </value>
-        public string Url { get; set; }
+        public virtual string Url { get; set; }
 
         /// <summary>
         /// Gets or sets the size.
@@ -26,11 +26,7 @@
         /// <value>
         /// The size.
         /// </value>
-        public string Size { get; set; }
-
-        /// <summary> Gets or sets the date of the upload. </summary>
-        /// <value> The date of the upload. </value>
-        public string CreateDate { get; set; }
+        public virtual string Size { get; set; }
 
         /// <summary>
         /// Gets or sets the username.
@@ -38,7 +34,7 @@
         /// <value>
         /// The username.
         /// </value>
-        public string Username { get; set; }
+        public virtual string Username { get; set; }
 
         /// <summary>
         /// Gets or sets the type of the media.
@@ -46,7 +42,7 @@
         /// <value>
         /// The type of the media.
         /// </value>
-        public MediaType MediaType { get; set; }
+        public virtual MediaType MediaType { get; set; }
     }
 
     public enum MediaType
