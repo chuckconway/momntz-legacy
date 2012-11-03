@@ -156,6 +156,7 @@
     <Build Include="dbo\Tables\Exif.sql" />
     <Build Include="dbo\Stored Procedures\Exif_InsertExif.sql" />
     <Build Include="dbo\User Defined Types\ExifCollection.sql" />
+    <Build Include="dbo\Stored Procedures\MomentoMedia_GetByMomentoIdAndMediaType.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Data.sql" />
