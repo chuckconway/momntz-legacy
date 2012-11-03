@@ -1,4 +1,5 @@
-﻿-- Batch submitted through debugger: SQLQuery13.sql|7|0|C:\Users\Chuck\AppData\Local\Temp\~vs878.sql
+﻿-- Batch submitted through debugger: SQLQuery1.sql|7|0|C:\Users\Chuck\AppData\Local\Temp\~vs8259.sql
+-- Batch submitted through debugger: SQLQuery13.sql|7|0|C:\Users\Chuck\AppData\Local\Temp\~vs878.sql
 -- =============================================
 -- Author:		<Author,,Name>
 -- Create date: <Create Date,,>
@@ -22,6 +23,8 @@ BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
+
+begin transaction
 
 	IF Exists(Select id From TagPersonView T Where T.Name = @FullName AND T.Username = @Username AND T.MomentoId = @MomentoId)
 			BEGIN
@@ -54,12 +57,16 @@ BEGIN
 				BEGIN
 					Insert INTO Connection(Username, [Owner])Values(@FindOrCreateUsername, @Username)
 
-					exec [Connection_Add] @FindOrCreateUsername, @MomentoId
-
 				END
 			END
 			Insert into MomentoUser(MomentoId, Username) Values(@MomentoId,@FindOrCreateUsername)
 			Insert Into TagPerson(CreatedBy, TagId, Width, Height, XAxis, YAxis, InternalId, Username)Values(@CreatedBy, @TagId, @Width, @Height, @XAxis, @YAxis, @InternalId, @FindOrCreateUsername)
+			
+			-- Add tagged users to other tagged users within a photo.
+			exec [Connection_Add] @MomentoId
 		End
+
+		commit
+
 
 END

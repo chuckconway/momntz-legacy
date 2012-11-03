@@ -6,7 +6,6 @@
 CREATE PROCEDURE [dbo].[Connection_Add]
 	-- Add the parameters for the stored procedure here
 (
-	@Username nvarchar(100),
 	@MomentoId int
 )
 AS
@@ -15,15 +14,28 @@ BEGIN
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
 
-    -- Insert statements for procedure here
-	Declare @Owner nvarchar(100)
-	SET @Owner = (Select Username From Momento Where Id = @MomentoId)
+Declare @Connections Table (Username Nvarchar(100), Owner Nvarchar(100))
 
-	Insert Into Connection(Username, [Owner])
-	Select p.Username, @Username AS [Owner]
-	From TagMomento M
-	Inner Join TagPerson P
-		On M.TagId = P.TagId	
-	Where Username <> @Username AND Username Not In (Select Username From Connection C WHere C.[Owner] =  @Username)	
+	Insert Into @Connections(Username, Owner)
+	Select Username, CreatedBy as Owner
+					From TagMomento TM
+					Inner Join TagPerson TP
+						On TM.TagId = TP.TagId
+					Where TM.MomentoId = 2 
+					--AND Username Not in (Select C.Username From Connection C Where C.Username = TP.Username AND C.Owner = TP.CreatedBy) 
+
+	Insert Into @Connections(Username, Owner)	
+	Select C1.Username, C2.[Username] as [Owner]
+	From @Connections C1
+	Inner Join @Connections C2
+		ON C1.Username <> C2.Username
+	Where C1.Username Not in (Select C.Username From Connection C Where C.Username = C1.Username AND C.Owner = C2.Username) 
+
+
+Insert Into Connection(Username, Owner)
+Select C.Username, C.Owner
+From @Connections C
+Where Username Not In (Select Username From Connection CN WHERE CN.Owner = C.Owner AND CN.Username = C.Username)
+AND Owner Not In (Select Owner From Connection CN WHERE CN.Owner = C.Owner AND CN.Username = C.Username)
 
 END
