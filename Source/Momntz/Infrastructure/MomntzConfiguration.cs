@@ -11,14 +11,15 @@ namespace Momntz.Infrastructure
 {
     public class MomntzConfiguration : IConfigurationService
     {
-        private readonly ISessionFactory _session;
+        private readonly ISession _session;
+
         private static IList<Setting> _settings;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MomntzConfiguration" /> class.
         /// </summary>
         /// <param name="session">The session.</param>
-        public MomntzConfiguration(ISessionFactory session)
+        public MomntzConfiguration(ISession session)
         {
             _session = session;
         }
@@ -50,13 +51,15 @@ namespace Momntz.Infrastructure
         {
             string environment = ConfigurationManager.AppSettings["Environment"];
 
-            using (var session =_session.OpenSession())
+            using (var trans =_session.BeginTransaction())
             {
-             var list = session.QueryOver<Setting>()
+                var list = _session.QueryOver<Setting>()
                     .Where(Restrictions.Or(
                         Restrictions.Eq("Environment", null),
                         Restrictions.Eq("Environment", environment)))
                     .List();
+
+                trans.Commit();
 
              return list;
             }

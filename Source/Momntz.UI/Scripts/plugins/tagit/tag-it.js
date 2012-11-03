@@ -24,17 +24,17 @@
 *   jQuery v1.4+
 *   jQuery UI v1.8+
 */
-(function($) {
+(function ($) {
 
     $.widget('ui.tagit', {
         options: {
-            itemName          : 'item',
-            fieldName         : 'tags',
-            availableTags     : [],
-            tagSource         : null,
+            itemName: 'item',
+            fieldName: 'tags',
+            availableTags: [],
+            tagSource: null,
             removeConfirmation: false,
-            caseSensitive     : true,
-            placeholderText   : null,
+            caseSensitive: true,
+            placeholderText: null,
 
             // When enabled, quotes are not neccesary
             // for inputting multi-word tags.
@@ -74,13 +74,13 @@
 
 
             // Event callbacks.
-            onTagAdded  : null,
+            onTagAdded: null,
             onTagRemoved: null,
             onTagClicked: null
         },
 
 
-        _create: function() {
+        _create: function () {
             // for handling static scoping inside callbacks
             var that = this;
 
@@ -105,9 +105,9 @@
                 this._tagInput.attr('placeholder', this.options.placeholderText);
             }
 
-            this.options.tagSource = this.options.tagSource || function(search, showChoices) {
+            this.options.tagSource = this.options.tagSource || function (search, showChoices) {
                 var filter = search.term.toLowerCase();
-                var choices = $.grep(this.options.availableTags, function(element) {
+                var choices = $.grep(this.options.availableTags, function (element) {
                     // Only match autocomplete options that begin with the search term.
                     // (Case insensitive.)
                     return (element.toLowerCase().indexOf(filter) === 0);
@@ -125,7 +125,7 @@
                 .addClass('ui-widget ui-widget-content ui-corner-all')
                 // Create the input field.
                 .append($('<li class="tagit-new"></li>').append(this._tagInput))
-                .click(function(e) {
+                .click(function (e) {
                     var target = $(e.target);
                     if (target.hasClass('tagit-label')) {
                         that._trigger('onTagClicked', e, target.closest('.tagit-choice'));
@@ -138,9 +138,9 @@
                 });
 
             // Add existing tags from the list, if any.
-            this.tagList.children('li').each(function() {
+            this.tagList.children('li').each(function () {
                 if (!$(this).hasClass('tagit-new')) {
-                    that.createTag($(this).html(), $(this).attr('class'), false);
+                    that.createTag($(this).html(), $(this).attr('class'));
                     $(this).remove();
                 }
             });
@@ -152,8 +152,8 @@
                     var node = $(this.options.singleFieldNode);
                     var tags = node.val().split(this.options.singleFieldDelimiter);
                     node.val('');
-                    $.each(tags, function(index, tag) {
-                        that.createTag(tag, null, false);
+                    $.each(tags, function (index, tag) {
+                        that.createTag(tag);
                     });
                 } else {
                     // Create our single field input after our list.
@@ -163,7 +163,7 @@
 
             // Events.
             this._tagInput
-                .keydown(function(event) {
+                .keydown(function (event) {
                     // Backspace is not detected within a keypress, so it must use keydown.
                     if (event.which == $.ui.keyCode.BACKSPACE && that._tagInput.val() === '') {
                         var tag = that._lastTag();
@@ -191,7 +191,7 @@
                             event.which == $.ui.keyCode.SPACE &&
                             that.options.allowSpaces !== true &&
                             (
-                                $.trim(that._tagInput.val()).replace( /^s*/, '' ).charAt(0) != '"' ||
+                                $.trim(that._tagInput.val()).replace(/^s*/, '').charAt(0) != '"' ||
                                 (
                                     $.trim(that._tagInput.val()).charAt(0) == '"' &&
                                     $.trim(that._tagInput.val()).charAt($.trim(that._tagInput.val()).length - 1) == '"' &&
@@ -201,23 +201,23 @@
                         )
                     ) {
                         event.preventDefault();
-                        that.createTag(that._cleanedInput(), null, true);
+                        that.createTag(that._cleanedInput());
 
                         // The autocomplete doesn't close automatically when TAB is pressed.
                         // So let's ensure that it closes.
                         that._tagInput.autocomplete('close');
                     }
-                }).blur(function(e){
+                }).blur(function (e) {
                     // Create a tag when the element loses focus (unless it's empty).
                     that.createTag(that._cleanedInput());
                 });
-                
+
 
             // Autocomplete.
             if (this.options.availableTags || this.options.tagSource) {
                 this._tagInput.autocomplete({
                     source: this.options.tagSource,
-                    select: function(event, ui) {
+                    select: function (event, ui) {
                         // Delete the last tag if we autocomplete something despite the input being empty
                         // This happens because the input's blur event causes the tag to be created when
                         // the user clicks an autocomplete item.
@@ -231,20 +231,20 @@
                         // Preventing the tag input to be updated with the chosen value.
                         return false;
                     }
-                }).css('z-index',10000);
+                });
             }
         },
 
-        _cleanedInput: function() {
+        _cleanedInput: function () {
             // Returns the contents of the tag input, cleaned and ready to be passed to createTag
             return $.trim(this._tagInput.val().replace(/^"(.*)"$/, '$1'));
         },
 
-        _lastTag: function() {
+        _lastTag: function () {
             return this.tagList.children('.tagit-choice:last');
         },
 
-        assignedTags: function() {
+        assignedTags: function () {
             // Returns an array of tag string values
             var that = this;
             var tags = [];
@@ -254,19 +254,19 @@
                     tags = [];
                 }
             } else {
-                this.tagList.children('.tagit-choice').each(function() {
+                this.tagList.children('.tagit-choice').each(function () {
                     tags.push(that.tagLabel(this));
                 });
             }
             return tags;
         },
 
-        _updateSingleTagsField: function(tags) {
+        _updateSingleTagsField: function (tags) {
             // Takes a list of tag string values, updates this.options.singleFieldNode.val to the tags delimited by this.options.singleFieldDelimiter
             $(this.options.singleFieldNode).val(tags.join(this.options.singleFieldDelimiter));
         },
 
-        _subtractArray: function(a1, a2) {
+        _subtractArray: function (a1, a2) {
             var result = [];
             for (var i = 0; i < a1.length; i++) {
                 if ($.inArray(a1[i], a2) == -1) {
@@ -276,7 +276,7 @@
             return result;
         },
 
-        tagLabel: function(tag) {
+        tagLabel: function (tag) {
             // Returns the tag's string label.
             if (this.options.singleField) {
                 return $(tag).children('.tagit-label').text();
@@ -285,10 +285,10 @@
             }
         },
 
-        _isNew: function(value) {
+        _isNew: function (value) {
             var that = this;
             var isNew = true;
-            this.tagList.children('.tagit-choice').each(function(i) {
+            this.tagList.children('.tagit-choice').each(function (i) {
                 if (that._formatStr(value) == that._formatStr(that.tagLabel(this))) {
                     isNew = false;
                     return false;
@@ -297,14 +297,14 @@
             return isNew;
         },
 
-        _formatStr: function(str) {
+        _formatStr: function (str) {
             if (this.options.caseSensitive) {
                 return str;
             }
             return $.trim(str.toLowerCase());
         },
 
-        createTag: function(value, additionalClass, triggerAddTagEvent) {
+        createTag: function (value, additionalClass) {
             var that = this;
             // Automatically trims the value of leading and trailing whitespace.
             value = $.trim(value);
@@ -327,7 +327,7 @@
             var removeTag = $('<a><span class="text-icon">\xd7</span></a>') // \xd7 is an X
                 .addClass('tagit-close')
                 .append(removeTagIcon)
-                .click(function(e) {
+                .click(function (e) {
                     // Removes a tag when the little 'x' is clicked.
                     that.removeTag(tag);
                 });
@@ -343,9 +343,7 @@
                 tag.append('<input type="hidden" style="display:none;" value="' + escapedValue + '" name="' + this.options.itemName + '[' + this.options.fieldName + '][]" />');
             }
 
-
-                this._trigger('onTagAdded', null, value);
-
+            this._trigger('onTagAdded', null, tag);
 
             // Cleaning the input.
             this._tagInput.val('');
@@ -353,29 +351,25 @@
             // insert tag
             this._tagInput.parent().before(tag);
         },
-        
-        removeTag: function(tag, animate) {
+
+        removeTag: function (tag, animate) {
             animate = animate || this.options.animate;
 
             tag = $(tag);
 
-            var text = tag.text();
-            var length = text.length;
-            text = text.slice(0, length - 1);
-
-            this._trigger('onTagRemoved', null, text);
+            this._trigger('onTagRemoved', null, tag);
 
             if (this.options.singleField) {
                 var tags = this.assignedTags();
                 var removedTagLabel = this.tagLabel(tag);
-                tags = $.grep(tags, function(el){
+                tags = $.grep(tags, function (el) {
                     return el != removedTagLabel;
                 });
                 this._updateSingleTagsField(tags);
             }
             // Animate the removal.
             if (animate) {
-                tag.fadeOut('fast').hide('blind', {direction: 'horizontal'}, 'fast', function(){
+                tag.fadeOut('fast').hide('blind', { direction: 'horizontal' }, 'fast', function () {
                     tag.remove();
                 }).dequeue();
             } else {
@@ -383,10 +377,10 @@
             }
         },
 
-        removeAll: function() {
+        removeAll: function () {
             // Removes all tags.
             var that = this;
-            this.tagList.children('.tagit-choice').each(function(index, tag) {
+            this.tagList.children('.tagit-choice').each(function (index, tag) {
                 that.removeTag(tag, false);
             });
         }
@@ -394,5 +388,4 @@
     });
 
 })(jQuery);
-
 

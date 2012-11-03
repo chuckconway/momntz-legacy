@@ -69,8 +69,15 @@
     <Reference Include="Chucksoft.Core">
       <HintPath>..\..\Dependencies\Chucksoft\Chucksoft.Core.dll</HintPath>
     </Reference>
+    <Reference Include="FakeItEasy">
+      <HintPath>..\..\Dependencies\FakeItEasy\FakeItEasy.dll</HintPath>
+    </Reference>
     <Reference Include="FluentNHibernate">
       <HintPath>..\..\Dependencies\nHibernate\FluentNHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="HibernatingRhinos.Profiler.Appender.v4.0, Version=1.0.0.0, Culture=neutral, PublicKeyToken=0774796e73ebf640, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Users\Chuck\Downloads\NHibernate.Profiler-Build-951\HibernatingRhinos.Profiler.Appender.v4.0.dll</HintPath>
     </Reference>
     <Reference Include="Hypersonic">
       <HintPath>..\..\Dependencies\Hypersonic\Hypersonic.dll</HintPath>
@@ -84,8 +91,14 @@
     <Reference Include="nunit.framework">
       <HintPath>..\..\Dependencies\nUnit\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="StructureMap, Version=2.6.1.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Momntz.UI\Bin\StructureMap.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -93,12 +106,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CreateMediaCommandTests.cs" />
-    <Compile Include="CreateMomentoCommandTests.cs" />
     <Compile Include="CreateUserCommandTests.cs" />
-    <Compile Include="GetUsersTests.cs" />
     <Compile Include="nHibernateTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Setup\DependencyInjection.cs" />
+    <Compile Include="TagControllerTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -106,6 +118,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Momntz.UI\Momntz.UI.csproj">
+      <Project>{de748aa6-c132-4e28-b239-beba571ad0fe}</Project>
+      <Name>Momntz.UI</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Momntz\Momntz.csproj">
       <Project>{77cc17df-c471-42bf-b5f6-d55eaf918891}</Project>
       <Name>Momntz</Name>

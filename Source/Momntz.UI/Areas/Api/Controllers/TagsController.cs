@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Momntz.Data.Commands.Tags;
 using Momntz.Data.ProjectionHandlers.Api;
 using Momntz.Data.Projections.Api;
 using Momntz.Infrastructure;
-using Momntz.Model;
 using Momntz.UI.Areas.Api.Models;
 using Momntz.UI.Core.Controllers;
 
@@ -68,12 +65,7 @@ namespace Momntz.UI.Areas.Api.Controllers
         public ActionResult Add(NewTag tag)
         {
             string username = GetUsername();
-            _commandProcessor.Process(new CreateTagCommand(tag.Name, tag.Left, tag.Top, tag.Width, tag.Height, username, tag.MomentoId));
-
-            var momentoTags = _processor.Process<int, IList<MomentoTag>>(tag.MomentoId);
-            MomentoTag t = momentoTags.SingleOrDefault(m => m.MomentoId == tag.MomentoId && m.DisplayName == tag.Name);
-
-            var tags = GetTags(new List<MomentoTag> {t});
+            var tags = InternalAddTag(tag, username);
 
             return Json(new
             {
@@ -82,5 +74,16 @@ namespace Momntz.UI.Areas.Api.Controllers
             }, JsonRequestBehavior.AllowGet);
         }
 
+        public IEnumerable<object> InternalAddTag(NewTag tag, string username)
+        {
+            
+          _commandProcessor.Process(new CreateTagCommand(tag.Name, tag.Left, tag.Top, tag.Width, tag.Height, username, tag.MomentoId));
+
+            var momentoTags = _processor.Process<int, IList<MomentoTag>>(tag.MomentoId);
+            MomentoTag t = momentoTags.SingleOrDefault(m => m.MomentoId == tag.MomentoId && m.DisplayName == tag.Name);
+
+            var tags = GetTags(new List<MomentoTag> {t});
+            return tags;
+        }
     }
 }

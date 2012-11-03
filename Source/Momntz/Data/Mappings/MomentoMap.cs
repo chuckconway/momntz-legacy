@@ -49,7 +49,8 @@ namespace Momntz.Data.Mappings
             Map(x => x.Longitude)
                 .Nullable();
 
-            HasMany(x => x.Media);
+            HasMany(x => x.Media)
+                .KeyColumn("MomentoId");
 
             Table("Momento");
         }

@@ -5,15 +5,16 @@ namespace Momntz.Data.ProjectionHandlers.Api
 {
     public class MomentoDetailHandler : IProjectionHandler<int, MomentoDetail>
     {
-        private readonly ISessionFactory _sessionFactory;
+        private readonly ISession _session;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MomentoDetailHandler" /> class.
         /// </summary>
-        /// <param name="sessionFactory">The session factory.</param>
-        public MomentoDetailHandler(ISessionFactory sessionFactory)
+        /// <param name="session">The session.</param>
+        public MomentoDetailHandler(ISession session)
         {
-            _sessionFactory = sessionFactory;
+            _session = session;
+
         }
 
         /// <summary>
@@ -23,33 +24,16 @@ namespace Momntz.Data.ProjectionHandlers.Api
         /// <returns>MomentoDetail.</returns>
         public MomentoDetail Execute(int args)
         {
-            MomentoDetail detail;
-
-            using(ISession session = _sessionFactory.OpenSession())
+            using(var trans =_session.BeginTransaction())
             {
-               detail = session.QueryOver<MomentoDetail>()
+               MomentoDetail detail = _session.QueryOver<MomentoDetail>()
                     .Where(x => x.Id == args)
                     .SingleOrDefault();
+
+                trans.Commit();
+
+                return detail;
             }
-           //var detail = _session.Session
-           //     .Query<MomentoDetail>()
-           //     .Where(string.Format("Id = {0}", args))
-           //     .Single();
-
-           // if(detail != null)
-           // {
-           //    detail.People = _session.Session
-           //         .Query<Person>("TagPersonView")
-           //         .Where("MomentoId = " + args)
-           //         .List().ToList();
-
-           //    detail.Albums = _session.Session
-           //     .Query<Album>("TagAlbumView")
-           //     .Where("MomentoId = " + args)
-           //     .List().ToList();
-           // }
-
-            return detail;
         }
     }
 }

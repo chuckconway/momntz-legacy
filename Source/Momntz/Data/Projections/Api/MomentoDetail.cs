@@ -94,13 +94,13 @@ namespace Momntz.Data.Projections.Api
         /// Gets or sets the people.
         /// </summary>
         /// <value>The people.</value>
-        public virtual List<Person> People { get; set; }
+        public virtual IList<Person> People { get; set; }
 
         /// <summary>
         /// Gets or sets the albums.
         /// </summary>
         /// <value>The albums.</value>
-        public virtual List<Album> Albums { get; set; }
+        public virtual IList<Album> Albums { get; set; }
     }
 
     public class Album

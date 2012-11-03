@@ -9,8 +9,15 @@ namespace Momntz.Data.Mappings
         {
             Id(p => p.Id);
             Map(x => x.Name);
+            Map(x => x.Story);
+            Map(x => x.TagPersonId);
             Map(x => x.Username);
-            References(x => x.Momento);
+            Map(x => x.Width);
+            Map(x => x.XAxis);
+            Map(x => x.YAxis);
+            Map(x => x.CreatedBy);
+            Map(x => x.Height);
+            References(x => x.Momento, "MomentoId");
 
             Table("TagPersonView");
         }

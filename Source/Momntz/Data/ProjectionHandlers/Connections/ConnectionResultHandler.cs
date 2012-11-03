@@ -26,7 +26,7 @@ namespace Momntz.Data.ProjectionHandlers.Connections
         {
             _database.ConnectionStringName = "sql";
             _database.CommandType = CommandType.StoredProcedure;
-            List<IGroupItem> items = new List<IGroupItem>();
+            var items = new List<IGroupItem>();
 
             var results = _database.List<ConnectionResult, object>("User_GetConnectionsByUsername", args).ToList();
 

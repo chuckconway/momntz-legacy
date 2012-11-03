@@ -21,23 +21,31 @@ namespace Momntz.Tests
         [Test]
         public void Settings()
         {
-             IList<Setting> settings = new List<Setting>();
-           using(ISession session =_sessionFactory.OpenSession())
-           {
-             settings =  session
-                   .QueryOver<Setting>()
-                   .List();
-           }
+            var settings = GetSettings();
+            Assert.Greater(settings.Count,  0);
+        }
 
-           Assert.Greater(settings.Count,  0);
-
+        /// <summary>
+        /// Gets the settings.
+        /// </summary>
+        /// <returns>IList{Setting}.</returns>
+        public static IList<Setting> GetSettings()
+        {
+            IList<Setting> settings = new List<Setting>();
+            using (ISession session = CreateSessionFactory().OpenSession())
+            {
+                settings = session
+                    .QueryOver<Setting>()
+                    .List();
+            }
+            return settings;
         }
 
         /// <summary>
         /// Creates the session factory.
         /// </summary>
         /// <returns>ISessionFactory.</returns>
-        private static ISessionFactory CreateSessionFactory()
+        public static ISessionFactory CreateSessionFactory()
         {
             return Fluently.Configure()
                     .Database(MsSqlConfiguration.MsSql2012

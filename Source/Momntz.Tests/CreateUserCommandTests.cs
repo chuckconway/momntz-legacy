@@ -4,7 +4,7 @@ using Hypersonic.Session;
 using Momntz.Data;
 using Momntz.Data.CommandHandlers.Users;
 using Momntz.Data.Commands.Users;
-using Momntz.Data.PersistIntercepters;
+
 using Momntz.Infrastructure.Security;
 using Momntz.Model;
 using NUnit.Framework;
@@ -21,7 +21,6 @@ namespace Momntz.Tests
             CreateUserCommand command = new CreateUserCommand(username, username,
                 Path.GetRandomFileName(), Path.GetRandomFileName(), Path.GetRandomFileName(), Path.GetRandomFileName(), Path.GetRandomFileName());
 
-            SqlServerSession.AddPersistIntercepter(new AuditPersistIntercepter());
 
             CreateUserCommandHandler handler = new CreateUserCommandHandler(new MsSqlDatabase(key:"sql"), new Crypto());
             handler.Execute(command);

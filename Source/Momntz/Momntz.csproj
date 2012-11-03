@@ -95,6 +95,7 @@
     <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\TypeConverters\CreateMomentoCommandToMomentoConverter.cs" />
     <Compile Include="Data\CommandHandlers\Albums\AddAlbumCommandHandler.cs" />
     <Compile Include="Data\CommandHandlers\Albums\RemoveAlbumCommandHandler.cs" />
     <Compile Include="Data\CommandHandlers\ICommandHandler.cs" />
@@ -123,10 +124,10 @@
     <Compile Include="Data\Mappings\MomentoDetailMap.cs" />
     <Compile Include="Data\Mappings\MomentoMap.cs" />
     <Compile Include="Data\Mappings\MomentoMediaMap.cs" />
+    <Compile Include="Data\Mappings\MomentoUserMap.cs" />
     <Compile Include="Data\Mappings\PersonMap.cs" />
     <Compile Include="Data\Mappings\SettingMap.cs" />
     <Compile Include="Data\Mappings\UserMap.cs" />
-    <Compile Include="Data\PersistIntercepters\AuditPersistIntercepter.cs" />
     <Compile Include="Data\ProjectionHandlers\Albums\AlbumMomentosHandler.cs" />
     <Compile Include="Data\ProjectionHandlers\Albums\AlbumResultHandler.cs" />
     <Compile Include="Data\ProjectionHandlers\Api\AlbumNameSearchHandler.cs" />
@@ -161,7 +162,9 @@
     <Compile Include="Infrastructure\Extensions\MapperExtensions.cs" />
     <Compile Include="Infrastructure\ICommandProcessor.cs" />
     <Compile Include="Infrastructure\IInjection.cs" />
+    <Compile Include="Infrastructure\IMap.cs" />
     <Compile Include="Infrastructure\IProjectionProcessor.cs" />
+    <Compile Include="Infrastructure\Mapper.cs" />
     <Compile Include="Infrastructure\MomntzConfiguration.cs" />
     <Compile Include="Infrastructure\ProjectionProcessor.cs" />
     <Compile Include="Infrastructure\Security\Crypto.cs" />
@@ -173,10 +176,13 @@
     <Compile Include="Model\Core\MediaMessage.cs" />
     <Compile Include="Model\Momento.cs" />
     <Compile Include="Model\MomentoMedia.cs" />
+    <Compile Include="Model\MomentoUser.cs" />
+    <Compile Include="Model\MomentoVisibility.cs" />
     <Compile Include="Model\Name.cs" />
     <Compile Include="Model\Tag.cs" />
     <Compile Include="Model\TagCollection.cs" />
     <Compile Include="Model\User.cs" />
+    <Compile Include="Model\UserStatus.cs" />
     <Compile Include="MomntzRegistry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
