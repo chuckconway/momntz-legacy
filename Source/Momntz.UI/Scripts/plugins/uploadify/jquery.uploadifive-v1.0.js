@@ -67,7 +67,7 @@ Released under the UploadiFive Standard License <http://www.uploadify.com/upload
                     'onClearQueue'     : function(queue) {},                       // Triggered during the clearQueue function
                     'onDestroy'        : function() {}                             // Triggered during the destroy function
                     'onDrop'           : function(files, numberOfFilesDropped) {}, // Triggered when files are dropped into the file queue
-                    'onError'          : function(file, fileType, data) {},        // Triggered when an error occurs
+                    'onError'          : function(file, Extension, data) {},        // Triggered when an error occurs
                     'onFallback'       : function() {},                            // Triggered if the HTML5 File API is not supported by the browser
                     'onInit'           : function() {},                            // Triggered when UploadiFive if initialized
                     'onQueueComplete'  : function() {},                            // Triggered once when an upload queue is done

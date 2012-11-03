@@ -6,7 +6,7 @@ namespace Momntz.Model
     public class Momento
     {
 
-        public virtual List<MomentoMedia> Media { get; set; }
+        public virtual IList<MomentoMedia> Media { get; set; }
 
         /// <summary> Gets or sets the identifier. </summary>
         /// <value> The identifier. </value>

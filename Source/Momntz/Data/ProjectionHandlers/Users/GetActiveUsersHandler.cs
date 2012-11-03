@@ -9,16 +9,15 @@ namespace Momntz.Data.ProjectionHandlers.Users
 {
     public class GetActiveUsersHandler : IProjectionHandler<object, IList<ActiveUsername>>
     {
-        private readonly ISessionFactory _sessionFactory;
-
+        private readonly ISession _session;
 
         /// <summary>
         /// Constructor.
         /// </summary>
-        /// <param name="sessionFactory">The session factory.</param>
-        public GetActiveUsersHandler(ISessionFactory sessionFactory)
+        /// <param name="session">The session.</param>
+        public GetActiveUsersHandler(ISession session)
         {
-            _sessionFactory = sessionFactory;
+            _session = session;
         }
 
         /// <summary> Executes. </summary>
@@ -26,18 +25,22 @@ namespace Momntz.Data.ProjectionHandlers.Users
         /// <returns> . </returns>
         public IList<ActiveUsername> Execute(object args)
         {
-            using (var session = _sessionFactory.OpenSession())
+            using (var trans = _session.BeginTransaction())
             {
-              return  session.QueryOver<User>()
+                var items = _session.QueryOver<User>()
                     .Where(Restrictions.Or(Restrictions.Eq("UserStatus", UserStatus.Active), Restrictions.Eq("UserStatus", UserStatus.Ghost)))
                     .List()
                     .Select(r => new ActiveUsername() {Username = r.Username})
                     .ToList();
 
-               //return  _session.Session
-               //        .Query<ActiveUsername, User>()
-               //        .Where("UserStatus = " + (int)UserStatus.Active + " OR UserStatus = " + (int)UserStatus.Ghost)
-               //        .List();
+                trans.Commit();
+
+                return items;
+
+                //return  _session.Session
+                //        .Query<ActiveUsername, User>()
+                //        .Where("UserStatus = " + (int)UserStatus.Active + " OR UserStatus = " + (int)UserStatus.Ghost)
+                //        .List();
             }
         }
     }

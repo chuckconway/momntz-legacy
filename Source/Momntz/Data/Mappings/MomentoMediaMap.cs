@@ -9,7 +9,7 @@ namespace Momntz.Data.Mappings
         {
             Id(x => x.Id);
 
-            References(m => m.Momento);
+            References(m => m.Momento, "MomentoId");
 
             Map(x => x.Filename)
                 .Not.Nullable()

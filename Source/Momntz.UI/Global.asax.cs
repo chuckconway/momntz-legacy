@@ -7,15 +7,21 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using Chucksoft.Core.Services;
+using FluentNHibernate.Cfg;
+using FluentNHibernate.Cfg.Db;
 using Hypersonic;
 using Hypersonic.Session;
-using Momntz.Data.PersistIntercepters;
+using Momntz.Core.TypeConverters;
+using Momntz.Data.Commands.Momentos;
 using Momntz.Data.ProjectionHandlers.Users;
 using Momntz.Infrastructure;
+using Momntz.Model;
+using Momntz.Model.Configuration;
 using Momntz.UI.Areas.Api.Models;
 using Momntz.UI.Core;
 using Momntz.UI.Core.Binders;
 using Momntz.UI.Core.RouteHandler;
+using NHibernate;
 using StructureMap;
 
 namespace Momntz.UI
@@ -48,7 +54,11 @@ namespace Momntz.UI
             );
         }
 
-
+        protected void Application_EndRequest()
+        {
+            ObjectFactory.ReleaseAndDisposeAllHttpScopedObjects();
+        }
+        
         /// <summary> Application start. </summary>
         protected void Application_Start()
         {
@@ -71,9 +81,8 @@ namespace Momntz.UI
             {
                 x.AddRegistry<MomntzRegistry>();
                 x.For<IDatabase>().Use(new MsSqlDatabase());
-                x.For<ISession>().Use(SessionFactory.SqlServer(key:"sql"));
                 x.For<IConfigurationService>().Use<MomntzConfiguration>();
-                
+                x.For<NHibernate.ISession>().HttpContextScoped().Use(CreateSessionFactory().OpenSession);
                 x.For<IProjectionProcessor>().Use<ProjectionProcessor>();
  
                 s.TheCallingAssembly();
@@ -85,17 +94,46 @@ namespace Momntz.UI
                 x.For<IInjection>().Use(new StructureMapInjection());
             }));
 
-            SqlServerSession.AddPersistIntercepter(new AuditPersistIntercepter());
             ModelBinders.Binders.Add(typeof(NewTag), new NewTagModelBinder());
             ModelBinders.Binders.Add(typeof(UsernameAndPassword), new UsernameAndPasswordModelBinder());
 
             ObjectFactory.AssertConfigurationIsValid();
             DependencyResolver.SetResolver(new StructureMapDependencyResolver());
+
+            ConfigureAutoMapper();
+        }
+
+        /// <summary>
+        /// Configures the aut do mapper.
+        /// </summary>
+        public static void ConfigureAutoMapper()
+        {
+            AutoMapper.Mapper.Initialize(c=> c.CreateMap<CreateMomentoCommand, Momento>().ConvertUsing(new CreateMomentoCommandToMomentoConverter()));
+        }
+
+        /// <summary>
+        /// Creates the session factory.
+        /// </summary>
+        /// <returns>ISessionFactory.</returns>
+        private static ISessionFactory CreateSessionFactory()
+        {
+            return Fluently.Configure()
+                    .Database(MsSqlConfiguration.MsSql2012
+                    .ConnectionString(c => c
+                        .FromConnectionStringWithKey("sql")))
+                    .Mappings(m => m.FluentMappings.AddFromAssemblyOf<Setting>())
+                    .BuildSessionFactory();
         }
     }
+    
 
     internal class StructureMapDependencyResolver : IDependencyResolver
     {
+        /// <summary>
+        /// Resolves singly registered services that support arbitrary object creation.
+        /// </summary>
+        /// <param name="serviceType">The type of the requested service or object.</param>
+        /// <returns>The requested service or object.</returns>
         public object GetService(Type serviceType)
         {
             if (serviceType.IsAbstract || serviceType.IsInterface)
@@ -106,6 +144,11 @@ namespace Momntz.UI
             return ObjectFactory.GetInstance(serviceType);
         }
 
+        /// <summary>
+        /// Resolves multiply registered services.
+        /// </summary>
+        /// <param name="serviceType">The type of the requested services.</param>
+        /// <returns>The requested services.</returns>
         public IEnumerable<object> GetServices(Type serviceType)
         {
             return ObjectFactory.GetAllInstances(serviceType).Cast<object>();

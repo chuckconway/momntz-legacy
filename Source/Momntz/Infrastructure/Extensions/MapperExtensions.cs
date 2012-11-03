@@ -10,7 +10,7 @@ namespace Momntz.Infrastructure.Extensions
         /// <returns> . </returns>
         public static T To<T>(this object item)
         {
-           return Mapper.DynamicMap<T>(item);
+           return AutoMapper.Mapper.DynamicMap<T>(item);
         }
     }
 }

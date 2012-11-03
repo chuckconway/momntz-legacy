@@ -1,6 +1,4 @@
-﻿using System.Linq;
-
-using Momntz.Data.Projections.Users;
+﻿using Momntz.Data.Projections.Users;
 using Momntz.Model;
 using NHibernate;
 
@@ -8,15 +6,15 @@ namespace Momntz.Data.ProjectionHandlers.Users
 {
     public class DisplayNameHandler : IProjectionHandler<string, DisplayName>
     {
-        private readonly ISessionFactory _sessionFactory;
+        private readonly ISession _session;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DisplayNameHandler" /> class.
         /// </summary>
-        /// <param name="sessionFactory">The session factory.</param>
-        public DisplayNameHandler(ISessionFactory sessionFactory)
+        /// <param name="session">The session.</param>
+        public DisplayNameHandler(ISession session)
         {
-            _sessionFactory = sessionFactory;
+            _session = session;
         }
 
         /// <summary>
@@ -26,12 +24,13 @@ namespace Momntz.Data.ProjectionHandlers.Users
         /// <returns>DisplayName.</returns>
         public DisplayName Execute(string args)
         {
-            using(ISession session = _sessionFactory.OpenSession())
+            using (var trans = _session.BeginTransaction())
             {
-              var item =  session.QueryOver<User>()
+                var item = _session.QueryOver<User>()
                     .Where(x => x.Username == args)
                     .SingleOrDefault();
 
+                trans.Commit();
                 return new DisplayName() {Fullname = item.FullName};
             }
         }

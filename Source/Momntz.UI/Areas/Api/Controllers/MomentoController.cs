@@ -58,7 +58,7 @@ namespace Momntz.UI.Areas.Api.Controllers
                                     DisplayName = convertNullToEmptyString(detail.DisplayName),
                                     Location = convertNullToEmptyString(detail.Location),
                                     Month = convertNullToEmptyString(detail.Month),
-                                    detail.People,
+                                    People = detail.People.Select(p=>new {p.Username, p.Name}),
                                     Story = convertNullToEmptyString(detail.Story),
                                     Username = convertNullToEmptyString(detail.Username),
                                     Title = convertNullToEmptyString(detail.Title), 
