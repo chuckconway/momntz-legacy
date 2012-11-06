@@ -27,14 +27,13 @@ namespace Momntz.Data.CommandHandlers.Queue
                                          _database.MakeParameter("@Extension", command.Extension),
                                          _database.MakeParameter("@Size", command.Size),
                                          _database.MakeParameter("@Username", command.Username),
-                                         _database.MakeParameter("@ContentType", command.ContentType),
                                          _database.MakeParameter("@MediaType", command.MediaType),
                                          _database.MakeParameter("@Bytes", DbType.Binary, command.Bytes.Length, command.Bytes)
                                      };
 
                 _database.CommandType = CommandType.Text;
                 _database.ConnectionString = _settings.QueueDatabase;
-                _database.NonQuery("Insert Into Media(Id, Extension, Filename, Size, Username, ContentType, MediaType, Bytes) Values (@Id, @Extension, @Filename, @Size, @Username, @ContentType, @MediaType, @Bytes)", parameters);
+                _database.NonQuery("Insert Into Media(Id, Extension, Filename, Size, Username, MediaType, Bytes) Values (@Id, @Extension, @Filename, @Size, @Username, @MediaType, @Bytes)", parameters);
         }
     }
 }

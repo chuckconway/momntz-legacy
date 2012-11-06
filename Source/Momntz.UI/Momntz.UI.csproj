@@ -105,6 +105,7 @@
   <ItemGroup>
     <Compile Include="Areas\Api\ApiAreaRegistration.cs" />
     <Compile Include="Areas\Api\Controllers\AlbumsController.cs" />
+    <Compile Include="Areas\Api\Controllers\ImportController.cs" />
     <Compile Include="Areas\Api\Controllers\MomentoController.cs" />
     <Compile Include="Areas\Api\Controllers\TagsController.cs" />
     <Compile Include="Areas\Api\Handlers\Tags\AddTagHandler.cs" />
@@ -129,6 +130,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\SignoutController.cs" />
     <Compile Include="Controllers\SignupController.cs" />
+    <Compile Include="Core\ActionFilters\ApiAuthorization.cs" />
     <Compile Include="Core\ActionResults\FormResult.cs" />
     <Compile Include="Core\ActionResults\QueryResult.cs" />
     <Compile Include="Core\Binders\NewTagModelBinder.cs" />
@@ -138,6 +140,7 @@
     <Compile Include="Core\HandlerBase.cs" />
     <Compile Include="Core\IFormHandler.cs" />
     <Compile Include="Core\IQueryHandler.cs" />
+    <Compile Include="Core\MomentoUploader.cs" />
     <Compile Include="Core\RouteConstraints\UserRouteCache.cs" />
     <Compile Include="Core\RouteConstraints\UserRouteConstraint.cs" />
     <Compile Include="Core\RouteHandler\UploadHttpHandler.cs" />
