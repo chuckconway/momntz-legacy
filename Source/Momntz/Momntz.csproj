@@ -99,6 +99,7 @@
     <Compile Include="Data\CommandHandlers\Albums\AddAlbumCommandHandler.cs" />
     <Compile Include="Data\CommandHandlers\Albums\RemoveAlbumCommandHandler.cs" />
     <Compile Include="Data\CommandHandlers\ICommandHandler.cs" />
+    <Compile Include="Data\ProjectionHandlers\Import\GetApiUserCommandHandler.cs" />
     <Compile Include="Data\CommandHandlers\Momentos\CreateMomentoCommandHandler.cs" />
     <Compile Include="Data\CommandHandlers\Momentos\CreateMomentoMediaCommandHandler.cs" />
     <Compile Include="Data\CommandHandlers\Momentos\SaveMomentoDetailsCommandHandler.cs" />
@@ -111,6 +112,8 @@
     <Compile Include="Data\Commands\Albums\AddAlbumCommand.cs" />
     <Compile Include="Data\Commands\Albums\RemoveAlbumCommand.cs" />
     <Compile Include="Data\Commands\ICommand.cs" />
+    <Compile Include="Data\ProjectionHandlers\Users\CreateUsernameHandler.cs" />
+    <Compile Include="Data\Projections\Import\GetApiUserProjection.cs" />
     <Compile Include="Data\Commands\Momentos\CreateMomentoCommand.cs" />
     <Compile Include="Data\Commands\Momentos\CreateMomentoMedia.cs" />
     <Compile Include="Data\Commands\Momentos\SaveMomentoDetailsCommand.cs" />
@@ -157,6 +160,7 @@
     <Compile Include="Data\Projections\Momentos\MomentoWithMedia.cs" />
     <Compile Include="Data\Projections\Users\ActiveUsername.cs" />
     <Compile Include="Data\Projections\Users\AuthenticatedUser.cs" />
+    <Compile Include="Data\Projections\Users\CreateUsername.cs" />
     <Compile Include="Data\Projections\Users\DisplayName.cs" />
     <Compile Include="Infrastructure\CommandProcessor.cs" />
     <Compile Include="Infrastructure\Extensions\MapperExtensions.cs" />

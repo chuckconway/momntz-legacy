@@ -65,7 +65,7 @@ namespace Momntz.Tests
             CreateMomentoCommand createMomento = new CreateMomentoCommand(username, media);
 
             MvcApplication.ConfigureAutoMapper();
-            CreateMomentoCommandHandler momentoCommandHandler = new CreateMomentoCommandHandler(nHibernateTest.CreateSessionFactory(), new Mapper());
+            CreateMomentoCommandHandler momentoCommandHandler = new CreateMomentoCommandHandler(nHibernateTest.CreateSessionFactory().OpenSession(), new Mapper());
             momentoCommandHandler.Execute(createMomento);
 
             var setting = A.Fake<ISettings>();

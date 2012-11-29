@@ -24,7 +24,7 @@ namespace Momntz.Data.Mappings
                 .Not.Nullable()
                 .Length(100);
 
-            Table("GetUserView");
+            Table("UserAliasView");
 
         }
     }

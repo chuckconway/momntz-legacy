@@ -1,8 +1,12 @@
 ﻿using Chucksoft.Core.Services;
+using FluentNHibernate.Cfg;
+using FluentNHibernate.Cfg.Db;
 using Hypersonic;
 using Hypersonic.Session;
 using Momntz.Infrastructure;
+using Momntz.Model.Configuration;
 using Momntz.UI.Core;
+using NHibernate;
 using StructureMap;
 
 namespace Momntz.Tests.Setup
@@ -16,7 +20,7 @@ namespace Momntz.Tests.Setup
             {
                 x.AddRegistry<MomntzRegistry>();
                 x.For<IDatabase>().Use(new MsSqlDatabase());
-                x.For<ISession>().Use(SessionFactory.SqlServer(key: "sql"));
+                x.For<NHibernate.ISession>().Use(CreateSessionFactory().OpenSession);
                 x.For<IConfigurationService>().Use<MomntzConfiguration>();
 
                 x.For<IProjectionProcessor>().Use<ProjectionProcessor>();
@@ -31,8 +35,20 @@ namespace Momntz.Tests.Setup
             }));
 
             ObjectFactory.AssertConfigurationIsValid();
+        }
 
-
+        /// <summary>
+        /// Creates the session factory.
+        /// </summary>
+        /// <returns>ISessionFactory.</returns>
+        private static ISessionFactory CreateSessionFactory()
+        {
+            return Fluently.Configure()
+                    .Database(MsSqlConfiguration.MsSql2012
+                    .ConnectionString(c => c
+                        .FromConnectionStringWithKey("sql")))
+                    .Mappings(m => m.FluentMappings.AddFromAssemblyOf<Setting>())
+                    .BuildSessionFactory();
         }
     }
 }
