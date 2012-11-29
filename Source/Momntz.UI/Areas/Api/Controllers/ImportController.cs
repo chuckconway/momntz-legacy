@@ -1,6 +1,8 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Web;
 using System.Web.Mvc;
+using Momntz.Data.Projections.Import;
 using Momntz.Infrastructure;
 using Momntz.UI.Core;
 using Momntz.UI.Core.ActionFilters;
@@ -13,12 +15,15 @@ namespace Momntz.UI.Areas.Api.Controllers
         /// Initializes a new instance of the <see cref="ImportController" /> class.
         /// </summary>
         /// <param name="commandProcessor">The command processor.</param>
-        public ImportController(ICommandProcessor commandProcessor)
+        /// <param name="processor">The processor.</param>
+        public ImportController(ICommandProcessor commandProcessor, IProjectionProcessor processor)
         {
             _commandProcessor = commandProcessor;
+            _processor = processor;
         }
 
         private readonly ICommandProcessor _commandProcessor;
+        private readonly IProjectionProcessor _processor;
 
         /// <summary>
         /// Adds the momento.
@@ -46,7 +51,9 @@ namespace Momntz.UI.Areas.Api.Controllers
         [ApiAuthorization]
         public ActionResult GetUser(string username)
         {
-            return Json(new {username});
+            Guid apiKey = Guid.Parse(this.ControllerContext.RequestContext.HttpContext.Request.QueryString["key"]);
+           string un = _processor.Process<GetApiUserProjection, string>(new GetApiUserProjection() { Username = username, ApiKey = apiKey });
+            return Json(new {username = un}, JsonRequestBehavior.AllowGet);
         }
 
         private static byte[] GetBytes(HttpPostedFile file)
