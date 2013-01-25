@@ -4,6 +4,7 @@ using Momntz.Data.ProjectionHandlers.Albums;
 using Momntz.Data.Projections;
 using Momntz.Data.Projections.Momentos;
 using Momntz.Infrastructure;
+using Momntz.Infrastructure.Processors;
 using Momntz.UI.Core.Controllers;
 
 namespace Momntz.UI.Areas.Users.Controllers

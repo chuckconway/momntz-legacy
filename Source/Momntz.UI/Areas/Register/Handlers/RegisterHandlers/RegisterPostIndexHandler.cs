@@ -1,6 +1,7 @@
 ﻿using Momntz.Data.Commands.Users;
 using Momntz.Infrastructure;
 using Momntz.Infrastructure.Extensions;
+using Momntz.Infrastructure.Processors;
 using Momntz.UI.Areas.Register.Models;
 using Momntz.UI.Core;
 

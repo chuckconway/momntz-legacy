@@ -1,6 +1,6 @@
 using Momntz.Data.ProjectionHandlers;
 
-namespace Momntz.Infrastructure
+namespace Momntz.Infrastructure.Processors
 {
     public class ProjectionProcessor : IProjectionProcessor
     {

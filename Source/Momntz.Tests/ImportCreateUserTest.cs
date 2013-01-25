@@ -4,6 +4,7 @@ using Hypersonic;
 using Momntz.Data.ProjectionHandlers.Import;
 using Momntz.Data.Projections.Import;
 using Momntz.Infrastructure;
+using Momntz.Infrastructure.Processors;
 using Momntz.Tests.Setup;
 using NUnit.Framework;
 using StructureMap;

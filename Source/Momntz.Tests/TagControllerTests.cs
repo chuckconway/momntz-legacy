@@ -9,6 +9,7 @@ using Momntz.Data.Commands.Momentos;
 using Momntz.Data.Commands.Users;
 using Momntz.Data.ProjectionHandlers.Momentos;
 using Momntz.Infrastructure;
+using Momntz.Infrastructure.Processors;
 using Momntz.Infrastructure.Security;
 using Momntz.Model;
 using Momntz.Model.Configuration;
