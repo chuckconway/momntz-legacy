@@ -5,6 +5,7 @@ using Hypersonic;
 using Momntz.Data.Projections.Import;
 using Momntz.Data.Projections.Users;
 using Momntz.Infrastructure;
+using Momntz.Infrastructure.Processors;
 using Momntz.Model;
 
 namespace Momntz.Data.ProjectionHandlers.Import

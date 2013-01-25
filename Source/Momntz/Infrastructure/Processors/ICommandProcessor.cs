@@ -1,4 +1,4 @@
-﻿namespace Momntz.Infrastructure
+﻿namespace Momntz.Infrastructure.Processors
 {
     public interface ICommandProcessor
     {

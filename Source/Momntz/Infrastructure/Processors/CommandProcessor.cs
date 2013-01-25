@@ -1,6 +1,6 @@
 ﻿using Momntz.Data.CommandHandlers;
 
-namespace Momntz.Infrastructure
+namespace Momntz.Infrastructure.Processors
 {
     public class CommandProcessor : ICommandProcessor
     {

@@ -4,6 +4,7 @@ using FluentNHibernate.Cfg.Db;
 using Hypersonic;
 using Hypersonic.Session;
 using Momntz.Infrastructure;
+using Momntz.Infrastructure.Processors;
 using Momntz.Model.Configuration;
 using Momntz.UI.Core;
 using NHibernate;

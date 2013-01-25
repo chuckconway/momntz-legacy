@@ -29,16 +29,30 @@ namespace Momntz.Infrastructure
             return ObjectFactory.GetInstance(type);
         }
 
+        /// <summary>
+        /// Gets the instances.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns>IList{``0}.</returns>
         public IList<T> GetInstances<T>()
         {
             return ObjectFactory.GetAllInstances<T>();
         }
 
+        /// <summary>
+        /// Gets the instances.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <returns>IList.</returns>
         public IList GetInstances(Type type)
         {
             return ObjectFactory.GetAllInstances(type);
         }
 
+        /// <summary>
+        /// Adds the manifest.
+        /// </summary>
+        /// <param name="manifest">The manifest.</param>
         public void AddManifest(object manifest)
         {
             ObjectFactory.Configure(c => c.AddRegistry((Registry)manifest));
