@@ -101,6 +101,7 @@
     <Compile Include="Data\CommandHandlers\Albums\AddAlbumCommandHandler.cs" />
     <Compile Include="Data\CommandHandlers\Albums\RemoveAlbumCommandHandler.cs" />
     <Compile Include="Data\CommandHandlers\ICommandHandler.cs" />
+    <Compile Include="Data\Mappings\ExifMap.cs" />
     <Compile Include="Data\Mappings\QueueMap.cs" />
     <Compile Include="Data\Mappings\MediaMap.cs" />
     <Compile Include="Data\ProjectionHandlers\Import\GetApiUserCommandHandler.cs" />
