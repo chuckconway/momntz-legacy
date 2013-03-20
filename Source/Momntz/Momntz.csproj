@@ -95,10 +95,14 @@
     <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\DatabaseConfiguration.cs" />
+    <Compile Include="Core\IDatabaseConfiguration.cs" />
     <Compile Include="Core\TypeConverters\CreateMomentoCommandToMomentoConverter.cs" />
     <Compile Include="Data\CommandHandlers\Albums\AddAlbumCommandHandler.cs" />
     <Compile Include="Data\CommandHandlers\Albums\RemoveAlbumCommandHandler.cs" />
     <Compile Include="Data\CommandHandlers\ICommandHandler.cs" />
+    <Compile Include="Data\Mappings\QueueMap.cs" />
+    <Compile Include="Data\Mappings\MediaMap.cs" />
     <Compile Include="Data\ProjectionHandlers\Import\GetApiUserCommandHandler.cs" />
     <Compile Include="Data\CommandHandlers\Momentos\CreateMomentoCommandHandler.cs" />
     <Compile Include="Data\CommandHandlers\Momentos\CreateMomentoMediaCommandHandler.cs" />
@@ -178,11 +182,14 @@
     <Compile Include="Model\Configuration\Setting.cs" />
     <Compile Include="Model\Configuration\Settings.cs" />
     <Compile Include="Model\Core\MediaMessage.cs" />
+    <Compile Include="Model\Exif.cs" />
     <Compile Include="Model\Momento.cs" />
     <Compile Include="Model\MomentoMedia.cs" />
     <Compile Include="Model\MomentoUser.cs" />
     <Compile Include="Model\MomentoVisibility.cs" />
     <Compile Include="Model\Name.cs" />
+    <Compile Include="Model\QueueData\Queue.cs" />
+    <Compile Include="Model\QueueData\Media.cs" />
     <Compile Include="Model\Tag.cs" />
     <Compile Include="Model\TagCollection.cs" />
     <Compile Include="Model\User.cs" />
