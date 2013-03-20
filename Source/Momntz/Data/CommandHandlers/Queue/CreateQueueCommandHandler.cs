@@ -1,4 +1,5 @@
-﻿using Hypersonic;
+﻿using System.Data;
+using Hypersonic;
 using Momntz.Data.Commands.Queue;
 using Momntz.Model.Configuration;
 
@@ -22,6 +23,7 @@ namespace Momntz.Data.CommandHandlers.Queue
         public void Execute(CreateQueueCommand command)
         {
             _database.ConnectionString = _settings.QueueDatabase;
+            _database.CommandType = CommandType.StoredProcedure;
             _database.NonQuery("Queue_Save", new { command.Implementation, command.Payload, MessageStatus = MessageStatus.Queued.ToString() });
         }
     }

@@ -54,9 +54,7 @@ namespace Momntz.Infrastructure
             using (var trans =_session.BeginTransaction())
             {
                 var list = _session.QueryOver<Setting>()
-                    .Where(Restrictions.Or(
-                        Restrictions.Eq("Environment", null),
-                        Restrictions.Eq("Environment", environment)))
+                    .Where(Restrictions.Or(Restrictions.IsNull("Environment"),Restrictions.Eq("Environment", environment)))
                     .List();
 
                 trans.Commit();

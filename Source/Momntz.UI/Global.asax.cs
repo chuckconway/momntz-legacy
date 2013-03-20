@@ -10,6 +10,7 @@ using Chucksoft.Core.Services;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using Hypersonic;
+using Momntz.Core;
 using Momntz.Core.TypeConverters;
 using Momntz.Data.Commands.Momentos;
 using Momntz.Data.ProjectionHandlers.Users;
@@ -82,7 +83,7 @@ namespace Momntz.UI
                 x.AddRegistry<MomntzRegistry>();
                 x.For<IDatabase>().Use(new MsSqlDatabase());
                 x.For<IConfigurationService>().Use<MomntzConfiguration>();
-                x.For<NHibernate.ISession>().HttpContextScoped().Use(CreateSessionFactory().OpenSession);
+                x.For<NHibernate.ISession>().HttpContextScoped().Use(new DatabaseConfiguration().CreateSessionFactory().OpenSession);
                 x.For<IProjectionProcessor>().Use<ProjectionProcessor>();
  
                 s.TheCallingAssembly();
@@ -109,20 +110,6 @@ namespace Momntz.UI
         public static void ConfigureAutoMapper()
         {
             AutoMapper.Mapper.Initialize(c=> c.CreateMap<CreateMomentoCommand, Momento>().ConvertUsing(new CreateMomentoCommandToMomentoConverter()));
-        }
-
-        /// <summary>
-        /// Creates the session factory.
-        /// </summary>
-        /// <returns>ISessionFactory.</returns>
-        private static ISessionFactory CreateSessionFactory()
-        {
-            return Fluently.Configure()
-                    .Database(MsSqlConfiguration.MsSql2012
-                    .ConnectionString(c => c
-                        .FromConnectionStringWithKey("sql")))
-                    .Mappings(m => m.FluentMappings.AddFromAssemblyOf<Setting>())
-                    .BuildSessionFactory();
         }
     }
     
