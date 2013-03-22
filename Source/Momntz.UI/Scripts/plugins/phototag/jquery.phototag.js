@@ -26,7 +26,7 @@
 					label: 'Name'					
 				}
 			},
-			parametersForRequest : ['momento-id'],
+			parametersForRequest : ['momentoid'],
 			literals:{
 				communicationProblem: 'Communication problem, your changes could not be saved',
 				saveTag: 'Ok',
@@ -117,25 +117,25 @@
 					alert(options.literals.communicationProblem);
 			}	
 		};
-		
-		var registerEventsForDeleteLink = function( link, image ){
-			link.click(
-				function(e){
-					e.preventDefault();
-					var tagId = link.attr('href').substring(1);
-					var parameters = getParametersForImage(image);
-					parameters[options.tag.tagIdParameter] = tagId;
-					$.getJSON(options.deleteTagsUrl,parameters,
-						function( data ){
-							if(!data.result)
-								manageError(data);
-						}
-					);
-					$('#' + options.tag.deleteLinkIdPrefix + tagId).parent().remove();
-					$('#' + options.imageWrapBox.tagListRemoveItemIdPrefix + tagId).parent().remove();
-				}
-			);
-		}
+
+	    var registerEventsForDeleteLink = function(link, image) {
+	        link.click(
+	            function(e) {
+	                e.preventDefault();
+	                var tagId = link.attr('href').substring(1);
+	                var parameters = getParametersForImage(image);
+	                parameters[options.tag.tagIdParameter] = tagId;
+	                $.getJSON(options.deleteTagsUrl, parameters,
+	                    function(data) {
+	                        if (!data.result)
+	                            manageError(data);
+	                    }
+	                );
+	                $('#' + options.tag.deleteLinkIdPrefix + tagId).parent().remove();
+	                $('#' + options.imageWrapBox.tagListRemoveItemIdPrefix + tagId).parent().remove();
+	            }
+	        );
+	    };
 		
 		var registerEventsForAddTagLink = function( link, image, image_id ){
 			$(link).click(function(e){
@@ -337,7 +337,7 @@
 			var imageHeight = image.height();
 			var imageWidth = image.width();
 			var canvas = $('<div id="' + options.imageWrapBox.canvasIdPrefix + image_id + '" style="position:relative;height:'+ (imageHeight + options.imageWrapBox.controlPanelHeight) +'px;width:'+ imageWidth +'px;"></div>');
-			var wrapper = $('<div class="' + options.imageWrapBox.cssClass + '" id="' + options.imageWrapBox.idPrefix + image_id +'" style="position:absolute;top:20px;left:0;height:'+ imageHeight +'px;width:'+ imageWidth +'px;"></div>');
+			var wrapper = $('<div class="' + options.imageWrapBox.cssClass + '" id="' + options.imageWrapBox.idPrefix + image_id +'" style="position:absolute;height:'+ imageHeight +'px;width:'+ imageWidth +'px;"></div>');
 			canvas.append(wrapper);
 			var controlPane = $('<div id="'+ options.imageWrapBox.controlPaneIdPrefix + image_id +'"></div>');
 			canvas.append(controlPane);
