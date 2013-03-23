@@ -1,0 +1,7 @@
+﻿@model List<Momntz.Data.Projections.IGroupItem>
+
+@{
+    Layout = "/Views/Shared/LoggedInUser.cshtml";
+}
+
+@{ Html.RenderPartial("_AlbumPartialView", Model); }
