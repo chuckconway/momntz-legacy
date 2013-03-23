@@ -1080,6 +1080,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Users\Views\Albums\Name.cshtml" />
+    <None Include="Properties\PublishProfiles\Dev.pubxml" />
     <None Include="Properties\PublishProfiles\Preview.pubxml" />
     <Content Include="Views\Shared\_GroupPartialView.cshtml" />
     <Content Include="Views\Shared\_AlbumPartialView.cshtml" />
@@ -1161,6 +1162,11 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <IncludeIisSettings>false</IncludeIisSettings>
+    <PublishDatabases>false</PublishDatabases>
+    <IncludeAppPool>false</IncludeAppPool>
+    <FilesToIncludeForPublish>OnlyFilesToRunTheApp</FilesToIncludeForPublish>
+    <ExcludeGeneratedDebugSymbol>true</ExcludeGeneratedDebugSymbol>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'QA|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
