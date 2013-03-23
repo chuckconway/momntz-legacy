@@ -1,0 +1,75 @@
+@using SquishIt.Framework
+@using SquishIt.Mvc
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Momntz UI Prototype</title>
+        
+        @(Bundle.Css()
+        .Add("/content/css/reset1.css")
+        .Add("/content/css/site1.css")
+        .Add("/Scripts/plugins/fancybox/jquery.fancybox-1.3.4.css")
+        .Add("/Content/css/flick/jquery-ui.css")
+        .Add("/Scripts/plugins/tagit/css/jquery.tagit.css")
+        .Add("/Scripts/plugins/phototag/jquery-ui-1.8.17.custom.css")
+        .MvcRender("/content/combined_#.css")
+        )
+        
+        @(Bundle.JavaScript()
+        .Add("/scripts/jquery.js")
+        .Add("/Scripts/plugins/masonry/jquery.imagesloaded.min.js")
+        .Add("/Scripts/plugins/masonry/jquery.masonry.min.js")
+        .Add("/Scripts/plugins/fancybox/fancybox.js")
+        .Add("/Scripts/plugins/phototag/jquery.phototag.js")
+        .Add("/Scripts/libraries/jquery-ui-1.10.2/ui/jquery-ui.js")
+        .Add("/Scripts/plugins/tagit/tag-it.js")
+        .Add("~/Scripts/plugins/fancybox/afterLoad.js")
+        .MvcRender("/scripts/combined_#.js")
+        )
+	    @RenderSection("Head", required: false)
+	</head>
+    <body>
+        <div style="height: 20px;border-bottom: 1px solid #ddd;margin-bottom: 50px;padding: 5px;" class="header">
+            <div style="width:33%;display: inline-block;" >Momntz</div>
+            <div style="width:33%;display: inline-block;" >
+                <a href="#">about</a>
+            </div>
+            <div style="width:33%;display: inline-block;text-align: right;" >login</div>
+        </div>
+        <div id="container" class="clearfix">
+            @RenderBody()
+        </div>
+        
+        @RenderSection("PageBottom", false)
+
+        <script type="text/javascript">
+            var $container = $('#container');
+
+            $container.imagesLoaded(function () {
+                $container.masonry({
+                    itemSelector: '.box'
+                });
+            });
+
+            $(function() {
+
+                // Lightbox Init
+                var fancyboxArgs = {
+                    padding: 0,
+                    overlayColor: "#000",
+                    autoScale: false,
+                    overlayOpacity: 0.85,
+                    loadDetails: function (container, image) {
+
+                        var view = new afterLoad();
+                        view.load(this, container, image);
+                    }
+                };
+                $("a[rel='gallery'], a[rel='lightbox'], .gallery-icon a, .colorbox").fancybox(fancyboxArgs);
+
+            });
+
+        </script>
+
+    </body>
+</html>
