@@ -1,0 +1,21 @@
+﻿@model Momntz.Data.Projections.Momentos.MomentoWithMedia
+
+@{
+    ViewBag.Title = "title";
+    Layout = "/Views/Shared/_MasonryMaster.cshtml";
+}
+
+<div id="singlecontent">
+    <img class="content" src="@Model.Media.Url" title="@Model.Momento.Title" />
+    <div id="details" >
+        
+        <div>
+            <span id="title">@Model.Momento.Title</span>
+            <span id="uploaded">Uploaded by <a href="/@Model.Momento.Username">@Model.Momento.Username</a> </span>
+        </div>
+        
+        <div id="story">
+            @Model.Momento.Story
+        </div>
+    </div>
+</div>

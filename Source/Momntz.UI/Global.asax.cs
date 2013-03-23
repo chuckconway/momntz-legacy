@@ -29,6 +29,8 @@ namespace Momntz.UI
     {
         protected void Application_Start()
         {
+            RegisterDependencyInjection();
+
             AreaRegistration.RegisterAllAreas();
 
             WebApiConfig.Register(GlobalConfiguration.Configuration);
@@ -36,6 +38,8 @@ namespace Momntz.UI
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
+
+            
         }
 
                 /// <summary> Registers the global filters described by filters. </summary>

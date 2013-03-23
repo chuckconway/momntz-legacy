@@ -42,6 +42,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <SqlTargetName>Momntz</SqlTargetName>
+    <OutputPath>E:\Projects\Momntz\Source\Momntz.Database\bin\</OutputPath>
   </PropertyGroup>
   <!-- VS10 without SP1 will not have VisualStudioVersion set, so do that here -->
   <PropertyGroup />
@@ -137,6 +138,8 @@
     <Build Include="dbo\Stored Procedures\Exif_InsertExif.sql" />
     <Build Include="dbo\User Defined Types\ExifCollection.sql" />
     <Build Include="dbo\Stored Procedures\MomentoMedia_GetByMomentoIdAndMediaType.sql" />
+    <Build Include="Security\momntz_1.sql" />
+    <Build Include="dbo\Stored Procedures\Momento_RetrieveById.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Data.sql" />
