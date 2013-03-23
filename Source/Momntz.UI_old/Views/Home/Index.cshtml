@@ -1,0 +1,25 @@
+﻿@model IList<Momntz.Data.Projections.Momentos.MomentoWithMedia>
+@{
+    ViewBag.Title = "Home.cshtml";
+    Layout = "~/Views/Shared/_MasonryMaster.cshtml";
+}
+
+@foreach (var item in Model)
+{
+    <div class="box photo col3">
+        <a href="@item.Media.Url" id="@item.Momento.Id" rel="lightbox"  title="@item.Momento.Title"><img class="phototag" src="@item.Media.Url" data-momentoid="@item.Momento.Id" alt="@item.Momento.Title" title="@item.Momento.Title" /></a>
+        <div class="details" >
+            @if (!string.IsNullOrEmpty(@item.Momento.Title))
+            {
+                <label class="title">@item.Momento.Title</label>
+            }
+            
+            @if (!string.IsNullOrEmpty(@item.Momento.Title))
+            {
+                <div class="description">@item.Momento.Story</div>
+            }
+            <hr style="border:none;border-top:1px solid #eee;margin:0;" />
+            <img style="float: left;margin:5px;" src="~/Content/comments.png" /> <img style="float: right;margin:5px;" src="~/Content/link.png" />
+        </div>
+	</div>
+}
