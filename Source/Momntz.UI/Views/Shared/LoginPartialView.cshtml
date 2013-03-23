@@ -1,0 +1,16 @@
+﻿@using Momntz.UI.Core.Controllers
+@if (string.IsNullOrEmpty(BaseController.AuthenticatedUsername()))
+{
+   <ul id="menu" ><li><a  href="/login" >Login</a></li></ul>
+}
+else
+{
+        <ul id="menu">
+        <li class="loginname" ><a href="/@BaseController.AuthenticatedUsername()/">@BaseController.GetDisplayName(BaseController.AuthenticatedUsername())</a>
+        <ul>
+        <li><a href="/@BaseController.AuthenticatedUsername()/settings">Settings</a></li>
+        <li><a href="/signout">Sign Out</a></li>
+        </ul>
+        </li>
+    </ul>
+}
