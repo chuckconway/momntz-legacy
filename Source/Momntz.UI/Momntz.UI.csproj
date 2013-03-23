@@ -978,6 +978,7 @@
     <Content Include="Scripts\plugins\uploadify\jquery.uploadifive-v1.0.min.js">
       <DependentUpon>jquery.uploadifive-v1.0.js</DependentUpon>
     </Content>
+    <Content Include="version.txt" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
