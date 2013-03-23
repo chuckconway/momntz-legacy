@@ -29,13 +29,23 @@
 	    @RenderSection("Head", required: false)
 	</head>
     <body>
-        <div style="height: 20px;border-bottom: 1px solid #ddd;margin-bottom: 50px;padding: 5px;" class="header">
-            <div style="width:33%;display: inline-block;" >Momntz</div>
-            <div style="width:33%;display: inline-block;" >
-                <a href="#">about</a>
+        
+        @if (IsSectionDefined("Header"))
+        {
+            @RenderSection("Header", false)
+        }
+        else
+        {
+            <div style="" id="header">
+                <div class="col" >Momntz</div>
+                <div class="col">
+                    <form style="width:350px;margin-left: auto; margin-right: auto;" >
+                        <input name="search" type="text" style="width: 200px;"  /> <input type="submit" value="Search"   />
+                    </form>
+                </div>
+                <div class="col col3" >login</div>
             </div>
-            <div style="width:33%;display: inline-block;text-align: right;" >login</div>
-        </div>
+        }
         <div id="container" class="clearfix">
             @RenderBody()
         </div>
@@ -66,7 +76,6 @@
                     }
                 };
                 $("a[rel='gallery'], a[rel='lightbox'], .gallery-icon a, .colorbox").fancybox(fancyboxArgs);
-
             });
 
         </script>
