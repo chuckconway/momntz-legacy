@@ -1,41 +1,61 @@
-﻿@model dynamic
+﻿@using SquishIt.Framework
+@using SquishIt.Mvc
+@model Momntz.UI.Areas.Register.Models.RegisterIndexModel
 
 @{
     ViewBag.Title = "Momntz - Register";
-    Layout = "/Views/Shared/_Layout.cshtml";
+    Layout = "/Views/Shared/_MasonryMaster.cshtml";
 }
 
-@using (Html.BeginForm()){
+@section Head{
+    
+    @(
+        Bundle.JavaScript()
+              .Add("/Scripts/plugins/validation/jquery.mobile.validation.js")
+              .MvcRender("/scripts/validation_#.css")
 
-    <ul>
-        <li>
-            @Html.Label("Username")
-            @Html.TextBox("username")
-        </li>
-    
-        <li>
-            @Html.Label("Email")
-            @Html.TextBox("email")
-        </li>
+    )
 
-        <li>
-            @Html.Label("First Name")
-            @Html.TextBox("firstname")
-        </li>
-    
-        <li>
-            @Html.Label("Last Name")
-            @Html.TextBox("lastname")
-        </li>
-    
-        <li>
-            @Html.Label("Password")
-            @Html.TextBox("password")
-        </li>
-    
-        <li>
-            <input type="submit" value="Register" />
-        </li>
+    <script language="javascript" >
+        $(function () {
+            $('form#register').validate();
+        });
+    </script>
+}
 
-    </ul>
- }
+<div id="singlecontent">
+    <div id="formcontainer" >
+        
+        <h1>Create your account</h1>
+
+        <form id="register" action="/register/index" method="post"> 
+
+            <p>
+                @Html.Label("Username")
+               @Html.TextBoxFor(m=>m.Username, new{@class="required", title="Username"})
+            </p>
+            <p>
+                @Html.Label("Email")
+                @Html.TextBoxFor(m=>m.Email, new{@class="required", title="Email"})
+            </p>
+            <p>
+                @Html.Label("First Name")
+                @Html.TextBoxFor(m=>m.FirstName, new{@class="required", title="First Name"})
+            </p>
+            <p>
+                @Html.Label("Last Name")
+                @Html.TextBoxFor(m=>m.LastName, new{@class="required", title="Last name"})
+            </p>
+            <p>
+                @Html.Label("Display Name")
+                @Html.TextBoxFor(m=>m.DisplayName, new{@class="required", title="Display Name"})
+            </p>
+            <p>
+                @Html.Label("Password")
+                @Html.PasswordFor(m=>m.Password, new{@class="required", title="Password"})
+            </p>
+        
+            <p><input type="submit" value="Register" /></p>
+        </form>
+    </div>
+</div>

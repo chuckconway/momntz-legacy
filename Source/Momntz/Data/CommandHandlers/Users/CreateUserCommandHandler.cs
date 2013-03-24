@@ -1,7 +1,7 @@
 ﻿using System.Data;
+using ChuckConway.Cryptography;
 using Hypersonic;
 using Momntz.Data.Commands.Users;
-using Momntz.Infrastructure.Security;
 
 namespace Momntz.Data.CommandHandlers.Users
 {

@@ -2,6 +2,10 @@
 {
     public class CreateUserCommand : ICommand
     {
+        public CreateUserCommand()
+        {
+            
+        }
 
         /// <summary> Gets or sets the username. </summary>
         /// <value> The username. </value>

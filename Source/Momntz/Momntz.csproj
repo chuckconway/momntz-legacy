@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Momntz</RootNamespace>
     <AssemblyName>Momntz</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'LOCAL|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -20,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DEV|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
@@ -29,6 +31,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'QA|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
@@ -38,6 +41,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'PROD|AnyCPU'">
     <OutputPath>bin\PROD\</OutputPath>
@@ -47,13 +51,14 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AutoMapper">
       <HintPath>..\..\Dependencies\Automapper\AutoMapper.dll</HintPath>
     </Reference>
-    <Reference Include="Chucksoft.Core">
-      <HintPath>..\..\Dependencies\Chucksoft\Chucksoft.Core.dll</HintPath>
+    <Reference Include="ChuckConway">
+      <HintPath>..\..\Dependencies\ChuckConway\ChuckConway.dll</HintPath>
     </Reference>
     <Reference Include="FluentNHibernate">
       <HintPath>..\..\Dependencies\nHibernate\FluentNHibernate.dll</HintPath>
@@ -63,6 +68,10 @@
     </Reference>
     <Reference Include="Iesi.Collections">
       <HintPath>..\..\Dependencies\nHibernate\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.StorageClient, Version=1.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Momntz.Worker\Dependencies\Momntz\Microsoft.WindowsAzure.StorageClient.dll</HintPath>
     </Reference>
     <Reference Include="NHibernate">
       <HintPath>..\..\Dependencies\nHibernate\NHibernate.dll</HintPath>
@@ -150,6 +159,8 @@
     <Compile Include="Data\Projections\Users\AuthenticatedUser.cs" />
     <Compile Include="Data\Projections\Users\CreateUsername.cs" />
     <Compile Include="Data\Projections\Users\DisplayName.cs" />
+    <Compile Include="Infrastructure\AzureStorage.cs" />
+    <Compile Include="Infrastructure\IStorage.cs" />
     <Compile Include="Infrastructure\Processors\CommandProcessor.cs" />
     <Compile Include="Infrastructure\Extensions\MapperExtensions.cs" />
     <Compile Include="Infrastructure\Processors\ICommandProcessor.cs" />
@@ -159,8 +170,6 @@
     <Compile Include="Infrastructure\Mapper.cs" />
     <Compile Include="Infrastructure\MomntzConfiguration.cs" />
     <Compile Include="Infrastructure\Processors\ProjectionProcessor.cs" />
-    <Compile Include="Infrastructure\Security\Crypto.cs" />
-    <Compile Include="Infrastructure\Security\ICrypto.cs" />
     <Compile Include="Infrastructure\StructureMapInjection.cs" />
     <Compile Include="Model\Configuration\ISettings.cs" />
     <Compile Include="Model\Configuration\Setting.cs" />

@@ -1,5 +1,5 @@
 ﻿using System;
-using Chucksoft.Core.Services;
+using Momntz.Infrastructure;
 
 namespace Momntz.Model.Configuration
 {

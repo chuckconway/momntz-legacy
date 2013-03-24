@@ -17,7 +17,7 @@ namespace Momntz.UI.Areas.Register
             context.MapRoute(
                 "Register_default",
                 "Register/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                new {controller="Index", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

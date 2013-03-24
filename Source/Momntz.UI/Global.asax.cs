@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using Chucksoft.Core.Services;
+using ChuckConway.Cryptography;
 using Hypersonic;
 using Momntz.Core;
 using Momntz.Core.TypeConverters;
@@ -61,6 +60,7 @@ namespace Momntz.UI
             {
                 x.AddRegistry<MomntzRegistry>();
                 x.For<IDatabase>().Use(new MsSqlDatabase());
+                x.For<ICrypto>().Use<Crypto>();
                 x.For<IConfigurationService>().Use<MomntzConfiguration>();
                 x.For<NHibernate.ISession>().HttpContextScoped().Use(new DatabaseConfiguration().CreateSessionFactory().OpenSession);
                 x.For<IProjectionProcessor>().Use<ProjectionProcessor>();
