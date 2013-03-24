@@ -13,6 +13,26 @@ a, a.more-link p{
     }
 
 /*
+    BEGIN General Forms
+*/
+
+input { border-radius: 5px;padding: 5px;border: 1px solid #ddd; }
+
+div#formcontainer { padding: 20px;}
+div#formcontainer h1 { font-size: 20px;margin-top: 20px;margin-bottom: 10px;}
+form p input[type=text] {width: 200px;}
+form p {margin-bottom: 20px;}
+form p input[type=submit] { margin-bottom: 20px;}
+form p label { display: block;color: #666;}
+
+label.field-validation-invalid, label.field-validation-error { color: red;}
+
+
+/*
+    End General forms
+*/
+
+/*
     BEGIN Header
 */
 

@@ -1,10 +1,6 @@
-﻿using FluentNHibernate.Cfg;
-using FluentNHibernate.Cfg.Db;
-using Momntz.Data.CommandHandlers;
+﻿using Momntz.Data.CommandHandlers;
 using Momntz.Data.ProjectionHandlers;
 using Momntz.Infrastructure;
-using Momntz.Model.Configuration;
-using NHibernate;
 using StructureMap.Configuration.DSL;
 
 namespace Momntz

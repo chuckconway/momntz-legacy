@@ -1,6 +1,7 @@
-﻿using Hypersonic;
+﻿using ChuckConway.Cryptography;
+using Hypersonic;
 using Momntz.Data.Projections.Users;
-using Momntz.Infrastructure.Security;
+
 using Momntz.Model;
 
 namespace Momntz.Data.ProjectionHandlers.Users

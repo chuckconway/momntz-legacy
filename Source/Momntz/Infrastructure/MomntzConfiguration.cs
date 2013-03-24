@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
-using Chucksoft.Core.Services;
 using System.Linq;
 using Momntz.Model.Configuration;
 using NHibernate;
@@ -63,5 +62,15 @@ namespace Momntz.Infrastructure
             }
             
         }
+    }
+
+    public interface IConfigurationService
+    {
+        /// <summary>
+        /// Gets the value by key.
+        /// </summary>
+        /// <param name="key">The key.</param>
+        /// <returns>System.String.</returns>
+        string GetValueByKey(string key);
     }
 }

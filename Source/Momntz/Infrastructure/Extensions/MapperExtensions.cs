@@ -1,6 +1,4 @@
-﻿using AutoMapper;
-
-namespace Momntz.Infrastructure.Extensions
+﻿namespace Momntz.Infrastructure.Extensions
 {
     public static class MapperExtensions
     {

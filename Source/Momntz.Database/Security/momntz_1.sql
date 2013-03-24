@@ -1,2 +1,2 @@
-﻿CREATE USER [momntz] FOR LOGIN [momntz];
+﻿--CREATE USER [momntz] FOR LOGIN [momntz];
 

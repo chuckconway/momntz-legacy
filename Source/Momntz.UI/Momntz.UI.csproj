@@ -43,21 +43,16 @@
     <Reference Include="AutoMapper">
       <HintPath>..\..\Dependencies\Automapper\AutoMapper.dll</HintPath>
     </Reference>
-    <Reference Include="Chucksoft.Core">
-      <HintPath>..\..\Dependencies\Chucksoft\Chucksoft.Core.dll</HintPath>
+    <Reference Include="ChuckConway, Version=1.0.0.1, Culture=neutral, PublicKeyToken=1be0efc4250339a2, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Dependencies\ChuckConway\ChuckConway.dll</HintPath>
     </Reference>
     <Reference Include="Hypersonic">
       <HintPath>..\..\Dependencies\Hypersonic\Hypersonic.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="NHibernate">
       <HintPath>..\..\Dependencies\nHibernate\NHibernate.dll</HintPath>
-    </Reference>
-    <Reference Include="RestSharp">
-      <HintPath>..\..\Dependencies\RestSharp\RestSharp.dll</HintPath>
     </Reference>
     <Reference Include="SquishIt.Framework">
       <HintPath>..\packages\SquishIt.0.9.2\lib\SquishIt.Framework.dll</HintPath>
@@ -133,6 +128,7 @@
     <Compile Include="Core\Controllers\BaseController.cs" />
     <Compile Include="Core\FluentValidationIOCFactory.cs" />
     <Compile Include="Core\HandlerBase.cs" />
+    <Compile Include="Core\HtmlHelpers\InputExtensions.cs" />
     <Compile Include="Core\IFormHandler.cs" />
     <Compile Include="Core\IQueryHandler.cs" />
     <Compile Include="Core\MomentoUploader.cs" />
@@ -955,6 +951,7 @@
     <Content Include="Scripts\plugins\tagit\tag-it.js" />
     <Content Include="Scripts\plugins\uploadify\jquery.uploadifive-v1.0.js" />
     <Content Include="Scripts\plugins\uploadify\jquery.uploadifive-v1.0.min.js" />
+    <Content Include="Scripts\plugins\validation\jquery.mobile.validation.js" />
     <Content Include="version.txt" />
   </ItemGroup>
   <ItemGroup>
