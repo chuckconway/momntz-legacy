@@ -1,0 +1,11 @@
+﻿@model Momntz.UI.Areas.Users.Models.ISignedUser
+
+    <ul class="navigation">
+        <li><a href="/@Model.Username" title="@Model.Username homepage" >Home</a></li>
+        @if (Model.IsAuthenticatedUser)
+        {
+            <li><a href="/@Model.Username/upload" title="Upload photos" >Upload</a></li>
+        }
+        <li><a href="/@Model.Username/albums" title="View albums" >Albums</a></li>
+        <li><a href="/@Model.Username/connections" title="View connections" >Connections</a></li>
+    </ul>

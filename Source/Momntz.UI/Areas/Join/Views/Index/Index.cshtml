@@ -1,6 +1,6 @@
 ﻿@using SquishIt.Framework
 @using SquishIt.Mvc
-@model Momntz.UI.Areas.Register.Models.RegisterIndexModel
+@model Momntz.UI.Areas.Join.Models.JoinIndexModel
 
 @{
     ViewBag.Title = "Momntz - Register";
@@ -16,7 +16,7 @@
 
     )
 
-    <script language="javascript" >
+    <script >
         $(function () {
             $('form#register').validate();
         });
@@ -24,11 +24,11 @@
 }
 
 <div id="singlecontent">
-    <div id="formcontainer" >
+    <div class="formcontainer" >
         
         <h1>Create your account</h1>
 
-        <form id="register" action="/register/index" method="post"> 
+        <form id="register" action="/join/index" method="post"> 
 
             <p>
                 @Html.Label("Username")
@@ -55,7 +55,7 @@
                 @Html.PasswordFor(m=>m.Password, new{@class="required", title="Password"})
             </p>
         
-            <p><input type="submit" value="Register" /></p>
+            <p><input type="submit" value="Create Account" /></p>
         </form>
     </div>
 </div>

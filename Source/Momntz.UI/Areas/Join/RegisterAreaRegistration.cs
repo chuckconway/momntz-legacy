@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace Momntz.UI.Areas.Register
+namespace Momntz.UI.Areas.Join
 {
     public class RegisterAreaRegistration : AreaRegistration
     {
@@ -8,15 +8,15 @@ namespace Momntz.UI.Areas.Register
         {
             get
             {
-                return "Register";
+                return "Join";
             }
         }
 
         public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
-                "Register_default",
-                "Register/{controller}/{action}/{id}",
+                "Join_default",
+                "Join/{controller}/{action}/{id}",
                 new {controller="Index", action = "Index", id = UrlParameter.Optional }
             );
         }

@@ -16,11 +16,11 @@ a, a.more-link p{
     BEGIN General Forms
 */
 
-input { border-radius: 5px;padding: 5px;border: 1px solid #ddd; }
+input { border-radius: 3px;padding: 5px;border: 1px solid #ddd; }
 
-div#formcontainer { padding: 20px;}
-div#formcontainer h1 { font-size: 20px;margin-top: 20px;margin-bottom: 10px;}
-form p input[type=text] {width: 200px;}
+div.formcontainer { padding: 20px;}
+div.formcontainer h1 { font-size: 20px;margin-top: 20px;margin-bottom: 30px;}
+form p input[type=text], form p input[type=password] {width: 200px;}
 form p {margin-bottom: 20px;}
 form p input[type=submit] { margin-bottom: 20px;}
 form p label { display: block;color: #666;}
@@ -37,13 +37,25 @@ label.field-validation-invalid, label.field-validation-error { color: red;}
 */
 
 div#header {height: 100px; border-bottom: 1px solid #ccc; margin-bottom: 50px; padding: 5px; background-color: #fff;}
-div#header div.col {width: 33%; display: inline-block;}
+div#header div.col {width: 33%; display: inline-block;margin-top: 20px;vertical-align: top;}
 div#header div.col3{ text-align: right;}
 
 
  /*
     END Header
  */
+
+ /*
+    BEGIN Nav
+*/
+
+ul.navigation li { display: inline;list-style: none;margin-left: 10px;}
+ul.navigation {width: 265px;margin-left: auto;margin-right: auto;}
+
+ /*
+    END Nav
+ */
+
  
  /*
     BEGIN Image Thumbnail styles
@@ -69,6 +81,17 @@ div#singlecontent div#details span#title { display: block;font-size: 14px;font-w
 div#singlecontent div#details span#uploaded { color: #666;font-size: 11px;margin: 0;}
 div#singlecontent div#details span#uploaded a { margin: 0;}
 div#singlecontent div#details div#story { margin-top: 20px;color: #666;}
+
+   /*
+    END Single Image Page 
+ */
+
+ /*
+    BEGIN login Page 
+ */
+
+.loginform { width: 250px;height: 325px;background-color: #fff;border-radius: 5px;padding: 20px;box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);}
+.centered { position: fixed; top: 50%; left: 50%; margin-top: -162px; margin-left: -125px;}
 
    /*
     END Single Image Page 

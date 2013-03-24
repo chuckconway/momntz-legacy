@@ -1,7 +1,12 @@
-﻿@model IList<Momntz.Data.Projections.Momentos.MomentoWithMedia>
+﻿@model Momntz.UI.Areas.Users.Models.UserView 
 
 @{
     Layout = "~/Views/Shared/_MasonryMaster.cshtml";
 }
 
-@{ Html.RenderPartial("_MasonryPartial", Model); }
+@section Navigation
+{
+    @{ Html.RenderPartial("/Areas/Users/Views/Shared/_MasonryNavigationPartial.cshtml", Model); }
+}
+
+@{ Html.RenderPartial("_MasonryPartial", Model.Momentos); }
