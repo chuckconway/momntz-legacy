@@ -1,6 +1,6 @@
-﻿namespace Momntz.UI.Areas.Register.Models
+﻿namespace Momntz.UI.Areas.Join.Models
 {
-    public class RegisterIndexModel
+    public class JoinIndexModel
     {
         /// <summary> Gets or sets the username. </summary>
         /// <value> The username. </value>

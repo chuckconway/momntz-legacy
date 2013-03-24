@@ -1,5 +1,6 @@
 ﻿using System.Web;
 using System.Web.Mvc;
+using Momntz.UI.Areas.Users.Models;
 using Momntz.UI.Core.Controllers;
 
 
@@ -7,28 +8,30 @@ namespace Momntz.UI.Areas.Users.Controllers
 {
     public class UploadController : BaseController
     {
+        /// <summary>
+        /// Indexes this instance.
+        /// </summary>
+        /// <returns>ActionResult.</returns>
         [HttpGet]
         public ActionResult Index()
         {
-            return View();
+            string landingPageUser = CurrentLandingPageUsername();
+            bool isSignedIn = IsAuthenticatedUser(landingPageUser);
+
+            return View(new UploadView(){IsAuthenticatedUser = isSignedIn, Username = landingPageUser});
         }
 
+        /// <summary>
+        /// Indexes the specified filedata.
+        /// </summary>
+        /// <param name="filedata">The filedata.</param>
+        /// <returns>ActionResult.</returns>
         [HttpPost]
         public ActionResult Index(HttpPostedFileBase filedata)
         {
-            //IStorage storage = new AzureStorage();
-            //storage.AddFile("img", filedata.FileName, filedata.ContentType, filedata.InputStream);
-            
+           
             return Content("Error");
         }
-
-        //public ActionResult Test()
-        //{
-        //    CreateMediaCommandTests tests = new CreateMediaCommandTests();
-        //    tests.CreateMedia_InsertNewMedia_IsCorrectlyInsertedIntoTheQueueDatabase();
-
-        //    return Content("");
-        //}
 
     }
 }

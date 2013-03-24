@@ -288,7 +288,7 @@ function readView() {
         }
         
         addedBy.text('Added by ').append(jQuery('<a>').attr('href', '/' + data.AddedUsername + '/').text(data.DisplayName));
-        addedDate.text('on ').append(jQuery('<a>').attr('href', '/' + data.AddedUsername + '/added/' + data.AddedUrl).text(data.Added));
+        addedDate.text('on ').append(jQuery('<a>').attr('href', '/' + data.AddedUsername + '/' + data.AddedUrl).text(data.Added));
         
         jQuery('img.phototag', image).photoTag({
             requesTagstUrl: '/api/tags/retrieve',

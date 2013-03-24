@@ -1,12 +1,12 @@
 ﻿using Momntz.Data.Commands.Users;
 using Momntz.Infrastructure.Extensions;
 using Momntz.Infrastructure.Processors;
-using Momntz.UI.Areas.Register.Models;
+using Momntz.UI.Areas.Join.Models;
 using Momntz.UI.Core;
 
 namespace Momntz.UI.Areas.Register.Handlers.RegisterHandlers
 {
-    public class RegisterPostIndexHandler : HandlerBase, IFormHandler<RegisterIndexModel>
+    public class RegisterPostIndexHandler : HandlerBase, IFormHandler<JoinIndexModel>
     {
         private readonly ICommandProcessor _processor;
 
@@ -19,7 +19,7 @@ namespace Momntz.UI.Areas.Register.Handlers.RegisterHandlers
 
         /// <summary> Handles the model. </summary>
         /// <param name="model"> The model. </param>
-        public void Handle(RegisterIndexModel model)
+        public void Handle(JoinIndexModel model)
         {
             var command = model.To<CreateUserCommand>();
             command.CreatedBy = command.Username;

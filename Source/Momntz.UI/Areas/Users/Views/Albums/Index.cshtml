@@ -1,7 +1,13 @@
-﻿@model List<Momntz.Data.Projections.IGroupItem>
+﻿@model Momntz.UI.Areas.Users.Models.GroupView
 
 @{
-    Layout = "/Views/Shared/LoggedInUser.cshtml";
+    Layout = "~/Views/Shared/_MasonryMaster.cshtml";
+
 }
 
-@{ Html.RenderPartial("_AlbumPartialView", Model); }
+@section Navigation
+{
+    @{ Html.RenderPartial("/Areas/Users/Views/Shared/_MasonryNavigationPartial.cshtml", Model); }
+}
+
+@{ Html.RenderPartial("_AlbumPartialView", Model.Items); }

@@ -37,13 +37,20 @@
         else
         {
             <div style="" id="header">
-                <div class="col" >Momntz</div>
-                <div class="col">
-                    <form style="width:350px;margin-left: auto; margin-right: auto;" >
-                        <input name="search" type="text" style="width: 200px;"  /> <input type="submit" value="Search"   />
+                <div class="col" >
+                   <form style="margin-left: 30px;" >
+                        <input name="search" type="text" style="width: 200px;"  /> <input type="submit" value="Search"  style="color:#aaa;background-color:#f9f9f9;"  />
                     </form>
                 </div>
-                <div class="col col3" >login</div>
+                <div class="col">
+                    <div style="width:120px;margin-left: auto; margin-right: auto;">
+                        <a href="/"><img src="/Content/images/momntzlogo.PNG" /></a>
+                    </div>
+                    @RenderSection("Navigation", false)
+                </div>
+                <div class="col col3" >
+                    <a href="/login" title="Login into Momntz" >login</a> | <a href="/join" title="Join Momntz" >sign up</a>
+                </div>
             </div>
         }
         <div id="container" class="clearfix">

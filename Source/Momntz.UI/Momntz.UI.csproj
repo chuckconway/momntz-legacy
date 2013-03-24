@@ -51,6 +51,9 @@
       <HintPath>..\..\Dependencies\Hypersonic\Hypersonic.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="NHibernate">
       <HintPath>..\..\Dependencies\nHibernate\NHibernate.dll</HintPath>
     </Reference>
@@ -102,10 +105,10 @@
     <Compile Include="Areas\Api\Models\AutoComplete.cs" />
     <Compile Include="Areas\Api\Models\NewTag.cs" />
     <Compile Include="Areas\Api\Models\PeopleView.cs" />
-    <Compile Include="Areas\Register\Controllers\IndexController.cs" />
-    <Compile Include="Areas\Register\Handlers\RegisterHandlers\RegisterPostIndexHandler.cs" />
-    <Compile Include="Areas\Register\Models\RegisterIndexModel.cs" />
-    <Compile Include="Areas\Register\RegisterAreaRegistration.cs" />
+    <Compile Include="Areas\Join\Controllers\IndexController.cs" />
+    <Compile Include="Areas\Join\Handlers\RegisterHandlers\RegisterPostIndexHandler.cs" />
+    <Compile Include="Areas\Join\Models\RegisterIndexModel.cs" />
+    <Compile Include="Areas\Join\RegisterAreaRegistration.cs" />
     <Compile Include="Areas\Users\Controllers\AlbumsController.cs" />
     <Compile Include="Areas\Users\Controllers\ConnectionsController.cs" />
     <Compile Include="Areas\Users\Controllers\DateController.cs" />
@@ -114,6 +117,10 @@
     <Compile Include="Areas\Users\Controllers\SettingsController.cs" />
     <Compile Include="Areas\Users\Controllers\UploadController.cs" />
     <Compile Include="Areas\Users\Handlers\Index\GetMomentosUserPageHandler.cs" />
+    <Compile Include="Areas\Users\Models\AlbumView.cs" />
+    <Compile Include="Areas\Users\Models\ISignedUser.cs" />
+    <Compile Include="Areas\Users\Models\UploadView.cs" />
+    <Compile Include="Areas\Users\Models\UserView.cs" />
     <Compile Include="Areas\Users\UsersAreaRegistration.cs" />
     <Compile Include="Controllers\ForgotController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -179,6 +186,7 @@
     <Content Include="Content\images\left-ar.png" />
     <Content Include="Content\images\link-ic-light.png" />
     <Content Include="Content\images\link-ic.png" />
+    <Content Include="Content\images\momntzlogo.PNG" />
     <Content Include="Content\images\noise-2.png" />
     <Content Include="Content\images\parent-bg.png" />
     <Content Include="Content\images\play.png" />
@@ -956,14 +964,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Api\Views\Shared\" />
-    <Folder Include="Areas\Register\Views\Shared\" />
-    <Folder Include="Areas\Users\Models\" />
-    <Folder Include="Areas\Users\Views\Shared\" />
+    <Folder Include="Areas\Join\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Api\Views\Web.config" />
-    <Content Include="Areas\Register\Views\Index\Index.cshtml" />
-    <Content Include="Areas\Register\Views\Web.config" />
+    <Content Include="Areas\Join\Views\Index\Index.cshtml" />
+    <Content Include="Areas\Join\Views\Web.config" />
     <Content Include="Areas\Users\Views\Albums\Index.cshtml" />
     <Content Include="Areas\Users\Views\Albums\Name.cshtml" />
     <Content Include="Areas\Users\Views\Connections\Index.cshtml" />
@@ -1037,6 +1043,8 @@
     <Content Include="Web.config" />
     <Content Include="Areas\Users\Views\Media\Index.cshtml" />
     <Content Include="Views\Shared\_MasonryPartial.cshtml" />
+    <Content Include="Areas\Users\Views\Shared\_MasonryNavigationPartial.cshtml" />
+    <Content Include="Areas\Users\Views\Date\Index.cshtml" />
     <None Include="Web.LOCAL.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -2,42 +2,32 @@
 
 @{
     ViewBag.Title = "title";
-    Layout = "/Views/Shared/_LoginMaster.cshtml";
+    Layout = "/Views/Shared/_MasonryMaster.cshtml";
 }
 
 @section Head{
 
             <style type="text/css" >
-            .contact-form {margin: 0 0 10px;}
-            .contact-form label { display: block; float: none; margin-bottom: 3px; font-size: 18px;}
-
-            .contact-form input[type="text"], .contact-form input[type="password"] { margin-bottom: 13px; width: 300px; padding: 5px; font-weight: bold;}
-            label, input[type="button"], input[type="submit"], button {cursor: pointer;}
-            body, select, input, textarea {color: #444; padding: 5px; font-family: arial,helvetica,sans-serif;}
-            select, input, textarea {font: 99% arial; -moz-border-radius: 6px; border-radius: 6px; border: 1px solid #ccc; }
-            input, select {vertical-align: middle;}
-            .loginform { width: 400px;height: 400px;}
-
-            .centered { position: fixed; top: 50%; left: 50%; margin-top: -200px; margin-left: -200px;}
+            .loginform { width: 400px;height: 375px;}
+            .centered { position: fixed; top: 50%; left: 50%; margin-top: -187px; margin-left: -200px;}
         </style>
 
 }
-<div class="loginform centered" >
+<div class="loginform centered formcontainer" >
+    <h1 >Forgotten something? Doh! We all have those moments.</h1>
     <form class="contact-form" method="POST"  >
-        <div>
-            <label>Forgot Username?</label>
-            <input type="text" name="email" value="Enter email" />
-        </div>
+        <p>
+            <label>Forgot Username - enter email address</label>
+            <input type="text" name="email"  />
+        </p>
         <input type="submit" value="Send username" />
         
-        <div style="margin-top: 50px;" >
-            <label>Forgot password?</label>
-            <input type="text" name="username" value="Enter username" />
-        </div>
+        <p style="margin-top: 50px;" >
+            <label>Forgot password - enter username</label>
+            <input type="text" name="username"  />
+        </p>
                 
         <input type="submit" value="Reset password" />
 
     </form>
 </div>
-
-<br style="clear: both;" />
