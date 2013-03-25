@@ -71,7 +71,7 @@
     </Reference>
     <Reference Include="Microsoft.WindowsAzure.StorageClient, Version=1.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Momntz.Worker\Dependencies\Momntz\Microsoft.WindowsAzure.StorageClient.dll</HintPath>
+      <HintPath>..\..\Dependencies\WindowsAzure\Microsoft.WindowsAzure.StorageClient.dll</HintPath>
     </Reference>
     <Reference Include="NHibernate">
       <HintPath>..\..\Dependencies\nHibernate\NHibernate.dll</HintPath>
