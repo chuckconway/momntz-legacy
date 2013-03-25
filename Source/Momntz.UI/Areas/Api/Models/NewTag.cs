@@ -5,13 +5,13 @@
         
         public string Name { get; set; }
 
-        public int Left { get; set; }
+        public decimal Left { get; set; }
 
-        public int Top { get; set; }
+        public decimal Top { get; set; }
 
-        public int Width { get; set; }
+        public decimal Width { get; set; }
 
-        public int Height { get; set; }
+        public decimal Height { get; set; }
 
         public string Username { get; set; }
 

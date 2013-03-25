@@ -48,6 +48,8 @@ namespace Momntz.Data.Mappings
 
             Map(x => x.Longitude)
                 .Nullable();
+            Map(x => x.CreateDate)
+                .Nullable();
 
             HasMany(x => x.Media)
                 .KeyColumn("MomentoId");

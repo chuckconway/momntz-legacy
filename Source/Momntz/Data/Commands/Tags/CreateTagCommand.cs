@@ -5,15 +5,15 @@ namespace Momntz.Data.Commands.Tags
     public class CreateTagCommand
     {
         public string Name { get; set; }
-        public int Left { get; set; }
-        public int Top { get; set; }
-        public int Width { get; set; }
-        public int Height { get; set; }
+        public decimal Left { get; set; }
+        public decimal Top { get; set; }
+        public decimal Width { get; set; }
+        public decimal Height { get; set; }
         public string Username { get; set; }
         public int MomentoId { get; set; }
         public Guid InternalId { get; set; }
 
-        public CreateTagCommand(string name, int left, int top, int width, int height, string username, int momentoId)
+        public CreateTagCommand(string name, decimal left, decimal top, decimal width, decimal height, string username, int momentoId)
         {
             Name = name;
             Left = left;
