@@ -377,6 +377,7 @@ img#closefancybox{ padding: 10px 0 15px 15px;cursor: pointer;float: right;}
 	padding: 5px 15px;
 	overflow:hidden;
 	position: absolute;
+    z-index: 10000;
     border-radius: 5px;
 	-moz-border-radius-topleft: 5px;
 	-webkit-border-top-left-radius: 5px;

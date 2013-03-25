@@ -230,6 +230,7 @@
 					top: tempTagBox.position().top,
 					width: tempTagBox.width(),
 					height: tempTagBox.height()
+					
 				}
 				$.getJSON(options.addTagUrl+'?'+$.param(tag) + '&' + $(this).serialize(),function(response){
 					if(response.result != undefined && !response.result){
@@ -259,7 +260,8 @@
 				'left': position.left + 'px',
 				'height': dimension.height + 'px',
 				'width': dimension.width + 'px',
-				'opacity': opacity
+				'opacity': opacity,
+				'z-index':10000
 			};
 			tagBox.css(css);
 			return tagBox

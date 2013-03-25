@@ -78,5 +78,11 @@ namespace Momntz.Model
         /// </summary>
         /// <value>The longitude.</value>
         public virtual decimal? Longitude { get; set; }
+
+        /// <summary>
+        /// Gets or sets the create date.
+        /// </summary>
+        /// <value>The create date.</value>
+        public virtual DateTime? CreateDate { get; set; }
     }
 }
