@@ -118,6 +118,7 @@
     <Compile Include="Areas\Users\Controllers\UploadController.cs" />
     <Compile Include="Areas\Users\Handlers\Index\GetMomentosUserPageHandler.cs" />
     <Compile Include="Areas\Users\Models\AlbumView.cs" />
+    <Compile Include="Areas\Users\Models\ContentWithTitleView.cs" />
     <Compile Include="Areas\Users\Models\ISignedUser.cs" />
     <Compile Include="Areas\Users\Models\UploadView.cs" />
     <Compile Include="Areas\Users\Models\UserView.cs" />

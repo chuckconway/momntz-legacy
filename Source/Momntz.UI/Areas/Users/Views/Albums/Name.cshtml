@@ -1,7 +1,25 @@
-﻿@model IList<Momntz.Data.Projections.Momentos.MomentoWithMedia>
+﻿@model Momntz.UI.Areas.Users.Models.ContentWithTitleView
 
 @{
-    Layout = "/Views/Shared/LoggedInUser.cshtml";
+    Layout = "/Views/Shared/_MasonryMaster.cshtml";
 }
 
-@{ Html.RenderPartial("_MomentoPartialView", Model); }
+@section Head{
+    <style>
+        h1{ text-align: center;margin-top: 0;font-size: 20px;clear: both;margin-bottom: 15px;}
+    </style>
+}
+
+@section Navigation
+{
+    @{ Html.RenderPartial("/Areas/Users/Views/Shared/_MasonryNavigationPartial.cshtml", Model); }
+}
+
+
+@section ContentTitle{
+    <h1>@Model.Title</h1>
+}
+
+
+
+@{ Html.RenderPartial("_MasonryPartial", Model.Items); }
