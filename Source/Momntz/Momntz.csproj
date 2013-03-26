@@ -159,8 +159,6 @@
     <Compile Include="Data\Projections\Users\AuthenticatedUser.cs" />
     <Compile Include="Data\Projections\Users\CreateUsername.cs" />
     <Compile Include="Data\Projections\Users\DisplayName.cs" />
-    <Compile Include="Infrastructure\AzureStorage.cs" />
-    <Compile Include="Infrastructure\IStorage.cs" />
     <Compile Include="Infrastructure\Processors\CommandProcessor.cs" />
     <Compile Include="Infrastructure\Extensions\MapperExtensions.cs" />
     <Compile Include="Infrastructure\Processors\ICommandProcessor.cs" />

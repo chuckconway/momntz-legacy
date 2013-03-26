@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Web;
 using System.Web.Mvc;
 using Momntz.Data.ProjectionHandlers.Albums;
 using Momntz.Data.Projections;
@@ -29,10 +30,11 @@ namespace Momntz.UI.Areas.Users.Controllers
         /// <returns>ActionResult.</returns>
         public ActionResult Name(string name)
         {
-            var username = CurrentLandingPageUsername();
-            var results = _processor.Process<AlbumMomentosParameters, List<MomentoWithMedia>>(new AlbumMomentosParameters(){Name = name, Username = username});
+            string landingPageUser = CurrentLandingPageUsername();
+            bool isSignedIn = IsAuthenticatedUser(landingPageUser);
 
-            return View(results);
+            var results = _processor.Process<AlbumMomentosParameters, List<MomentoWithMedia>>(new AlbumMomentosParameters() { Name = name, Username = landingPageUser });
+            return View(new ContentWithTitleView(){Items = results, Title = HttpUtility.HtmlEncode(name), IsAuthenticatedUser = isSignedIn, Username = landingPageUser});
         }
 
         /// <summary>
