@@ -24,6 +24,7 @@
         .Add("/Scripts/libraries/jquery-ui-1.10.2/ui/jquery-ui.js")
         .Add("/Scripts/plugins/tagit/tag-it.js")
         .Add("~/Scripts/plugins/fancybox/afterLoad.js")
+        .Add("~/Scripts/plugins/handlebars/handlebars.1.0.0.js")
         .MvcRender("/scripts/combined_#.js")
         )
 	    @RenderSection("Head", required: false)
@@ -64,14 +65,46 @@
 
         <script type="text/javascript">
             var $container = $('#container');
+            
+            $(window).scroll(function () {
+                if ($(window).scrollTop() == $(document).height() - $(window).height()) {
 
-            $container.imagesLoaded(function () {
-                $container.masonry({
-                    itemSelector: '.box'
-                });
+                    getItems(function(data) {
+
+                        var source = $("#entry-template").html();
+                        var template = Handlebars.compile(source);
+
+                        var html = '';
+
+                        for (var index = 0; index < data.length; index++) {
+
+                            html = html + template(data[index]);
+                        }
+
+                        html = $($.trim(html));
+                        //html.css({ opacity: 0 });
+                        $container.append(html).masonry('appended', html, true);
+                        
+                        //html.animate({ opacity: 1 });
+                    });
+                }
             });
+            
+            //// hide new items while they are loading
+            //var $newElems = $( newElements ).css({ opacity: 0 });
+            //// ensure that images load before adding to masonry layout
+            //$newElems.imagesLoaded(function(){
+            //    // show elems now they're ready
+            //    $newElems.animate({ opacity: 1 });
+            //    $container.masonry( 'appended', $newElems, true ); 
 
             $(function() {
+                
+                $container.imagesLoaded(function () {
+                    $container.masonry({
+                        itemSelector: '.box'
+                    });
+                });
 
                 // Lightbox Init
                 var fancyboxArgs = {
@@ -89,6 +122,18 @@
             });
 
         </script>
-
+        <script id="entry-template" type="text/x-handlebars-template">
+<div class="box photo col3">
+    <a href="{{ImageUrl}}" id="32" rel="lightbox"  title="{{Title}}"><img class="phototag" src="{{ImageUrl}}" data-momentoid="{{Id}}" alt="{{Title}}" title="{{Title}}" /></a>
+    <div class="details" >
+            <label class="title">{{Title}}</label>
+            
+            <div class="description">{{Story}}</div>
+        <hr style="border:none;border-top:1px solid #eee;margin:0;" />
+            <img style="float: left;margin:5px;" src="/Content/comments.png" /> <a href="/{{Username}}/media/{{Id}}"><img style="float: right;margin:5px;" src="/Content/link.png" /></a>
+    </div>
+</div>
+        
+        </script>
     </body>
 </html>

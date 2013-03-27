@@ -25,6 +25,18 @@ namespace Momntz.UI.Areas.Api.Controllers
             _projection = projection;
         }
 
+        /// <summary>
+        /// Saves the specified id.
+        /// </summary>
+        /// <param name="id">The id.</param>
+        /// <param name="title">The title.</param>
+        /// <param name="story">The story.</param>
+        /// <param name="day">The day.</param>
+        /// <param name="month">The month.</param>
+        /// <param name="year">The year.</param>
+        /// <param name="albums">The albums.</param>
+        /// <param name="location">The location.</param>
+        /// <returns>ActionResult.</returns>
         [HttpPost]
         public ActionResult Save(int id, string title, string story, int? day, int? month, int? year, string albums, string location)
         {
@@ -32,6 +44,11 @@ namespace Momntz.UI.Areas.Api.Controllers
             return Content("1");
         }
 
+        /// <summary>
+        /// Locations the search.
+        /// </summary>
+        /// <param name="term">The term.</param>
+        /// <returns>ActionResult.</returns>
         public ActionResult LocationSearch(string term)
         {
             string username = GetUsername();
@@ -42,6 +59,20 @@ namespace Momntz.UI.Areas.Api.Controllers
             return Json(results.Select(a=> new AutoComplete(a.Location)), JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
+        public ActionResult Scroll(string oldest)
+        {
+            DateTime parsed = DateTime.Parse(oldest);
+            var items = _projection.Process<DateTime, List<Tile>>(parsed);
+
+            return Json(items);
+        }
+
+        /// <summary>
+        /// Bies the id.
+        /// </summary>
+        /// <param name="id">The id.</param>
+        /// <returns>ActionResult.</returns>
         [HttpPost]
         public ActionResult ById(int id)
         {

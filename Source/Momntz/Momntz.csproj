@@ -108,6 +108,7 @@
     <Compile Include="Data\Commands\Albums\AddAlbumCommand.cs" />
     <Compile Include="Data\Commands\Albums\RemoveAlbumCommand.cs" />
     <Compile Include="Data\Commands\ICommand.cs" />
+    <Compile Include="Data\ProjectionHandlers\Momentos\TileHandler.cs" />
     <Compile Include="Data\ProjectionHandlers\Users\CreateUsernameHandler.cs" />
     <Compile Include="Data\ProjectionHandlers\Users\GetMomentoByIdHandler.cs" />
     <Compile Include="Data\Projections\Import\GetApiUserProjection.cs" />
@@ -155,6 +156,7 @@
     <Compile Include="Data\Projections\IProjection.cs" />
     <Compile Include="Data\Projections\Momentos\LocationAutoComplete.cs" />
     <Compile Include="Data\Projections\Momentos\MomentoWithMedia.cs" />
+    <Compile Include="Data\Projections\Momentos\Tile.cs" />
     <Compile Include="Data\Projections\Users\ActiveUsername.cs" />
     <Compile Include="Data\Projections\Users\AuthenticatedUser.cs" />
     <Compile Include="Data\Projections\Users\CreateUsername.cs" />
