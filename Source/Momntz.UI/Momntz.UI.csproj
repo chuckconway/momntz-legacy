@@ -47,6 +47,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Dependencies\ChuckConway\ChuckConway.dll</HintPath>
     </Reference>
+    <Reference Include="HibernatingRhinos.Profiler.Appender.v4.0">
+      <HintPath>..\..\Dependencies\HibernatingRhinos\HibernatingRhinos.Profiler.Appender.v4.0.dll</HintPath>
+    </Reference>
     <Reference Include="Hypersonic">
       <HintPath>..\..\Dependencies\Hypersonic\Hypersonic.dll</HintPath>
     </Reference>
@@ -197,6 +200,7 @@
     <Content Include="Content\images\rss.png" />
     <Content Include="Content\images\share-triangle.png" />
     <Content Include="Content\images\share.png" />
+    <Content Include="Content\images\spinner.gif" />
     <Content Include="Content\images\tumblr-ic-16.png" />
     <Content Include="Content\images\twitter-ic-16.png" />
     <Content Include="Content\images\vimeo.png" />
@@ -943,6 +947,7 @@
     <Content Include="Scripts\plugins\fancybox\fancy_title_main.png" />
     <Content Include="Scripts\plugins\fancybox\fancy_title_right.png" />
     <Content Include="Scripts\plugins\fancybox\jquery.fancybox-1.3.4.css" />
+    <Content Include="Scripts\plugins\handlebars\handlebars.1.0.0.js" />
     <Content Include="Scripts\plugins\masonry\jquery.imagesloaded.min.js" />
     <Content Include="Scripts\plugins\masonry\jquery.masonry.min.js" />
     <Content Include="Scripts\plugins\phototag\images\ui-bg_highlight-soft_100_eeeeee_1x100.png" />
@@ -1018,7 +1023,6 @@
     <Content Include="Scripts\libraries\jquery-ui-1.10.2\ui\.jshintrc" />
     <Content Include="Views\Forgot\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\Index1.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\LoggedInUser.cshtml" />
