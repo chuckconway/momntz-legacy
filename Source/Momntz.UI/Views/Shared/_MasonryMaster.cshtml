@@ -39,25 +39,19 @@
         {
             <div style="" id="header">
                 <div class="col" >
-                   <form style="margin-left: 30px;" >
+                   <form>
                         <input name="search" type="text" style="width: 200px;"  /> <input type="submit" value="Search"  style="color:#aaa;background-color:#f9f9f9;"  />
                     </form>
                 </div>
-                <div class="col">
-                    <div style="width:120px;margin-left: auto; margin-right: auto;">
-                        <a href="/"><img src="/Content/images/momntzlogo.PNG" /></a>
-                    </div>
-                    @RenderSection("Navigation", false)
-                </div>
-                <div class="col col3" >
-                    <a href="/login" title="Login into Momntz" >login</a> | <a href="/join" title="Join Momntz" >sign up</a>
+                <div class="col col2" >
+                    <ul class="navigation" > @RenderSection("Navigation", false) </ul>
                 </div>
             </div>
         }
         
-
+        
         @RenderSection("ContentTitle", false)
-        <div id="container" class="clearfix">
+        <div id="container" style="margin-top: 60px;" class="clearfix">
             @RenderBody()
         </div>
         

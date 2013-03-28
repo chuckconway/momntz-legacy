@@ -9,7 +9,12 @@ namespace Momntz.Data.Mappings
         {
             Id(x => x.Username);
 
+
             Map(x => x.Email)
+                .Nullable()
+                .Length(250);
+
+            Map(x => x.FullName)
                 .Nullable()
                 .Length(250);
 

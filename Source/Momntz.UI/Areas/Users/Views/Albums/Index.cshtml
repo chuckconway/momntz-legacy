@@ -7,7 +7,7 @@
 
 @section Navigation
 {
-    @{ Html.RenderPartial("/Areas/Users/Views/Shared/_MasonryNavigationPartial.cshtml", Model); }
+    @{ Html.RenderPartial("/Views/Shared/_MasonryNavigationPartial.cshtml", Model); }
 }
 
-@{ Html.RenderPartial("_AlbumPartialView", Model.Items); }
+@{ Html.RenderPartial("_MasonryGroupedItemsPartial", Model.Items); }

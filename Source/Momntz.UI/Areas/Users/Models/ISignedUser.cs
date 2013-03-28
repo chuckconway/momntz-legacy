@@ -3,6 +3,12 @@
     public interface ISignedUser
     {
         /// <summary>
+        /// Gets or sets the display name.
+        /// </summary>
+        /// <value>The display name.</value>
+        string DisplayName { get; set; }
+
+        /// <summary>
         /// Gets or sets the username.
         /// </summary>
         /// <value>The username.</value>

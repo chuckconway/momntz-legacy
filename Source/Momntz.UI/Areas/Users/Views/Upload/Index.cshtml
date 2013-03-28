@@ -29,7 +29,7 @@
 
 @section Navigation
 {
-    @{ Html.RenderPartial("/Areas/Users/Views/Shared/_MasonryNavigationPartial.cshtml", Model); }
+    @{ Html.RenderPartial("/Views/Shared/_MasonryNavigationPartial.cshtml", Model); }
 }
 
 
@@ -38,7 +38,7 @@
 
     <div id="singlecontent" class="formcontainer">
         <form style="padding: 20px;">
-            <h1>Upload</h1>
+            <h1>Add</h1>
             <p>images <span style="color: #999;" >(jpeg, jpg, tiff, bmp, gif, png)</span>, documents <span style="color: #999;" >(doc, docx, pdf, txt)</span> and videos <span style="color: #999;" >(avi, mp4)</span></p>
             <div id="queue"></div>
             <input id="file_upload" name="file_upload" type="file" multiple="true">

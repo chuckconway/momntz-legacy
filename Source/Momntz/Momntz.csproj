@@ -92,6 +92,7 @@
     <Compile Include="Data\CommandHandlers\Albums\AddAlbumCommandHandler.cs" />
     <Compile Include="Data\CommandHandlers\Albums\RemoveAlbumCommandHandler.cs" />
     <Compile Include="Data\CommandHandlers\ICommandHandler.cs" />
+    <Compile Include="Data\Mappings\AlsoKnownAsMapping.cs" />
     <Compile Include="Data\Mappings\ExifMap.cs" />
     <Compile Include="Data\Mappings\QueueMap.cs" />
     <Compile Include="Data\Mappings\MediaMap.cs" />
@@ -171,6 +172,7 @@
     <Compile Include="Infrastructure\MomntzConfiguration.cs" />
     <Compile Include="Infrastructure\Processors\ProjectionProcessor.cs" />
     <Compile Include="Infrastructure\StructureMapInjection.cs" />
+    <Compile Include="Model\AlsoKnownAs.cs" />
     <Compile Include="Model\Configuration\ISettings.cs" />
     <Compile Include="Model\Configuration\Setting.cs" />
     <Compile Include="Model\Configuration\Settings.cs" />

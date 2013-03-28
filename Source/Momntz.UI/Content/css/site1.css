@@ -36,9 +36,9 @@ label.field-validation-invalid, label.field-validation-error { color: red;}
     BEGIN Header
 */
 
-div#header {height: 100px; border-bottom: 1px solid #ccc; margin-bottom: 50px; padding: 5px; background-color: #fff;}
-div#header div.col {width: 33%; display: inline-block;margin-top: 20px;vertical-align: top;}
-div#header div.col3{ text-align: right;}
+div#header {border-bottom: 1px solid #ccc;  padding: 5px; background-color: #fff; position: fixed;top: 0;z-index: 999;width: 100%;}
+div#header div.col {width: 50%; display: inline-block;}
+div#header div.col2{ width: 49%; text-align: right;vertical-align:middle;}
 
 
  /*
@@ -50,7 +50,7 @@ div#header div.col3{ text-align: right;}
 */
 
 ul.navigation li { display: inline;list-style: none;margin-left: 10px;}
-ul.navigation {width: 265px;margin-left: auto;margin-right: auto;}
+ul.navigation { vertical-align:middle;}
 
  /*
     END Nav

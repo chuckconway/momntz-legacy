@@ -56,7 +56,7 @@ namespace Momntz.UI.Core.Controllers
         /// </summary>
         /// <param name="username">The username.</param>
         /// <returns>System.String.</returns>
-        public static string GetDisplayName(string username)
+        public string GetDisplayName(string username)
         {
             var processor = ObjectFactory.GetInstance<IProjectionProcessor>();
             var name = processor.Process<string, DisplayName>(username);

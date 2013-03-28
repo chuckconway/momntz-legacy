@@ -14,6 +14,7 @@ namespace Momntz.UI.Areas.Users.Controllers
         public ActionResult Index()
         {
             string username = RouteData.Values["username"].ToString();
+            
             bool isAuthenticatedUsersHomepage = IsAuthenticatedUser(username);
 
             return Query<GetUserMomentsInParameters, UserView>(new GetUserMomentsInParameters(){Username = username, IsAuthenticatedUser = isAuthenticatedUsersHomepage}, View());
