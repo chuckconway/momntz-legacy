@@ -12,9 +12,15 @@
             var oldest = $('input#oldest').val();
             $.post('/api/momento/scroll?oldest=' + oldest, getData);
         }
-
     </script>
 }
+
+@section Navigation
+{
+    @{ Html.RenderPartial("/Views/Shared/_MasonryNavigationPartial.cshtml", null, new ViewDataDictionary()); }
+}
+
+
 
 @if (Model.Count > 0)
 {

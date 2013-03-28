@@ -1,4 +1,6 @@
-﻿namespace Momntz.Model
+﻿using System.Collections.Generic;
+
+namespace Momntz.Model
 {
     public class User
     {
@@ -25,5 +27,6 @@
         /// </summary>
         /// <value>The password.</value>
         public virtual string Password { get; set; }
+
     }
 }

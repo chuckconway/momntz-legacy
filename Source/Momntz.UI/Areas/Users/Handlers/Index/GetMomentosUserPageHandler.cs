@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Momntz.Data.Projections.Momentos;
+using Momntz.Data.Projections.Users;
 using Momntz.Infrastructure.Processors;
 using Momntz.UI.Areas.Users.Models;
 using Momntz.UI.Core;
@@ -29,6 +30,7 @@ namespace Momntz.UI.Areas.Users.Handlers.Index
             var view = new UserView
                 {
                     Username = args.Username,
+                    DisplayName = _processor.Process<string, DisplayName>(args.Username).Fullname,
                     IsAuthenticatedUser = args.IsAuthenticatedUser,
                     Momentos = _processor.Process<string, List<MomentoWithMedia>>(args.Username)
                 };
@@ -39,6 +41,8 @@ namespace Momntz.UI.Areas.Users.Handlers.Index
 
     public class GetUserMomentsInParameters
     {
+        public string DisplayName { get; set; }
+
         /// <summary>
         /// Gets or sets the username.
         /// </summary>

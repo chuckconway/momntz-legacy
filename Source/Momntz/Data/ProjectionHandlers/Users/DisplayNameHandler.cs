@@ -27,8 +27,9 @@ namespace Momntz.Data.ProjectionHandlers.Users
             using (var trans = _session.BeginTransaction())
             {
                 var item = _session.QueryOver<User>()
-                    .Where(x => x.Username == args)
-                    .SingleOrDefault();
+                                   .Where(u => u.Username == args)
+                                   .SingleOrDefault();
+
 
                 trans.Commit();
                 return new DisplayName() {Fullname = item.FullName};

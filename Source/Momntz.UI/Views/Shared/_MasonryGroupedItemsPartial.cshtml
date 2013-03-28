@@ -1,0 +1,16 @@
+﻿@model IList<Momntz.Data.Projections.IGroupItem>
+
+@foreach (var item in Model)
+{
+    <div class="box photo col3">
+    <a href="/@item.Username/albums/@item.Name" title="@item.Name"><img class="phototag" src="@item.Url" alt="@item.Name"  /></a>
+        <div class="details" >
+            <label class="title">@item.Name</label>
+            
+@*            @if (!string.IsNullOrEmpty(@item.Momento.Title))
+            {
+                <div class="description">@item.Momento.Story</div>
+            }*@
+        </div>
+	</div>
+}

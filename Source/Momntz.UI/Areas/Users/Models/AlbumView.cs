@@ -5,6 +5,8 @@ namespace Momntz.UI.Areas.Users.Models
 {
     public class GroupView : ISignedUser
     {
+        public string DisplayName { get; set; }
+
         /// <summary>
         /// Gets or sets the username.
         /// </summary>

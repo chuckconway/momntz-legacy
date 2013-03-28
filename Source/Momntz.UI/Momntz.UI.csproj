@@ -971,6 +971,7 @@
   <ItemGroup>
     <Folder Include="Areas\Api\Views\Shared\" />
     <Folder Include="Areas\Join\Views\Shared\" />
+    <Folder Include="Areas\Users\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Api\Views\Web.config" />
@@ -1048,8 +1049,9 @@
     <Content Include="Web.config" />
     <Content Include="Areas\Users\Views\Media\Index.cshtml" />
     <Content Include="Views\Shared\_MasonryPartial.cshtml" />
-    <Content Include="Areas\Users\Views\Shared\_MasonryNavigationPartial.cshtml" />
+    <Content Include="Views\Shared\_MasonryNavigationPartial.cshtml" />
     <Content Include="Areas\Users\Views\Date\Index.cshtml" />
+    <Content Include="Views\Shared\_MasonryGroupedItemsPartial.cshtml" />
     <None Include="Web.LOCAL.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
