@@ -63,7 +63,7 @@
             $(window).scroll(function () {
                 if ($(window).scrollTop() == $(document).height() - $(window).height()) {
 
-                    $('<div id="loading"><img src="/Content/images/spinner.gif" title="Spinner " /></div>').appendTo($container);
+                    //$('<div id="loading"><img src="/Content/images/spinner.gif" title="Spinner " /></div>').appendTo($container);
 
                     getItems(function(data) {
 
@@ -81,7 +81,7 @@
                             html = $($.trim(html));
 
                             html.imagesLoaded(function() {
-                                $('div#loading').remove();
+                               // $('div#loading').remove();
                                 $container.append(html);
                                 $container.masonry('appended', html, true);
                             });
