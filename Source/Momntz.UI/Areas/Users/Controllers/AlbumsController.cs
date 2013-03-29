@@ -33,7 +33,7 @@ namespace Momntz.UI.Areas.Users.Controllers
             var view = CurrentSignedInUser<ContentWithTitleView>();
             var results = _processor.Process<AlbumMomentosParameters, List<MomentoWithMedia>>(new AlbumMomentosParameters() { Name = name, Username = view.Username });
             view.Items = results;
-            view.Title = HttpUtility.HtmlEncode(name);
+            view.Title = name;
 
             return View(view);
         }
