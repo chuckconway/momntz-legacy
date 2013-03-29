@@ -122,6 +122,7 @@
     <Compile Include="Areas\Users\Handlers\Index\GetMomentosUserPageHandler.cs" />
     <Compile Include="Areas\Users\Models\AlbumView.cs" />
     <Compile Include="Areas\Users\Models\ContentWithTitleView.cs" />
+    <Compile Include="Areas\Users\Models\IGroupedView.cs" />
     <Compile Include="Areas\Users\Models\ISignedUser.cs" />
     <Compile Include="Areas\Users\Models\UploadView.cs" />
     <Compile Include="Areas\Users\Models\UserView.cs" />
@@ -133,6 +134,7 @@
     <Compile Include="Controllers\SignupController.cs" />
     <Compile Include="Core\ActionFilters\ApiAuthorization.cs" />
     <Compile Include="Core\ActionResults\FormResult.cs" />
+    <Compile Include="Core\ActionResults\JsonNetResult.cs" />
     <Compile Include="Core\ActionResults\QueryResult.cs" />
     <Compile Include="Core\Binders\NewTagModelBinder.cs" />
     <Compile Include="Core\Binders\UsernameAndPasswordModelBinder.cs" />

@@ -9,8 +9,21 @@
     <script type="text/javascript">
 
         function getItems(getData) {
-            var oldest = $('input#oldest').val();
-            $.post('/api/momento/scroll?oldest=' + oldest, getData);
+            var oldest = $('input#oldest');
+
+            function executeOnData(data) {
+
+                var item = data[data.length - 1];
+                oldest.val(item.CreateDate);
+
+                getData(data);
+            }
+            
+            $.post('/api/momento/scroll?oldest=' + oldest.val(), executeOnData);
+        }
+
+        function getTemplate() {
+            return $("#entry-template").html();
         }
     </script>
 }
@@ -24,7 +37,7 @@
 
 @if (Model.Count > 0)
 {
-    <input type="hidden" id="oldest" value="@Model.OrderByDescending(m => m.Momento.CreateDate).First().Momento.CreateDate.ToString()" />
+    <input type="hidden" id="oldest" value="@Model.Last().Momento.CreateDate.ToString()" />
 }
 
 @{ Html.RenderPartial("_MasonryPartial", Model); }

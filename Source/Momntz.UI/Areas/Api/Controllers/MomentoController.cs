@@ -7,7 +7,6 @@ using Momntz.Data.Commands.Momentos;
 using Momntz.Data.ProjectionHandlers.Momentos;
 using Momntz.Data.Projections.Api;
 using Momntz.Data.Projections.Momentos;
-using Momntz.Infrastructure;
 using Momntz.Infrastructure.Processors;
 using Momntz.UI.Areas.Api.Models;
 using Momntz.UI.Core.Controllers;
@@ -59,6 +58,11 @@ namespace Momntz.UI.Areas.Api.Controllers
             return Json(results.Select(a=> new AutoComplete(a.Location)), JsonRequestBehavior.AllowGet);
         }
 
+        /// <summary>
+        /// Scrolls the specified oldest.
+        /// </summary>
+        /// <param name="oldest">The oldest.</param>
+        /// <returns>ActionResult.</returns>
         [HttpPost]
         public ActionResult Scroll(string oldest)
         {
@@ -68,6 +72,21 @@ namespace Momntz.UI.Areas.Api.Controllers
             return Json(items);
         }
 
+        /// <summary>
+        /// Scrolls the specified oldest.
+        /// </summary>
+        /// <param name="oldest">The oldest.</param>
+        /// <param name="username">The username.</param>
+        /// <returns>ActionResult.</returns>
+        [HttpPost]
+        public ActionResult UserScroll(string oldest, string username)
+        {
+            DateTime parsed = DateTime.Parse(oldest);
+            var items = _projection.Process<UserHomepageInfiniteScrollInParameters, List<Tile>>(new UserHomepageInfiniteScrollInParameters(){CreateDate = parsed, Username = username});
+
+            return Json(items);
+        }
+        
         /// <summary>
         /// Bies the id.
         /// </summary>

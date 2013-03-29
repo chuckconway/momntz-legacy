@@ -3,8 +3,12 @@ using Momntz.Data.Projections;
 
 namespace Momntz.UI.Areas.Users.Models
 {
-    public class GroupView : ISignedUser
+    public class GroupView : ISignedUser, IGroupedView
     {
+        /// <summary>
+        /// Gets or sets the display name.
+        /// </summary>
+        /// <value>The display name.</value>
         public string DisplayName { get; set; }
 
         /// <summary>
@@ -20,9 +24,15 @@ namespace Momntz.UI.Areas.Users.Models
         public bool IsAuthenticatedUser { get; set; }
 
         /// <summary>
+        /// Gets or sets the path.
+        /// </summary>
+        /// <value>The path.</value>
+        public string Path { get; set; }
+
+        /// <summary>
         /// Gets or sets the items.
         /// </summary>
         /// <value>The items.</value>
-        public List<IGroupItem> Items { get; set; }
+        public IList<IGroupItem> Items { get; set; }
     }
 }

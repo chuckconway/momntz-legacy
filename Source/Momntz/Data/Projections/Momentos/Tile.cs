@@ -1,7 +1,11 @@
-﻿namespace Momntz.Data.Projections.Momentos
+﻿using System;
+
+namespace Momntz.Data.Projections.Momentos
 {
     public class Tile : IProjection
     {
+
+
         /// <summary>
         /// Gets or sets the image URL.
         /// </summary>
@@ -31,5 +35,11 @@
         /// </summary>
         /// <value>The username.</value>
         public string Username { get; set; }
+
+        /// <summary>
+        /// Gets or sets the create date.
+        /// </summary>
+        /// <value>The create date.</value>
+        public DateTime? CreateDate { get; set; }
     }
 }

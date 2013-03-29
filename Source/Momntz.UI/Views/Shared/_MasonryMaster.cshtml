@@ -63,34 +63,32 @@
             $(window).scroll(function () {
                 if ($(window).scrollTop() == $(document).height() - $(window).height()) {
 
+                    $('<div id="loading"><img src="/Content/images/spinner.gif" title="Spinner " /></div>').appendTo($container);
+
                     getItems(function(data) {
 
-                        var source = $("#entry-template").html();
-                        var template = Handlebars.compile(source);
+                        if (data != null && data.length > 0) {
+                            var source = getTemplate();
+                            var template = Handlebars.compile(source);
 
-                        var html = '';
+                            var html = '';
 
-                        for (var index = 0; index < data.length; index++) {
+                            for (var index = 0; index < data.length; index++) {
 
-                            html = html + template(data[index]);
+                                html = html + template(data[index]);
+                            }
+
+                            html = $($.trim(html));
+
+                            html.imagesLoaded(function() {
+                                $('div#loading').remove();
+                                $container.append(html);
+                                $container.masonry('appended', html, true);
+                            });
                         }
-
-                        html = $($.trim(html));
-                        //html.css({ opacity: 0 });
-                        $container.append(html).masonry('appended', html, true);
-                        
-                        //html.animate({ opacity: 1 });
                     });
                 }
             });
-            
-            //// hide new items while they are loading
-            //var $newElems = $( newElements ).css({ opacity: 0 });
-            //// ensure that images load before adding to masonry layout
-            //$newElems.imagesLoaded(function(){
-            //    // show elems now they're ready
-            //    $newElems.animate({ opacity: 1 });
-            //    $container.masonry( 'appended', $newElems, true ); 
 
             $(function() {
                 
@@ -117,17 +115,35 @@
 
         </script>
         <script id="entry-template" type="text/x-handlebars-template">
-<div class="box photo col3">
-    <a href="{{ImageUrl}}" id="32" rel="lightbox"  title="{{Title}}"><img class="phototag" src="{{ImageUrl}}" data-momentoid="{{Id}}" alt="{{Title}}" title="{{Title}}" /></a>
-    <div class="details" >
-            <label class="title">{{Title}}</label>
-            
-            <div class="description">{{Story}}</div>
-        <hr style="border:none;border-top:1px solid #eee;margin:0;" />
-            <img style="float: left;margin:5px;" src="/Content/comments.png" /> <a href="/{{Username}}/media/{{Id}}"><img style="float: right;margin:5px;" src="/Content/link.png" /></a>
-    </div>
-</div>
-        
+            <div class="box photo col3">
+                <a href="{{ImageUrl}}" id="{{Id}}" rel="lightbox"  title="{{Title}}"><img class="phototag" src="{{ImageUrl}}" data-momentoid="{{Id}}" alt="{{Title}}" title="{{Title}}" /></a>
+                <div class="details" >
+                    {{#if Title}}
+                        <label class="title">{{Title}}</label>
+                    {{/if}}
+                    
+                    {{#if Story}}
+                        <div class="description">{{Story}}</div>
+                    {{/if}}
+                        
+                    <hr style="border:none;border-top:1px solid #eee;margin:0;" />
+                        <img style="float: left;margin:5px;" src="/Content/comments.png" /> <a href="/{{Username}}/media/{{Id}}"><img style="float: right;margin:5px;" src="/Content/link.png" /></a>
+                </div>
+            </div>        
         </script>
+        
+        <script id="album-template" type="text/x-handlebars-template">
+            <div class="box photo col3">
+
+                    <a href="/{{Username}}/albums/{{Name}}" title="{{Name}}">
+                        <img class="phototag" src="{{Url}}" alt="{{Name}}"  />
+                    </a>
+
+                <div class="details" >
+                    <label class="title">{{Name}}</label>
+                </div>
+            </div>    
+        </script>
+
     </body>
 </html>

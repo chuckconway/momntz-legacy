@@ -11,43 +11,35 @@ namespace Momntz.Data.ProjectionHandlers.Momentos
     /// <summary>
     /// Class TileHandler
     /// </summary>
-    public class TileHandler : IProjectionHandler<DateTime, List<Tile>>
+    public abstract class TileHandler<T> : IProjectionHandler<T, List<Tile>>
     {
-        private readonly ISession _session;
+        protected readonly ISession _session;
         private readonly ISettings _settings;
 
-        public TileHandler(ISession session, ISettings settings)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TileHandler{T}"/> class.
+        /// </summary>
+        /// <param name="session">The session.</param>
+        /// <param name="settings">The settings.</param>
+        protected TileHandler(ISession session, ISettings settings)
         {
             _session = session;
             _settings = settings;
         }
-
+        
         /// <summary>
         /// Executes the specified args.
         /// </summary>
         /// <param name="args">The args.</param>
         /// <returns>List{Tile}.</returns>
-        public List<Tile> Execute(DateTime args)
-        {
-            using (var trans = _session.BeginTransaction())
-            {
-               var items = _session.QueryOver<Momento>()
-                        .Where(m => m.CreateDate < args)
-                        .Take(20)
-                        .List();
-
-                trans.Commit();
-
-                return ConvertMomentosToTiles(items);
-            }
-        }
-
+        public abstract List<Tile> Execute(T args);
+        
         /// <summary>
         /// Converts the momentos to tiles.
         /// </summary>
         /// <param name="momentos">The momentos.</param>
         /// <returns>List{Tile}.</returns>
-        private List<Tile> ConvertMomentosToTiles(IEnumerable<Momento> momentos)
+        protected List<Tile> ConvertMomentosToTiles(IEnumerable<Momento> momentos)
         {
             var tiles = new List<Tile>();
 
@@ -61,6 +53,7 @@ namespace Momntz.Data.ProjectionHandlers.Momentos
                 tile.Story = momento.Story;
                 tile.Title = momento.Title;
                 tile.Username = momento.Username;
+                tile.CreateDate = momento.CreateDate;
 
                 tiles.Add(tile);
             }

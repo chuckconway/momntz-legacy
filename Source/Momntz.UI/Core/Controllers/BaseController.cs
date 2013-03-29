@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using Momntz.Data.Projections.Users;
 using Momntz.Infrastructure.Processors;
+using Momntz.UI.Areas.Users.Models;
 using Momntz.UI.Core.ActionResults;
 using StructureMap;
 
@@ -31,6 +32,24 @@ namespace Momntz.UI.Core.Controllers
             return new FormResult<TArgs>(args, success, View());
         }
 
+        /// <summary>
+        /// Creates a <see cref="T:System.Web.Mvc.JsonResult" /> object that serializes the specified object to JavaScript Object Notation (JSON) format using the content type, content encoding, and the JSON request behavior.
+        /// </summary>
+        /// <param name="data">The JavaScript object graph to serialize.</param>
+        /// <param name="contentType">The content type (MIME type).</param>
+        /// <param name="contentEncoding">The content encoding.</param>
+        /// <param name="behavior">The JSON request behavior</param>
+        /// <returns>The result object that serializes the specified object to JSON format.</returns>
+        protected override JsonResult Json(object data, string contentType, System.Text.Encoding contentEncoding, JsonRequestBehavior behavior)
+        {
+            return new JsonNetResult
+            {
+                Data = data,
+                ContentType = contentType,
+                ContentEncoding = contentEncoding,
+                JsonRequestBehavior = behavior
+            };
+        }
         /// <summary>
         /// Gets the username.
         /// </summary>
@@ -62,6 +81,26 @@ namespace Momntz.UI.Core.Controllers
             var name = processor.Process<string, DisplayName>(username);
 
             return name.Fullname;
+        }
+
+        /// <summary>
+        /// Currents the signed in user.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns>``0.</returns>
+        public T CurrentSignedInUser<T>() where T : ISignedUser, new()
+        {
+            string landingPageUser = CurrentLandingPageUsername();
+            bool isSignedIn = IsAuthenticatedUser(landingPageUser);
+
+            var user = new T
+                {
+                    Username = landingPageUser,
+                    IsAuthenticatedUser = isSignedIn,
+                    DisplayName = GetDisplayName(landingPageUser)
+                };
+
+            return user;
         }
 
         /// <summary>

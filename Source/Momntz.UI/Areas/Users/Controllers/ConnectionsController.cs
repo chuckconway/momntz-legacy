@@ -28,18 +28,13 @@ namespace Momntz.UI.Areas.Users.Controllers
         /// <returns>ActionResult.</returns>
         public ActionResult Index()
         {
-            string landingPageUser = CurrentLandingPageUsername();
-            bool isSignedIn = IsAuthenticatedUser(landingPageUser);
+           var view = CurrentSignedInUser<GroupView>();
 
-            var view = new GroupView
-            {
-                Username = landingPageUser,
-                IsAuthenticatedUser = isSignedIn,
-                Items =_processor.Process<ConnectionResultParameters, List<IGroupItem>>(new ConnectionResultParameters
+            view.Items = _processor.Process<ConnectionResultParameters, List<IGroupItem>>(new ConnectionResultParameters
                 {
-                    Username = landingPageUser
-                })
-            };
+                    Username = view.Username,
+                    
+                });
 
             return View(view);
         }
