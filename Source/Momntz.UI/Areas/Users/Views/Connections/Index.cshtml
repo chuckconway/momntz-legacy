@@ -1,13 +1,15 @@
-﻿@model Momntz.UI.Areas.Users.Models.GroupView
+﻿@using System.Dynamic
+@model Momntz.UI.Areas.Users.Models.IGroupedView
 
 @{
     Layout = "~/Views/Shared/_MasonryMaster.cshtml";
 
 }
 
+
 @section Navigation
 {
-    @{ Html.RenderPartial("/Views/Shared/_MasonryNavigationPartial.cshtml", Model); }
+    @{ Html.RenderPartial("/Views/Shared/_MasonryNavigationPartial.cshtml", Model ); }
 }
 
-@{ Html.RenderPartial("_AlbumPartialView", Model.Items); }
+@{ Html.RenderPartial("_MasonryGroupedItemsPartial", Model); }

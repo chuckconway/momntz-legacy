@@ -54,7 +54,7 @@ namespace Momntz.UI
             ObjectFactory.ReleaseAndDisposeAllHttpScopedObjects();
         }
 
-                /// <summary> Registers the dependency injection. </summary>
+        /// <summary> Registers the dependency injection. </summary>
         private void RegisterDependencyInjection()
         {
             ObjectFactory.Initialize(x => x.Scan(s =>

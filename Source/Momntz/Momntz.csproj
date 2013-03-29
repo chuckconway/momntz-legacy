@@ -96,6 +96,7 @@
     <Compile Include="Data\Mappings\ExifMap.cs" />
     <Compile Include="Data\Mappings\QueueMap.cs" />
     <Compile Include="Data\Mappings\MediaMap.cs" />
+    <Compile Include="Data\ProjectionHandlers\Albums\AutoScrollHandler.cs" />
     <Compile Include="Data\ProjectionHandlers\Import\GetApiUserCommandHandler.cs" />
     <Compile Include="Data\CommandHandlers\Momentos\CreateMomentoCommandHandler.cs" />
     <Compile Include="Data\CommandHandlers\Momentos\CreateMomentoMediaCommandHandler.cs" />
@@ -109,6 +110,8 @@
     <Compile Include="Data\Commands\Albums\AddAlbumCommand.cs" />
     <Compile Include="Data\Commands\Albums\RemoveAlbumCommand.cs" />
     <Compile Include="Data\Commands\ICommand.cs" />
+    <Compile Include="Data\ProjectionHandlers\Momentos\GetUserHomepageInfiniteScrollTilesHandler.cs" />
+    <Compile Include="Data\ProjectionHandlers\Momentos\GetHomepageInfiniteScrollTilesHandler.cs" />
     <Compile Include="Data\ProjectionHandlers\Momentos\TileHandler.cs" />
     <Compile Include="Data\ProjectionHandlers\Users\CreateUsernameHandler.cs" />
     <Compile Include="Data\ProjectionHandlers\Users\GetMomentoByIdHandler.cs" />

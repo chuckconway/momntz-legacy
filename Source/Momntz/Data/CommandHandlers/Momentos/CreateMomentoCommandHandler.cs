@@ -53,7 +53,7 @@ namespace Momntz.Data.CommandHandlers.Momentos
                     }
 
                     transaction.Commit();
-            }
+                }
         }
 
         /// <summary>

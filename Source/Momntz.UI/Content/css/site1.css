@@ -4,13 +4,17 @@ body {    font-family: arial,helvetica,sans-serif;
     background-color: #F3F3F3;
 }
 
+strong { font-weight: bold;}
+
 a, a.more-link p{
 	color:#3A80BC;
 	text-decoration:none;
 }
-    a:hover {
-        text-decoration: underline;
-    }
+
+a:hover { text-decoration: underline; }
+
+a#editdetails{ display: none;}
+a.addTag{ display: none;}
 
 /*
     BEGIN General Forms

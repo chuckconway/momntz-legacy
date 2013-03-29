@@ -8,6 +8,7 @@ namespace Momntz.Data.ProjectionHandlers.Momentos
 {
     public class UserPageMomentosHandler : BaseMomentoHandler, IProjectionHandler<string, List<MomentoWithMedia>>
     {
+        private readonly NHibernate.ISession _session;
         private readonly IDatabase _database;
 
         /// <summary>
@@ -15,8 +16,9 @@ namespace Momntz.Data.ProjectionHandlers.Momentos
         /// </summary>
         /// <param name="database">The database.</param>
         /// <param name="settings">The settings.</param>
-        public UserPageMomentosHandler(IDatabase database, ISettings settings) : base(database, settings)
+        public UserPageMomentosHandler(NHibernate.ISession session, IDatabase database, ISettings settings) : base(database, settings)
         {
+            _session = session;
             _database = database;
         }
 
@@ -29,9 +31,19 @@ namespace Momntz.Data.ProjectionHandlers.Momentos
         {
             var homepages = new List<MomentoWithMedia>();
 
-            var momentos = _database
-                    .List<Momento, object>("[dbo].[Momento_RetrieveRandom20ByUser]", new { username });
-                GetMedia(momentos, homepages);
+            using (var trans = _session.BeginTransaction())
+            {
+                var items = _session.QueryOver<Momento>()
+                         .And(m => m.Username == username)
+                         .OrderBy(m => m.CreateDate).Desc
+                         .Take(40)
+                         .List();
+
+                trans.Commit();
+
+                GetMedia(items, homepages);
+            }
+                
 
             return homepages;
         }

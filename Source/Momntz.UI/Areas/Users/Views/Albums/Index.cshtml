@@ -5,9 +5,41 @@
 
 }
 
-@section Navigation
+@section Head
 {
-    @{ Html.RenderPartial("/Views/Shared/_MasonryNavigationPartial.cshtml", Model); }
+    <script type="text/javascript">
+
+        function getItems(getData) {
+            var oldest = $('input#oldest');
+
+            function executeOnData(data) {
+
+                if (data != null && data.length > 0) {
+                    var item = data[data.length - 1];
+                    oldest.val(item.CreateDate);
+
+                    getData(data);
+                }
+            }
+
+            $.post('/api/albums/albumscroll?oldest=' + oldest.val(), executeOnData);
+        }
+
+        function getTemplate() {
+            return $("#album-template").html();
+        }
+
+    </script>
 }
 
-@{ Html.RenderPartial("_MasonryGroupedItemsPartial", Model.Items); }
+@if (Model.Items.Count > 0)
+{
+    <input type="hidden" id="oldest" value="@Model.Items.Last().CreateDate.ToString()" />
+}
+
+@section Navigation
+{
+    @{ Html.RenderPartial("/Views/Shared/_MasonryNavigationPartial.cshtml", Model ); }
+}
+
+@{ Html.RenderPartial("_MasonryGroupedItemsPartial", Model); }

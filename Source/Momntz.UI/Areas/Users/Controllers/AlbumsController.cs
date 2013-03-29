@@ -30,11 +30,12 @@ namespace Momntz.UI.Areas.Users.Controllers
         /// <returns>ActionResult.</returns>
         public ActionResult Name(string name)
         {
-            string landingPageUser = CurrentLandingPageUsername();
-            bool isSignedIn = IsAuthenticatedUser(landingPageUser);
+            var view = CurrentSignedInUser<ContentWithTitleView>();
+            var results = _processor.Process<AlbumMomentosParameters, List<MomentoWithMedia>>(new AlbumMomentosParameters() { Name = name, Username = view.Username });
+            view.Items = results;
+            view.Title = HttpUtility.HtmlEncode(name);
 
-            var results = _processor.Process<AlbumMomentosParameters, List<MomentoWithMedia>>(new AlbumMomentosParameters() { Name = name, Username = landingPageUser });
-            return View(new ContentWithTitleView(){Items = results, Title = HttpUtility.HtmlEncode(name), IsAuthenticatedUser = isSignedIn, Username = landingPageUser});
+            return View(view);
         }
 
         /// <summary>
@@ -43,18 +44,13 @@ namespace Momntz.UI.Areas.Users.Controllers
         /// <returns>ActionResult.</returns>
         public ActionResult Index()
         {
-            string landingPageUser = CurrentLandingPageUsername();
-            bool isSignedIn = IsAuthenticatedUser(landingPageUser);
+            var view = CurrentSignedInUser<GroupView>();
+            view.Path = "albums";
+            view.Items = _processor.Process<AlbumResultsParameters, List<IGroupItem>>(new AlbumResultsParameters
+            {
+                Username = view.Username,
 
-            var view = new GroupView
-                {
-                    Username = landingPageUser,
-                    IsAuthenticatedUser = isSignedIn,
-                    Items =_processor.Process<AlbumResultsParameters, List<IGroupItem>>(new AlbumResultsParameters()
-                            {
-                                Username = landingPageUser
-                            })
-                };
+            });
 
             return View(view);
         }
