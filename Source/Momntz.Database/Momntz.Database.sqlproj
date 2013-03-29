@@ -140,6 +140,7 @@
     <Build Include="dbo\Stored Procedures\MomentoMedia_GetByMomentoIdAndMediaType.sql" />
     <Build Include="Security\momntz_1.sql" />
     <Build Include="dbo\Stored Procedures\Momento_RetrieveById.sql" />
+    <Build Include="dbo\Stored Procedures\TagAlbum_GetAlbumByUsernameScroll.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Data.sql" />

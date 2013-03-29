@@ -29,7 +29,7 @@ BEGIN
 	Where C.Owner = @Username
 	Group By C.Username
 
-	Select M.Username, M.MomentoId as Id, C.Username, C.FullName as Name, M.Url
+	Select M.MomentoId as Id, C.Username, C.FullName as Name, M.Url
 		 From MomentoMedia M 
 		 Inner Join  (Select Max(MM.Id) as Id, MU.Username 
 				      From MomentoMedia MM

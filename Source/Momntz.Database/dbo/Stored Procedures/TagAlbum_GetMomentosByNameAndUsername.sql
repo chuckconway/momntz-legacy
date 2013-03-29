@@ -26,5 +26,6 @@ From
 Inner Join Tag T
 		ON R.TagId = T.Id
 	Where T.Username = @Username AND T.Name = @Name	
+	Order By Added desc
 
 END

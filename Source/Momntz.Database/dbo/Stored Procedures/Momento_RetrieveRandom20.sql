@@ -2,7 +2,7 @@
 -- Author: Chucksoft CodeGen
 -- Create date: Friday, October 30, 2009
 -- =============================================
-Create PROCEDURE  [dbo].[Momento_RetrieveRandom20]
+CREATE PROCEDURE  [dbo].[Momento_RetrieveRandom20]
 
 AS
 BEGIN
@@ -10,8 +10,8 @@ BEGIN
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
 
-	Select Top(20) *
-	From dbo.Momento
-	Order by NEWID() asc
+	Select Top(30) *
+	From dbo.Momento M
+	Order by M.CreateDate desc
 
 END
