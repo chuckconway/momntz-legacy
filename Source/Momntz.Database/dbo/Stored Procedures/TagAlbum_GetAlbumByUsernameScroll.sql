@@ -3,10 +3,11 @@
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-CREATE PROCEDURE [dbo].[TagAlbum_GetAlbumByUsername]
+Create PROCEDURE [dbo].[TagAlbum_GetAlbumByUsernameScroll]
 	-- Add the parameters for the stored procedure here
 (
-	@Username nvarchar(100)
+	@Username nvarchar(100),
+	@CreateDate DateTime
 )
 AS
 BEGIN
@@ -16,7 +17,7 @@ BEGIN
 
     -- Insert statements for procedure here
 
-Select Top(50) T.Username, T.Name, D.Url, T.CreateDate
+Select Top(40) T.Username, T.Name, D.Url, T.CreateDate
 From
 	(
 		Select MAX(Id) as Id
@@ -27,6 +28,6 @@ From
 		ON R.Id = T.Id
 	Inner Join MomentoMedia D
 		ON T.MomentoId = D.MomentoId AND D.MediaType = 'MediumImage'
-	Where T.Username = @Username
+	Where T.Username = @Username AND T.CreateDate < @CreateDate
 	order by T.CreateDate desc
 END

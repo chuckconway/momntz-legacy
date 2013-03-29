@@ -12,9 +12,9 @@ BEGIN
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
 
-	Select Top(100) *
+	Select Top(40) *
 	From dbo.MomentoUserView
 	Where Username = @Username
-	Order by NEWID() asc
+	Order by CreateDate desc
 
 END

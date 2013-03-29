@@ -8,6 +8,7 @@ CREATE PROCEDURE [dbo].[TagAlbum_Add]
 (
 	@Tag nvarchar(50),
 	@MomentoId int,
+	@Story nvarchar(4000) = null,
 	@Username nvarchar(100)
 )
 AS
@@ -40,7 +41,7 @@ BEGIN
 	END
 	Else
 		BEGIN
-			Insert Into Tag (Name, Kind, Username) Values(@Tag, 3, @Username)
+			Insert Into Tag (Name, Kind, Username, Story) Values(@Tag, 3, @Username, @Story)
 			Set @AlbumId = SCOPE_IDENTITY()
 
 			Insert Into TagMomento(MomentoId, TagId)Values(@MomentoId, @AlbumId)
