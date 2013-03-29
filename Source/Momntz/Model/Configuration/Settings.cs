@@ -26,6 +26,24 @@ namespace Momntz.Model.Configuration
         }
 
         /// <summary>
+        /// Gets the cloud URL.
+        /// </summary>
+        /// <value>The cloud URL.</value>
+        public string CloudAccount
+        {
+            get { return _service.GetValueByKey("cloudaccount"); }
+        }
+
+        /// <summary>
+        /// Gets the cloud URL.
+        /// </summary>
+        /// <value>The cloud URL.</value>
+        public string CloudKey
+        {
+            get { return _service.GetValueByKey("cloudkey"); }
+        }
+
+        /// <summary>
         /// Gets the queue database.
         /// </summary>
         /// <value>The queue database.</value>
