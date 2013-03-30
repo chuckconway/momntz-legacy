@@ -167,6 +167,7 @@
     <Content Include="Content\css\site1.css" />
     <Content Include="Content\css\uploadify\uploadifive-cancel.png" />
     <Content Include="Content\css\uploadify\uploadifive.css" />
+    <Content Include="Content\images\close.png" />
     <Content Include="Content\images\facebook-ic-16.png" />
     <Content Include="Content\images\spinner.gif" />
     <Content Include="Content\images\twitter-ic-16.png" />
