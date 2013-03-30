@@ -68,30 +68,33 @@
 
                 if (scrollTop == (documentHeight - windowHieght)) {
 
-                    $('<div id="loading"><img src="/Content/images/spinner.gif" title="Spinner " /></div>').insertAfter($container);
+                    if ($('div#loading').length == 0) {
 
-                    getItems(function(data) {
+                        $('<div id="loading"><img src="/Content/images/spinner.gif" title="Spinner " /></div>').insertAfter($container);
 
-                        if (data != null && data.length > 0) {
-                            var source = getTemplate();
-                            var template = Handlebars.compile(source);
+                        getItems(function(data) {
 
-                            var html = '';
+                            if (data != null && data.length > 0) {
+                                var source = getTemplate();
+                                var template = Handlebars.compile(source);
 
-                            for (var index = 0; index < data.length; index++) {
+                                var html = '';
 
-                                html = html + template(data[index]);
+                                for (var index = 0; index < data.length; index++) {
+
+                                    html = html + template(data[index]);
+                                }
+
+                                html = $($.trim(html));
+
+                                html.imagesLoaded(function() {
+                                    $('div#loading').remove();
+                                    $container.append(html);
+                                    $container.masonry('appended', html, true);
+                                });
                             }
-
-                            html = $($.trim(html));
-
-                            html.imagesLoaded(function() {
-                                $('div#loading').remove();
-                                $container.append(html);
-                                $container.masonry('appended', html, true);
-                            });
-                        }
-                    });
+                        });
+                    }
                 }
             });
 
