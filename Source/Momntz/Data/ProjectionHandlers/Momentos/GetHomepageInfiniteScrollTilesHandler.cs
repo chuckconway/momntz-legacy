@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Momntz.Core.Extensions;
 using Momntz.Data.Projections.Momentos;
 using Momntz.Model;
 using Momntz.Model.Configuration;
@@ -7,21 +8,28 @@ using NHibernate;
 
 namespace Momntz.Data.ProjectionHandlers.Momentos
 {
-    public class GetHomepageInfiniteScrollTilesHandler : TileHandler<DateTime>
+    public class GetHomepageInfiniteScrollTilesHandler : IProjectionHandler<DateTime, List<Tile>>
     {
+        private readonly ISession _session;
+        private readonly ISettings _settings;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GetHomepageInfiniteScrollTilesHandler"/> class.
         /// </summary>
         /// <param name="session">The session.</param>
         /// <param name="settings">The settings.</param>
-        public GetHomepageInfiniteScrollTilesHandler(ISession session, ISettings settings) : base(session, settings){}
+        public GetHomepageInfiniteScrollTilesHandler(ISession session, ISettings settings)
+        {
+            _session = session;
+            _settings = settings;
+        }
 
         /// <summary>
         /// Executes the specified args.
         /// </summary>
         /// <param name="args">The args.</param>
         /// <returns>List{Tile}.</returns>
-        public override List<Tile> Execute(DateTime args)
+        public List<Tile> Execute(DateTime args)
         {
             using (var trans = _session.BeginTransaction())
             {
@@ -33,7 +41,7 @@ namespace Momntz.Data.ProjectionHandlers.Momentos
 
                 trans.Commit();
 
-                return ConvertMomentosToTiles(items);
+                return items.ConvertToTiles(_settings);
             }
         }
     }

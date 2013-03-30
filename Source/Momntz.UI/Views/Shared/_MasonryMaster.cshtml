@@ -61,9 +61,14 @@
             var $container = $('#container');
             
             $(window).scroll(function () {
-                if ($(window).scrollTop() == $(document).height() - $(window).height()) {
 
-                    //$('<div id="loading"><img src="/Content/images/spinner.gif" title="Spinner " /></div>').appendTo($container);
+                var scrollTop = $(window).scrollTop();
+                var documentHeight = $(document).height();
+                var windowHieght = $(window).height();
+
+                if (scrollTop == (documentHeight - windowHieght)) {
+
+                    $('<div id="loading"><img src="/Content/images/spinner.gif" title="Spinner " /></div>').insertAfter($container);
 
                     getItems(function(data) {
 
@@ -81,7 +86,7 @@
                             html = $($.trim(html));
 
                             html.imagesLoaded(function() {
-                               // $('div#loading').remove();
+                                $('div#loading').remove();
                                 $container.append(html);
                                 $container.masonry('appended', html, true);
                             });
