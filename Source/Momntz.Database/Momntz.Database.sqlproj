@@ -103,8 +103,6 @@
     <Build Include="dbo\Tables\Audit.sql" />
     <Build Include="dbo\Tables\Configuration.sql" />
     <Build Include="dbo\Stored Procedures\Momento_RetrieveTagsByMomentoId.sql" />
-    <Build Include="dbo\Stored Procedures\Momento_RetrieveRandom20ByUser.sql" />
-    <Build Include="dbo\Stored Procedures\Momento_RetrieveRandom20.sql" />
     <Build Include="dbo\Tables\AlsoKnownAs.sql" />
     <Build Include="dbo\Views\GetUserView.sql" />
     <Build Include="dbo\Stored Procedures\AlsoKnownAs_FindNameByFirstLetersAndUsername.sql" />
