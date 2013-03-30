@@ -1,31 +1,67 @@
 ﻿using System.Collections.Generic;
-using System.Data;
-using Hypersonic;
+using System.Linq;
+using Momntz.Core.Extensions;
 using Momntz.Data.Projections.Momentos;
 using Momntz.Model;
 using Momntz.Model.Configuration;
+using NHibernate;
+using NHibernate.Linq;
 
 namespace Momntz.Data.ProjectionHandlers.Momentos
 {
-    public class HomepageMomentosHandler : BaseMomentoHandler, IProjectionHandler<object, List<MomentoWithMedia>>
+    public class HomepageMomentosHandler : IProjectionHandler<HomepageInParameters, List<Tile>>
     {
-        private readonly IDatabase _database;
+        private readonly ISession _session;
+        private readonly ISettings _settings;
 
-        public HomepageMomentosHandler(IDatabase database, ISettings settings)
-            : base(database, settings)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HomepageMomentosHandler"/> class.
+        /// </summary>
+        /// <param name="session">The session.</param>
+        public HomepageMomentosHandler(ISession session, ISettings settings)
         {
-            _database = database;
+            _session = session;
+            _settings = settings;
         }
 
-        public List<MomentoWithMedia> Execute(object args)
+        //private readonly IDatabase _database;
+
+        //public HomepageMomentosHandler(IDatabase database, ISettings settings)
+        //    : base(database, settings)
+        //{
+        //    _database = database;
+        //}
+
+        /// <summary>
+        /// Executes the specified args.
+        /// </summary>
+        /// <param name="args">The args.</param>
+        /// <returns>List{Tile}.</returns>
+        public List<Tile> Execute(HomepageInParameters args)
         {
-            var homepages = new List<MomentoWithMedia>();
+            using (var trans =_session.BeginTransaction())
+            {
+               var items = _session.QueryOver<Momento>()
+                        .OrderBy(m => m.CreateDate).Desc
+                        .Take(40)
+                        .List();
+                   
+                trans.Commit();
 
-                var momentos = _database.List<Momento>("[dbo].[Momento_RetrieveRandom20]");
+                return items.ConvertToTiles(_settings);
+            }
+            //var homepages = new List<MomentoWithMedia>();
 
-                GetMedia(momentos, homepages);
+            //    var momentos = _database.List<Momento>("[dbo].[Momento_RetrieveRandom20]");
 
-            return homepages;
+            //    GetMedia(momentos, homepages);
+
+            //return homepages;
         }
+    }
+
+    public class HomepageInParameters
+    {
+        
     }
 }

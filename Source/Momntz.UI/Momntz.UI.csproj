@@ -156,62 +156,20 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Handlers\Home\GetHomeViewHandler.cs" />
     <Compile Include="Handlers\Login\AuthenticateUserHandler.cs" />
     <Compile Include="Models\Login\LoginView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\comments.png" />
-    <Content Include="Content\css\custom.css" />
     <Content Include="Content\css\flick\jquery-ui.css" />
-    <Content Include="Content\css\menu.css" />
-    <Content Include="Content\css\pt-sans.css" />
-    <Content Include="Content\css\reset.css" />
     <Content Include="Content\css\reset1.css" />
-    <Content Include="Content\css\Site.css" />
     <Content Include="Content\css\site1.css" />
     <Content Include="Content\css\uploadify\uploadifive-cancel.png" />
     <Content Include="Content\css\uploadify\uploadifive.css" />
-    <Content Include="Content\images\bigger.png" />
-    <Content Include="Content\images\black75.png" />
-    <Content Include="Content\images\close.png" />
-    <Content Include="Content\images\comments.png" />
-    <Content Include="Content\images\delicious-ic-16.png" />
-    <Content Include="Content\images\dotted-border.png" />
-    <Content Include="Content\images\downarrow.png" />
-    <Content Include="Content\images\dribbble-ic-16.png" />
-    <Content Include="Content\images\email-ic-16.png" />
-    <Content Include="Content\images\enlarge-mini-ic.png" />
-    <Content Include="Content\images\enlarge.png" />
     <Content Include="Content\images\facebook-ic-16.png" />
-    <Content Include="Content\images\filter-ic.png" />
-    <Content Include="Content\images\flickr-ic-16.png" />
-    <Content Include="Content\images\folder-ic-light.png" />
-    <Content Include="Content\images\folder-ic.png" />
-    <Content Include="Content\images\footer-gradient.png" />
-    <Content Include="Content\images\header-gradient.png" />
-    <Content Include="Content\images\lastFM-ic-16.png" />
-    <Content Include="Content\images\left-ar.png" />
-    <Content Include="Content\images\link-ic-light.png" />
-    <Content Include="Content\images\link-ic.png" />
-    <Content Include="Content\images\momntzlogo.PNG" />
-    <Content Include="Content\images\noise-2.png" />
-    <Content Include="Content\images\parent-bg.png" />
-    <Content Include="Content\images\play.png" />
-    <Content Include="Content\images\quote.png" />
-    <Content Include="Content\images\reply-ic.png" />
-    <Content Include="Content\images\right-ar.png" />
-    <Content Include="Content\images\rss.png" />
-    <Content Include="Content\images\share-triangle.png" />
-    <Content Include="Content\images\share.png" />
     <Content Include="Content\images\spinner.gif" />
-    <Content Include="Content\images\tumblr-ic-16.png" />
     <Content Include="Content\images\twitter-ic-16.png" />
-    <Content Include="Content\images\vimeo.png" />
-    <Content Include="Content\images\white-noise.png" />
-    <Content Include="Content\images\x2.png" />
-    <Content Include="Content\images\youtube.png" />
     <Content Include="Content\link.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -960,8 +918,6 @@
     <Content Include="Scripts\plugins\phototag\jquery-ui-1.8.17.custom.css" />
     <Content Include="Scripts\plugins\phototag\jquery-ui-1.8.17.custom.min.js" />
     <Content Include="Scripts\plugins\phototag\jquery.phototag.js" />
-    <Content Include="Scripts\plugins\plugins.js" />
-    <Content Include="Scripts\plugins\script.js" />
     <Content Include="Scripts\plugins\tagit\css\examples.css" />
     <Content Include="Scripts\plugins\tagit\css\jquery.tagit.css" />
     <Content Include="Scripts\plugins\tagit\css\master.css" />
@@ -1031,23 +987,11 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\LoggedInUser.cshtml" />
-    <Content Include="Views\Shared\LoginPartialView.cshtml" />
-    <Content Include="Views\Shared\NavigationPartialView.cshtml" />
-    <Content Include="Views\Shared\TagsLoggedInUser.cshtml" />
-    <Content Include="Views\Shared\_AlbumPartialView.cshtml" />
-    <Content Include="Views\Shared\_GroupPartialView.cshtml" />
-    <Content Include="Views\Shared\_HomePageLayout.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Shared\_LoginMaster.cshtml" />
     <Content Include="Views\Shared\_MasonryMaster.cshtml" />
-    <Content Include="Views\Shared\_MomentoPartialView.cshtml" />
-    <Content Include="Views\Shared\_NonImage.cshtml" />
     <Content Include="Views\Signout\Index.cshtml" />
     <Content Include="Views\Signup\Index.cshtml" />
     <Content Include="Views\Signup\Welcome.cshtml" />
     <Content Include="Views\Web.config" />
-    <Content Include="Views\_ViewStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
