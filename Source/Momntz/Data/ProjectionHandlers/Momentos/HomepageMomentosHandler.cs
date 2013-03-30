@@ -24,14 +24,6 @@ namespace Momntz.Data.ProjectionHandlers.Momentos
             _settings = settings;
         }
 
-        //private readonly IDatabase _database;
-
-        //public HomepageMomentosHandler(IDatabase database, ISettings settings)
-        //    : base(database, settings)
-        //{
-        //    _database = database;
-        //}
-
         /// <summary>
         /// Executes the specified args.
         /// </summary>
@@ -50,13 +42,6 @@ namespace Momntz.Data.ProjectionHandlers.Momentos
 
                 return items.ConvertToTiles(_settings);
             }
-            //var homepages = new List<MomentoWithMedia>();
-
-            //    var momentos = _database.List<Momento>("[dbo].[Momento_RetrieveRandom20]");
-
-            //    GetMedia(momentos, homepages);
-
-            //return homepages;
         }
     }
 
