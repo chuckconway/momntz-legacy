@@ -4,11 +4,39 @@
     Layout = "/Views/Shared/_MasonryMaster.cshtml";
 }
 
-@section Head{
-    <style>
+@section Head
+{
+        <style>
         h1{ text-align: center;margin-top: 0;font-size: 20px;clear: both;margin-bottom: 15px;}
     </style>
+
+    <script type="text/javascript">
+
+        function getItems(getData) {
+            var oldest = $('input#oldest');
+
+            function executeOnData(data) {
+
+                var item = data[data.length - 1];
+                oldest.val(item.CreateDate);
+
+                getData(data);
+            }
+            
+            $.post('/api/albums/TileScroll?name=@Model.Title&oldest=' + oldest.val() +'&username=@Model.Username' , executeOnData);
+        }
+
+        function getTemplate() {
+            return $("#entry-template").html();
+        }
+    </script>
 }
+
+@if (Model.Items.Count > 0)
+{
+    <input type="hidden" id="oldest" value="@Model.Items.Last().CreateDate.ToString()" />
+}
+
 
 @section Navigation
 {

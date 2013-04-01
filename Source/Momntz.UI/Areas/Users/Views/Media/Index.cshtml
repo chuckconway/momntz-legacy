@@ -1,4 +1,4 @@
-﻿@model Momntz.Data.Projections.Momentos.MomentoWithMedia
+﻿@model Momntz.Data.Projections.Momentos.Tile
 
 @{
     ViewBag.Title = "title";
@@ -6,16 +6,16 @@
 }
 
 <div id="singlecontent">
-    <img class="content" src="@Model.Media.Url" title="@Model.Momento.Title" />
+    <img class="content" src="@Model.ImageUrl" title="@Model.Title" />
     <div id="details" >
         
         <div>
-            <span id="title">@Model.Momento.Title</span>
-            <span id="uploaded">Uploaded by <a href="/@Model.Momento.Username">@Model.Momento.Username</a> </span>
+            <span id="title">@Model.Title</span>
+            <span id="uploaded">Uploaded by <a href="/@Model.Username">@Model.Username</a> </span>
         </div>
         
         <div id="story">
-            @Model.Momento.Story
+            @Model.Story
         </div>
     </div>
 </div>

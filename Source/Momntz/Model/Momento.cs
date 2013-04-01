@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Momntz.Data.Projections.Api;
 
 namespace Momntz.Model
 {
@@ -10,6 +11,12 @@ namespace Momntz.Model
         /// </summary>
         /// <value>The media.</value>
         public virtual IList<MomentoMedia> Media { get; set; }
+
+        /// <summary>
+        /// Gets or sets the albums.
+        /// </summary>
+        /// <value>The albums.</value>
+        public virtual IList<Album> Albums { get; set; } 
 
         /// <summary> Gets or sets the identifier. </summary>
         /// <value> The identifier. </value>

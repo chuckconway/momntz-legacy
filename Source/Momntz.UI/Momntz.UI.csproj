@@ -122,7 +122,6 @@
     <Compile Include="Areas\Users\Controllers\MediaController.cs" />
     <Compile Include="Areas\Users\Controllers\SettingsController.cs" />
     <Compile Include="Areas\Users\Controllers\UploadController.cs" />
-    <Compile Include="Areas\Users\Handlers\Index\GetMomentosUserPageHandler.cs" />
     <Compile Include="Areas\Users\Models\AlbumView.cs" />
     <Compile Include="Areas\Users\Models\ContentWithTitleView.cs" />
     <Compile Include="Areas\Users\Models\IGroupedView.cs" />

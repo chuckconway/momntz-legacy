@@ -24,8 +24,8 @@ namespace Momntz.UI.Areas.Users.Controllers
         /// <returns>ActionResult.</returns>
         public ActionResult Index(int id)
         {
-           var momento = _processor.Process<int, MomentoWithMedia>(id);
-           return View(momento);
+           var tile = _processor.Process<int, Tile>(id);
+           return View(tile);
         }
 
     }

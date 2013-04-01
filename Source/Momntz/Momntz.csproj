@@ -97,6 +97,10 @@
     <Compile Include="Data\Mappings\ExifMap.cs" />
     <Compile Include="Data\Mappings\QueueMap.cs" />
     <Compile Include="Data\Mappings\MediaMap.cs" />
+    <Compile Include="Data\Mappings\TagMapping.cs" />
+    <Compile Include="Data\Mappings\TagMomentoMapping.cs" />
+    <Compile Include="Data\ProjectionHandlers\Albums\AlbumNameScrollHandler.cs" />
+    <Compile Include="Model\TagMomento.cs" />
     <Compile Include="Data\ProjectionHandlers\Albums\AutoScrollHandler.cs" />
     <Compile Include="Data\ProjectionHandlers\Import\GetApiUserCommandHandler.cs" />
     <Compile Include="Data\CommandHandlers\Momentos\CreateMomentoCommandHandler.cs" />
@@ -141,7 +145,6 @@
     <Compile Include="Data\ProjectionHandlers\BaseGroupItem.cs" />
     <Compile Include="Data\ProjectionHandlers\Connections\ConnectionResultHandler.cs" />
     <Compile Include="Data\ProjectionHandlers\IProjectionHandler.cs" />
-    <Compile Include="Data\ProjectionHandlers\Momentos\BaseMomentoHandler.cs" />
     <Compile Include="Data\ProjectionHandlers\Momentos\LocationAutocompleteHandler.cs" />
     <Compile Include="Data\ProjectionHandlers\Momentos\UserPageMomentosHandler.cs" />
     <Compile Include="Data\ProjectionHandlers\Momentos\HomepageMomentosHandler.cs" />
@@ -189,7 +192,6 @@
     <Compile Include="Model\QueueData\Queue.cs" />
     <Compile Include="Model\QueueData\Media.cs" />
     <Compile Include="Model\Tag.cs" />
-    <Compile Include="Model\TagCollection.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Model\UserStatus.cs" />
     <Compile Include="MomntzRegistry.cs" />

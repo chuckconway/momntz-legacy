@@ -7,6 +7,7 @@ using Momntz.Data.ProjectionHandlers.Albums;
 using Momntz.Data.ProjectionHandlers.Api;
 using Momntz.Data.Projections;
 using Momntz.Data.Projections.Api;
+using Momntz.Data.Projections.Momentos;
 using Momntz.Infrastructure.Processors;
 using Momntz.UI.Areas.Api.Models;
 using Momntz.UI.Core.Controllers;
@@ -67,6 +68,21 @@ namespace Momntz.UI.Areas.Api.Controllers
             string username = GetUsername();
             _command.Process(new AddAlbumCommand(tag, username, momentoId));
             return Content(string.Empty);
+        }
+
+        /// <summary>
+        /// Tiles the scroll.
+        /// </summary>
+        /// <param name="oldest">The oldest.</param>
+        /// <param name="name">The name.</param>
+        /// <param name="username">The username.</param>
+        /// <returns>ActionResult.</returns>
+        public ActionResult TileScroll(string oldest, string name, string username)
+        {
+            DateTime parsed = DateTime.Parse(oldest);
+            var items = _processor.Process<AlbumTileScrollInParamters, List<Tile>>(new AlbumTileScrollInParamters { CreateDate = parsed, Username = username, Name = name});
+
+            return Json(items);
         }
 
         /// <summary>

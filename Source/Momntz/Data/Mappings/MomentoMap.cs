@@ -51,7 +51,7 @@ namespace Momntz.Data.Mappings
             Map(x => x.CreateDate)
                 .Nullable();
 
-            HasMany(x => x.Media)
+            HasMany(x => x.Media).Not.LazyLoad()
                 .KeyColumn("MomentoId");
 
             Table("Momento");

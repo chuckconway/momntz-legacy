@@ -1,21 +1,27 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Hypersonic;
-using Momntz.Data.ProjectionHandlers.Momentos;
+using Momntz.Core.Extensions;
 using Momntz.Data.Projections.Momentos;
 using Momntz.Model;
 using Momntz.Model.Configuration;
+using NHibernate;
 
 namespace Momntz.Data.ProjectionHandlers.Users
 {
-    public class GetMomentoByIdHandler : BaseMomentoHandler, IProjectionHandler<int, MomentoWithMedia>
+    public class GetMomentoByIdHandler : IProjectionHandler<int, Tile>
     {
-        private readonly IDatabase _database;
+        private readonly ISession _session;
+        private readonly ISettings _settings;
 
-        public GetMomentoByIdHandler(IDatabase database, ISettings settings)
-            : base(database, settings)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetMomentoByIdHandler" /> class.
+        /// </summary>
+        /// <param name="session">The session.</param>
+        /// <param name="settings">The settings.</param>
+        public GetMomentoByIdHandler(ISession session, ISettings settings)
         {
-            _database = database;
+            _session = session;
+            _settings = settings;
         }
 
         /// <summary>
@@ -23,14 +29,18 @@ namespace Momntz.Data.ProjectionHandlers.Users
         /// </summary>
         /// <param name="id">The id.</param>
         /// <returns>MomentoWithMedia.</returns>
-        public MomentoWithMedia Execute(int id)
+        public Tile Execute(int id)
         {
-            var media = new List<MomentoWithMedia>();
-            var momento = _database.List<Momento, object>("[dbo].[Momento_RetrieveById]", new{id});
+            using (var trans = _session.BeginTransaction())
+            {
+                var items = _session.QueryOver<Momento>()
+                                    .Where(m => m.Id == id)
+                                    .List();
 
-            GetMedia(momento, media);
+                trans.Commit();
 
-            return media.SingleOrDefault();
+                return items.ConvertToTiles(_settings).First();
+            }
         }
     }
 }

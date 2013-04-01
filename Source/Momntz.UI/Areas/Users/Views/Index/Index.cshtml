@@ -28,9 +28,9 @@
     </script>
 }
 
-@if (Model.Momentos.Count > 0)
+@if (Model.Items.Count > 0)
 {
-    <input type="hidden" id="oldest" value="@Model.Momentos.Last().Momento.CreateDate.ToString()" />
+    <input type="hidden" id="oldest" value="@Model.Items.Last().CreateDate.ToString()" />
 }
 
 @section Navigation
@@ -38,4 +38,4 @@
     @{ Html.RenderPartial("/Views/Shared/_MasonryNavigationPartial.cshtml", Model); }
 }
 
-@{ Html.RenderPartial("_MasonryPartial", Model.Momentos); }
+@{ Html.RenderPartial("_MasonryPartial", Model.Items); }

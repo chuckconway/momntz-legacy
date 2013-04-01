@@ -1,51 +1,54 @@
 ﻿using System.Collections.Generic;
-using Hypersonic;
+using Momntz.Core.Extensions;
 using Momntz.Data.Projections.Momentos;
 using Momntz.Model;
 using Momntz.Model.Configuration;
 
 namespace Momntz.Data.ProjectionHandlers.Momentos
 {
-    public class UserPageMomentosHandler : BaseMomentoHandler, IProjectionHandler<string, List<MomentoWithMedia>>
+    public class UserPageMomentosHandler : IProjectionHandler<UserPageMomentosInParameters, List<Tile>>
     {
         private readonly NHibernate.ISession _session;
-        private readonly IDatabase _database;
+        private readonly ISettings _settings;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="UserPageMomentosHandler" /> class.
         /// </summary>
-        /// <param name="database">The database.</param>
-        /// <param name="settings">The settings.</param>
-        public UserPageMomentosHandler(NHibernate.ISession session, IDatabase database, ISettings settings) : base(database, settings)
+        /// <param name="session">The session.</param>
+        public UserPageMomentosHandler(NHibernate.ISession session, ISettings settings)
         {
             _session = session;
-            _database = database;
+            _settings = settings;
         }
 
         /// <summary>
         /// Executes the specified username.
         /// </summary>
-        /// <param name="username">The username.</param>
+        /// <param name="arg">The arg.</param>
         /// <returns>List{MomentoWithMedia}.</returns>
-        public List<MomentoWithMedia> Execute(string username)
+        public List<Tile> Execute(UserPageMomentosInParameters arg)
         {
-            var homepages = new List<MomentoWithMedia>();
-
             using (var trans = _session.BeginTransaction())
             {
                 var items = _session.QueryOver<Momento>()
-                         .And(m => m.Username == username)
+                         .And(m => m.Username == arg.Username)
                          .OrderBy(m => m.CreateDate).Desc
                          .Take(40)
                          .List();
 
                 trans.Commit();
 
-                GetMedia(items, homepages);
+                return items.ConvertToTiles(_settings);
             }
-                
-
-            return homepages;
         }
+    }
+
+    public class UserPageMomentosInParameters
+    {
+        /// <summary>
+        /// Gets or sets the username.
+        /// </summary>
+        /// <value>The username.</value>
+        public string Username { get; set; }
     }
 }
