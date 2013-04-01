@@ -10,13 +10,9 @@ using Momntz.Data.Commands.Users;
 using Momntz.Data.ProjectionHandlers.Momentos;
 using Momntz.Infrastructure;
 using Momntz.Infrastructure.Processors;
-using Momntz.Infrastructure.Security;
 using Momntz.Model;
 using Momntz.Model.Configuration;
 using Momntz.Tests.Setup;
-using Momntz.UI;
-using Momntz.UI.Areas.Api.Controllers;
-using Momntz.UI.Areas.Api.Models;
 using NUnit.Framework;
 
 namespace Momntz.Tests

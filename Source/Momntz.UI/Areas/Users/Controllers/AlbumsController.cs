@@ -31,7 +31,7 @@ namespace Momntz.UI.Areas.Users.Controllers
         public ActionResult Name(string name)
         {
             var view = CurrentSignedInUser<ContentWithTitleView>();
-            var results = _processor.Process<AlbumMomentosParameters, List<MomentoWithMedia>>(new AlbumMomentosParameters() { Name = name, Username = view.Username });
+            var results = _processor.Process<AlbumMomentosParameters, List<Tile>>(new AlbumMomentosParameters() { Name = name, Username = view.Username });
             view.Items = results;
             view.Title = name;
 

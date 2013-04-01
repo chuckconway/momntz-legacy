@@ -9,7 +9,7 @@ namespace Momntz.Data.Mappings
         {
             Id(x => x.Id);
 
-            References(m => m.Momento, "MomentoId");
+            References(m => m.Momento, "MomentoId").Not.LazyLoad();
 
             Map(x => x.Filename)
                 .Not.Nullable()

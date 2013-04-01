@@ -15,7 +15,7 @@ namespace Momntz.UI.Areas.Users.Models
         /// Gets or sets the items.
         /// </summary>
         /// <value>The items.</value>
-        public IList<MomentoWithMedia> Items { get; set; }
+        public IList<Tile> Items { get; set; }
 
         /// <summary>
         /// Gets or sets the display name.

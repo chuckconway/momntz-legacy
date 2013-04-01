@@ -23,6 +23,6 @@ namespace Momntz.UI.Areas.Users.Models
         /// Gets or sets the momentos.
         /// </summary>
         /// <value>The momentos.</value>
-        public IList<MomentoWithMedia> Momentos { get; set; }
+        public IList<Tile> Items { get; set; }
     }
 }

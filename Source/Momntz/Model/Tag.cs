@@ -8,7 +8,7 @@
         /// <value>
         /// The id.
         /// </value>
-        public int Id { get; set; }
+        public virtual int Id { get; set; }
 
         /// <summary>
         /// Gets or sets the name.
@@ -16,7 +16,7 @@
         /// <value>
         /// The name.
         /// </value>
-        public string Name { get; set; }
+        public virtual string Name { get; set; }
 
         /// <summary>
         /// Gets or sets the story.
@@ -24,7 +24,7 @@
         /// <value>
         /// The story.
         /// </value>
-        public string Story { get; set; }
+        public virtual string Story { get; set; }
 
         /// <summary>
         /// Gets or sets the kind of tag.
@@ -32,7 +32,13 @@
         /// <value>
         /// The kind of tag.
         /// </value>
-        public KindOfTag Kind { get; set; }
+        public virtual int Kind { get; set; }
+
+        /// <summary>
+        /// Gets or sets the username.
+        /// </summary>
+        /// <value>The username.</value>
+        public virtual string Username { get; set; }
 
     }
 

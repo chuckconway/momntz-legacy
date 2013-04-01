@@ -13,6 +13,8 @@ namespace Momntz.Infrastructure
         private readonly ISession _session;
 
         private static IList<Setting> _settings;
+        private static object _lock = new object();
+
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MomntzConfiguration" /> class.
@@ -48,19 +50,29 @@ namespace Momntz.Infrastructure
         /// <returns>IList{Setting}.</returns>
         private IList<Setting> GetValues()
         {
-            string environment = ConfigurationManager.AppSettings["Environment"];
+            IList<Setting> items = _settings;
 
-            using (var trans =_session.BeginTransaction())
+            if (_settings == null)
             {
-                var list = _session.QueryOver<Setting>()
-                    .Where(Restrictions.Or(Restrictions.IsNull("Environment"),Restrictions.Eq("Environment", environment)))
-                    .List();
+                lock (_lock)
+                {
+                    string environment = ConfigurationManager.AppSettings["Environment"];
 
-                trans.Commit();
+                    using (var trans = _session.BeginTransaction())
+                    {
+                        _settings = _session.QueryOver<Setting>()
+                                           .Where(Restrictions.Or(Restrictions.IsNull("Environment"),
+                                                                  Restrictions.Eq("Environment", environment)))
+                                           .List();
 
-             return list;
+                        trans.Commit();
+                        items = _settings;
+                    }
+                }
+
             }
-            
+
+            return items;
         }
     }
 
