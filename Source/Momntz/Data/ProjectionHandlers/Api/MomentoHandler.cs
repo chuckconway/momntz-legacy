@@ -1,17 +1,17 @@
-﻿using Momntz.Data.Projections.Api;
+﻿using Momntz.Model;
 using NHibernate;
 
 namespace Momntz.Data.ProjectionHandlers.Api
 {
-    public class MomentoDetailHandler : IProjectionHandler<int, MomentoDetail>
+    public class MomentoHandler : IProjectionHandler<int, Momento>
     {
         private readonly ISession _session;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MomentoDetailHandler" /> class.
+        /// Initializes a new instance of the <see cref="MomentoHandler"/> class.
         /// </summary>
         /// <param name="session">The session.</param>
-        public MomentoDetailHandler(ISession session)
+        public MomentoHandler(ISession session)
         {
             _session = session;
 
@@ -22,11 +22,11 @@ namespace Momntz.Data.ProjectionHandlers.Api
         /// </summary>
         /// <param name="args">The args.</param>
         /// <returns>MomentoDetail.</returns>
-        public MomentoDetail Execute(int args)
+        public Momento Execute(int args)
         {
             using(var trans =_session.BeginTransaction())
             {
-               MomentoDetail detail = _session.QueryOver<MomentoDetail>()
+               var detail = _session.QueryOver<Momento>()
                     .Where(x => x.Id == args)
                     .SingleOrDefault();
 

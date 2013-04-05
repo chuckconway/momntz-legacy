@@ -3,9 +3,9 @@ using Momntz.Model;
 
 namespace Momntz.Data.Mappings
 {
-    public class AlsoKnownAsMapping : ClassMap<AlsoKnownAs>
+    public class AlsoKnownAsMap : ClassMap<AlsoKnownAs>
     {
-        public AlsoKnownAsMapping()
+        public AlsoKnownAsMap()
         {
             Id(x => x.Id);
             Map(a => a.FirstName)

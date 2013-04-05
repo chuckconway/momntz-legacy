@@ -9,7 +9,7 @@ namespace Momntz.Core.TypeConverters
         public Momento Convert(ResolutionContext context)
         {
             var source = (CreateMomentoCommand) context.SourceValue;
-            var momento = new Momento {Username = source.Username};
+            var momento = new Momento { User = new User { Username = source.Username } };
 
             return momento;
         }

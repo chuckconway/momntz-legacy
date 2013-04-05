@@ -1,5 +1,6 @@
 ﻿using FluentNHibernate.Mapping;
-using Momntz.Data.Projections.Api;
+using Momntz.Model;
+
 
 namespace Momntz.Data.Mappings
 {
@@ -8,8 +9,11 @@ namespace Momntz.Data.Mappings
        public AlbumMap()
        {
            Id(a => a.Id);
-           Map(x => x.MomentoId)
+           Map(x => x.Username)
                .Not.Nullable();
+
+           Map(x => x.CreateDate)
+            .Nullable();
 
            Map(x => x.Name)
                .Not.Nullable()
@@ -19,9 +23,12 @@ namespace Momntz.Data.Mappings
                .Nullable()
                .Length(4000);
 
-           Map(x => x.TagId);
+          HasManyToMany(m => m.Momentos)
+                .Table("AlbumMomento")
+                .ParentKeyColumn("AlbumId")
+                .ChildKeyColumn("MomentoId");
 
-           Table("TagAlbumView");
+           Table("Album");
        }
     }
 }

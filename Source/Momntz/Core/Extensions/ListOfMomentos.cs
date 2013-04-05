@@ -28,7 +28,7 @@ namespace Momntz.Core.Extensions
                         ImageUrl = url,
                         Story = c.Story,
                         Title = c.Title,
-                        Username = c.Username,
+                        Username = c.User.Username,
                         CreateDate = c.CreateDate
                     };
 

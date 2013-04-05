@@ -8,6 +8,7 @@ using Momntz.Data.ProjectionHandlers.Momentos;
 using Momntz.Data.Projections.Api;
 using Momntz.Data.Projections.Momentos;
 using Momntz.Infrastructure.Processors;
+using Momntz.Model;
 using Momntz.UI.Areas.Api.Models;
 using Momntz.UI.Core.Controllers;
 
@@ -95,25 +96,25 @@ namespace Momntz.UI.Areas.Api.Controllers
         [HttpPost]
         public ActionResult ById(int id)
         {
-            MomentoDetail detail = _projection.Process<int, MomentoDetail>(id) ?? new MomentoDetail();
+            Momento detail = _projection.Process<int, Momento>(id) ?? new Momento();
 
             Func<string, string> convertNullToEmptyString = (s => s ?? string.Empty); 
 
                 return Json(new
                                 {
-                                    Added = detail.Added.HasValue ? detail.Added.Value.ToString("MMMM dd, yyyy") : string.Empty,
-                                    AddedUrl = detail.Added.HasValue ? string.Format("{0}/{1}/{2}", detail.Added.Value.Year, detail.Added.Value.Month, detail.Added.Value.Day) : string.Empty,
-                                    detail.AddedUsername,
+                                    Added = detail.CreateDate.HasValue ? detail.CreateDate.Value.ToString("MMMM dd, yyyy") : string.Empty,
+                                    AddedUrl = detail.CreateDate.HasValue ? string.Format("{0}/{1}/{2}", detail.CreateDate.Value.Year, detail.CreateDate.Value.Month, detail.CreateDate.Value.Day) : string.Empty,
+                                    detail.UploadedBy,
                                     Albums = detail.Albums.Select(a=> a.Name).ToArray(),
                                     detail.Day,
-                                    DisplayName = convertNullToEmptyString(detail.DisplayName),
+                                    DisplayName = convertNullToEmptyString(detail.User.FullName),
                                     Location = convertNullToEmptyString(detail.Location),
-                                    Month = convertNullToEmptyString(detail.Month),
+                                    Month = convertNullToEmptyString(Convert.ToString(detail.Month)),
                                     People = detail.People.Select(p=>new {p.Username, p.Name}),
                                     Story = convertNullToEmptyString(detail.Story),
-                                    Username = convertNullToEmptyString(detail.Username),
+                                    Username = convertNullToEmptyString(detail.User.Username),
                                     Title = convertNullToEmptyString(detail.Title), 
-                                    Year = convertNullToEmptyString(detail.Year) 
+                                    Year = convertNullToEmptyString(Convert.ToString(detail.Year)) 
                                 });
 
         }

@@ -22,7 +22,7 @@
                 }
             }
 
-            $.post('/api/albums/albumscroll?oldest=' + oldest.val(), executeOnData);
+            $.post('/api/albums/albumscroll?oldest=' + oldest.val() + '&username=@Model.Username', executeOnData);
         }
 
         function getTemplate() {
