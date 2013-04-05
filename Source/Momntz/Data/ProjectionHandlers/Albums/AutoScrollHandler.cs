@@ -1,28 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Hypersonic;
 using Momntz.Data.Projections;
-using Momntz.Data.Projections.Albums;
+using Momntz.Model;
 using Momntz.Model.Configuration;
+using NHibernate;
+using Momntz.Core.Extensions;
 
 namespace Momntz.Data.ProjectionHandlers.Albums
 {
     public class AutoScrollHandler : BaseGroupItem, IProjectionHandler<AutoScrollInParameters, List<IGroupItem>>
     {
-        private readonly IDatabase _database;
+        private readonly ISession _session;
         private readonly ISettings _settings;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AutoScrollHandler" /> class.
         /// </summary>
-        /// <param name="database">The database.</param>
+        /// <param name="session"></param>
         /// <param name="settings">The settings.</param>
-        public AutoScrollHandler(IDatabase database, ISettings settings)
+        public AutoScrollHandler(ISession session, ISettings settings)
         {
-            _database = database;
+            _session = session;
             _settings = settings;
         }
 
@@ -33,9 +31,21 @@ namespace Momntz.Data.ProjectionHandlers.Albums
         /// <returns>List{IGroupItem}.</returns>
         public List<IGroupItem> Execute(AutoScrollInParameters args)
         {
-            _database.ConnectionStringName = "sql";
-            var results = _database.List<AlbumResult, object>("TagAlbum_GetAlbumByUsernameScroll", args).ToList();
-            return GetItems(_settings, results);
+            string rootUrl = _settings.CloudUrl;
+
+            using (var trans = _session.BeginTransaction())
+            {
+                var items = _session.QueryOver<Album>()
+                         .Where(a => a.Username == args.Username)
+                         .And(a=>a.CreateDate < args.CreateDate)
+                         .OrderBy(a => a.CreateDate).Desc
+                         .Take(40)
+                         .List();
+
+                trans.Commit();
+
+                return items.ConvertToGroupItems(rootUrl);
+            }
         }
     }
 

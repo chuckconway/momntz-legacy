@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Hypersonic;
 using Momntz.Core.Extensions;
 using Momntz.Data.Projections.Momentos;
 using Momntz.Model;

@@ -96,10 +96,7 @@
   <ItemGroup>
     <Build Include="dbo\Tables\User.sql" />
     <Build Include="dbo\Tables\Momento.sql" />
-    <Build Include="dbo\Tables\Tag.sql" />
-    <Build Include="dbo\Tables\TagMomento.sql" />
     <Build Include="dbo\Tables\MomentoMedia.sql" />
-    <Build Include="dbo\Tables\TagPerson.sql" />
     <Build Include="dbo\Tables\Audit.sql" />
     <Build Include="dbo\Tables\Configuration.sql" />
     <Build Include="dbo\Stored Procedures\Momento_RetrieveTagsByMomentoId.sql" />
@@ -125,8 +122,6 @@
     <Build Include="dbo\Stored Procedures\TagAlbum_Add.sql" />
     <Build Include="dbo\Stored Procedures\Momento_GetLocationByFirstCharactersAndUsername.sql" />
     <Build Include="dbo\Stored Procedures\User_GetConnectionsByUsername.sql" />
-    <Build Include="dbo\Stored Procedures\TagAlbum_GetMomentosByNameAndUsername.sql" />
-    <Build Include="dbo\Stored Procedures\TagAlbum_GetAlbumByUsername.sql" />
     <Build Include="dbo\Stored Procedures\User_Create.sql" />
     <Build Include="dbo\Tables\Connection.sql" />
     <Build Include="dbo\Views\ConnectionView.sql" />
@@ -138,7 +133,9 @@
     <Build Include="dbo\Stored Procedures\MomentoMedia_GetByMomentoIdAndMediaType.sql" />
     <Build Include="Security\momntz_1.sql" />
     <Build Include="dbo\Stored Procedures\Momento_RetrieveById.sql" />
-    <Build Include="dbo\Stored Procedures\TagAlbum_GetAlbumByUsernameScroll.sql" />
+    <Build Include="dbo\Tables\Person.sql" />
+    <Build Include="dbo\Tables\AlbumMomento.sql" />
+    <Build Include="dbo\Tables\Album.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Data.sql" />
