@@ -143,4 +143,7 @@
   <ItemGroup>
     <PostDeploy Include="Data.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="TagToPersonAndAlbumMigration.sql" />
+  </ItemGroup>
 </Project>

@@ -31,7 +31,7 @@ namespace Momntz.Data.ProjectionHandlers.Momentos
             using (var trans = _session.BeginTransaction())
             {
                 var items = _session.QueryOver<Momento>()
-                         .And(m => m.Username == arg.Username)
+                         .And(m => m.User.Username == arg.Username)
                          .OrderBy(m => m.CreateDate).Desc
                          .Take(40)
                          .List();

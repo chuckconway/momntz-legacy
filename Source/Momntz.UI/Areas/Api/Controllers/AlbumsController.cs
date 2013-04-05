@@ -89,11 +89,11 @@ namespace Momntz.UI.Areas.Api.Controllers
         /// Albums the scroll.
         /// </summary>
         /// <param name="oldest">The oldest.</param>
+        /// <param name="username">The username.</param>
         /// <returns>ActionResult.</returns>
         [HttpPost]
-        public ActionResult AlbumScroll(string oldest)
+        public ActionResult AlbumScroll(string oldest, string username)
         {
-            string username = CurrentLandingPageUsername();
             DateTime parsed = DateTime.Parse(oldest);
             var items = _processor.Process<AutoScrollInParameters, List<IGroupItem>>(new AutoScrollInParameters{CreateDate = parsed, Username = username});
 

@@ -35,7 +35,7 @@ namespace Momntz.Data.ProjectionHandlers.Momentos
             {
                 var items = _session.QueryOver<Momento>()
                          .Where(m => m.CreateDate < args.CreateDate)
-                         .And(m=>m.Username == args.Username)
+                         .And(m=>m.User.Username == args.Username)
                          .OrderBy(m => m.CreateDate).Desc
                          .Take(20)
                          .List();

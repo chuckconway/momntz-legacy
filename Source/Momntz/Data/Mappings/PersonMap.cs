@@ -1,5 +1,6 @@
 ﻿using FluentNHibernate.Mapping;
-using Momntz.Data.Projections.Api;
+using Momntz.Model;
+
 
 namespace Momntz.Data.Mappings
 {
@@ -9,8 +10,6 @@ namespace Momntz.Data.Mappings
         {
             Id(p => p.Id);
             Map(x => x.Name);
-            Map(x => x.Story);
-            Map(x => x.TagPersonId);
             Map(x => x.Username);
             Map(x => x.Width);
             Map(x => x.XAxis);
@@ -19,7 +18,7 @@ namespace Momntz.Data.Mappings
             Map(x => x.Height);
             References(x => x.Momento, "MomentoId");
 
-            Table("TagPersonView");
+            Table("Person");
         }
     }
 }

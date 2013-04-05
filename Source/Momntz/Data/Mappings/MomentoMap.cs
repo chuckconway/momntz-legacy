@@ -11,9 +11,11 @@ namespace Momntz.Data.Mappings
             Map(x => x.InternalId)
                 .Not.Nullable();
 
-            Map(x => x.Username)
-                .Not.Nullable()
-                .Length(100);
+            References(m => m.User, "Username").Not.LazyLoad();
+
+            //Map(x => x.Username)
+            //    .Not.Nullable()
+            //    .Length(100);
 
             Map(x => x.UploadedBy)
                 .Not.Nullable()
@@ -54,6 +56,14 @@ namespace Momntz.Data.Mappings
             HasMany(x => x.Media).Not.LazyLoad()
                 .KeyColumn("MomentoId");
 
+            HasManyToMany(m => m.Albums)
+                .Table("AlbumMomento")
+                .ParentKeyColumn("MomentoId")
+                .ChildKeyColumn("AlbumId");
+
+            HasMany(x => x.People).Not.LazyLoad()
+            .KeyColumn("MomentoId");
+            
             Table("Momento");
         }
     }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Momntz.Data.Projections.Api;
 
 namespace Momntz.Model
 {
@@ -24,7 +23,7 @@ namespace Momntz.Model
 
         /// <summary> Gets or sets the username. </summary>
         /// <value> The username. </value>
-        public virtual string Username { get; set; }
+        public virtual User User { get; set; }
 
         /// <summary> Gets or sets the amount to uploaded by. </summary>
         /// <value> The amount to uploaded by. </value>
@@ -91,5 +90,11 @@ namespace Momntz.Model
         /// </summary>
         /// <value>The create date.</value>
         public virtual DateTime? CreateDate { get; set; }
+
+        /// <summary>
+        /// Gets or sets the persons.
+        /// </summary>
+        /// <value>The persons.</value>
+        public virtual IList<Person> People { get; set; } 
     }
 }

@@ -33,13 +33,10 @@ namespace Momntz.Data.ProjectionHandlers.Albums
         {
             using (var trans = _session.BeginTransaction())
             {
-                Tag tag = null;
-                var items = _session.QueryOver<TagMomento>()
-                                    .JoinQueryOver(t=>t.Tag, ()=>tag)
-                                    .Where(() => tag.Kind == (int)KindOfTag.Album)
-                                    .And(() => tag.Username == args.Username)
-                                    .And(() => tag.Name == args.Name)
-                                    .SelectList(list=>list.Select(t=>t.Momento))
+                var items = _session.QueryOver<Momento>()
+                                    .Where((m) => m.User.Username == args.Username)
+                                    .JoinQueryOver<Album>(m=>m.Albums)
+                                    .Where(a=>a.Name == args.Name)
                                     .Take(40)
                                     .List<Momento>();
 
