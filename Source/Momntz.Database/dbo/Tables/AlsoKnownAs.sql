@@ -7,8 +7,11 @@
     [Suffix]     NVARCHAR (10)  NULL,
     [Username]   NVARCHAR (100) NOT NULL,
     [IsDefault]  BIT            CONSTRAINT [DF_AlsoKnownAs_IsDefault] DEFAULT ((0)) NOT NULL,
+    [CreateDate] DATETIME       CONSTRAINT [DF_AlsoKnownAs_CreateDate] DEFAULT (getutcdate()) NOT NULL,
     CONSTRAINT [PK_AlsoKnownAs_1] PRIMARY KEY CLUSTERED ([Id] ASC)
 );
+
+
 
 
 
