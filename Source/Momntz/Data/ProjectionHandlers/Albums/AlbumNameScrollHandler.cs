@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using Momntz.Core.Extensions;
-using Momntz.Data.Projections.Api;
 using Momntz.Data.Projections.Momentos;
 using Momntz.Model;
 using Momntz.Model.Configuration;
 using NHibernate;
-using NHibernate.SqlCommand;
 
 namespace Momntz.Data.ProjectionHandlers.Albums
 {

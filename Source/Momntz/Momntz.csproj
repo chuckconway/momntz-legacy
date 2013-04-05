@@ -87,6 +87,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\DatabaseConfiguration.cs" />
+    <Compile Include="Core\Extensions\ListOfAlbums.cs" />
     <Compile Include="Core\Extensions\ListOfMomentos.cs" />
     <Compile Include="Core\IDatabaseConfiguration.cs" />
     <Compile Include="Core\TypeConverters\CreateMomentoCommandToMomentoConverter.cs" />

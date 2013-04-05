@@ -1,4 +1,4 @@
-CREATE VIEW dbo.TagAlbumView
+﻿CREATE VIEW dbo.TagAlbumView
 AS
 SELECT        T.Name, T.Username, A.MomentoId, A.TagId, T.Story, A.Id, T.CreateDate
 FROM            dbo.TagMomento AS A INNER JOIN
@@ -124,6 +124,7 @@ Begin DesignProperties =
          Or = 1350
       End
    End
-End
-', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'TagAlbumView';
+End', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'TagAlbumView';
+
+
 
