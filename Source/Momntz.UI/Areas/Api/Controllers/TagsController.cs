@@ -58,7 +58,7 @@ namespace Momntz.UI.Areas.Api.Controllers
         /// <returns>ActionResult.</returns>
         public ActionResult Retrieve(int momentoid)
         {
-            var momentoTag = _processor.Process<int, IList<MomentoTag>>(momentoid);
+            var momentoTag = _processor.Process<int, IList<MomentoPerson>>(momentoid);
             var ts = GetTags(momentoTag);
 
             var tags = new { Image = new[] { new { id = momentoid, Tags = ts } } };
@@ -71,7 +71,7 @@ namespace Momntz.UI.Areas.Api.Controllers
         /// </summary>
         /// <param name="momentoTag">The momento tag.</param>
         /// <returns>List{System.Object}.</returns>
-        private static List<object> GetTags(IEnumerable<MomentoTag> momentoTag)
+        private static List<object> GetTags(IEnumerable<MomentoPerson> momentoTag)
         {
             List<object> ts = momentoTag.Select(o => new
                 {
@@ -116,10 +116,10 @@ namespace Momntz.UI.Areas.Api.Controllers
             
           _commandProcessor.Process(new CreateTagCommand(tag.Name, tag.Left, tag.Top, tag.Width, tag.Height, username, tag.MomentoId));
 
-            var momentoTags = _processor.Process<int, IList<MomentoTag>>(tag.MomentoId);
-            MomentoTag t = momentoTags.SingleOrDefault(m => m.MomentoId == tag.MomentoId && m.DisplayName == tag.Name);
+            var momentoTags = _processor.Process<int, IList<MomentoPerson>>(tag.MomentoId);
+            MomentoPerson t = momentoTags.SingleOrDefault(m => m.MomentoId == tag.MomentoId && m.DisplayName == tag.Name);
 
-            var tags = GetTags(new List<MomentoTag> {t});
+            var tags = GetTags(new List<MomentoPerson> {t});
             return tags;
         }
     }

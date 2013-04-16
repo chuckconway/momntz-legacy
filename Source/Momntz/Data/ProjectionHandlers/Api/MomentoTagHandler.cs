@@ -1,31 +1,55 @@
 ﻿using System.Collections.Generic;
-using Hypersonic;
+using System.Linq;
 using Momntz.Data.Projections.Api;
+using Momntz.Model;
+using NHibernate;
 
 namespace Momntz.Data.ProjectionHandlers.Api
 {
-    public class MomentoTagHandler : IProjectionHandler<int, IList<MomentoTag>>
+    public class MomentoPersonHandler : IProjectionHandler<int, IList<MomentoPerson>>
     {
-        private readonly IDatabase _database;
-
+        private readonly ISession _session;
+   
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MomentoTagHandler" /> class.
         /// </summary>
-        /// <param name="database">The database.</param>
-        public MomentoTagHandler(IDatabase database)
+        /// <param name="session">The session.</param>
+        public MomentoPersonHandler(ISession session)
         {
-            _database = database;
+            _session = session;
         }
 
         /// <summary>
         /// Executes the specified args.
         /// </summary>
         /// <param name="args">The args.</param>
-        /// <returns>IList{MomentoTag}.</returns>
-        public IList<MomentoTag> Execute(int args)
+        /// <returns>IList{MomentoPerson}.</returns>
+        public IList<MomentoPerson> Execute(int args)
         {
-            return _database.List<MomentoTag, object>("TagPerson_RetrieveTagsByMomentoId", new { MomentoId = args });
+            using (var  trans = _session.BeginTransaction())
+            {
+               var items = _session.QueryOver<Person>()
+                        .Where(p => p.Momento.Id == args)
+                        .List();
+
+
+                trans.Commit();
+
+                return items.Select(
+                        i => new MomentoPerson()
+                            {
+                                MomentoId = i.Momento.Id,
+                                Id = i.Id,
+                                CreatedBy = i.CreatedBy,
+                                DisplayName = i.Name,
+                                Height = i.Height,
+                                Username = i.Username,
+                                Width = i.Width,
+                                XAxis = i.XAxis,
+                                YAxis = i.YAxis
+                            }).ToList();
+            }
         }
     }
 }

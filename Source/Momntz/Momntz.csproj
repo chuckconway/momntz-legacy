@@ -155,7 +155,7 @@
     <Compile Include="Data\ProjectionHandlers\Users\GetActiveUsersHandler.cs" />
     <Compile Include="Data\Projections\Albums\AlbumResult.cs" />
     <Compile Include="Data\Projections\Api\AlbumNameResult.cs" />
-    <Compile Include="Data\Projections\Api\MomentoTag.cs" />
+    <Compile Include="Data\Projections\Api\MomentoPerson.cs" />
     <Compile Include="Data\Projections\Api\NameSearch.cs" />
     <Compile Include="Data\Projections\Connections\ConnectionResult.cs" />
     <Compile Include="Data\Projections\IGroupItem.cs" />

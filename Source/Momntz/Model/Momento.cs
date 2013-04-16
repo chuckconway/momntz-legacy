@@ -6,6 +6,14 @@ namespace Momntz.Model
     public class Momento
     {
         /// <summary>
+        /// Initializes a new instance of the <see cref="Momento" /> class.
+        /// </summary>
+        public Momento()
+        {
+            CreateDate = DateTime.UtcNow;
+        }
+
+        /// <summary>
         /// Gets or sets the media.
         /// </summary>
         /// <value>The media.</value>

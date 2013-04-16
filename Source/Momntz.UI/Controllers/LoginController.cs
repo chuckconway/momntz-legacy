@@ -1,8 +1,5 @@
 ﻿using System.Web.Mvc;
-using System.Web.Security;
 using Momntz.Data.ProjectionHandlers.Users;
-using Momntz.Data.Projections.Users;
-using Momntz.Infrastructure;
 using Momntz.UI.Core.Controllers;
 using Momntz.UI.Models.Login;
 
