@@ -1,0 +1,24 @@
+﻿@model Momntz.UI.Areas.Users.Models.IGroupedView
+
+@foreach (var item in Model.Items)
+{
+    <div class="box photo col3">
+        
+        @if (string.IsNullOrEmpty(@Model.Path))
+        {
+            <a href="/@item.Username" title="@item.Name">
+                <img class="phototag" src="@item.Url" alt="@item.Name"  />
+            </a>
+        }
+        else
+        {
+            <a href="/@item.Username/@Model.Path/@item.Name" title="@item.Name">
+                <img class="phototag" src="@item.Url" alt="@item.Name"  />
+            </a>
+        }
+
+        <div class="details" >
+            <label class="title">@item.Name</label>
+        </div>
+    </div>
+}

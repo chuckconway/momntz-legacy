@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{77CC17DF-C471-42BF-B5F6-D55EAF918891}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Momntz</RootNamespace>
+    <AssemblyName>Momntz</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'LOCAL|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DEV|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\DEV\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'QA|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\QA\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'PROD|AnyCPU'">
+    <OutputPath>bin\PROD\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\..\Dependencies\Automapper\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="ChuckConway">
+      <HintPath>..\..\Dependencies\ChuckConway\ChuckConway.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentNHibernate">
+      <HintPath>..\..\Dependencies\nHibernate\FluentNHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="Hypersonic">
+      <HintPath>..\..\Dependencies\Hypersonic\Hypersonic.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\..\Dependencies\nHibernate\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.StorageClient, Version=1.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Dependencies\WindowsAzure\Microsoft.WindowsAzure.StorageClient.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\..\Dependencies\nHibernate\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap">
+      <HintPath>..\..\Dependencies\StructureMap\StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Data" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Core\DatabaseConfiguration.cs" />
+    <Compile Include="Core\Extensions\ListOfAlbums.cs" />
+    <Compile Include="Core\Extensions\ListOfMomentos.cs" />
+    <Compile Include="Core\IDatabaseConfiguration.cs" />
+    <Compile Include="Core\TypeConverters\CreateMomentoCommandToMomentoConverter.cs" />
+    <Compile Include="Data\CommandHandlers\Albums\AddAlbumCommandHandler.cs" />
+    <Compile Include="Data\CommandHandlers\Albums\RemoveAlbumCommandHandler.cs" />
+    <Compile Include="Data\CommandHandlers\ICommandHandler.cs" />
+    <Compile Include="Data\Mappings\AlbumMomentoMap.cs" />
+    <Compile Include="Data\Mappings\AlsoKnownAsMap.cs" />
+    <Compile Include="Data\Mappings\ExifMap.cs" />
+    <Compile Include="Data\Mappings\QueueMap.cs" />
+    <Compile Include="Data\Mappings\MediaMap.cs" />
+    <Compile Include="Data\ProjectionHandlers\Albums\AlbumNameScrollHandler.cs" />
+    <Compile Include="Model\Album.cs" />
+    <Compile Include="Model\AlbumMomento.cs" />
+    <Compile Include="Model\Person.cs" />
+    <Compile Include="Data\ProjectionHandlers\Albums\AutoScrollHandler.cs" />
+    <Compile Include="Data\ProjectionHandlers\Import\GetApiUserCommandHandler.cs" />
+    <Compile Include="Data\CommandHandlers\Momentos\CreateMomentoCommandHandler.cs" />
+    <Compile Include="Data\CommandHandlers\Momentos\CreateMomentoMediaCommandHandler.cs" />
+    <Compile Include="Data\CommandHandlers\Momentos\SaveMomentoDetailsCommandHandler.cs" />
+    <Compile Include="Data\CommandHandlers\Momentos\UpdateMomentoCommandHandler.cs" />
+    <Compile Include="Data\CommandHandlers\Queue\CreateMediaCommandHandler.cs" />
+    <Compile Include="Data\CommandHandlers\Queue\CreateQueueCommandHandler.cs" />
+    <Compile Include="Data\CommandHandlers\Tags\CreateTagCommandHandler.cs" />
+    <Compile Include="Data\CommandHandlers\Tags\DeleteTagCommandHandler.cs" />
+    <Compile Include="Data\CommandHandlers\Users\CreateUserCommandHandler.cs" />
+    <Compile Include="Data\Commands\Albums\AddAlbumCommand.cs" />
+    <Compile Include="Data\Commands\Albums\RemoveAlbumCommand.cs" />
+    <Compile Include="Data\Commands\ICommand.cs" />
+    <Compile Include="Data\ProjectionHandlers\Momentos\GetUserHomepageInfiniteScrollTilesHandler.cs" />
+    <Compile Include="Data\ProjectionHandlers\Momentos\GetHomepageInfiniteScrollTilesHandler.cs" />
+    <Compile Include="Data\ProjectionHandlers\Users\CreateUsernameHandler.cs" />
+    <Compile Include="Data\ProjectionHandlers\Users\GetMomentoByIdHandler.cs" />
+    <Compile Include="Data\Projections\Import\GetApiUserProjection.cs" />
+    <Compile Include="Data\Commands\Momentos\CreateMomentoCommand.cs" />
+    <Compile Include="Data\Commands\Momentos\CreateMomentoMedia.cs" />
+    <Compile Include="Data\Commands\Momentos\SaveMomentoDetailsCommand.cs" />
+    <Compile Include="Data\Commands\Momentos\UpdateMomentoCommand.cs" />
+    <Compile Include="Data\Commands\Queue\CreateMediaCommand.cs" />
+    <Compile Include="Data\Commands\Queue\CreateQueueCommand.cs" />
+    <Compile Include="Data\Commands\Tags\CreateTagCommand.cs" />
+    <Compile Include="Data\Commands\Tags\DeleteTagCommand.cs" />
+    <Compile Include="Data\Commands\Users\CreateUserCommand.cs" />
+    <Compile Include="Data\Mappings\AlbumMap.cs" />
+    <Compile Include="Data\Mappings\MomentoMap.cs" />
+    <Compile Include="Data\Mappings\MomentoMediaMap.cs" />
+    <Compile Include="Data\Mappings\MomentoUserMap.cs" />
+    <Compile Include="Data\Mappings\PersonMap.cs" />
+    <Compile Include="Data\Mappings\SettingMap.cs" />
+    <Compile Include="Data\Mappings\UserMap.cs" />
+    <Compile Include="Data\ProjectionHandlers\Albums\AlbumMomentosHandler.cs" />
+    <Compile Include="Data\ProjectionHandlers\Albums\AlbumResultHandler.cs" />
+    <Compile Include="Data\ProjectionHandlers\Api\AlbumNameSearchHandler.cs" />
+    <Compile Include="Data\ProjectionHandlers\Api\MomentoHandler.cs" />
+    <Compile Include="Data\ProjectionHandlers\Api\MomentoTagHandler.cs" />
+    <Compile Include="Data\ProjectionHandlers\BaseGroupItem.cs" />
+    <Compile Include="Data\ProjectionHandlers\Connections\ConnectionResultHandler.cs" />
+    <Compile Include="Data\ProjectionHandlers\IProjectionHandler.cs" />
+    <Compile Include="Data\ProjectionHandlers\Momentos\LocationAutocompleteHandler.cs" />
+    <Compile Include="Data\ProjectionHandlers\Momentos\UserPageMomentosHandler.cs" />
+    <Compile Include="Data\ProjectionHandlers\Momentos\HomepageMomentosHandler.cs" />
+    <Compile Include="Data\ProjectionHandlers\Api\NameSearchByUsernameHandler.cs" />
+    <Compile Include="Data\ProjectionHandlers\Users\AuthenticatedUserHandler.cs" />
+    <Compile Include="Data\ProjectionHandlers\Users\DisplayNameHandler.cs" />
+    <Compile Include="Data\ProjectionHandlers\Users\GetActiveUsersHandler.cs" />
+    <Compile Include="Data\Projections\Albums\AlbumResult.cs" />
+    <Compile Include="Data\Projections\Api\AlbumNameResult.cs" />
+    <Compile Include="Data\Projections\Api\MomentoPerson.cs" />
+    <Compile Include="Data\Projections\Api\NameSearch.cs" />
+    <Compile Include="Data\Projections\Connections\ConnectionResult.cs" />
+    <Compile Include="Data\Projections\IGroupItem.cs" />
+    <Compile Include="Data\Projections\IProjection.cs" />
+    <Compile Include="Data\Projections\Momentos\LocationAutoComplete.cs" />
+    <Compile Include="Data\Projections\Momentos\Tile.cs" />
+    <Compile Include="Data\Projections\Users\ActiveUsername.cs" />
+    <Compile Include="Data\Projections\Users\AuthenticatedUser.cs" />
+    <Compile Include="Data\Projections\Users\CreateUsername.cs" />
+    <Compile Include="Data\Projections\Users\DisplayName.cs" />
+    <Compile Include="Infrastructure\Processors\CommandProcessor.cs" />
+    <Compile Include="Infrastructure\Extensions\MapperExtensions.cs" />
+    <Compile Include="Infrastructure\Processors\ICommandProcessor.cs" />
+    <Compile Include="Infrastructure\IInjection.cs" />
+    <Compile Include="Infrastructure\IMap.cs" />
+    <Compile Include="Infrastructure\Processors\IProjectionProcessor.cs" />
+    <Compile Include="Infrastructure\Mapper.cs" />
+    <Compile Include="Infrastructure\MomntzConfiguration.cs" />
+    <Compile Include="Infrastructure\Processors\ProjectionProcessor.cs" />
+    <Compile Include="Infrastructure\StructureMapInjection.cs" />
+    <Compile Include="Model\AlsoKnownAs.cs" />
+    <Compile Include="Model\Configuration\ISettings.cs" />
+    <Compile Include="Model\Configuration\Setting.cs" />
+    <Compile Include="Model\Configuration\Settings.cs" />
+    <Compile Include="Model\Core\MediaMessage.cs" />
+    <Compile Include="Model\Exif.cs" />
+    <Compile Include="Model\Momento.cs" />
+    <Compile Include="Model\MomentoMedia.cs" />
+    <Compile Include="Model\MomentoUser.cs" />
+    <Compile Include="Model\MomentoVisibility.cs" />
+    <Compile Include="Model\Name.cs" />
+    <Compile Include="Model\QueueData\Queue.cs" />
+    <Compile Include="Model\QueueData\Media.cs" />
+    <Compile Include="Model\User.cs" />
+    <Compile Include="Model\UserStatus.cs" />
+    <Compile Include="MomntzRegistry.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

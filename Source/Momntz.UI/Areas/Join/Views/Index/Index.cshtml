@@ -1,0 +1,67 @@
+﻿@using SquishIt.Framework
+@using SquishIt.Mvc
+@model Momntz.UI.Areas.Join.Models.JoinIndexModel
+
+@{
+    ViewBag.Title = "Momntz - Register";
+    Layout = "/Views/Shared/_MasonryMaster.cshtml";
+}
+
+@section Head{
+    
+    @(
+        Bundle.JavaScript()
+              .Add("/Scripts/plugins/validation/jquery.mobile.validation.js")
+              .MvcRender("/scripts/validation_#.css")
+
+    )
+
+    <script >
+        $(function () {
+            $('form#register').validate();
+            
+        });
+    </script>
+}
+
+<div id="singlecontent">
+    <div class="formcontainer" >
+        
+        <h1>
+            Create your account
+            <span style="color:red;display: block;font-size: 11px;">all fields are required</span>
+        </h1>
+        
+
+        <form id="register" action="/join/index" method="post"> 
+
+            <p>
+                @Html.Label("Username")
+               @Html.TextBoxFor(m=>m.Username, new{@class="required", title="Username"})
+            </p>
+            <p>
+                @Html.Label("Email")
+                @Html.TextBoxFor(m=>m.Email, new{@class="required", title="Email"})
+            </p>
+            <p>
+                @Html.Label("First Name")
+                @Html.TextBoxFor(m=>m.FirstName, new{@class="required", title="First Name"})
+            </p>
+            <p>
+                @Html.Label("Last Name")
+                @Html.TextBoxFor(m=>m.LastName, new{@class="required", title="Last name"})
+            </p>
+            <p>
+                @Html.Label("Password")
+                @Html.PasswordFor(m=>m.Password, new{@class="required", title="Password"})
+            </p>
+            
+            <p>
+                @Html.Label("Confirm")
+                @Html.Password("confirm")
+            </p>
+            
+            <p><input type="submit" value="Create Account" /></p>
+        </form>
+    </div>
+</div>

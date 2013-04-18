@@ -1,0 +1,33 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "title";
+    Layout = "/Views/Shared/_MasonryMaster.cshtml";
+}
+
+@section Head{
+
+            <style type="text/css" >
+            .loginform { width: 400px;height: 375px;}
+            .centered { position: fixed; top: 50%; left: 50%; margin-top: -187px; margin-left: -200px;}
+        </style>
+
+}
+<div class="loginform centered formcontainer" >
+    <h1 >Forgotten something? Doh! We all have those moments.</h1>
+    <form class="contact-form" method="POST"  >
+        <p>
+            <label>Forgot Username - enter email address</label>
+            <input type="text" name="email"  />
+        </p>
+        <input type="submit" value="Send username" />
+        
+        <p style="margin-top: 50px;" >
+            <label>Forgot password - enter username</label>
+            <input type="text" name="username"  />
+        </p>
+                
+        <input type="submit" value="Reset password" />
+
+    </form>
+</div>

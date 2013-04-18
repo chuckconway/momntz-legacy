@@ -1,0 +1,31 @@
+﻿@model Momntz.UI.Areas.Users.Models.ISignedUser
+
+@if(@Model == null)
+{
+    <li><a href="/login" title="Login into Momntz" >Login</a></li>
+    <li><a href="/join" title="Join Momntz" >Sign Up</a></li>
+}
+else 
+{
+    <li><strong><a href="/@Model.Username" title="@Model.DisplayName's homepage" >@Model.DisplayName</a></strong></li>
+
+        if (Model.IsAuthenticatedUser)
+        {
+            <li><a href="/@Model.Username/upload" title="Upload photos" >Add</a></li>
+        }
+
+    <li><a href="/@Model.Username/albums" title="View albums" >Albums</a></li>
+    <li><a href="/@Model.Username/connections" title="View connections" >Connections</a></li>
+
+        if (Model.IsAuthenticatedUser)
+        {
+            <li><a href="/@Model.Username/settings" title="View connections" >Settings</a></li>
+            <li><a href="/signout" title="Sign out of Momntz" >Sign Out</a></li>
+        }
+        else
+        {
+            <li><a href="/login" title="Login into Momntz" >Login</a></li>
+            <li><a href="/join" title="Join Momntz" >Sign Up</a></li>
+        }
+}
+

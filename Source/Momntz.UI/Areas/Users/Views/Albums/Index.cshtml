@@ -1,0 +1,45 @@
+﻿@model Momntz.UI.Areas.Users.Models.GroupView
+
+@{
+    Layout = "~/Views/Shared/_MasonryMaster.cshtml";
+
+}
+
+@section Head
+{
+    <script type="text/javascript">
+
+        function getItems(getData) {
+            var oldest = $('input#oldest');
+
+            function executeOnData(data) {
+
+                if (data != null && data.length > 0) {
+                    var item = data[data.length - 1];
+                    oldest.val(item.CreateDate);
+
+                    getData(data);
+                }
+            }
+
+            $.post('/api/albums/albumscroll?oldest=' + oldest.val() + '&username=@Model.Username', executeOnData);
+        }
+
+        function getTemplate() {
+            return $("#album-template").html();
+        }
+
+    </script>
+}
+
+@if (Model.Items.Count > 0)
+{
+    <input type="hidden" id="oldest" value="@Model.Items.Last().CreateDate.ToString()" />
+}
+
+@section Navigation
+{
+    @{ Html.RenderPartial("/Views/Shared/_MasonryNavigationPartial.cshtml", Model ); }
+}
+
+@{ Html.RenderPartial("_MasonryGroupedItemsPartial", Model); }

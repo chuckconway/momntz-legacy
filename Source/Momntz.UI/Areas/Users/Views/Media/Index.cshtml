@@ -1,0 +1,21 @@
+﻿@model Momntz.Data.Projections.Momentos.Tile
+
+@{
+    ViewBag.Title = "title";
+    Layout = "/Views/Shared/_MasonryMaster.cshtml";
+}
+
+<div id="singlecontent">
+    <img class="content" src="@Model.ImageUrl" title="@Model.Title" />
+    <div id="details" >
+        
+        <div>
+            <span id="title">@Model.Title</span>
+            <span id="uploaded">Uploaded by <a href="/@Model.Username">@Model.Username</a> </span>
+        </div>
+        
+        <div id="story">
+            @Model.Story
+        </div>
+    </div>
+</div>
