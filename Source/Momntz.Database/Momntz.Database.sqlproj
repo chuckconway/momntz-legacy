@@ -129,6 +129,6 @@
     <PostDeploy Include="Data.sql" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="TagToPersonAndAlbumMigration.sql" />
+    <None Include="3.1.2.ReleaseScripts.sql" />
   </ItemGroup>
 </Project>
