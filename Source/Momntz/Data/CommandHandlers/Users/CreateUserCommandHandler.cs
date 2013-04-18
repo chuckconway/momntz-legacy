@@ -10,8 +10,11 @@ namespace Momntz.Data.CommandHandlers.Users
         private readonly IDatabase _database;
         private readonly ICrypto _crypto;
 
-        /// <summary> Constructor. </summary>
-        /// <param name="session"> The session. </param>
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="database">The database.</param>
+        /// <param name="crypto">The crypto.</param>
         public CreateUserCommandHandler(IDatabase database, ICrypto crypto)
         {
             _database = database;

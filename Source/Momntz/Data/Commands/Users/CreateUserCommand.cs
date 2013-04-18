@@ -19,7 +19,6 @@
 
         public string FirstName { get; set; }
 
-        public string DisplayName { get; set; }
 
         public string LastName { get; set; }
 
@@ -34,9 +33,8 @@
         /// <param name="firstName"> Name of the first. </param>
         /// <param name="lastName">  Name of the last. </param>
         /// <param name="password">  The password. </param>
-        public CreateUserCommand(string username, string createdBy, string email, string displayName, string firstName, string lastName, string password)
+        public CreateUserCommand(string username, string createdBy, string email,  string firstName, string lastName, string password)
         {
-            DisplayName = displayName;
             Username = username;
             CreatedBy = createdBy;
             Email = email;

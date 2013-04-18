@@ -19,6 +19,7 @@
     <script >
         $(function () {
             $('form#register').validate();
+            
         });
     </script>
 }
@@ -26,7 +27,11 @@
 <div id="singlecontent">
     <div class="formcontainer" >
         
-        <h1>Create your account</h1>
+        <h1>
+            Create your account
+            <span style="color:red;display: block;font-size: 11px;">all fields are required</span>
+        </h1>
+        
 
         <form id="register" action="/join/index" method="post"> 
 
@@ -47,14 +52,15 @@
                 @Html.TextBoxFor(m=>m.LastName, new{@class="required", title="Last name"})
             </p>
             <p>
-                @Html.Label("Display Name")
-                @Html.TextBoxFor(m=>m.DisplayName, new{@class="required", title="Display Name"})
-            </p>
-            <p>
                 @Html.Label("Password")
                 @Html.PasswordFor(m=>m.Password, new{@class="required", title="Password"})
             </p>
-        
+            
+            <p>
+                @Html.Label("Confirm")
+                @Html.Password("confirm")
+            </p>
+            
             <p><input type="submit" value="Create Account" /></p>
         </form>
     </div>
