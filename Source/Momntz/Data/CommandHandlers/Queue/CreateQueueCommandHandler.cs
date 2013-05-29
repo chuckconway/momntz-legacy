@@ -10,6 +10,11 @@ namespace Momntz.Data.CommandHandlers.Queue
         private readonly IDatabase _database;
         private readonly ISettings _settings;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateQueueCommandHandler"/> class.
+        /// </summary>
+        /// <param name="database">The database.</param>
+        /// <param name="settings">The settings.</param>
         public CreateQueueCommandHandler(IDatabase database, ISettings settings)
         {
             _database = database;
