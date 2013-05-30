@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using Momntz.Core.Extensions;
 using Momntz.Data.Projections.Momentos;
-using Momntz.Model;
-using Momntz.Model.Configuration;
+using Momntz.Data.Schema;
+using Momntz.Infrastructure.Configuration;
 using NHibernate;
 
 namespace Momntz.Data.ProjectionHandlers.Users

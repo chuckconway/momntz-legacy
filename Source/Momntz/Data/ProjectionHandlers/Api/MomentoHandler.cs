@@ -1,4 +1,5 @@
-﻿using Momntz.Model;
+﻿using Momntz.Data.Schema;
+
 using NHibernate;
 
 namespace Momntz.Data.ProjectionHandlers.Api

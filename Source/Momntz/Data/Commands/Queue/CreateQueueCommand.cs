@@ -13,11 +13,4 @@
         public string Payload { get; set; }
     }
 
-    public enum MessageStatus
-    {
-        Queued,
-        Completed,
-        Processing,
-        Error
-    }
 }

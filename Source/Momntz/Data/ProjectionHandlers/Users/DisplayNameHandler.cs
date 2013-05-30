@@ -1,5 +1,6 @@
 ﻿using Momntz.Data.Projections.Users;
-using Momntz.Model;
+using Momntz.Data.Schema;
+
 using NHibernate;
 
 namespace Momntz.Data.ProjectionHandlers.Users

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Momntz.Data.Projections;
-using Momntz.Model.Configuration;
+using Momntz.Infrastructure.Configuration;
 
 namespace Momntz.Data.ProjectionHandlers
 {

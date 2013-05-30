@@ -1,18 +1,20 @@
-﻿namespace Momntz.Model.Configuration
+﻿namespace Momntz.Data.Schema
 {
-    public class Setting
+    public class Exif
     {
-        /// <summary>
-        /// Gets or sets the id.
-        /// </summary>
-        /// <value>The id.</value>
         public virtual int Id { get; set; }
+
+        /// <summary>
+        /// Gets or sets the momento id.
+        /// </summary>
+        /// <value>The momento id.</value>
+        public virtual Momento Momento { get; set; }
 
         /// <summary>
         /// Gets or sets the key.
         /// </summary>
         /// <value>The key.</value>
-        public virtual string Name { get; set; }
+        public virtual string Key { get; set; }
 
         /// <summary>
         /// Gets or sets the value.
@@ -21,9 +23,9 @@
         public virtual string Value { get; set; }
 
         /// <summary>
-        /// Gets or sets the environment.
+        /// Gets or sets the type.
         /// </summary>
-        /// <value>The environment.</value>
-        public virtual string Environment { get; set; }
+        /// <value>The type.</value>
+        public virtual int Type { get; set; }
     }
 }

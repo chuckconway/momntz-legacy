@@ -1,7 +1,6 @@
 ﻿using System;
-using Momntz.Infrastructure;
 
-namespace Momntz.Model.Configuration
+namespace Momntz.Infrastructure.Configuration
 {
     public class Settings : ISettings
     {

@@ -1,7 +1,5 @@
-﻿using System.Data;
-using Hypersonic;
+﻿using Hypersonic;
 using Momntz.Data.Commands.Momentos;
-using Momntz.Model;
 
 namespace Momntz.Data.CommandHandlers.Momentos
 {
