@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
-using Momntz.Model;
+using Momntz.Data.Schema;
+
 
 namespace Momntz.Data.Projections.Users
 {

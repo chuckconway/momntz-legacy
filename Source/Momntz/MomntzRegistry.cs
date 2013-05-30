@@ -1,7 +1,6 @@
 ﻿using Momntz.Data.CommandHandlers;
 using Momntz.Data.ProjectionHandlers;
 using Momntz.Infrastructure;
-using Momntz.Model.Configuration;
 using StructureMap.Configuration.DSL;
 
 namespace Momntz

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
-using Momntz.Model.Configuration;
+using Momntz.Infrastructure.Configuration;
 using NHibernate;
 using NHibernate.Criterion;
 

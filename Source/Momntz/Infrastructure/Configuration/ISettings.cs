@@ -1,4 +1,4 @@
-﻿namespace Momntz.Model.Configuration
+﻿namespace Momntz.Infrastructure.Configuration
 {
     public interface ISettings
     {

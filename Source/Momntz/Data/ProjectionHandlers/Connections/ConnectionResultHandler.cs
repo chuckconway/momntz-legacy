@@ -4,9 +4,7 @@ using System.Linq;
 using Hypersonic;
 using Momntz.Data.Projections;
 using Momntz.Data.Projections.Connections;
-using Momntz.Data.Projections.Momentos;
-using Momntz.Model;
-using Momntz.Model.Configuration;
+using Momntz.Infrastructure.Configuration;
 
 namespace Momntz.Data.ProjectionHandlers.Connections
 {

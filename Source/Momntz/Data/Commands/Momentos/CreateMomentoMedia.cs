@@ -1,4 +1,5 @@
-﻿using Momntz.Model;
+﻿using Momntz.Data.Schema;
+
 
 namespace Momntz.Data.Commands.Momentos
 {

@@ -2,7 +2,8 @@
 using System.Linq;
 using Momntz.Data.Projections;
 using Momntz.Data.Projections.Albums;
-using Momntz.Model;
+using Momntz.Data.Schema;
+
 
 namespace Momntz.Core.Extensions
 {

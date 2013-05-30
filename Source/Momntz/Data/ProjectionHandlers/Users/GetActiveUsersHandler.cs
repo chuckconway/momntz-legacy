@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Momntz.Data.Projections.Users;
-using Momntz.Model;
+using Momntz.Data.Schema;
+
 using NHibernate;
 using NHibernate.Criterion;
 

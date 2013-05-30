@@ -1,8 +1,8 @@
 ﻿using ChuckConway.Cryptography;
 using Hypersonic;
 using Momntz.Data.Projections.Users;
+using Momntz.Data.Schema;
 
-using Momntz.Model;
 
 namespace Momntz.Data.ProjectionHandlers.Users
 {
