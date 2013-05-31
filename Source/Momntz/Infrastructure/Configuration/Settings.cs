@@ -43,15 +43,6 @@ namespace Momntz.Infrastructure.Configuration
         }
 
         /// <summary>
-        /// Gets the queue database.
-        /// </summary>
-        /// <value>The queue database.</value>
-        public string QueueDatabase
-        {
-            get { return _service.GetValueByKey("Database.Queue"); }
-        }
-
-        /// <summary>
         /// Gets the width of the image small.
         /// </summary>
         /// <value>The width of the image small.</value>

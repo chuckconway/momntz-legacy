@@ -7,5 +7,11 @@
         /// </summary>
         /// <value>The type.</value>
         string Type { get; }
+
+        /// <summary>
+        /// Consumes the specified message.
+        /// </summary>
+        /// <param name="message">The message.</param>
+        void Consume(string message);
     }
 }
