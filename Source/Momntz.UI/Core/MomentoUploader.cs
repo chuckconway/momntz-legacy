@@ -3,7 +3,6 @@ using System.IO;
 using System.Linq;
 using System.Web.Script.Serialization;
 using Momntz.Data.Commands.Queue;
-using Momntz.Infrastructure;
 using Momntz.Infrastructure.Processors;
 using Momntz.Model.Core;
 
@@ -25,6 +24,7 @@ namespace Momntz.UI.Core
             _commandProcessor = commandProcessor;
         }
 
+
         /// <summary>
         /// Adds the specified filename.
         /// </summary>
@@ -37,13 +37,17 @@ namespace Momntz.UI.Core
             var extension = Path.GetExtension(filename);
             var mediaType = GetMediaType(extension);
 
+            //Save the media to storage
             var id = Guid.NewGuid();
             var command = new CreateMediaCommand(id, filename, extension, bytes.Length, username, mediaType, bytes);
             _commandProcessor.Process(command);
 
+            //Add a message to the queue for processing the message
             var message = GetMediaMessage(id, mediaType);
             var queue = new CreateQueueCommand("Momntz.Model.Core.MediaMessage", message);
             _commandProcessor.Process(queue);
+
+            //Make request to service to process image.
 
             return id;
         }

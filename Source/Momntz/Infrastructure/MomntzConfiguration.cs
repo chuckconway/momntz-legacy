@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
-using Momntz.Model.Configuration;
+using Momntz.Infrastructure.Configuration;
 using NHibernate;
 using NHibernate.Criterion;
 
@@ -13,7 +13,7 @@ namespace Momntz.Infrastructure
         private readonly ISession _session;
 
         private static IList<Setting> _settings;
-        private static object _lock = new object();
+        private static readonly object _lock = new object();
 
 
         /// <summary>

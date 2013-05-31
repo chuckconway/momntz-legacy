@@ -1,39 +1,30 @@
-﻿using System.Collections.Generic;
-using System.Data;
-using System.Data.Common;
-using Hypersonic;
+﻿using ChuckConway.Cloud.Storage;
+
 using Momntz.Data.Commands.Queue;
-using Momntz.Model.Configuration;
 
 namespace Momntz.Data.CommandHandlers.Queue
 {
     public class CreateMediaCommandHandler : ICommandHandler<CreateMediaCommand>
     {
-        private readonly IDatabase _database;
-        private readonly ISettings _settings;
+        private readonly IStorage _storage;
 
-        public CreateMediaCommandHandler(IDatabase database, ISettings settings)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateMediaCommandHandler"/> class.
+        /// </summary>
+        /// <param name="storage">The storage.</param>
+        public CreateMediaCommandHandler(IStorage storage)
         {
-            _database = database;
-            _settings = settings;
+            _storage = storage;
         }
 
+        /// <summary>
+        /// Executes the specified command.
+        /// </summary>
+        /// <param name="command">The command.</param>
         public void Execute(CreateMediaCommand command)
         {
-                var parameters = new List<DbParameter>()
-                                     {
-                                         _database.MakeParameter("@Id", command.Id),
-                                         _database.MakeParameter("@Filename", command.Filename),
-                                         _database.MakeParameter("@Extension", command.Extension),
-                                         _database.MakeParameter("@Size", command.Size),
-                                         _database.MakeParameter("@Username", command.Username),
-                                         _database.MakeParameter("@MediaType", command.MediaType),
-                                         _database.MakeParameter("@Bytes", DbType.Binary, command.Bytes.Length, command.Bytes)
-                                     };
-
-                _database.CommandType = CommandType.Text;
-                _database.ConnectionString = _settings.QueueDatabase;
-                _database.NonQuery("Insert Into Media(Id, Extension, Filename, Size, Username, MediaType, Bytes) Values (@Id, @Extension, @Filename, @Size, @Username, @MediaType, @Bytes)", parameters);
+            string contentType = string.Format("{0}/{1}", command.MediaType, command.Extension);
+            _storage.AddFile(StorageConstants.QueueBucket, command.Id.ToString(), contentType, command.Bytes);
         }
     }
 }

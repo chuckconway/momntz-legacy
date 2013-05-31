@@ -1,4 +1,4 @@
-﻿namespace Momntz.Model
+﻿namespace Momntz.Data.Schema
 {
     public class MomentoMedia
     {
@@ -42,18 +42,14 @@
         /// <value>
         /// The type of the media.
         /// </value>
-        public virtual MediaType MediaType { get; set; }
+        public virtual MomentoMediaType MomentoMediaType { get; set; }
     }
 
-    public enum MediaType
+    public enum MomentoMediaType
     {
-        WordDoc,
-        PDF,
-        Video,
         SmallImage,
         MediumImage,
         LargeImage,
         OriginalImage,
-        Text
     }
 }

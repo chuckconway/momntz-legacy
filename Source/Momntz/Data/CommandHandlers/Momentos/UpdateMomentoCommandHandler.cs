@@ -1,6 +1,7 @@
 ﻿using System;
 using Momntz.Data.Commands.Momentos;
-using Momntz.Model;
+using Momntz.Data.Schema;
+
 using NHibernate;
 
 namespace Momntz.Data.CommandHandlers.Momentos

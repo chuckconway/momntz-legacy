@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using Momntz.Data.Projections;
-using Momntz.Model;
-using Momntz.Model.Configuration;
+using Momntz.Data.Schema;
+using Momntz.Infrastructure.Configuration;
+
 using NHibernate;
 using Momntz.Core.Extensions;
 

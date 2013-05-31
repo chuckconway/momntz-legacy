@@ -1,4 +1,5 @@
-﻿namespace Momntz.Model
+﻿
+namespace Momntz.Data.Schema
 {
    public class AlbumMomento
     {

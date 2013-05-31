@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using Momntz.Core.Extensions;
 using Momntz.Data.Projections.Momentos;
-using Momntz.Model;
-using Momntz.Model.Configuration;
+using Momntz.Data.Schema;
+using Momntz.Infrastructure.Configuration;
+
 
 namespace Momntz.Data.ProjectionHandlers.Momentos
 {

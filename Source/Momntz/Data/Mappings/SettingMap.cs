@@ -1,5 +1,5 @@
 ﻿using FluentNHibernate.Mapping;
-using Momntz.Model.Configuration;
+using Momntz.Infrastructure.Configuration;
 
 namespace Momntz.Data.Mappings
 {

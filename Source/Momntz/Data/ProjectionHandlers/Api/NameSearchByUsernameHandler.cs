@@ -2,7 +2,8 @@
 using System.Linq;
 using Hypersonic;
 using Momntz.Data.Projections.Api;
-using Momntz.Model;
+using Momntz.Data.Schema;
+
 
 namespace Momntz.Data.ProjectionHandlers.Api
 {

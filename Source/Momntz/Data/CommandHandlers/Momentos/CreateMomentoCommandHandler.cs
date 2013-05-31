@@ -1,7 +1,8 @@
 ﻿using System;
 using Momntz.Data.Commands.Momentos;
+using Momntz.Data.Schema;
 using Momntz.Infrastructure;
-using Momntz.Model;
+
 using NHibernate;
 using Mapper = AutoMapper.Mapper;
 
