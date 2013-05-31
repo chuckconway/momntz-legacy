@@ -60,6 +60,9 @@
     <Reference Include="ChuckConway">
       <HintPath>..\..\Dependencies\ChuckConway\ChuckConway.dll</HintPath>
     </Reference>
+    <Reference Include="ChuckConway.Cloud">
+      <HintPath>..\..\Dependencies\ChuckConway\ChuckConway.Cloud.dll</HintPath>
+    </Reference>
     <Reference Include="FluentNHibernate">
       <HintPath>..\..\Dependencies\nHibernate\FluentNHibernate.dll</HintPath>
     </Reference>
@@ -69,9 +72,17 @@
     <Reference Include="Iesi.Collections">
       <HintPath>..\..\Dependencies\nHibernate\Iesi.Collections.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.ServiceBus, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Windows Azure AppFabric SDK\V1.0\Assemblies\NET4.0\Microsoft.ServiceBus.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Configuration, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.WindowsAzure.StorageClient, Version=1.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Dependencies\WindowsAzure\Microsoft.WindowsAzure.StorageClient.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\Momntz.Worker\Dependencies\JSON.Net\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NHibernate">
       <HintPath>..\..\Dependencies\nHibernate\NHibernate.dll</HintPath>
@@ -84,12 +95,11 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\DatabaseConfiguration.cs" />
     <Compile Include="Core\Extensions\ListOfAlbums.cs" />
     <Compile Include="Core\Extensions\ListOfMomentos.cs" />
-    <Compile Include="Core\IDatabaseConfiguration.cs" />
     <Compile Include="Core\TypeConverters\CreateMomentoCommandToMomentoConverter.cs" />
     <Compile Include="Data\CommandHandlers\Albums\AddAlbumCommandHandler.cs" />
     <Compile Include="Data\CommandHandlers\Albums\RemoveAlbumCommandHandler.cs" />
@@ -97,12 +107,16 @@
     <Compile Include="Data\Mappings\AlbumMomentoMap.cs" />
     <Compile Include="Data\Mappings\AlsoKnownAsMap.cs" />
     <Compile Include="Data\Mappings\ExifMap.cs" />
-    <Compile Include="Data\Mappings\QueueMap.cs" />
-    <Compile Include="Data\Mappings\MediaMap.cs" />
     <Compile Include="Data\ProjectionHandlers\Albums\AlbumNameScrollHandler.cs" />
-    <Compile Include="Model\Album.cs" />
-    <Compile Include="Model\AlbumMomento.cs" />
-    <Compile Include="Model\Person.cs" />
+    <Compile Include="Infrastructure\Configuration\Database.cs" />
+    <Compile Include="Messaging\ISaga.cs" />
+    <Compile Include="Messaging\ISagaOfT.cs" />
+    <Compile Include="Messaging\Models\Email.cs" />
+    <Compile Include="Messaging\Models\Logging.cs" />
+    <Compile Include="Messaging\Models\Media.cs" />
+    <Compile Include="Data\Schema\Album.cs" />
+    <Compile Include="Data\Schema\AlbumMomento.cs" />
+    <Compile Include="Data\Schema\Person.cs" />
     <Compile Include="Data\ProjectionHandlers\Albums\AutoScrollHandler.cs" />
     <Compile Include="Data\ProjectionHandlers\Import\GetApiUserCommandHandler.cs" />
     <Compile Include="Data\CommandHandlers\Momentos\CreateMomentoCommandHandler.cs" />
@@ -176,21 +190,19 @@
     <Compile Include="Infrastructure\MomntzConfiguration.cs" />
     <Compile Include="Infrastructure\Processors\ProjectionProcessor.cs" />
     <Compile Include="Infrastructure\StructureMapInjection.cs" />
-    <Compile Include="Model\AlsoKnownAs.cs" />
-    <Compile Include="Model\Configuration\ISettings.cs" />
-    <Compile Include="Model\Configuration\Setting.cs" />
-    <Compile Include="Model\Configuration\Settings.cs" />
-    <Compile Include="Model\Core\MediaMessage.cs" />
-    <Compile Include="Model\Exif.cs" />
-    <Compile Include="Model\Momento.cs" />
-    <Compile Include="Model\MomentoMedia.cs" />
-    <Compile Include="Model\MomentoUser.cs" />
-    <Compile Include="Model\MomentoVisibility.cs" />
-    <Compile Include="Model\Name.cs" />
-    <Compile Include="Model\QueueData\Queue.cs" />
-    <Compile Include="Model\QueueData\Media.cs" />
-    <Compile Include="Model\User.cs" />
-    <Compile Include="Model\UserStatus.cs" />
+    <Compile Include="Data\Schema\AlsoKnownAs.cs" />
+    <Compile Include="Infrastructure\Configuration\ISettings.cs" />
+    <Compile Include="Infrastructure\Configuration\Setting.cs" />
+    <Compile Include="Infrastructure\Configuration\Settings.cs" />
+    <Compile Include="Data\Schema\Exif.cs" />
+    <Compile Include="Data\Schema\Momento.cs" />
+    <Compile Include="Data\Schema\MomentoMedia.cs" />
+    <Compile Include="Data\Schema\MomentoUser.cs" />
+    <Compile Include="Data\Schema\MomentoVisibility.cs" />
+    <Compile Include="Data\Schema\Name.cs" />
+    <Compile Include="Data\Schema\User.cs" />
+    <Compile Include="Data\Schema\UserStatus.cs" />
+    <Compile Include="Messaging\QueueConstants.cs" />
     <Compile Include="MomntzRegistry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

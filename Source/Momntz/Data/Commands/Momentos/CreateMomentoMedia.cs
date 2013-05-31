@@ -1,4 +1,5 @@
-﻿using Momntz.Model;
+﻿using Momntz.Data.Schema;
+
 
 namespace Momntz.Data.Commands.Momentos
 {
@@ -9,17 +10,17 @@ namespace Momntz.Data.Commands.Momentos
         public string Url { get; set; }
         public int Size { get; set; }
         public string Username { get; set; }
-        public MediaType MediaType { get; set; }
+        public MomentoMediaType MomentoMediaType { get; set; }
         public int MomentoId { get; set; }
 
-        public CreateMomentoMediaCommand(string filename, string fileType, string url, int size, string username, MediaType mediaType )
+        public CreateMomentoMediaCommand(string filename, string fileType, string url, int size, string username, MomentoMediaType momentoMediaType )
         {
             Filename = filename;
             Extension = fileType;
             Url = url;
             Size = size;
             Username = username;
-            MediaType = mediaType;
+            MomentoMediaType = momentoMediaType;
         }
     }
 }

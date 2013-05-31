@@ -1,7 +1,6 @@
 ﻿using System;
-using Momntz.Infrastructure;
 
-namespace Momntz.Model.Configuration
+namespace Momntz.Infrastructure.Configuration
 {
     public class Settings : ISettings
     {
@@ -41,15 +40,6 @@ namespace Momntz.Model.Configuration
         public string CloudKey
         {
             get { return _service.GetValueByKey("cloudkey"); }
-        }
-
-        /// <summary>
-        /// Gets the queue database.
-        /// </summary>
-        /// <value>The queue database.</value>
-        public string QueueDatabase
-        {
-            get { return _service.GetValueByKey("Database.Queue"); }
         }
 
         /// <summary>

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Momntz.Data.Commands.Momentos;
-using Momntz.Model;
+using Momntz.Data.Schema;
+
 
 namespace Momntz.Core.TypeConverters
 {
