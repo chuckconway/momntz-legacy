@@ -19,7 +19,7 @@ namespace Momntz.Core.Extensions
         {
                 return (from album in items 
                     let momento = album.Momentos.FirstOrDefault() 
-                    let media = momento.Media.Single(s => s.MediaType == MediaType.MediumImage) 
+                    let media = momento.Media.Single(s => s.MomentoMediaType == MomentoMediaType.MediumImage) 
                     select new AlbumResult {Name = album.Name, Username = album.Username, CreateDate = album.CreateDate, Url = string.Format("{0}/{1}", rootUrl, media.Url)}).Cast<IGroupItem>()
                     .ToList();
         }

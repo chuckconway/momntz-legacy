@@ -15,7 +15,7 @@
         /// <summary>
         /// The logging
         /// </summary>
-        public const string Logging = "logging";
+        public const string LoggingQueue = "logging";
 
     }
 }

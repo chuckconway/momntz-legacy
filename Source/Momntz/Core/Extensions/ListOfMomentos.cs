@@ -21,7 +21,7 @@ namespace Momntz.Core.Extensions
 
             return items.ConvertAll(c =>
             {
-                var url = string.Format("{0}/{1}", settings.CloudUrl, c.Media.Single(i => i.MediaType == MediaType.MediumImage).Url);
+                var url = string.Format("{0}/{1}", settings.CloudUrl, c.Media.Single(i => i.MomentoMediaType == MomentoMediaType.MediumImage).Url);
 
                 var tile = new Tile
                     {

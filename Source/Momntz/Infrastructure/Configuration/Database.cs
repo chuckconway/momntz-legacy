@@ -1,17 +1,16 @@
 ﻿using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
-using Momntz.Infrastructure.Configuration;
 using NHibernate;
 
-namespace Momntz.Core
+namespace Momntz.Infrastructure.Configuration
 {
-    public class DatabaseConfiguration : IDatabaseConfiguration
+    public static class Database
     {
         /// <summary>
         /// Creates the session factory.
         /// </summary>
         /// <returns>ISessionFactory.</returns>
-        public ISessionFactory CreateSessionFactory()
+        public static ISessionFactory CreateSessionFactory()
         {
             return Fluently.Configure()
                     .Database(MsSqlConfiguration.MsSql2012
@@ -25,7 +24,7 @@ namespace Momntz.Core
         /// Creates the session factory.
         /// </summary>
         /// <returns>ISessionFactory.</returns>
-        public ISessionFactory CreateSessionFactory(string connectionString)
+        public static ISessionFactory CreateSessionFactory(string connectionString)
         {
             return Fluently.Configure()
                     .Database(MsSqlConfiguration.MsSql2012

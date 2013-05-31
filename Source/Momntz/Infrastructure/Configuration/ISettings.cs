@@ -21,21 +21,39 @@
         string CloudKey { get; }
 
         /// <summary>
-        /// Gets the queue database.
+        /// Gets the width of the image small.
         /// </summary>
-        /// <value>The queue database.</value>
-        string QueueDatabase { get; }
-
+        /// <value>The width of the image small.</value>
         int ImageSmallWidth { get; }
 
+        /// <summary>
+        /// Gets the height of the image small.
+        /// </summary>
+        /// <value>The height of the image small.</value>
         int ImageSmallHeight { get; }
 
+        /// <summary>
+        /// Gets the width of the image medium.
+        /// </summary>
+        /// <value>The width of the image medium.</value>
         int ImageMediumWidth { get; }
 
+        /// <summary>
+        /// Gets the height of the image medium.
+        /// </summary>
+        /// <value>The height of the image medium.</value>
         int ImageMediumHeight { get; }
 
+        /// <summary>
+        /// Gets the width of the image large.
+        /// </summary>
+        /// <value>The width of the image large.</value>
         int ImageLargeWidth { get; }
 
+        /// <summary>
+        /// Gets the height of the image large.
+        /// </summary>
+        /// <value>The height of the image large.</value>
         int ImageLargeHeight { get; }
     }
 }

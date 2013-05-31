@@ -13,7 +13,7 @@ namespace Momntz.Infrastructure
         private readonly ISession _session;
 
         private static IList<Setting> _settings;
-        private static object _lock = new object();
+        private static readonly object _lock = new object();
 
 
         /// <summary>
