@@ -23,8 +23,7 @@ namespace Momntz.Data.CommandHandlers.Queue
         /// <param name="command">The command.</param>
         public void Execute(CreateMediaCommand command)
         {
-            string contentType = string.Format("{0}/{1}", command.MediaType, command.Extension);
-            _storage.AddFile(StorageConstants.QueueBucket, command.Id.ToString(), contentType, command.Bytes);
+            _storage.AddFile(StorageConstants.QueueBucket, command.Id.ToString(), "application/octet-stream", command.Bytes);
         }
     }
 }
