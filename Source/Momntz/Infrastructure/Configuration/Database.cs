@@ -4,13 +4,13 @@ using NHibernate;
 
 namespace Momntz.Infrastructure.Configuration
 {
-    public static class Database
+    public class Database
     {
         /// <summary>
         /// Creates the session factory.
         /// </summary>
         /// <returns>ISessionFactory.</returns>
-        public static ISessionFactory CreateSessionFactory()
+        public ISessionFactory CreateSessionFactory()
         {
             return Fluently.Configure()
                     .Database(MsSqlConfiguration.MsSql2012

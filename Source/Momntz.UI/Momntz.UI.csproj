@@ -50,6 +50,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Dependencies\ChuckConway\ChuckConway.dll</HintPath>
     </Reference>
+    <Reference Include="ChuckConway.Cloud, Version=1.0.1.1, Culture=neutral, PublicKeyToken=1be0efc4250339a2, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Dependencies\ChuckConway\ChuckConway.Cloud.dll</HintPath>
+    </Reference>
     <Reference Include="HibernatingRhinos.Profiler.Appender.v4.0">
       <HintPath>..\..\Dependencies\HibernatingRhinos\HibernatingRhinos.Profiler.Appender.v4.0.dll</HintPath>
     </Reference>
@@ -1006,7 +1010,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Areas\Users\Views\Media\Index.cshtml" />
     <Content Include="Views\Shared\_MasonryPartial.cshtml" />
     <Content Include="Views\Shared\_MasonryNavigationPartial.cshtml" />

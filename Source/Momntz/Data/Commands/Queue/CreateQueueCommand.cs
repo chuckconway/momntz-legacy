@@ -2,15 +2,20 @@
 {
     public class CreateQueueCommand : ICommand
     {
-        public CreateQueueCommand(string implementation, string payload)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateQueueCommand"/> class.
+        /// </summary>
+        /// <param name="message">The message.</param>
+        public CreateQueueCommand(string message)
         {
-            Implementation = implementation;
-            Payload = payload;
+            Message = message;
         }
 
-        public string Implementation { get; set; }
-
-        public string Payload { get; set; }
+        /// <summary>
+        /// Gets or sets the message.
+        /// </summary>
+        /// <value>The message.</value>
+        public string Message { get; set; }
     }
 
 }

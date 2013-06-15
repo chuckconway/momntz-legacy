@@ -1,7 +1,6 @@
-﻿using System.Data;
-using ChuckConway.Cloud.Queue;
-using Hypersonic;
+﻿using ChuckConway.Cloud.Queue;
 using Momntz.Data.Commands.Queue;
+using Momntz.Messaging;
 
 namespace Momntz.Data.CommandHandlers.Queue
 {
@@ -9,6 +8,10 @@ namespace Momntz.Data.CommandHandlers.Queue
     {
         private readonly IQueue _queue;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateQueueCommandHandler"/> class.
+        /// </summary>
+        /// <param name="queue">The queue.</param>
         public CreateQueueCommandHandler(IQueue queue)
         {
             _queue = queue;
@@ -20,7 +23,7 @@ namespace Momntz.Data.CommandHandlers.Queue
         /// <param name="command">The command.</param>
         public void Execute(CreateQueueCommand command)
         {
-            //_queue.Send();
+            _queue.Send(QueueConstants.MediaQueue, command.Message);
         }
     }
 }
