@@ -1,14 +1,14 @@
-﻿using Chucksoft.Core.Services;
-using FluentNHibernate.Cfg;
+﻿using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using Hypersonic;
-using Hypersonic.Session;
+
 using Momntz.Infrastructure;
+using Momntz.Infrastructure.Configuration;
 using Momntz.Infrastructure.Processors;
-using Momntz.Model.Configuration;
 using Momntz.UI.Core;
 using NHibernate;
 using StructureMap;
+
 
 namespace Momntz.Tests.Setup
 {

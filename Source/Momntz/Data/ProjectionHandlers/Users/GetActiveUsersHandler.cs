@@ -26,6 +26,7 @@ namespace Momntz.Data.ProjectionHandlers.Users
         /// <returns> . </returns>
         public IList<ActiveUsername> Execute(object args)
         {
+            //using (var session = _session.SessionFactory.OpenSession())
             using (var trans = _session.BeginTransaction())
             {
                 var items = _session.QueryOver<User>()
@@ -37,11 +38,6 @@ namespace Momntz.Data.ProjectionHandlers.Users
                 trans.Commit();
 
                 return items;
-
-                //return  _session.Session
-                //        .Query<ActiveUsername, User>()
-                //        .Where("UserStatus = " + (int)UserStatus.Active + " OR UserStatus = " + (int)UserStatus.Ghost)
-                //        .List();
             }
         }
     }
