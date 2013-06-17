@@ -109,6 +109,7 @@
     <Compile Include="Data\Mappings\ExifMap.cs" />
     <Compile Include="Data\ProjectionHandlers\Albums\AlbumNameScrollHandler.cs" />
     <Compile Include="Infrastructure\Configuration\Database.cs" />
+    <Compile Include="Infrastructure\Configuration\IConfigurationService.cs" />
     <Compile Include="Messaging\ISaga.cs" />
     <Compile Include="Messaging\ISagaOfT.cs" />
     <Compile Include="Messaging\Models\Email.cs" />
@@ -187,7 +188,7 @@
     <Compile Include="Infrastructure\IMap.cs" />
     <Compile Include="Infrastructure\Processors\IProjectionProcessor.cs" />
     <Compile Include="Infrastructure\Mapper.cs" />
-    <Compile Include="Infrastructure\MomntzConfiguration.cs" />
+    <Compile Include="Infrastructure\Configuration\MomntzConfiguration.cs" />
     <Compile Include="Infrastructure\Processors\ProjectionProcessor.cs" />
     <Compile Include="Infrastructure\StructureMapInjection.cs" />
     <Compile Include="Data\Schema\AlsoKnownAs.cs" />

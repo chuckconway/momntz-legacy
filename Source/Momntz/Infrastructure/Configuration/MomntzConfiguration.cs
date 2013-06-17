@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
-using Momntz.Infrastructure.Configuration;
 using NHibernate;
 using NHibernate.Criterion;
 
-namespace Momntz.Infrastructure
+namespace Momntz.Infrastructure.Configuration
 {
     public class MomntzConfiguration : IConfigurationService
     {
@@ -74,15 +73,5 @@ namespace Momntz.Infrastructure
 
             return items;
         }
-    }
-
-    public interface IConfigurationService
-    {
-        /// <summary>
-        /// Gets the value by key.
-        /// </summary>
-        /// <param name="key">The key.</param>
-        /// <returns>System.String.</returns>
-        string GetValueByKey(string key);
     }
 }

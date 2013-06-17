@@ -107,6 +107,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Momntz.UI\Momntz.UI.csproj">
+      <Project>{BD7006C1-9A89-4282-AFC8-5DB375074BFF}</Project>
+      <Name>Momntz.UI</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Momntz\Momntz.csproj">
       <Project>{77cc17df-c471-42bf-b5f6-d55eaf918891}</Project>
       <Name>Momntz</Name>

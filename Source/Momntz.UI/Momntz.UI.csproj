@@ -132,7 +132,7 @@
     <Compile Include="Areas\Api\Models\PeopleView.cs" />
     <Compile Include="Areas\Join\Controllers\IndexController.cs" />
     <Compile Include="Areas\Join\Handlers\RegisterHandlers\RegisterPostIndexHandler.cs" />
-    <Compile Include="Areas\Join\Models\RegisterIndexModel.cs" />
+    <Compile Include="Areas\Join\Models\JoinIndexModel.cs" />
     <Compile Include="Areas\Join\RegisterAreaRegistration.cs" />
     <Compile Include="Areas\Users\Controllers\AlbumsController.cs" />
     <Compile Include="Areas\Users\Controllers\ConnectionsController.cs" />

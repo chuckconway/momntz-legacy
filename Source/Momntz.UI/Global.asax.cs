@@ -56,18 +56,46 @@ namespace Momntz.UI
             ObjectFactory.ReleaseAndDisposeAllHttpScopedObjects();
         }
 
+        /// <summary>
+        /// Gets the storage settings.
+        /// </summary>
+        /// <returns>CloudSettings.</returns>
+        private CloudSettings GetStorageSettings()
+        {
+            var settings = new CloudSettings();
+
+            using (var session = new Database().CreateSessionFactory().OpenSession())
+            {
+                IConfigurationService configuration = new MomntzConfiguration(session);
+               settings.CloudUrl = configuration.GetValueByKey("cloudurl");
+               settings.CloudAccount = configuration.GetValueByKey("cloudaccount");
+               settings.CloudKey = configuration.GetValueByKey("cloudkey");
+            }
+
+            return settings;
+        }
+
         /// <summary> Registers the dependency injection. </summary>
         private void RegisterDependencyInjection()
         {
+            var settings = GetStorageSettings();
+
             ObjectFactory.Initialize(x => x.Scan(s =>
             {
                 x.AddRegistry<MomntzRegistry>();
                 x.For<IDatabase>().Use(new MsSqlDatabase());
                 x.For<ICrypto>().Use<Crypto>();
                 x.For<IConfigurationService>().Use<MomntzConfiguration>();
-                x.For<NHibernate.ISession>().HttpContextScoped().Use(new Database().CreateSessionFactory().OpenSession());
+                x.For<NHibernate.ISession>().HttpContextScoped().Use(new Database().CreateSessionFactory().OpenSession);
                 x.For<IProjectionProcessor>().Use<ProjectionProcessor>();
-                x.For<IStorage>().Use<AzureStorage>();
+                x.For<IStorage>().Use<AzureStorage>()
+                 .Ctor<string>("cloudUrl")
+                 .Is(settings.CloudUrl)
+                 .Ctor<string>("cloudAccount")
+                 .Is(settings.CloudAccount)
+                 .Ctor<string>("cloudKey")
+                 .Is(settings.CloudKey);
+
                 x.For<IQueue>().Use<AzureQueue>();
  
                 s.TheCallingAssembly();
@@ -95,7 +123,30 @@ namespace Momntz.UI
         {
             AutoMapper.Mapper.Initialize(c=> c.CreateMap<CreateMomentoCommand, Momento>().ConvertUsing(new CreateMomentoCommandToMomentoConverter()));
         }
+        
+        private class CloudSettings
+        {
+            /// <summary>
+            /// Gets or sets the cloud URL.
+            /// </summary>
+            /// <value>The cloud URL.</value>
+            public string CloudUrl { get; set; }
+
+            /// <summary>
+            /// Gets or sets the cloud account.
+            /// </summary>
+            /// <value>The cloud account.</value>
+            public string CloudAccount { get; set; }
+
+            /// <summary>
+            /// Gets or sets the cloud key.
+            /// </summary>
+            /// <value>The cloud key.</value>
+            public string CloudKey { get; set; }
+        }
     }
+
+    
     
 
     internal class StructureMapDependencyResolver : IDependencyResolver
