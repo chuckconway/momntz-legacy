@@ -81,3 +81,19 @@ BEGIN
 		On R.Username = C.Username
 		 Where C.[Owner] = @Username
 END
+
+/****** Object:  View [dbo].[UserAliasView]    Script Date: 6/20/2013 11:41:54 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER VIEW [dbo].[UserAliasView]
+AS
+SELECT        dbo.AlsoKnownAs.IsDefault, dbo.AlsoKnownAs.FullName, dbo.[User].Username, dbo.[User].Email, dbo.[User].UserStatus, dbo.[User].Password, 
+                         dbo.[User].CreatedBy, dbo.AlsoKnownAs.Id AS AlsoKnownAsId
+FROM            dbo.AlsoKnownAs INNER JOIN
+                         dbo.[User] ON dbo.AlsoKnownAs.Username = dbo.[User].Username AND dbo.AlsoKnownAs.IsDefault = 1
+
+GO
