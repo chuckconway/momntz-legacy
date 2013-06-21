@@ -60,8 +60,9 @@
     <Reference Include="ChuckConway">
       <HintPath>..\..\Dependencies\ChuckConway\ChuckConway.dll</HintPath>
     </Reference>
-    <Reference Include="ChuckConway.Cloud">
-      <HintPath>..\..\Dependencies\ChuckConway\ChuckConway.Cloud.dll</HintPath>
+    <Reference Include="ChuckConway.Cloud, Version=1.0.1.1, Culture=neutral, PublicKeyToken=1be0efc4250339a2, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Momntz.Worker\Dependencies\ChuckConway\ChuckConway.Cloud.dll</HintPath>
     </Reference>
     <Reference Include="FluentNHibernate">
       <HintPath>..\..\Dependencies\nHibernate\FluentNHibernate.dll</HintPath>
@@ -88,7 +89,7 @@
       <HintPath>..\..\Dependencies\nHibernate\NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="StructureMap">
-      <HintPath>..\..\Dependencies\StructureMap\StructureMap.dll</HintPath>
+      <HintPath>..\..\..\Momntz.Worker\Source\Momntz.Worker\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using StructureMap;
 using StructureMap.Configuration.DSL;
 
+
 namespace Momntz.Infrastructure
 {
     public class StructureMapInjection : IInjection

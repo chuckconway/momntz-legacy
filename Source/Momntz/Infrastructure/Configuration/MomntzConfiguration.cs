@@ -14,6 +14,25 @@ namespace Momntz.Infrastructure.Configuration
         private static IList<Setting> _settings;
         private static readonly object _lock = new object();
 
+        /// <summary>
+        /// Gets the storage settings.
+        /// </summary>
+        /// <returns>CloudSettings.</returns>
+        public static CloudSettings GetStorageSettings()
+        {
+            var settings = new CloudSettings();
+
+            using (var session = new Database().CreateSessionFactory().OpenSession())
+            {
+                IConfigurationService configuration = new MomntzConfiguration(session);
+                settings.CloudUrl = configuration.GetValueByKey("cloudurl");
+                settings.CloudAccount = configuration.GetValueByKey("cloudaccount");
+                settings.CloudKey = configuration.GetValueByKey("cloudkey");
+            }
+
+            return settings;
+        }
+
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MomntzConfiguration" /> class.
@@ -73,5 +92,26 @@ namespace Momntz.Infrastructure.Configuration
 
             return items;
         }
+    }
+
+    public class CloudSettings
+    {
+        /// <summary>
+        /// Gets or sets the cloud URL.
+        /// </summary>
+        /// <value>The cloud URL.</value>
+        public string CloudUrl { get; set; }
+
+        /// <summary>
+        /// Gets or sets the cloud account.
+        /// </summary>
+        /// <value>The cloud account.</value>
+        public string CloudAccount { get; set; }
+
+        /// <summary>
+        /// Gets or sets the cloud key.
+        /// </summary>
+        /// <value>The cloud key.</value>
+        public string CloudKey { get; set; }
     }
 }
