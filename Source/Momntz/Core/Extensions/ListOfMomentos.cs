@@ -30,6 +30,7 @@ namespace Momntz.Core.Extensions
                         Story = c.Story,
                         Title = c.Title,
                         Username = c.User.Username,
+                        FullName = c.User.FullName,
                         CreateDate = c.CreateDate
                     };
 

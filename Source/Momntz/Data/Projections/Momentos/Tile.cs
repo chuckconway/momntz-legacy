@@ -37,6 +37,12 @@ namespace Momntz.Data.Projections.Momentos
         public string Username { get; set; }
 
         /// <summary>
+        /// Gets or sets the full name.
+        /// </summary>
+        /// <value>The full name.</value>
+        public string FullName { get; set; }
+
+        /// <summary>
         /// Gets or sets the create date.
         /// </summary>
         /// <value>The create date.</value>
