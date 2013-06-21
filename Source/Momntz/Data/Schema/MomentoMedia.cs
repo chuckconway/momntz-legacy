@@ -42,7 +42,7 @@
         /// <value>
         /// The type of the media.
         /// </value>
-        public virtual MomentoMediaType MomentoMediaType { get; set; }
+        public virtual MomentoMediaType MediaType { get; set; }
     }
 
     public enum MomentoMediaType

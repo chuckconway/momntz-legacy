@@ -30,7 +30,7 @@ namespace Momntz.Data.Mappings
                 .Not.Nullable()
                 .Length(100);
 
-            Map(x => x.MomentoMediaType)
+            Map(x => x.MediaType)
                 .Not.Nullable()
                 .Length(50);
 

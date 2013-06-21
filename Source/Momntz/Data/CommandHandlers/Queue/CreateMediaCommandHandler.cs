@@ -1,6 +1,7 @@
 ﻿using ChuckConway.Cloud.Storage;
 
 using Momntz.Data.Commands.Queue;
+using Momntz.Messaging;
 
 namespace Momntz.Data.CommandHandlers.Queue
 {
@@ -23,7 +24,7 @@ namespace Momntz.Data.CommandHandlers.Queue
         /// <param name="command">The command.</param>
         public void Execute(CreateMediaCommand command)
         {
-            _storage.AddFile(StorageConstants.QueueBucket, command.Id.ToString(), "application/octet-stream", command.Bytes);
+            _storage.AddFile(QueueConstants.MediaQueue, command.Id.ToString(), "application/octet-stream", command.Bytes);
         }
     }
 }

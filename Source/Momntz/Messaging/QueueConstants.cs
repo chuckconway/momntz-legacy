@@ -13,9 +13,8 @@
         public const string EmailQueue = "email";
 
         /// <summary>
-        /// The logging
+        /// The logging queue
         /// </summary>
         public const string LoggingQueue = "logging";
-
     }
 }
