@@ -60,9 +60,9 @@
     <Reference Include="ChuckConway">
       <HintPath>..\..\Dependencies\ChuckConway\ChuckConway.dll</HintPath>
     </Reference>
-    <Reference Include="ChuckConway.Cloud, Version=1.0.1.1, Culture=neutral, PublicKeyToken=1be0efc4250339a2, processorArchitecture=MSIL">
+    <Reference Include="ChuckConway.Cloud, Version=1.0.1.5, Culture=neutral, PublicKeyToken=1be0efc4250339a2, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Momntz.Worker\Dependencies\ChuckConway\ChuckConway.Cloud.dll</HintPath>
+      <HintPath>..\..\Dependencies\ChuckConway\ChuckConway.Cloud.dll</HintPath>
     </Reference>
     <Reference Include="FluentNHibernate">
       <HintPath>..\..\Dependencies\nHibernate\FluentNHibernate.dll</HintPath>
