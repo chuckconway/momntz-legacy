@@ -42,7 +42,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <SqlTargetName>Momntz</SqlTargetName>
-    <OutputPath>E:\Projects\Momntz\Source\Momntz.Database\bin\</OutputPath>
+    <OutputPath>D:\Projects\Momntz\Source\Momntz.Database\bin\</OutputPath>
   </PropertyGroup>
   <!-- VS10 without SP1 will not have VisualStudioVersion set, so do that here -->
   <PropertyGroup />
