@@ -4,7 +4,7 @@ using Momntz.Infrastructure.Processors;
 using Momntz.UI.Areas.Join.Models;
 using Momntz.UI.Core;
 
-namespace Momntz.UI.Areas.Register.Handlers.RegisterHandlers
+namespace Momntz.UI.Areas.Join.Handlers.RegisterHandlers
 {
     public class RegisterPostIndexHandler : HandlerBase, IFormHandler<JoinIndexModel>
     {
