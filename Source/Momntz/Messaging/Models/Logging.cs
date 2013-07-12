@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Momntz.Messaging.Models
 {
-    class Logging
+    public class Logging
     {
+        public Guid Id { get; set; }
     }
 }

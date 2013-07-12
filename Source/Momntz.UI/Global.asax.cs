@@ -69,7 +69,7 @@ namespace Momntz.UI
                 x.For<IDatabase>().Use(new MsSqlDatabase());
                 x.For<ICrypto>().Use<Crypto>();
                 x.For<IConfigurationService>().Use<MomntzConfiguration>();
-                x.For<NHibernate.ISession>().HttpContextScoped().Use(new Database().CreateSessionFactory().OpenSession);
+                x.For<NHibernate.ISession>().HttpContextScoped().Use(() => new Database().CreateSessionFactory().OpenSession());
                 x.For<IProjectionProcessor>().Use<ProjectionProcessor>();
                 x.For<IStorage>().Use<AzureStorage>()
                  .Ctor<string>("cloudUrl")

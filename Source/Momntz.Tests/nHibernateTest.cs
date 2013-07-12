@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
-using Momntz.Model.Configuration;
+using Momntz.Infrastructure.Configuration;
+
 using NHibernate;
 using NUnit.Framework;
 
