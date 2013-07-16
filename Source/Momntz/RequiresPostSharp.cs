@@ -6,6 +6,6 @@
 // You can safely delete this file, but it will be recreated when you upgrade the NuGet package.
 //
 
-#if !POSTSHARP
-#error PostSharp is not introduced in the build process. If NuGet just restored the PostSharp package, you need to rebuild the solution.
-#endif
+//#if !POSTSHARP
+//#error PostSharp is not introduced in the build process. If NuGet just restored the PostSharp package, you need to rebuild the solution.
+//#endif
