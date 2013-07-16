@@ -83,15 +83,16 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Dependencies\WindowsAzure\Microsoft.WindowsAzure.StorageClient.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\..\Momntz.Worker\Dependencies\JSON.Net\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NHibernate">
       <HintPath>..\..\Dependencies\nHibernate\NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="PostSharp, Version=3.0.31.9, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Momntz.Worker\Source\packages\PostSharp.3.0.31\lib\net20\PostSharp.dll</HintPath>
+      <HintPath>..\packages\PostSharp.3.0.31\lib\portable-windows8+net40+sl4+wp7\PostSharp.dll</HintPath>
     </Reference>
     <Reference Include="StructureMap, Version=2.6.4.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
