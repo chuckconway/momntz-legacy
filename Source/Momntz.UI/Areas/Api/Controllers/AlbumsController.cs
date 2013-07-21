@@ -35,10 +35,10 @@ namespace Momntz.UI.Areas.Api.Controllers
         /// </summary>
         /// <param name="term">The term.</param>
         /// <returns>ActionResult.</returns>
-        public ActionResult Index(string term)
+        public ActionResult Index(string name)
         {
             string username = GetUsername();
-            var parameters = new AlbumNameSearchParameters() {Term = term, Username = username};
+            var parameters = new AlbumNameSearchParameters() { Term = name, Username = username };
 
             var results = _processor.Process<AlbumNameSearchParameters, List<AlbumNameResult>>(parameters);
             return Json(results.Select(a=> new AutoComplete(a.Name)), JsonRequestBehavior.AllowGet);
