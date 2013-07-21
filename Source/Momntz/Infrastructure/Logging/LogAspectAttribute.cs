@@ -23,8 +23,23 @@ namespace Momntz.Infrastructure.Logging
 
                 foreach (var parameter in args.Arguments)
                 {
-                    string typeName = (parameter != null ? parameter.GetType().Name : "null");
-                    log += "parameter type: " + typeName + ", value:" + JsonConvert.SerializeObject(parameter) + Environment.NewLine;
+                    bool isParameterNull = parameter == null;
+                    string typeName = (!isParameterNull ? parameter.GetType().Name : "null");
+
+                    if (!isParameterNull && parameter.GetType() != typeof (byte[]))
+                    {
+                        log += "parameter type: " + typeName + ", value:" + JsonConvert.SerializeObject(parameter) +
+                               Environment.NewLine;
+                    }
+                    else if (!isParameterNull)
+                    {
+                        log += "parameter type: " + typeName + ", size:" + ((byte[]) parameter).Length +
+                               Environment.NewLine;
+                    }
+                    else
+                    {
+                        log += "parameter type: " + typeName + Environment.NewLine;
+                    }
                 }
             }
 

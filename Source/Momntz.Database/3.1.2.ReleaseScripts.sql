@@ -97,3 +97,26 @@ FROM            dbo.AlsoKnownAs INNER JOIN
                          dbo.[User] ON dbo.AlsoKnownAs.Username = dbo.[User].Username AND dbo.AlsoKnownAs.IsDefault = 1
 
 GO
+
+Delete Configuration
+Where Name = 'Database.Queue'
+
+Delete Configuration
+Where Environment = 'DEV'
+
+IF Not Exists(Select Id From Configuration Where Name = 'ServiceBus.Queue' AND Environment = 'Local')
+BEGIN
+	Insert Into Configuration(Name, Value, Environment)Values('ServiceBus.Queue', 'Endpoint=sb://momntzdev.servicebus.windows.net/;SharedSecretIssuer=owner;SharedSecretValue=TU9SBGWvdxeO6THM8uQrxA9fmJEhTlLHha80rTkNj7Y=', 'LOCAL')
+END
+
+IF Not Exists(Select Id From Configuration Where Name = 'ServiceBus.Queue' AND Environment = 'QA')
+BEGIN
+	Insert Into Configuration(Name, Value, Environment)Values('ServiceBus.Queue', 'Endpoint=sb://momntzqa.servicebus.windows.net/;SharedSecretIssuer=owner;SharedSecretValue=IbgyP8beHL15QtPGUN3KKFsogMUozdeX7603EF7xd40=', 'QA')
+END
+
+IF Not Exists(Select Id From Configuration Where Name = 'ServiceBus.Queue' AND Environment = 'PROD')
+BEGIN
+	Insert Into Configuration(Name, Value, Environment)Values('ServiceBus.Queue', 'Endpoint=sb://momntz.servicebus.windows.net/;SharedSecretIssuer=owner;SharedSecretValue=6d1C5tpI4JRCUqWZ1QxIx+4+M1uYZZgZiR2lYL2ieXw=', 'PROD')
+END
+
+
