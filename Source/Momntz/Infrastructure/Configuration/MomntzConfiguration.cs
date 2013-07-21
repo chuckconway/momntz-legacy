@@ -29,6 +29,7 @@ namespace Momntz.Infrastructure.Configuration
                 settings.CloudUrl = configuration.GetValueByKey("cloudurl");
                 settings.CloudAccount = configuration.GetValueByKey("cloudaccount");
                 settings.CloudKey = configuration.GetValueByKey("cloudkey");
+                settings.ServiceBusEndpoint = configuration.GetValueByKey("ServiceBus.Queue");
             }
 
             return settings;
@@ -114,5 +115,7 @@ namespace Momntz.Infrastructure.Configuration
         /// </summary>
         /// <value>The cloud key.</value>
         public string CloudKey { get; set; }
+
+        public string ServiceBusEndpoint { get; set; }
     }
 }

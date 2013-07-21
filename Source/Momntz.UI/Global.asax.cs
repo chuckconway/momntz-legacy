@@ -79,7 +79,9 @@ namespace Momntz.UI
                  .Ctor<string>("cloudKey")
                  .Is(settings.CloudKey);
 
-                x.For<IQueue>().Use<AzureQueue>();
+                x.For<IQueue>().Use<AzureQueue>()
+                    .Ctor<string>("connectionString")
+                 .Is(settings.ServiceBusEndpoint);
  
                 s.TheCallingAssembly();
                 s.WithDefaultConventions();
