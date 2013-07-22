@@ -119,4 +119,14 @@ BEGIN
 	Insert Into Configuration(Name, Value, Environment)Values('ServiceBus.Queue', 'Endpoint=sb://momntz.servicebus.windows.net/;SharedSecretIssuer=owner;SharedSecretValue=6d1C5tpI4JRCUqWZ1QxIx+4+M1uYZZgZiR2lYL2ieXw=', 'PROD')
 END
 
+IF Not Exists(Select Id From Configuration Where Name = 'LogToFile' AND Environment = 'LOCAL')
+BEGIN
+	Insert Into Configuration(Name, Value, Environment)Values('LogToFile', 'c:\logs\service.log', 'LOCAL')
+END
+
+IF Not Exists(Select Id From Configuration Where Name = 'LogToFile' AND Environment = 'QA')
+BEGIN
+	Insert Into Configuration(Name, Value, Environment)Values('LogToFile', 'c:\logs\service.log', 'QA')
+END
+
 

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Diagnostics;
 using System.Linq;
 using NHibernate;
 using NHibernate.Criterion;
@@ -19,7 +18,7 @@ namespace Momntz.Infrastructure.Configuration
         /// Gets the storage settings.
         /// </summary>
         /// <returns>CloudSettings.</returns>
-        public static CloudSettings GetStorageSettings()
+        public static CloudSettings GetSettings()
         {
             var settings = new CloudSettings();
 
@@ -30,6 +29,7 @@ namespace Momntz.Infrastructure.Configuration
                 settings.CloudAccount = configuration.GetValueByKey("cloudaccount");
                 settings.CloudKey = configuration.GetValueByKey("cloudkey");
                 settings.ServiceBusEndpoint = configuration.GetValueByKey("ServiceBus.Queue");
+                settings.LogToFile = configuration.GetValueByKey("LogToFile");
             }
 
             return settings;
@@ -116,6 +116,16 @@ namespace Momntz.Infrastructure.Configuration
         /// <value>The cloud key.</value>
         public string CloudKey { get; set; }
 
+        /// <summary>
+        /// Gets or sets the service bus endpoint.
+        /// </summary>
+        /// <value>The service bus endpoint.</value>
         public string ServiceBusEndpoint { get; set; }
+
+        /// <summary>
+        /// Gets or sets the log to file path.
+        /// </summary>
+        /// <value>The log to file path.</value>
+        public string LogToFile { get; set; }
     }
 }
