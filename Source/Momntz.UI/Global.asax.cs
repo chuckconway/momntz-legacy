@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
@@ -51,17 +52,36 @@ namespace Momntz.UI
             filters.Add(new HandleErrorAttribute());
         }
 
+        void Application_Error(object sender, EventArgs e)
+        {
+            // Code that runs when an unhandled error occurs
+            if (Context != null && Context.AllErrors != null)
+            {
+                System.Diagnostics.Debug.WriteLine(Context.AllErrors.Length);
+            }
+
+            //bool isUnexpectedException = true;
+            HttpContext context = ((HttpApplication)sender).Context;
+
+            Exception ex = context.Server.GetLastError();
+            if (ex.InnerException != null)
+            {
+                ex = ex.InnerException;
+            }
+
+            //LogManager.ExceptionHandler(ex);
+        }
+
+       
         protected void Application_EndRequest()
         {
             ObjectFactory.ReleaseAndDisposeAllHttpScopedObjects();
         }
 
-
-
         /// <summary> Registers the dependency injection. </summary>
         private void RegisterDependencyInjection()
         {
-            var settings = MomntzConfiguration.GetStorageSettings();
+            var settings = MomntzConfiguration.GetSettings();
 
             ObjectFactory.Initialize(x => x.Scan(s =>
             {

@@ -1,5 +1,6 @@
 ﻿using ChuckConway.Cloud.Queue;
 using Momntz.Data.Commands.Queue;
+using Momntz.Infrastructure.Logging;
 using Momntz.Messaging;
 
 namespace Momntz.Data.CommandHandlers.Queue
@@ -21,6 +22,7 @@ namespace Momntz.Data.CommandHandlers.Queue
         /// Executes the specified command.
         /// </summary>
         /// <param name="command">The command.</param>
+        [LogToFile]
         public void Execute(CreateQueueCommand command)
         {
             _queue.Send(QueueConstants.MediaQueue, command.Message);

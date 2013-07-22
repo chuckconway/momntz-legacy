@@ -118,7 +118,11 @@
     <Compile Include="Data\ProjectionHandlers\Albums\AlbumNameScrollHandler.cs" />
     <Compile Include="Infrastructure\Configuration\Database.cs" />
     <Compile Include="Infrastructure\Configuration\IConfigurationService.cs" />
+    <Compile Include="Infrastructure\Logging\ILog.cs" />
     <Compile Include="Infrastructure\Logging\LogAspectAttribute.cs" />
+    <Compile Include="Infrastructure\Logging\LoggingPathNotSetException.cs" />
+    <Compile Include="Infrastructure\Logging\LogToFile.cs" />
+    <Compile Include="Infrastructure\Logging\LogToFileAttribute.cs" />
     <Compile Include="Messaging\ISaga.cs" />
     <Compile Include="Messaging\ISagaOfT.cs" />
     <Compile Include="Messaging\Models\Email.cs" />

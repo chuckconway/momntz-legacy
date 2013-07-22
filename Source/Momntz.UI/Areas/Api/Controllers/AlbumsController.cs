@@ -8,6 +8,7 @@ using Momntz.Data.ProjectionHandlers.Api;
 using Momntz.Data.Projections;
 using Momntz.Data.Projections.Api;
 using Momntz.Data.Projections.Momentos;
+using Momntz.Infrastructure.Logging;
 using Momntz.Infrastructure.Processors;
 using Momntz.UI.Areas.Api.Models;
 using Momntz.UI.Core.Controllers;
@@ -35,6 +36,7 @@ namespace Momntz.UI.Areas.Api.Controllers
         /// </summary>
         /// <param name="term">The term.</param>
         /// <returns>ActionResult.</returns>
+        [LogToFile]
         public ActionResult Index(string name)
         {
             string username = GetUsername();
@@ -50,6 +52,7 @@ namespace Momntz.UI.Areas.Api.Controllers
         /// <param name="tag">The tag.</param>
         /// <param name="momentoId">The momento id.</param>
         /// <returns>ActionResult.</returns>
+        [LogToFile]
         public ActionResult Remove(string tag, int momentoId)
         {
             string username = GetUsername();
@@ -63,6 +66,7 @@ namespace Momntz.UI.Areas.Api.Controllers
         /// <param name="tag">The tag.</param>
         /// <param name="momentoId">The momento id.</param>
         /// <returns>ActionResult.</returns>
+        [LogToFile]
         public ActionResult Add(string tag, int momentoId)
         {
             string username = GetUsername();
@@ -77,6 +81,7 @@ namespace Momntz.UI.Areas.Api.Controllers
         /// <param name="name">The name.</param>
         /// <param name="username">The username.</param>
         /// <returns>ActionResult.</returns>
+        [LogToFile]
         public ActionResult TileScroll(string oldest, string name, string username)
         {
             DateTime parsed = DateTime.Parse(oldest);
@@ -91,6 +96,7 @@ namespace Momntz.UI.Areas.Api.Controllers
         /// <param name="oldest">The oldest.</param>
         /// <param name="username">The username.</param>
         /// <returns>ActionResult.</returns>
+        [LogToFile]
         [HttpPost]
         public ActionResult AlbumScroll(string oldest, string username)
         {
