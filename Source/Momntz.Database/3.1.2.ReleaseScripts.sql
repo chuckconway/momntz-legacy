@@ -129,4 +129,9 @@ BEGIN
 	Insert Into Configuration(Name, Value, Environment)Values('LogToFile', 'c:\logs\service.log', 'QA')
 END
 
+IF Not Exists(Select Id From Configuration Where Name = 'LogToFile' AND Environment = 'PROD')
+BEGIN
+	Insert Into Configuration(Name, Value, Environment)Values('LogToFile', 'c:\logs\service.log', 'PROD')
+END
+
 

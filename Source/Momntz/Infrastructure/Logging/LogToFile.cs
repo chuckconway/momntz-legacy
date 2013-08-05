@@ -23,18 +23,18 @@ namespace Momntz.Infrastructure.Logging
         /// <param name="message">The message.</param>
         private void Write(string message)
         {
-            var log = AddMetadata();
-            log += message;
+            //var log = AddMetadata();
+            //log += message;
             
-            if (!string.IsNullOrEmpty(_fullFilePath))
-            {
-                string path = GetFilePath(_fullFilePath);
-                File.AppendAllText(path, log);
-            }
-            else
-            {
-                throw new LoggingPathNotSetException();
-            }
+            //if (!string.IsNullOrEmpty(_fullFilePath))
+            //{
+            //    string path = GetFilePath(_fullFilePath);
+            //    File.AppendAllText(path, log);
+            //}
+            //else
+            //{
+            //    throw new LoggingPathNotSetException();
+            //}
         }
 
         /// <summary>
