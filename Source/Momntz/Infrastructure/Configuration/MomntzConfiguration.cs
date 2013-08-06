@@ -17,10 +17,10 @@ namespace Momntz.Infrastructure.Configuration
         /// <summary>
         /// Gets the storage settings.
         /// </summary>
-        /// <returns>CloudSettings.</returns>
-        public static CloudSettings GetSettings()
+        /// <returns>ApplicationSettings.</returns>
+        public static ApplicationSettings GetSettings()
         {
-            var settings = new CloudSettings();
+            var settings = new ApplicationSettings();
 
             using (var session = new Database().CreateSessionFactory().OpenSession())
             {
@@ -96,7 +96,7 @@ namespace Momntz.Infrastructure.Configuration
         }
     }
 
-    public class CloudSettings
+    public class ApplicationSettings
     {
         /// <summary>
         /// Gets or sets the cloud URL.
@@ -127,5 +127,12 @@ namespace Momntz.Infrastructure.Configuration
         /// </summary>
         /// <value>The log to file path.</value>
         public string LogToFile { get; set; }
+
+        /// <summary>
+        /// Gets or sets the type of the logger.
+        /// </summary>
+        /// <value>The type of the logger.</value>
+        public string LoggerType { get; set; }
+
     }
 }
