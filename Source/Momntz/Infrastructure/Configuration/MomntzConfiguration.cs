@@ -29,7 +29,9 @@ namespace Momntz.Infrastructure.Configuration
                 settings.CloudAccount = configuration.GetValueByKey("cloudaccount");
                 settings.CloudKey = configuration.GetValueByKey("cloudkey");
                 settings.ServiceBusEndpoint = configuration.GetValueByKey("ServiceBus.Queue");
-                settings.LogToFile = configuration.GetValueByKey("LogToFile");
+                settings.LoggingFilePath = configuration.GetValueByKey("LogToFile");
+                settings.UILoggingEndpoint = configuration.GetValueByKey("UILogging.Endpoint");
+                settings.ServiceLoggingEndpoint = configuration.GetValueByKey("ServiceLogging.Endpoint");
             }
 
             return settings;
@@ -126,7 +128,7 @@ namespace Momntz.Infrastructure.Configuration
         /// Gets or sets the log to file path.
         /// </summary>
         /// <value>The log to file path.</value>
-        public string LogToFile { get; set; }
+        public string LoggingFilePath { get; set; }
 
         /// <summary>
         /// Gets or sets the type of the logger.

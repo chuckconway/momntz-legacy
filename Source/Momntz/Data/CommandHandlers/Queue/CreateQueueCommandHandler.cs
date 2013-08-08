@@ -22,7 +22,6 @@ namespace Momntz.Data.CommandHandlers.Queue
         /// Executes the specified command.
         /// </summary>
         /// <param name="command">The command.</param>
-        [Log]
         public void Execute(CreateQueueCommand command)
         {
             _queue.Send(QueueConstants.MediaQueue, command.Message);

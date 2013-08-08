@@ -37,10 +37,8 @@ namespace Momntz.UI.Handlers.Login
                 Controller.ViewData.Model = new LoginView { Message = message };
                 throw new Exception(message);
             }
-            else
-            {
-                FormsAuthentication.SetAuthCookie(args.Username, true); 
-            }
+
+            FormsAuthentication.SetAuthCookie(args.Username, true);
         }
     }
 }

@@ -10,6 +10,7 @@ using ChuckConway.Cloud.Queue;
 using ChuckConway.Cloud.Storage;
 using ChuckConway.Cryptography;
 using Hypersonic;
+using Momntz.Core.Contants;
 using Momntz.Core.TypeConverters;
 using Momntz.Data.Commands.Momentos;
 using Momntz.Data.ProjectionHandlers.Users;
@@ -28,7 +29,7 @@ namespace Momntz.UI
     // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
     // visit http://go.microsoft.com/?LinkId=9394801
 
-    public class MvcApplication : System.Web.HttpApplication
+    public class MvcApplication : HttpApplication
     {
         protected void Application_Start()
         {
@@ -53,25 +54,27 @@ namespace Momntz.UI
             filters.Add(new HandleErrorAttribute());
         }
 
+        /// <summary>
+        /// Handles the Error event of the Application control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         void Application_Error(object sender, EventArgs e)
         {
-            // Code that runs when an unhandled error occurs
-            if (Context != null && Context.AllErrors != null)
-            {
-                System.Diagnostics.Debug.WriteLine(Context.AllErrors.Length);
-            }
-
-            //bool isUnexpectedException = true;
             HttpContext context = ((HttpApplication)sender).Context;
 
             Exception ex = context.Server.GetLastError();
-            if (ex.InnerException != null)
+            if (ex != null)
             {
-                ex = ex.InnerException;
+                var log = ObjectFactory.GetInstance<ILog>();
+                log.Exception(ex, "Caught in the Global.asax");
             }
         }
 
-       
+
+        /// <summary>
+        /// Application_s the end request.
+        /// </summary>
         protected void Application_EndRequest()
         {
             ObjectFactory.ReleaseAndDisposeAllHttpScopedObjects();
@@ -84,7 +87,6 @@ namespace Momntz.UI
 
             //Set global logger, use cloud the UI
             settings.LoggerType = LoggingConstants.Cloud;
-            settings.UILoggingEndpoint = "https://logs.loggly.com/inputs/eb327efb-a0a5-4f33-b931-275f32739d8c";
 
             ObjectFactory.Initialize(x => x.Scan(s =>
             {
