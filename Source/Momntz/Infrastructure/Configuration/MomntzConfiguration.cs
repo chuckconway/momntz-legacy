@@ -134,5 +134,17 @@ namespace Momntz.Infrastructure.Configuration
         /// <value>The type of the logger.</value>
         public string LoggerType { get; set; }
 
+        /// <summary>
+        /// Gets or sets the UI logging endpoint.
+        /// </summary>
+        /// <value>The UI logging endpoint.</value>
+        public string UILoggingEndpoint { get; set; }
+
+        /// <summary>
+        /// Gets or sets the service logging endpoint.
+        /// </summary>
+        /// <value>The service logging endpoint.</value>
+        public string ServiceLoggingEndpoint { get; set; }
+
     }
 }

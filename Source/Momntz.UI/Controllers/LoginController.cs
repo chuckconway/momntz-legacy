@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 using Momntz.Data.ProjectionHandlers.Users;
-using Momntz.Infrastructure.Logging;
+using Momntz.Infrastructure.Instrumentation.Logging;
 using Momntz.UI.Core.Controllers;
 using Momntz.UI.Models.Login;
 
@@ -18,7 +18,7 @@ namespace Momntz.UI.Controllers
         /// </summary>
         /// <param name="usernameAndPassword">The username and password.</param>
         /// <returns>ActionResult.</returns>
-        [LogToFile]
+        [Log]
         [HttpPost]
         public ActionResult Index(UsernameAndPassword usernameAndPassword)
         {
