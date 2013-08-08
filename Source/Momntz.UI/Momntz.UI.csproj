@@ -164,7 +164,6 @@
     <Compile Include="Core\Binders\NewTagModelBinder.cs" />
     <Compile Include="Core\Binders\UsernameAndPasswordModelBinder.cs" />
     <Compile Include="Core\Controllers\BaseController.cs" />
-    <Compile Include="Core\FluentValidationIOCFactory.cs" />
     <Compile Include="Core\HandlerBase.cs" />
     <Compile Include="Core\HtmlHelpers\InputExtensions.cs" />
     <Compile Include="Core\IFormHandler.cs" />
@@ -221,6 +220,7 @@
     <Content Include="Content\themes\base\jquery.ui.slider.css" />
     <Content Include="Content\themes\base\jquery.ui.tabs.css" />
     <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\jQuery.js" />
     <Content Include="Scripts\libraries\jquery-ui-1.10.2\AUTHORS.txt" />

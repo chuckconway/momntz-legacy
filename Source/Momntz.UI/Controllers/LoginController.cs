@@ -18,7 +18,6 @@ namespace Momntz.UI.Controllers
         /// </summary>
         /// <param name="usernameAndPassword">The username and password.</param>
         /// <returns>ActionResult.</returns>
-        [Log]
         [HttpPost]
         public ActionResult Index(UsernameAndPassword usernameAndPassword)
         {

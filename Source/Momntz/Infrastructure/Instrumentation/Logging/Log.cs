@@ -35,7 +35,7 @@ namespace Momntz.Infrastructure.Instrumentation.Logging
 
             if (logKey == LoggingConstants.File)
             {
-                string path = _settings.LogToFile;
+                string path = _settings.LoggingFilePath;
                 return new LogToFile(path);
             }
 

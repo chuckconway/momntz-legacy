@@ -21,7 +21,7 @@ namespace Momntz.Infrastructure.Instrumentation.Logging
         /// </summary>
         /// <param name="message">The message.</param>
         /// <exception cref="LoggingPathNotSetException"></exception>
-        public override void Persist(string message)
+        protected override void Persist(string message)
         {
             if (!string.IsNullOrEmpty(_fullFilePath))
             {

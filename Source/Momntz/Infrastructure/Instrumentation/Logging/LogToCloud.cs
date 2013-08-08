@@ -21,7 +21,7 @@ namespace Momntz.Infrastructure.Instrumentation.Logging
         /// </summary>
         /// <param name="message">The message.</param>
         /// <exception cref="System.NotImplementedException"></exception>
-        public override void Persist(string message)
+        protected override void Persist(string message)
         {
             var command = new SaveLoggingCommand {Message = message};
             _processor.Process(command);

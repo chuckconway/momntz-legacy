@@ -20,7 +20,7 @@ namespace Momntz.Infrastructure.Instrumentation.Logging
         /// Persists the specified message.
         /// </summary>
         /// <param name="message">The message.</param>
-        public abstract void Persist(string message);
+        protected abstract void Persist(string message);
 
         /// <summary>
         /// Adds the metadata.
