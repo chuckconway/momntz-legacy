@@ -4,6 +4,8 @@ using ChuckConway.Cloud.Queue;
 using ChuckConway.Cloud.Storage;
 using Momntz.Data.CommandHandlers.Queue;
 using Momntz.Data.Commands.Logging;
+using Momntz.Infrastructure.Configuration;
+using Momntz.Infrastructure.Instrumentation.Logging.Models;
 using Momntz.Messaging;
 
 namespace Momntz.Data.CommandHandlers.Logging
@@ -12,16 +14,19 @@ namespace Momntz.Data.CommandHandlers.Logging
     {
         private readonly IStorage _storage;
         private readonly IQueue _queue;
+        private readonly ApplicationSettings _settings;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateMediaCommandHandler"/> class.
         /// </summary>
         /// <param name="storage">The storage.</param>
         /// <param name="queue"></param>
-        public SaveLoggingCommandHandler(IStorage storage, IQueue queue)
+        /// <param name="settings"></param>
+        public SaveLoggingCommandHandler(IStorage storage, IQueue queue, ApplicationSettings settings)
         {
             _storage = storage;
             _queue = queue;
+            _settings = settings;
         }
 
         /// <summary>
@@ -39,7 +44,7 @@ namespace Momntz.Data.CommandHandlers.Logging
                 _storage.AddFile(QueueConstants.LoggingQueue, id.ToString(), "application/octet-stream", Encoding.Default.GetBytes(command.Message));
 
                 //queue message for the logging service to process
-                _queue.Send(QueueConstants.LoggingQueue, new {Id=id});            
+                _queue.Send(QueueConstants.LoggingQueue, new QueueLogMessage{Id = id, Endpoint = _settings.UILoggingEndpoint});            
             
             }
             catch (Exception)

@@ -45,7 +45,7 @@ namespace Momntz.Infrastructure.Instrumentation.Logging
         /// <param name="message">The message.</param>
         public void Exception(Exception ex, string message = null)
         {
-            var logMessage = new LogMessage {Message = message, Exception = ex.ToString(), LogType = LogType.Exception};
+            var logMessage = new LogMessage { Message = message, Exception = ex.ToString(), LogType = LogType.Exception.ToString() };
             Write(logMessage);
         }
 
@@ -55,7 +55,7 @@ namespace Momntz.Infrastructure.Instrumentation.Logging
         /// <param name="message">The message.</param>
         public void Debug(string message)
         {
-            var logMessage = new LogMessage { Message = message, LogType = LogType.Debug };
+            var logMessage = new LogMessage { Message = message, LogType = LogType.Debug.ToString() };
             Write(logMessage);
         }
     }

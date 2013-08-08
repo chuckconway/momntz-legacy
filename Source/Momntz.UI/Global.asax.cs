@@ -16,6 +16,7 @@ using Momntz.Data.ProjectionHandlers.Users;
 using Momntz.Data.Schema;
 using Momntz.Infrastructure;
 using Momntz.Infrastructure.Configuration;
+using Momntz.Infrastructure.Instrumentation.Logging;
 using Momntz.Infrastructure.Processors;
 using Momntz.UI.Areas.Api.Models;
 using Momntz.UI.Core;
@@ -68,8 +69,6 @@ namespace Momntz.UI
             {
                 ex = ex.InnerException;
             }
-
-            //LogManager.ExceptionHandler(ex);
         }
 
        
@@ -83,11 +82,19 @@ namespace Momntz.UI
         {
             var settings = MomntzConfiguration.GetSettings();
 
+            //Set global logger, use cloud the UI
+            settings.LoggerType = LoggingConstants.Cloud;
+            settings.UILoggingEndpoint = "https://logs.loggly.com/inputs/eb327efb-a0a5-4f33-b931-275f32739d8c";
+
             ObjectFactory.Initialize(x => x.Scan(s =>
             {
                 x.AddRegistry<MomntzRegistry>();
+                
                 x.For<IDatabase>().Use(new MsSqlDatabase());
+                x.For<ApplicationSettings>().Use(settings);
+
                 x.For<ICrypto>().Use<Crypto>();
+                x.For<ILog>().Use<Log>();
                 x.For<IConfigurationService>().Use<MomntzConfiguration>();
                 x.For<NHibernate.ISession>().HttpContextScoped().Use(() => new Database().CreateSessionFactory().OpenSession());
                 x.For<IProjectionProcessor>().Use<ProjectionProcessor>();

@@ -1,4 +1,4 @@
-﻿namespace Momntz.Infrastructure.Instrumentation.Logging
+﻿namespace Momntz.Core.Contants
 {
     public class LoggingConstants
     {

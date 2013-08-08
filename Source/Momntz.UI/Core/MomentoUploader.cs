@@ -2,7 +2,7 @@
 using System.IO;
 using System.Web.Script.Serialization;
 using Momntz.Data.Commands.Queue;
-using Momntz.Infrastructure.Logging;
+using Momntz.Infrastructure.Instrumentation.Logging;
 using Momntz.Infrastructure.Processors;
 using Momntz.Messaging.Models;
 
@@ -32,7 +32,7 @@ namespace Momntz.UI.Core
         /// <param name="username">The username.</param>
         /// <param name="bytes">The bytes.</param>
         /// <returns>Guid.</returns>
-        [LogToFile]
+        [Log]
         public Guid Add(string filename, string username, byte[] bytes)
         {
             var extension = Path.GetExtension(filename).Replace(".", string.Empty);

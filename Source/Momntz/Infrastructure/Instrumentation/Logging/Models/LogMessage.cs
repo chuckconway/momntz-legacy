@@ -80,7 +80,7 @@ namespace Momntz.Infrastructure.Instrumentation.Logging
         /// Gets or sets the type of the log.
         /// </summary>
         /// <value>The type of the log.</value>
-        public LogType LogType { get; set; }
+        public string LogType { get; set; }
 
         /// <summary>
         /// Returns a <see cref="System.String" /> that represents this instance.

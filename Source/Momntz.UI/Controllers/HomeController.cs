@@ -2,7 +2,7 @@
 using System.Web.Mvc;
 using Momntz.Data.ProjectionHandlers.Momentos;
 using Momntz.Data.Projections.Momentos;
-using Momntz.Infrastructure.Logging;
+using Momntz.Infrastructure.Instrumentation.Logging;
 using Momntz.Infrastructure.Processors;
 using Momntz.UI.Core.Controllers;
 
@@ -25,7 +25,7 @@ namespace Momntz.UI.Controllers
         /// Indexes this instance.
         /// </summary>
         /// <returns>ActionResult.</returns>
-        [LogToFile(Message = "Displaying public landing page.")]
+        [Log(Message = "Displaying public landing page.")]
         public ActionResult Index()
         {
            var tiles = _processor.Process<HomepageInParameters, List<Tile>>(new HomepageInParameters());
