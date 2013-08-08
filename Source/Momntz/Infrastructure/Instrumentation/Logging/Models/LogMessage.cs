@@ -83,6 +83,12 @@ namespace Momntz.Infrastructure.Instrumentation.Logging
         public string LogType { get; set; }
 
         /// <summary>
+        /// Gets or sets the HTTP code.
+        /// </summary>
+        /// <value>The HTTP code.</value>
+        public string HttpCode { get; set; }
+
+        /// <summary>
         /// Returns a <see cref="System.String" /> that represents this instance.
         /// </summary>
         /// <returns>A <see cref="System.String" /> that represents this instance.</returns>

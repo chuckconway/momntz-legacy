@@ -43,9 +43,9 @@ namespace Momntz.Infrastructure.Instrumentation.Logging
         /// </summary>
         /// <param name="ex">The ex.</param>
         /// <param name="message">The message.</param>
-        public void Exception(Exception ex, string message = null)
+        public void Exception(Exception ex, string statusCode = null, string message = null)
         {
-            var logMessage = new LogMessage { Message = message, Exception = ex.ToString(), LogType = LogType.Exception.ToString() };
+            var logMessage = new LogMessage { HttpCode = statusCode, Message = message, Exception = ex.ToString(), LogType = LogType.Exception.ToString() };
             Write(logMessage);
         }
 

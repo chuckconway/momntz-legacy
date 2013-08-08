@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
@@ -63,11 +64,19 @@ namespace Momntz.UI
         {
             HttpContext context = ((HttpApplication)sender).Context;
 
-            Exception ex = context.Server.GetLastError();
+            var ex = context.Server.GetLastError();
             if (ex != null)
             {
+                int statusCode = -1;
+
+                var exception = ex as HttpException;
+                if (exception != null)
+                {
+                    statusCode = exception.GetHttpCode();
+                }
+
                 var log = ObjectFactory.GetInstance<ILog>();
-                log.Exception(ex, "Caught in the Global.asax");
+                log.Exception(ex, statusCode.ToString(CultureInfo.InvariantCulture), "Caught in the Global.asax");
             }
         }
 

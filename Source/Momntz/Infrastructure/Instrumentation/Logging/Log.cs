@@ -47,10 +47,10 @@ namespace Momntz.Infrastructure.Instrumentation.Logging
         /// </summary>
         /// <param name="ex">The ex.</param>
         /// <param name="message">The message.</param>
-        public void Exception(Exception ex, string message = null)
+        public void Exception(Exception ex, string statusCode = null, string message = null)
         {
             ILog log = GetLogger(_settings.LoggerType);
-            log.Exception(ex, message);
+            log.Exception(ex, statusCode, message);
         }
 
         /// <summary>
