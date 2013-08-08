@@ -113,7 +113,6 @@ namespace Momntz.UI.Areas.Api.Controllers
         /// <returns>IEnumerable{System.Object}.</returns>
         public IEnumerable<object> InternalAddTag(NewTag tag, string username)
         {
-            
           _commandProcessor.Process(new CreateTagCommand(tag.Name, tag.Left, tag.Top, tag.Width, tag.Height, username, tag.MomentoId));
 
             var momentoTags = _processor.Process<int, IList<MomentoPerson>>(tag.MomentoId);
