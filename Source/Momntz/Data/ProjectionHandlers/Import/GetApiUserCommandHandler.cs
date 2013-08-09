@@ -4,12 +4,13 @@ using System.Linq;
 using Hypersonic;
 using Momntz.Data.Projections.Import;
 using Momntz.Data.Projections.Users;
+using Momntz.Data.Queries.Users;
 using Momntz.Data.Schema;
 using Momntz.Infrastructure.Processors;
 
 namespace Momntz.Data.ProjectionHandlers.Import
 {
-    public class GetApiUserProjectionHandler : IProjectionHandler<GetApiUserProjection, string>
+    public class GetApiUserProjectionHandler : IProjectionHandler<GetApiUserQueryParameters, string>
     {
         private readonly NHibernate.ISession _session;
         private readonly IDatabase _database;
@@ -34,7 +35,7 @@ namespace Momntz.Data.ProjectionHandlers.Import
         /// <param name="args">The args.</param>
         /// <returns>System.String.</returns>
         /// <exception cref="System.NotImplementedException"></exception>
-        public string Execute(GetApiUserProjection args)
+        public string Execute(GetApiUserQueryParameters args)
         {
             IList<User> users = GetUsers();
             bool hasUser = users.Any(u => string.Equals(u.Username, args.Username, StringComparison.InvariantCultureIgnoreCase));
@@ -43,7 +44,7 @@ namespace Momntz.Data.ProjectionHandlers.Import
             if(!hasUser)
             {
                 _processor.Process<CreateUsername, string>(new CreateUsername() { Username = args.Username, Users = users });
-                var result = _database.Single<UsernameResult, GetApiUserProjection>("User_CreateUsernameFromApiKey", args);
+                var result = _database.Single<UsernameResult, GetApiUserQueryParameters>("User_CreateUsernameFromApiKey", args);
                 username = result.Username;
             }
 
