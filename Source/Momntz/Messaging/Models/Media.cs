@@ -1,4 +1,5 @@
 ﻿using System;
+using Newtonsoft.Json;
 
 namespace Momntz.Messaging.Models
 {
@@ -34,5 +35,13 @@ namespace Momntz.Messaging.Models
         /// <value>The username.</value>
         public string Username { get; set; }
 
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// </summary>
+        /// <returns>A <see cref="System.String" /> that represents this instance.</returns>
+       public override string ToString()
+       {
+           return JsonConvert.SerializeObject(this);
+       }
     }
 }

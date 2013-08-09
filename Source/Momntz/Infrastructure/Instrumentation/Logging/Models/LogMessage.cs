@@ -1,6 +1,7 @@
-﻿using Newtonsoft.Json;
+﻿
+using Newtonsoft.Json;
 
-namespace Momntz.Infrastructure.Instrumentation.Logging
+namespace Momntz.Infrastructure.Instrumentation.Logging.Models
 {
     public class LogMessage
     {

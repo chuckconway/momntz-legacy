@@ -1,4 +1,6 @@
-﻿namespace Momntz.Messaging
+﻿using Microsoft.ServiceBus.Messaging;
+
+namespace Momntz.Messaging
 {
     public interface ISaga
     {
@@ -12,6 +14,7 @@
         /// Consumes the specified message.
         /// </summary>
         /// <param name="message">The message.</param>
-        void Consume(string message);
+        void Consume(BrokeredMessage message);
     }
+
 }

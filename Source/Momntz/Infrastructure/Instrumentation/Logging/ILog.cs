@@ -8,6 +8,7 @@ namespace Momntz.Infrastructure.Instrumentation.Logging
         /// Exceptions the specified ex.
         /// </summary>
         /// <param name="ex">The ex.</param>
+        /// <param name="statusCode">The status code.</param>
         /// <param name="message">The message.</param>
         void Exception(Exception ex, string statusCode = null, string message = null);
 

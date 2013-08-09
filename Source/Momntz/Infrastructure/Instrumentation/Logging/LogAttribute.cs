@@ -1,6 +1,7 @@
 ﻿using System;
+using Momntz.Data.CommandHandlers;
+using Momntz.Data.Commands.Logging;
 using Momntz.Infrastructure.Configuration;
-using Momntz.Infrastructure.Processors;
 using Newtonsoft.Json;
 using PostSharp.Aspects;
 using StructureMap;
@@ -19,7 +20,7 @@ namespace Momntz.Infrastructure.Instrumentation.Logging
         /// <returns>ILog.</returns>
         private static ILog Log()
         {
-            return new Log(ObjectFactory.GetInstance<ICommandProcessor>(), ObjectFactory.GetInstance<ApplicationSettings>());
+            return new Log(ObjectFactory.GetInstance<ICommandHandler<SaveLoggingCommand>>(), ObjectFactory.GetInstance<ApplicationSettings>());
         }
 
         /// <summary>

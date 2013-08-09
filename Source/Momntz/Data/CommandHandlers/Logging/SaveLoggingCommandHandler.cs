@@ -44,7 +44,7 @@ namespace Momntz.Data.CommandHandlers.Logging
                 _storage.AddFile(QueueConstants.LoggingQueue, id.ToString(), "application/octet-stream", Encoding.Default.GetBytes(command.Message));
 
                 //queue message for the logging service to process
-                _queue.Send(QueueConstants.LoggingQueue, new QueueLogMessage{Id = id, Endpoint = _settings.UILoggingEndpoint});            
+                _queue.Send(QueueConstants.LoggingQueue, new QueueLogMessage { Id = id, Endpoint = _settings.RestLoggingEndpoint});            
             
             }
             catch (Exception)

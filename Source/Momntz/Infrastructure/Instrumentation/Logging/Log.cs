@@ -1,13 +1,14 @@
 ﻿using System;
 using Momntz.Core.Contants;
+using Momntz.Data.CommandHandlers;
+using Momntz.Data.Commands.Logging;
 using Momntz.Infrastructure.Configuration;
-using Momntz.Infrastructure.Processors;
 
 namespace Momntz.Infrastructure.Instrumentation.Logging
 {
     public class Log: ILog
     {
-        private readonly ICommandProcessor _processor;
+        private readonly ICommandHandler<SaveLoggingCommand> _handler;
         private readonly ApplicationSettings _settings;
 
         /// <summary>
@@ -15,9 +16,9 @@ namespace Momntz.Infrastructure.Instrumentation.Logging
         /// </summary>
         /// <param name="processor">The processor.</param>
         /// <param name="settings">The settings.</param>
-        public Log(ICommandProcessor processor, ApplicationSettings settings)
+        public Log(ICommandHandler<SaveLoggingCommand> handler, ApplicationSettings settings)
         {
-            _processor = processor;
+            _handler = handler;
             _settings = settings;
         }
 
@@ -30,7 +31,7 @@ namespace Momntz.Infrastructure.Instrumentation.Logging
         {
             if (logKey == LoggingConstants.Cloud)
             {
-                return new LogToCloud(_processor);
+                return new LogToCloud(_handler);
             }
 
             if (logKey == LoggingConstants.File)

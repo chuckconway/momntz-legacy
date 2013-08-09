@@ -148,5 +148,11 @@ namespace Momntz.Infrastructure.Configuration
         /// <value>The service logging endpoint.</value>
         public string ServiceLoggingEndpoint { get; set; }
 
+        /// <summary>
+        /// Gets or sets the rest logging endpoint.
+        /// </summary>
+        /// <value>The rest logging endpoint.</value>
+        public string RestLoggingEndpoint { get; set; }
+
     }
 }

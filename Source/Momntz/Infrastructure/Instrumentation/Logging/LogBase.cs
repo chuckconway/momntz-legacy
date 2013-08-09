@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Threading.Tasks;
+using Momntz.Infrastructure.Instrumentation.Logging.Models;
 
 namespace Momntz.Infrastructure.Instrumentation.Logging
 {
