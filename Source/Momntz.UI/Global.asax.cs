@@ -94,8 +94,7 @@ namespace Momntz.UI
         {
             var settings = MomntzConfiguration.GetSettings();
 
-            //Set global logger, use cloud the UI
-            settings.LoggerType = LoggingConstants.Cloud;
+            SetLogging(settings);
 
             ObjectFactory.Initialize(x => x.Scan(s =>
             {
@@ -137,6 +136,13 @@ namespace Momntz.UI
             DependencyResolver.SetResolver(new StructureMapDependencyResolver());
 
             ConfigureAutoMapper();
+        }
+
+        private static void SetLogging(ApplicationSettings settings)
+        {
+            //Set global logger, use cloud the UI
+            settings.LoggerType = LoggingConstants.Cloud;
+            settings.RestLoggingEndpoint = settings.UILoggingEndpoint;
         }
 
         /// <summary>

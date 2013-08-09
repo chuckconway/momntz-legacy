@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ChuckConway.Cloud.Queue;
 
 namespace Momntz.Infrastructure.Instrumentation.Logging.Models
 {
-    public class QueueLogMessage
+    public class QueueLogMessage : IMessage
     {
         /// <summary>
         /// Gets or sets the id.

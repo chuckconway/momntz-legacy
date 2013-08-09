@@ -1,19 +1,19 @@
-﻿using Momntz.Data.Commands.Logging;
-using Momntz.Infrastructure.Processors;
+﻿using Momntz.Data.CommandHandlers;
+using Momntz.Data.Commands.Logging;
 
 namespace Momntz.Infrastructure.Instrumentation.Logging
 {
     public class LogToCloud : LogBase
     {
-        private readonly ICommandProcessor _processor;
+        private readonly ICommandHandler<SaveLoggingCommand> _handler;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="LogToCloud"/> class.
+        /// Initializes a new instance of the <see cref="LogToCloud" /> class.
         /// </summary>
-        /// <param name="processor">The processor.</param>
-        public LogToCloud(ICommandProcessor processor)
+        /// <param name="handler">The handler.</param>
+        public LogToCloud(ICommandHandler<SaveLoggingCommand> handler)
         {
-            _processor = processor;
+            _handler = handler;
         }
 
         /// <summary>
@@ -24,7 +24,7 @@ namespace Momntz.Infrastructure.Instrumentation.Logging
         protected override void Persist(string message)
         {
             var command = new SaveLoggingCommand {Message = message};
-            _processor.Process(command);
+            _handler.Execute(command);
         }
     }
 }
