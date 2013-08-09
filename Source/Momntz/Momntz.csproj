@@ -137,7 +137,6 @@
     <Compile Include="Data\Schema\AlbumMomento.cs" />
     <Compile Include="Data\Schema\Person.cs" />
     <Compile Include="Data\ProjectionHandlers\Albums\AutoScrollHandler.cs" />
-    <Compile Include="Data\ProjectionHandlers\Import\GetApiUserCommandHandler.cs" />
     <Compile Include="Data\CommandHandlers\Momentos\CreateMomentoCommandHandler.cs" />
     <Compile Include="Data\CommandHandlers\Momentos\CreateMomentoMediaCommandHandler.cs" />
     <Compile Include="Data\CommandHandlers\Momentos\SaveMomentoDetailsCommandHandler.cs" />
