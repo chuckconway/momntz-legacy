@@ -8,7 +8,7 @@ namespace Momntz.Data.Commands.Queue
         /// Initializes a new instance of the <see cref="CreateQueueCommand"/> class.
         /// </summary>
         /// <param name="message">The message.</param>
-        public CreateQueueCommand(Media message)
+        public CreateQueueCommand(MediaMessage message)
         {
             Message = message;
         }
@@ -17,7 +17,7 @@ namespace Momntz.Data.Commands.Queue
         /// Gets or sets the message.
         /// </summary>
         /// <value>The message.</value>
-        public Media Message { get; set; }
+        public MediaMessage Message { get; set; }
     }
 
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using Hypersonic.Attributes;
+using Momntz.Messaging.Models;
 
 namespace Momntz.Data.Commands.Queue
 {
@@ -11,10 +12,11 @@ namespace Momntz.Data.Commands.Queue
         /// <param name="id">The id.</param>
         /// <param name="extension">The extension.</param>
         /// <param name="bytes">The bytes.</param>
-        public CreateMediaCommand(Guid id, byte[] bytes)
+        public CreateMediaCommand(Guid id, byte[] bytes, MediaMessage message)
         {
             Id = id;
             Bytes = bytes;
+            Message = message;
         }
 
         /// <summary>
@@ -28,5 +30,11 @@ namespace Momntz.Data.Commands.Queue
         /// </summary>
         /// <value>The bytes.</value>
         public byte[] Bytes { get; private set; }
+
+        /// <summary>
+        /// Gets or sets the message.
+        /// </summary>
+        /// <value>The message.</value>
+        public MediaMessage Message { get; private set; }
     }
 }
