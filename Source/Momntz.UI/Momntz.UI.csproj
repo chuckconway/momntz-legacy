@@ -128,10 +128,8 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Api\ApiAreaRegistration.cs" />
     <Compile Include="Areas\Api\Controllers\AlbumsController.cs" />
-    <Compile Include="Areas\Api\Controllers\ImportController.cs" />
     <Compile Include="Areas\Api\Controllers\MomentoController.cs" />
     <Compile Include="Areas\Api\Controllers\TagsController.cs" />
-    <Compile Include="Areas\Api\Handlers\Tags\AddTagHandler.cs" />
     <Compile Include="Areas\Api\Models\AutoComplete.cs" />
     <Compile Include="Areas\Api\Models\NewTag.cs" />
     <Compile Include="Areas\Api\Models\PeopleView.cs" />
@@ -168,7 +166,6 @@
     <Compile Include="Core\HtmlHelpers\InputExtensions.cs" />
     <Compile Include="Core\IFormHandler.cs" />
     <Compile Include="Core\IQueryHandler.cs" />
-    <Compile Include="Core\MomentoUploader.cs" />
     <Compile Include="Core\RouteConstraints\UserRouteCache.cs" />
     <Compile Include="Core\RouteConstraints\UserRouteConstraint.cs" />
     <Compile Include="Core\RouteHandler\UploadHttpHandler.cs" />

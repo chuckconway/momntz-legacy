@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
+using Momntz.Data.ProjectionHandlers;
 using Momntz.Data.ProjectionHandlers.Momentos;
 using Momntz.Data.Projections.Momentos;
-using Momntz.Infrastructure.Processors;
 using Momntz.UI.Areas.Users.Models;
 using Momntz.UI.Core.Controllers;
 
@@ -10,9 +10,13 @@ namespace Momntz.UI.Areas.Users.Controllers
 {
     public class IndexController : BaseController
     {
-        private readonly IProjectionProcessor _processor;
+        private readonly IProjectionHandler<UserPageMomentosInParameters, List<Tile>> _processor;
 
-        public IndexController(IProjectionProcessor processor)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="IndexController"/> class.
+        /// </summary>
+        /// <param name="processor">The processor.</param>
+        public IndexController(IProjectionHandler<UserPageMomentosInParameters, List<Tile>> processor)
         {
             _processor = processor;
         }
@@ -25,7 +29,7 @@ namespace Momntz.UI.Areas.Users.Controllers
         {
             var item = CurrentSignedInUser<UserView>();
 
-            item.Items =_processor.Process<UserPageMomentosInParameters, List<Tile>>(new UserPageMomentosInParameters()
+            item.Items =_processor.Execute(new UserPageMomentosInParameters()
             {
                 Username = item.Username
             });

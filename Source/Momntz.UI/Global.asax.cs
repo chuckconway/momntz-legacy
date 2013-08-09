@@ -19,7 +19,6 @@ using Momntz.Data.Schema;
 using Momntz.Infrastructure;
 using Momntz.Infrastructure.Configuration;
 using Momntz.Infrastructure.Instrumentation.Logging;
-using Momntz.Infrastructure.Processors;
 using Momntz.UI.Areas.Api.Models;
 using Momntz.UI.Core;
 using Momntz.UI.Core.Binders;
@@ -107,7 +106,6 @@ namespace Momntz.UI
                 x.For<ILog>().Use<Log>();
                 x.For<IConfigurationService>().Use<MomntzConfiguration>();
                 x.For<NHibernate.ISession>().HttpContextScoped().Use(() => new Database().CreateSessionFactory().OpenSession());
-                x.For<IProjectionProcessor>().Use<ProjectionProcessor>();
                 x.For<IStorage>().Use<AzureStorage>()
                  .Ctor<string>("cloudUrl")
                  .Is(settings.CloudUrl)

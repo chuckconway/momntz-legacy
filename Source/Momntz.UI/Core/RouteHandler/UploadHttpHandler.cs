@@ -1,6 +1,9 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Web;
-using Momntz.Infrastructure.Processors;
+using Momntz.Data.CommandHandlers;
+using Momntz.Data.Commands.Queue;
+using Momntz.Messaging.Models;
 using Momntz.UI.Core.Controllers;
 using StructureMap;
 
@@ -9,14 +12,14 @@ namespace Momntz.UI.Core.RouteHandler
 {
     public class UploadHttpHandler : IHttpHandler
     {
-        private readonly ICommandProcessor _commandProcessor;
+        private readonly ICommandHandler<CreateMediaCommand> _commandHandler;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="UploadHttpHandler" /> class.
         /// </summary>
         public UploadHttpHandler()
         {
-            _commandProcessor = ObjectFactory.GetInstance<ICommandProcessor>();
+            _commandHandler = ObjectFactory.GetInstance<ICommandHandler<CreateMediaCommand>>();
         }
 
         /// <summary>
@@ -25,9 +28,6 @@ namespace Momntz.UI.Core.RouteHandler
         /// <param name="context">An <see cref="T:System.Web.HttpContext" /> object that provides references to the intrinsic server objects (for example, Request, Response, Session, and Server) used to service HTTP requests.</param>
         public void ProcessRequest(HttpContext context)
         {
-            //IStorage storage = new AzureStorage();
-            //storage.AddFile("img", file.FileName, file.ContentType, file.InputStream);
-
             //Image formats
             //jpg, jpeg, png, gif, tiff
 
@@ -36,10 +36,23 @@ namespace Momntz.UI.Core.RouteHandler
             var file = context.Request.Files["filedata"];
 
             var bytes = GetBytes(file);
-            var username = BaseController.AuthenticatedUsername(); 
+            var username = BaseController.AuthenticatedUsername();
 
-            MomentoUploader uploader = new MomentoUploader(_commandProcessor);
-            uploader.Add(file.FileName, username, bytes);
+            var extension = Path.GetExtension(file.FileName).Replace(".", string.Empty);
+
+            var id = Guid.NewGuid();
+            var media = new MediaMessage
+            {
+                Extension = extension,
+                Filename = file.FileName,
+                Id = id,
+                Size = bytes.Length,
+                Username = username
+            };
+
+            //Save the media to storage
+            var command = new CreateMediaCommand(id, bytes, media);
+            _commandHandler.Execute(command);
            
             context.Response.Write("1");
         }
