@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Momntz.Data.Projections.Api
+﻿namespace Momntz.Data.Projections.Api
 {
     public class AlbumNameResult : IProjection
     {

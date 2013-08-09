@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Momntz.Data.Schema;
 
-
 namespace Momntz.Data.Projections.Users
 {
     public class CreateUsername:IProjection
