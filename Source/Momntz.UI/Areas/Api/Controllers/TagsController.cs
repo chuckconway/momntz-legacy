@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using Momntz.Data.CommandHandlers;
 using Momntz.Data.Commands.Tags;
+using Momntz.Data.ProjectionHandlers;
 using Momntz.Data.ProjectionHandlers.Api;
 using Momntz.Data.Projections.Api;
-using Momntz.Infrastructure.Processors;
 using Momntz.UI.Areas.Api.Models;
 using Momntz.UI.Core.Controllers;
 
@@ -12,18 +13,29 @@ namespace Momntz.UI.Areas.Api.Controllers
 {
     public class TagsController : BaseController
     {
-        private readonly IProjectionProcessor _processor;
-        private readonly ICommandProcessor _commandProcessor;
+        private readonly IProjectionHandler<NameAndUsername, List<NameSearchResult>> _getTagNames;
+        private readonly ICommandHandler<DeleteTagCommand> _deleteTag;
+        private readonly IProjectionHandler<int, IList<MomentoPerson>> _retreiveTagsByMomentoId;
+        private readonly ICommandHandler<CreateTagCommand> _createTag;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TagsController"/> class.
         /// </summary>
         /// <param name="processor">The processor.</param>
         /// <param name="commandProcessor">The command processor.</param>
-        public TagsController(IProjectionProcessor processor, ICommandProcessor commandProcessor)
+        /// <param name="getTagNames"></param>
+        /// <param name="deleteTag"></param>
+        /// <param name="retreiveTagsByMomentoId"></param>
+        public TagsController(IProjectionHandler<NameAndUsername, List<NameSearchResult>> getTagNames,
+                              ICommandHandler<DeleteTagCommand> deleteTag, 
+                              IProjectionHandler<int, IList<MomentoPerson>> retreiveTagsByMomentoId,
+            ICommandHandler<CreateTagCommand> createTag
+                              )
         {
-            _processor = processor;
-            _commandProcessor = commandProcessor;
+            _getTagNames = getTagNames;
+            _deleteTag = deleteTag;
+            _retreiveTagsByMomentoId = retreiveTagsByMomentoId;
+            _createTag = createTag;
         }
 
         /// <summary>
@@ -34,7 +46,7 @@ namespace Momntz.UI.Areas.Api.Controllers
         /// <returns>ActionResult.</returns>
         public ActionResult Delete(int momentoId, int tagid)
         {
-            _commandProcessor.Process(new DeleteTagCommand(momentoId, tagid));
+            _deleteTag.Execute(new DeleteTagCommand(momentoId, tagid));
             return Json(new {result=true}, JsonRequestBehavior.AllowGet);
         }
 
@@ -45,8 +57,8 @@ namespace Momntz.UI.Areas.Api.Controllers
         /// <returns>ActionResult.</returns>
         public ActionResult Names(string term)
         {
-            NameAndUsername search = new NameAndUsername() { Name = term, Username = GetUsername() };
-            var results = _processor.Process<NameAndUsername, List<NameSearchResult>>(search);
+            var search = new NameAndUsername() { Name = term, Username = GetUsername() };
+            var results = _getTagNames.Execute(search);
 
             return Json(results, JsonRequestBehavior.AllowGet);
         }
@@ -58,7 +70,7 @@ namespace Momntz.UI.Areas.Api.Controllers
         /// <returns>ActionResult.</returns>
         public ActionResult Retrieve(int momentoid)
         {
-            var momentoTag = _processor.Process<int, IList<MomentoPerson>>(momentoid);
+            var momentoTag = _retreiveTagsByMomentoId.Execute(momentoid);
             var ts = GetTags(momentoTag);
 
             var tags = new { Image = new[] { new { id = momentoid, Tags = ts } } };
@@ -113,9 +125,9 @@ namespace Momntz.UI.Areas.Api.Controllers
         /// <returns>IEnumerable{System.Object}.</returns>
         public IEnumerable<object> InternalAddTag(NewTag tag, string username)
         {
-          _commandProcessor.Process(new CreateTagCommand(tag.Name, tag.Left, tag.Top, tag.Width, tag.Height, username, tag.MomentoId));
+            _createTag.Execute(new CreateTagCommand(tag.Name, tag.Left, tag.Top, tag.Width, tag.Height, username, tag.MomentoId));
 
-            var momentoTags = _processor.Process<int, IList<MomentoPerson>>(tag.MomentoId);
+          var momentoTags = _retreiveTagsByMomentoId.Execute(tag.MomentoId);
             MomentoPerson t = momentoTags.SingleOrDefault(m => m.MomentoId == tag.MomentoId && m.DisplayName == tag.Name);
 
             var tags = GetTags(new List<MomentoPerson> {t});

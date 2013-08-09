@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 
 using System.Web.Mvc;
+using Momntz.Data.CommandHandlers;
 using Momntz.Data.Commands.Momentos;
+using Momntz.Data.ProjectionHandlers;
 using Momntz.Data.ProjectionHandlers.Momentos;
 using Momntz.Data.Projections.Momentos;
 using Momntz.Data.Schema;
-using Momntz.Infrastructure.Processors;
 using Momntz.UI.Areas.Api.Models;
 using Momntz.UI.Core.Controllers;
 
@@ -15,13 +16,25 @@ namespace Momntz.UI.Areas.Api.Controllers
 {
     public class MomentoController : BaseController
     {
-        private readonly ICommandProcessor _processor;
-        private readonly IProjectionProcessor _projection;
+        private readonly ICommandHandler<SaveMomentoDetailsCommand> _processor;
+        private readonly IProjectionHandler<LocationAutoCompleteParameters, List<LocationAutoComplete>> _projection;
+        private readonly IProjectionHandler<DateTime, List<Tile>> _scroll;
+        private readonly IProjectionHandler<UserHomepageInfiniteScrollInParameters, List<Tile>> _getuserScroll;
+        private readonly IProjectionHandler<int, Momento> _getMomentoById;
 
-        public MomentoController(ICommandProcessor processor, IProjectionProcessor projection)
+        public MomentoController(ICommandHandler<SaveMomentoDetailsCommand> processor, 
+                                 IProjectionHandler<LocationAutoCompleteParameters, List<LocationAutoComplete>> projection,
+                                IProjectionHandler<DateTime, List<Tile>> scroll,
+            IProjectionHandler<UserHomepageInfiniteScrollInParameters, List<Tile>> getuserScroll,
+            IProjectionHandler<int, Momento> getMomentoById 
+                        
+                                )
         {
             _processor = processor;
             _projection = projection;
+            _scroll = scroll;
+            _getuserScroll = getuserScroll;
+            _getMomentoById = getMomentoById;
         }
 
         /// <summary>
@@ -39,7 +52,7 @@ namespace Momntz.UI.Areas.Api.Controllers
         [HttpPost]
         public ActionResult Save(int id, string title, string story, int? day, int? month, int? year, string albums, string location)
         {
-            _processor.Process(new SaveMomentoDetailsCommand(id, title, story, day, month, year, albums, location, GetUsername()));
+            _processor.Execute(new SaveMomentoDetailsCommand(id, title, story, day, month, year, albums, location, GetUsername()));
             return Content("1");
         }
 
@@ -52,7 +65,7 @@ namespace Momntz.UI.Areas.Api.Controllers
         {
             string username = GetUsername();
             var results =
-                _projection.Process<LocationAutoCompleteParameters, List<LocationAutoComplete>>(
+                _projection.Execute(
                     new LocationAutoCompleteParameters() {Term = term, Username = username});
             
             return Json(results.Select(a=> new AutoComplete(a.Location)), JsonRequestBehavior.AllowGet);
@@ -67,7 +80,7 @@ namespace Momntz.UI.Areas.Api.Controllers
         public ActionResult Scroll(string oldest)
         {
             DateTime parsed = DateTime.Parse(oldest);
-            var items = _projection.Process<DateTime, List<Tile>>(parsed);
+            var items = _scroll.Execute(parsed);
 
             return Json(items);
         }
@@ -82,7 +95,7 @@ namespace Momntz.UI.Areas.Api.Controllers
         public ActionResult UserScroll(string oldest, string username)
         {
             DateTime parsed = DateTime.Parse(oldest);
-            var items = _projection.Process<UserHomepageInfiniteScrollInParameters, List<Tile>>(new UserHomepageInfiniteScrollInParameters(){CreateDate = parsed, Username = username});
+            var items = _getuserScroll.Execute(new UserHomepageInfiniteScrollInParameters() { CreateDate = parsed, Username = username });
 
             return Json(items);
         }
@@ -95,7 +108,7 @@ namespace Momntz.UI.Areas.Api.Controllers
         [HttpPost]
         public ActionResult ById(int id)
         {
-            Momento detail = _projection.Process<int, Momento>(id) ?? new Momento();
+            Momento detail = _getMomentoById.Execute(id) ?? new Momento();
 
             Func<string, string> convertNullToEmptyString = (s => s ?? string.Empty); 
 

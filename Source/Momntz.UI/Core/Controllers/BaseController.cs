@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Web.Mvc;
 using System.Web.Security;
+using Momntz.Data.ProjectionHandlers;
 using Momntz.Data.Projections.Users;
-using Momntz.Infrastructure.Processors;
 using Momntz.UI.Areas.Users.Models;
 using Momntz.UI.Core.ActionResults;
 using StructureMap;
@@ -77,8 +77,8 @@ namespace Momntz.UI.Core.Controllers
         /// <returns>System.String.</returns>
         public string GetDisplayName(string username)
         {
-            var processor = ObjectFactory.GetInstance<IProjectionProcessor>();
-            var name = processor.Process<string, DisplayName>(username);
+            var processor = ObjectFactory.GetInstance<IProjectionHandler<string, DisplayName>>();
+            var name = processor.Execute(username);
 
             return name.Fullname;
         }

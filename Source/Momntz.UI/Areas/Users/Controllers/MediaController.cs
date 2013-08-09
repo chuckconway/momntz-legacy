@@ -1,20 +1,20 @@
 ﻿using System.Web.Mvc;
+using Momntz.Data.ProjectionHandlers;
 using Momntz.Data.Projections.Momentos;
-using Momntz.Infrastructure.Processors;
 
 namespace Momntz.UI.Areas.Users.Controllers
 {
     public class MediaController : Controller
     {
-        private readonly IProjectionProcessor _processor;
+        private readonly IProjectionHandler<int, Tile> _getTilebyId;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MediaController"/> class.
+        /// Initializes a new instance of the <see cref="MediaController" /> class.
         /// </summary>
-        /// <param name="processor">The processor.</param>
-        public MediaController(IProjectionProcessor processor)
+        /// <param name="getTilebyId">The get tileby id.</param>
+        public MediaController(IProjectionHandler<int, Tile> getTilebyId )
         {
-            _processor = processor;
+            _getTilebyId = getTilebyId;
         }
 
         /// <summary>
@@ -24,7 +24,7 @@ namespace Momntz.UI.Areas.Users.Controllers
         /// <returns>ActionResult.</returns>
         public ActionResult Index(int id)
         {
-           var tile = _processor.Process<int, Tile>(id);
+            var tile = _getTilebyId.Execute(id);
            return View(tile);
         }
 

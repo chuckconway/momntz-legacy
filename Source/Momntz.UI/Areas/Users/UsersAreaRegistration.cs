@@ -1,5 +1,7 @@
-﻿using System.Web.Mvc;
-using Momntz.Infrastructure.Processors;
+﻿using System.Collections.Generic;
+using System.Web.Mvc;
+using Momntz.Data.ProjectionHandlers;
+using Momntz.Data.Projections.Users;
 using Momntz.UI.Core.RouteConstraints;
 using StructureMap;
 
@@ -18,13 +20,15 @@ namespace Momntz.UI.Areas.Users
 
         public override void RegisterArea(AreaRegistrationContext context)
         {
+            var routeContraint = new UserRouteConstraint(ObjectFactory.GetInstance<IProjectionHandler<object, IList<ActiveUsername>>>());
+
             context.MapRoute(
             "Users_albums",
             "{username}/albums/{name}",
             new { controller = "albums", action = "name"},
             constraints: new
             {
-                username = new UserRouteConstraint(ObjectFactory.GetInstance<IProjectionProcessor>()),
+                username = routeContraint,
             });
 
             context.MapRoute(
@@ -33,21 +37,21 @@ namespace Momntz.UI.Areas.Users
             new { controller = "date", action = "Index", month = UrlParameter.Optional, day = UrlParameter.Optional },
             constraints: new
                 {
-                    username = new UserRouteConstraint(ObjectFactory.GetInstance<IProjectionProcessor>()),
+                    username = routeContraint,
                     year = @"\d{4}"
                 });
 
             context.MapRoute(
             "Users_media",
             "{username}/media/{id}",
-            new { controller = "Media", action = "Index" },
-            constraints: new { username = new UserRouteConstraint(ObjectFactory.GetInstance<IProjectionProcessor>()) });
+            new { controller = "MediaMessage", action = "Index" },
+            constraints: new { username = routeContraint });
 
             context.MapRoute(
                 "Users_default",
                 "{username}/{controller}/{action}/{id}",
-                new {  controller = "index", action = "Index", id = UrlParameter.Optional }, 
-                constraints:new { username = new UserRouteConstraint(ObjectFactory.GetInstance<IProjectionProcessor>()) });
+                new {  controller = "index", action = "Index", id = UrlParameter.Optional },
+                constraints: new { username = routeContraint });
 
 
         }
