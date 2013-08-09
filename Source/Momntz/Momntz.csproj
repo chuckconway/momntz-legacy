@@ -74,9 +74,9 @@
     <Reference Include="Iesi.Collections">
       <HintPath>..\..\Dependencies\nHibernate\Iesi.Collections.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ServiceBus, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.ServiceBus, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files\Windows Azure AppFabric SDK\V1.0\Assemblies\NET4.0\Microsoft.ServiceBus.dll</HintPath>
+      <HintPath>..\..\Dependencies\ChuckConway\Microsoft.ServiceBus.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.WindowsAzure.Configuration, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.WindowsAzure.StorageClient, Version=1.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
