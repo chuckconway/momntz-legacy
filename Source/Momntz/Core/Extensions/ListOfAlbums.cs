@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Momntz.Data.Projections;
-using Momntz.Data.Queries.Albums;
+using Momntz.Data.Projections.Albums;
 using Momntz.Data.Schema;
 
 
