@@ -125,16 +125,14 @@
     <Compile Include="Core\Contants\LoggingConstants.cs" />
     <Compile Include="Infrastructure\Instrumentation\Logging\Exceptions\LoggingPathNotSetException.cs" />
     <Compile Include="Infrastructure\Instrumentation\Logging\LogBase.cs" />
-    <Compile Include="Infrastructure\Instrumentation\Logging\Models\LogMessage.cs" />
+    <Compile Include="Messaging\Models\LogMessage.cs" />
     <Compile Include="Infrastructure\Instrumentation\Logging\LogToCloud.cs" />
     <Compile Include="Infrastructure\Instrumentation\Logging\LogToFile.cs" />
     <Compile Include="Infrastructure\Instrumentation\Logging\LogAttribute.cs" />
     <Compile Include="Infrastructure\Instrumentation\Logging\LogType.cs" />
-    <Compile Include="Infrastructure\Instrumentation\Logging\Models\QueueLogMessage.cs" />
+    <Compile Include="Messaging\Models\QueueLogMessage.cs" />
     <Compile Include="Messaging\ISaga.cs" />
-    <Compile Include="Messaging\Models\Email.cs" />
-    <Compile Include="Messaging\Models\Logging.cs" />
-    <Compile Include="Messaging\Models\Media.cs" />
+    <Compile Include="Messaging\Models\MediaMessage.cs" />
     <Compile Include="Data\Schema\Album.cs" />
     <Compile Include="Data\Schema\AlbumMomento.cs" />
     <Compile Include="Data\Schema\Person.cs" />
@@ -156,7 +154,7 @@
     <Compile Include="Data\ProjectionHandlers\Momentos\GetHomepageInfiniteScrollTilesHandler.cs" />
     <Compile Include="Data\ProjectionHandlers\Users\CreateUsernameHandler.cs" />
     <Compile Include="Data\ProjectionHandlers\Users\GetMomentoByIdHandler.cs" />
-    <Compile Include="Data\Queries\Import\GetApiUserQueryParameters.cs" />
+    <Compile Include="Data\Projections\Import\GetApiUserProjection.cs" />
     <Compile Include="Data\Commands\Momentos\CreateMomentoCommand.cs" />
     <Compile Include="Data\Commands\Momentos\CreateMomentoMedia.cs" />
     <Compile Include="Data\Commands\Momentos\SaveMomentoDetailsCommand.cs" />
@@ -188,19 +186,19 @@
     <Compile Include="Data\ProjectionHandlers\Users\AuthenticatedUserHandler.cs" />
     <Compile Include="Data\ProjectionHandlers\Users\DisplayNameHandler.cs" />
     <Compile Include="Data\ProjectionHandlers\Users\GetActiveUsersHandler.cs" />
-    <Compile Include="Data\Queries\Albums\AlbumResult.cs" />
-    <Compile Include="Data\Queries\Api\AlbumNameResult.cs" />
-    <Compile Include="Data\Queries\Api\MomentoPerson.cs" />
-    <Compile Include="Data\Queries\Api\NameSearch.cs" />
-    <Compile Include="Data\Queries\Connections\ConnectionResult.cs" />
-    <Compile Include="Data\Queries\IGroupItem.cs" />
-    <Compile Include="Data\Queries\IQueryParameters.cs" />
-    <Compile Include="Data\Queries\Momentos\LocationAutoComplete.cs" />
-    <Compile Include="Data\Queries\Momentos\Tile.cs" />
-    <Compile Include="Data\Queries\Users\ActiveUsername.cs" />
-    <Compile Include="Data\Queries\Users\AuthenticatedUser.cs" />
-    <Compile Include="Data\Queries\Users\CreateUsername.cs" />
-    <Compile Include="Data\Queries\Users\DisplayName.cs" />
+    <Compile Include="Data\Projections\Albums\AlbumResult.cs" />
+    <Compile Include="Data\Projections\Api\AlbumNameResult.cs" />
+    <Compile Include="Data\Projections\Api\MomentoPerson.cs" />
+    <Compile Include="Data\Projections\Api\NameSearch.cs" />
+    <Compile Include="Data\Projections\Connections\ConnectionResult.cs" />
+    <Compile Include="Data\Projections\IGroupItem.cs" />
+    <Compile Include="Data\Projections\IProjection.cs" />
+    <Compile Include="Data\Projections\Momentos\LocationAutoComplete.cs" />
+    <Compile Include="Data\Projections\Momentos\Tile.cs" />
+    <Compile Include="Data\Projections\Users\ActiveUsername.cs" />
+    <Compile Include="Data\Projections\Users\AuthenticatedUser.cs" />
+    <Compile Include="Data\Projections\Users\CreateUsername.cs" />
+    <Compile Include="Data\Projections\Users\DisplayName.cs" />
     <Compile Include="Infrastructure\Extensions\MapperExtensions.cs" />
     <Compile Include="Infrastructure\IInjection.cs" />
     <Compile Include="Infrastructure\IMap.cs" />
@@ -228,9 +226,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Infrastructure\Instrumentation\Performance\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\..\Momntz.Worker\Source\packages\PostSharp.3.0.31\tools\PostSharp.targets" Condition="Exists('..\..\..\Momntz.Worker\Source\packages\PostSharp.3.0.31\tools\PostSharp.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
