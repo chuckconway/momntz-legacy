@@ -1,33 +1,30 @@
-﻿using System.Collections.Generic;
-using System.Web.Mvc;
-using Momntz.Data.ProjectionHandlers;
-using Momntz.Data.ProjectionHandlers.Momentos;
-using Momntz.Data.Projections.Momentos;
+﻿using System.Web.Mvc;
+using Momntz.Data.ProjectionHandlers.Users;
 using Momntz.UI.Core.Controllers;
 
 namespace Momntz.UI.Controllers
 {
     public class HomeController : BaseController
     {
-        private readonly IProjectionHandler<HomepageInParameters, List<Tile>> _processor;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="HomeController"/> class.
-        /// </summary>
-        /// <param name="processor">The processor.</param>
-        public HomeController(IProjectionHandler<HomepageInParameters, List<Tile>> processor)
-        {
-            _processor = processor;
-        }
-
         /// <summary>
         /// Indexes this instance.
         /// </summary>
         /// <returns>ActionResult.</returns>
         public ActionResult Index()
         {
-           var tiles = _processor.Execute(new HomepageInParameters());
-           return View(tiles);
+            return View();
+        }
+
+        /// <summary>
+        /// Indexes the specified username and password.
+        /// </summary>
+        /// <param name="usernameAndPassword">The username and password.</param>
+        /// <returns>ActionResult.</returns>
+        [HttpPost]
+        public ActionResult Index(UsernameAndPassword usernameAndPassword)
+        {
+            var success = Redirect(string.Format("/{0}", usernameAndPassword.Username));
+            return Form(usernameAndPassword, success);
         }
 
     }

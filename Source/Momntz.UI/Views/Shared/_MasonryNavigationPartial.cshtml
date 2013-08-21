@@ -1,31 +1,36 @@
 ﻿@model Momntz.UI.Areas.Users.Models.ISignedUser
 
-@if(@Model == null)
-{
-    <li><a href="/login" title="Login into Momntz" >Login</a></li>
-    <li><a href="/join" title="Join Momntz" >Sign Up</a></li>
-}
-else 
-{
-    <li><strong><a href="/@Model.Username" title="@Model.DisplayName's homepage" >@Model.DisplayName</a></strong></li>
+<ul>
+    @if(@Model == null)
+    {
+        <li><a href="/login" title="Login into Momntz" >Login</a></li>
+        <li><a href="/join" title="Join Momntz" >Sign Up</a></li>
+    }
+    else 
+    {
+        <li><button class="add" >+</button></li>
+        <li><strong><a href="/@Model.Username" title="@Model.DisplayName's homepage" >@Model.DisplayName</a></strong>
+            <ul>
+                @if (Model.IsAuthenticatedUser)
+                {
+                <li><a href="/@Model.Username/upload" title="Upload photos" >Add</a></li>
+                }
 
-        if (Model.IsAuthenticatedUser)
-        {
-            <li><a href="/@Model.Username/upload" title="Upload photos" >Add</a></li>
-        }
+                <li><a href="/@Model.Username/albums" title="View albums" >Albums</a></li>
+                <li><a href="/@Model.Username/connections" title="View connections" >Connections</a></li>
 
-    <li><a href="/@Model.Username/albums" title="View albums" >Albums</a></li>
-    <li><a href="/@Model.Username/connections" title="View connections" >Connections</a></li>
-
-        if (Model.IsAuthenticatedUser)
-        {
-            <li><a href="/@Model.Username/settings" title="View connections" >Settings</a></li>
-            <li><a href="/signout" title="Sign out of Momntz" >Sign Out</a></li>
-        }
-        else
-        {
-            <li><a href="/login" title="Login into Momntz" >Login</a></li>
-            <li><a href="/join" title="Join Momntz" >Sign Up</a></li>
-        }
-}
+                @if (Model.IsAuthenticatedUser)
+                {
+                <li><a href="/@Model.Username/settings" title="View connections" >Settings</a></li>
+                <li><a href="/signout" title="Sign out of Momntz" >Sign Out</a></li>
+                }
+                else
+                {
+                <li><a href="/" title="Login into Momntz" >Login</a></li>
+                <li><a href="/join" title="Join Momntz" >Sign Up</a></li>
+                }
+            </ul>
+        </li>
+    }
+</ul>
 
