@@ -1,43 +1,36 @@
-﻿@model IList<Momntz.Data.Projections.Momentos.Tile>
-@{
-    ViewBag.Title = "Home.cshtml";
-    Layout = "~/Views/Shared/_MasonryMaster.cshtml";
-}
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Momntz.</title>
+        <link href="~/Content/css/site1.css" rel="stylesheet" />
+        <style type="text/css">
+            body{background-color: #fff;}
+        </style>
+    </head>
+    <body>
+        <div class="loginform centered formcontainer" >
+            <img src="~/Content/images/momntzlogo.png" />
+            <form method="POST"  >
+                <p>
+                    <label>Username</label>
+                    <input type="text" name="username" />
+                </p>
+                
+                <p>
+                    <label>Password</label>
+                    <input type="password" name="password" />
+                </p>
+                
+                <p style="color:red; font-weight: bold;" ></p>
 
-@section Head
-{
-    <script type="text/javascript">
+                <input type="submit" value="Login" />
+            </form>
+    
+            <ul id="signup" >
+                <li>Forgot your <a href="/forgot">password or username</a>?</li>
+                <li>Need an account? <a href="/join">Sign up</a>!</li>
+            </ul>
+        </div>
+    </body>
+</html>
 
-        function getItems(getData) {
-            var oldest = $('input#oldest');
-
-            function executeOnData(data) {
-
-                var item = data[data.length - 1];
-                oldest.val(item.CreateDate);
-
-                getData(data);
-            }
-            
-            $.post('/api/momento/scroll?oldest=' + oldest.val(), executeOnData);
-        }
-
-        function getTemplate() {
-            return $("#entry-template").html();
-        }
-    </script>
-}
-
-@section Navigation
-{
-    @{ Html.RenderPartial("/Views/Shared/_MasonryNavigationPartial.cshtml", null, new ViewDataDictionary()); }
-}
-
-
-
-@if (Model.Count > 0)
-{
-    <input type="hidden" id="oldest" value="@Model.Last().CreateDate.ToString()" />
-}
-
-@{ Html.RenderPartial("_MasonryPartial", Model); }

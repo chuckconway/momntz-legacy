@@ -187,6 +187,7 @@
     <Content Include="Content\css\uploadify\uploadifive.css" />
     <Content Include="Content\images\close.png" />
     <Content Include="Content\images\facebook-ic-16.png" />
+    <Content Include="Content\images\momntzlogo.png" />
     <Content Include="Content\images\spinner.gif" />
     <Content Include="Content\images\twitter-ic-16.png" />
     <Content Include="Content\link.png" />
@@ -932,6 +933,7 @@
     <Content Include="Scripts\plugins\handlebars\handlebars.1.0.0.js" />
     <Content Include="Scripts\plugins\masonry\jquery.imagesloaded.min.js" />
     <Content Include="Scripts\plugins\masonry\jquery.masonry.min.js" />
+    <Content Include="Scripts\plugins\masonry\masonry.pkgd.min.js" />
     <Content Include="Scripts\plugins\phototag\images\ui-bg_highlight-soft_100_eeeeee_1x100.png" />
     <Content Include="Scripts\plugins\phototag\images\ui-icons_222222_256x240.png" />
     <Content Include="Scripts\plugins\phototag\jquery-ui-1.8.17.custom.css" />
@@ -1004,7 +1006,6 @@
     <Content Include="Scripts\libraries\jquery-ui-1.10.2\ui\.jshintrc" />
     <Content Include="Views\Forgot\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_MasonryMaster.cshtml" />
     <Content Include="Views\Signout\Index.cshtml" />
