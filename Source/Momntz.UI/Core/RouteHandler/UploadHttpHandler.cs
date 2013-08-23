@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Web;
+using System.Web.Mvc;
 using Momntz.Data.CommandHandlers;
 using Momntz.Data.Commands.Queue;
 using Momntz.Messaging.Models;
@@ -19,7 +20,7 @@ namespace Momntz.UI.Core.RouteHandler
         /// </summary>
         public UploadHttpHandler()
         {
-            _commandHandler = ObjectFactory.GetInstance<ICommandHandler<CreateMediaCommand>>();
+            _commandHandler = DependencyResolver.Current.GetService<ICommandHandler<CreateMediaCommand>>();
         }
 
         /// <summary>
@@ -33,7 +34,7 @@ namespace Momntz.UI.Core.RouteHandler
 
             //Documents Formats
             //PDF, doc, docx, text
-            var file = context.Request.Files["filedata"];
+            var file = context.Request.Files["file"];
 
             var bytes = GetBytes(file);
             var username = BaseController.AuthenticatedUsername();
@@ -54,7 +55,7 @@ namespace Momntz.UI.Core.RouteHandler
             var command = new CreateMediaCommand(id, bytes, media);
             _commandHandler.Execute(command);
            
-            context.Response.Write("1");
+            //context.Response.Write("1");
         }
 
         private static byte[] GetBytes(HttpPostedFile file)

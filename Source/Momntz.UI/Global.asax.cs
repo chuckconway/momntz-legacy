@@ -22,6 +22,7 @@ using Momntz.Infrastructure.Instrumentation.Logging;
 using Momntz.UI.Areas.Api.Models;
 using Momntz.UI.Core;
 using Momntz.UI.Core.Binders;
+using NHibernate;
 using StructureMap;
 
 namespace Momntz.UI
@@ -105,7 +106,8 @@ namespace Momntz.UI
                 x.For<ICrypto>().Use<Crypto>();
                 x.For<ILog>().Use<Log>();
                 x.For<IConfigurationService>().Use<MomntzConfiguration>();
-                x.For<NHibernate.ISession>().HttpContextScoped().Use(() => new Database().CreateSessionFactory().OpenSession());
+                x.For<ISessionFactory>().Singleton().Use(Database.CreateSessionFactory);
+                x.For<NHibernate.ISession>().HttpContextScoped().Use(r=> r.GetInstance<ISessionFactory>().OpenSession());
                 x.For<IStorage>().Use<AzureStorage>()
                  .Ctor<string>("cloudUrl")
                  .Is(settings.CloudUrl)

@@ -3,7 +3,6 @@ using System.Web.Mvc;
 using Momntz.Data.ProjectionHandlers;
 using Momntz.Data.Projections.Users;
 using Momntz.UI.Core.RouteConstraints;
-using StructureMap;
 
 namespace Momntz.UI.Areas.Users
 {
@@ -20,7 +19,7 @@ namespace Momntz.UI.Areas.Users
 
         public override void RegisterArea(AreaRegistrationContext context)
         {
-            var routeContraint = new UserRouteConstraint(ObjectFactory.GetInstance<IProjectionHandler<object, IList<ActiveUsername>>>());
+            var routeContraint = new UserRouteConstraint(DependencyResolver.Current.GetService<IProjectionHandler<object, IList<ActiveUsername>>>());
 
             context.MapRoute(
             "Users_albums",

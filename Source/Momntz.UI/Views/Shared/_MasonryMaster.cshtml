@@ -26,6 +26,7 @@
         .Add("/Scripts/plugins/tagit/tag-it.js")
         .Add("~/Scripts/plugins/fancybox/afterLoad.js")
         .Add("~/Scripts/plugins/handlebars/handlebars.1.0.0.js")
+        .Add("~/Scripts/plugins/dropzone/dropzone.js")
         .MvcRender("/scripts/combined_#.js")
         )
 	    @RenderSection("Head", required: false)
@@ -54,8 +55,15 @@
         
         
         @RenderSection("ContentTitle", false)
+        <div id="add" style="display: none;">
+            <form id="upload" class="dropzone dz-clickable" action="/uploader/upload.mvc">
+                  <div class="fallback">
+                    <input name="file" type="file" multiple />
+                  </div>
+            </form>
+        </div>
         <div id="container" style="margin-top: 60px;" class="clearfix">
-@*            <div class="add"></div>*@
+            
             @RenderBody()
         </div>
         
@@ -112,6 +120,16 @@
                 //    itemSelector: '.box',
                 //    columnWidth: 10
                 //});
+
+                $('button#addimages').click(function () {
+                    if ($("div#add").is(":hidden")) {
+                        //$("div#container").css("marginTop", 200);
+                        $("div#add").show("slow");
+                    } else {
+                        $("div#add").slideUp();
+                        //$("div#container").css("marginTop", 60);
+                    }
+                });
 
                 $container.imagesLoaded(function () {
                     $container.masonry({
