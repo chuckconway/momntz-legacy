@@ -189,6 +189,7 @@
     <Content Include="Content\images\facebook-ic-16.png" />
     <Content Include="Content\images\momntzlogo.png" />
     <Content Include="Content\images\spinner.gif" />
+    <Content Include="Content\images\spritemap.png" />
     <Content Include="Content\images\twitter-ic-16.png" />
     <Content Include="Content\link.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -918,6 +919,7 @@
     <Content Include="Scripts\libraries\jquery-ui-1.10.2\ui\minified\jquery.ui.tooltip.min.js" />
     <Content Include="Scripts\libraries\jquery-ui-1.10.2\ui\minified\jquery.ui.widget.min.js" />
     <Content Include="Scripts\libraries\jquery-ui-1.9.1.custom.min.js" />
+    <Content Include="Scripts\plugins\dropzone\dropzone.js" />
     <Content Include="Scripts\plugins\fancybox\afterLoad.js" />
     <Content Include="Scripts\plugins\fancybox\blank.gif" />
     <Content Include="Scripts\plugins\fancybox\fancybox-x.png" />
