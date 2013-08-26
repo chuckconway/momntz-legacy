@@ -22,7 +22,8 @@ namespace Momntz.Infrastructure.Configuration
         {
             var settings = new ApplicationSettings();
 
-            using (var session = new Database().CreateSessionFactory().OpenSession())
+            using (var factory = Database.CreateSessionFactory())
+            using (var session = factory.OpenSession())
             {
                 IConfigurationService configuration = new MomntzConfiguration(session);
                 settings.CloudUrl = configuration.GetValueByKey("cloudurl");

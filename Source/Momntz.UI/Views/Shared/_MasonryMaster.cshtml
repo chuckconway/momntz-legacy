@@ -3,7 +3,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Momntz</title>
+		<title>Momntz.</title>
         
         @(Bundle.Css()
         .Add("/content/css/reset1.css")
@@ -18,7 +18,6 @@
         @(Bundle.JavaScript()
         .Add("/scripts/jquery.js")
         .Add("/Scripts/plugins/masonry/jquery.imagesloaded.min.js")
-        //.Add("/Scripts/plugins/masonry/jquery.masonry.min.js")
         .Add("/Scripts/plugins/masonry/masonry.pkgd.min.js")
         .Add("/Scripts/plugins/fancybox/fancybox.js")
         .Add("/Scripts/plugins/phototag/jquery.phototag.js")
@@ -27,6 +26,7 @@
         .Add("~/Scripts/plugins/fancybox/afterLoad.js")
         .Add("~/Scripts/plugins/handlebars/handlebars.1.0.0.js")
         .Add("~/Scripts/plugins/dropzone/dropzone.js")
+        .Add("/Scripts/plugins/leanmodal/jquery.leanModal.min.js")
         .MvcRender("/scripts/combined_#.js")
         )
 	    @RenderSection("Head", required: false)
@@ -98,10 +98,6 @@
                                 }
 
                                 html = $($.trim(html));
-                                
-                                //$('div#loading').remove();
-                                //$container.append(html);
-                                //$container.masonry('appended', html, true);
 
                                 html.imagesLoaded(function() {
                                     $('div#loading').remove();
@@ -115,19 +111,12 @@
             });
 
             $(function() {
-                
-                //$container.masonry({
-                //    itemSelector: '.box',
-                //    columnWidth: 10
-                //});
 
                 $('button#addimages').click(function () {
                     if ($("div#add").is(":hidden")) {
-                        //$("div#container").css("marginTop", 200);
                         $("div#add").show("slow");
                     } else {
                         $("div#add").slideUp();
-                        //$("div#container").css("marginTop", 60);
                     }
                 });
 

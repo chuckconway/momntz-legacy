@@ -5,7 +5,6 @@ using Hypersonic;
 using Momntz.Data.Projections.Import;
 using Momntz.Data.Projections.Users;
 using Momntz.Data.Schema;
-using Momntz.Infrastructure.Processors;
 
 namespace Momntz.Data.ProjectionHandlers.Import
 {
@@ -13,19 +12,19 @@ namespace Momntz.Data.ProjectionHandlers.Import
     {
         private readonly NHibernate.ISession _session;
         private readonly IDatabase _database;
-        private readonly IProjectionProcessor _processor;
+        private readonly IProjectionHandler<CreateUsername, string> _userFromApiKey;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GetApiUserProjectionHandler" /> class.
         /// </summary>
         /// <param name="session">The session.</param>
         /// <param name="database">The database.</param>
-        /// <param name="processor">The processor.</param>
-        public GetApiUserProjectionHandler(NHibernate.ISession session, IDatabase database, IProjectionProcessor processor)
+        /// <param name="userFromApiKey">The user from API key.</param>
+        public GetApiUserProjectionHandler(NHibernate.ISession session, IDatabase database, IProjectionHandler<CreateUsername, string> userFromApiKey)
         {
             _session = session;
             _database = database;
-            _processor = processor;
+            _userFromApiKey = userFromApiKey;
         }
 
         /// <summary>
@@ -42,6 +41,8 @@ namespace Momntz.Data.ProjectionHandlers.Import
            
             if(!hasUser)
             {
+                _userFromApiKey.Execute()
+
                 _processor.Process<CreateUsername, string>(new CreateUsername() { Username = args.Username, Users = users });
                 var result = _database.Single<UsernameResult, GetApiUserProjection>("User_CreateUsernameFromApiKey", args);
                 username = result.Username;

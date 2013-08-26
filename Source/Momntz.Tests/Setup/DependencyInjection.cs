@@ -4,7 +4,6 @@ using Hypersonic;
 
 using Momntz.Infrastructure;
 using Momntz.Infrastructure.Configuration;
-using Momntz.Infrastructure.Processors;
 using Momntz.UI.Core;
 using NHibernate;
 using StructureMap;
@@ -24,7 +23,7 @@ namespace Momntz.Tests.Setup
                 x.For<NHibernate.ISession>().Use(CreateSessionFactory().OpenSession);
                 x.For<IConfigurationService>().Use<MomntzConfiguration>();
 
-                x.For<IProjectionProcessor>().Use<ProjectionProcessor>();
+                //x.For<IProjectionProcessor>().Use<ProjectionProcessor>();
 
                 s.TheCallingAssembly();
                 s.WithDefaultConventions();

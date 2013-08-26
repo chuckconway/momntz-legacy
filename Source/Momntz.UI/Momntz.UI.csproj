@@ -143,11 +143,11 @@
     <Compile Include="Areas\Users\Controllers\IndexController.cs" />
     <Compile Include="Areas\Users\Controllers\MediaController.cs" />
     <Compile Include="Areas\Users\Controllers\SettingsController.cs" />
-    <Compile Include="Areas\Users\Controllers\UploadController.cs" />
     <Compile Include="Areas\Users\Models\AlbumView.cs" />
     <Compile Include="Areas\Users\Models\ContentWithTitleView.cs" />
     <Compile Include="Areas\Users\Models\IGroupedView.cs" />
     <Compile Include="Areas\Users\Models\ISignedUser.cs" />
+    <Compile Include="Areas\Users\Models\NavigationModel.cs" />
     <Compile Include="Areas\Users\Models\UploadView.cs" />
     <Compile Include="Areas\Users\Models\UserView.cs" />
     <Compile Include="Areas\Users\UsersAreaRegistration.cs" />
@@ -185,7 +185,10 @@
     <Content Include="Content\css\site1.css" />
     <Content Include="Content\css\uploadify\uploadifive-cancel.png" />
     <Content Include="Content\css\uploadify\uploadifive.css" />
+    <Content Include="Content\images\addplus.png" />
+    <Content Include="Content\images\addplushover.png" />
     <Content Include="Content\images\close.png" />
+    <Content Include="Content\images\defaultalbum.png" />
     <Content Include="Content\images\facebook-ic-16.png" />
     <Content Include="Content\images\momntzlogo.png" />
     <Content Include="Content\images\spinner.gif" />
@@ -933,6 +936,7 @@
     <Content Include="Scripts\plugins\fancybox\fancy_title_right.png" />
     <Content Include="Scripts\plugins\fancybox\jquery.fancybox-1.3.4.css" />
     <Content Include="Scripts\plugins\handlebars\handlebars.1.0.0.js" />
+    <Content Include="Scripts\plugins\leanmodal\jquery.leanModal.min.js" />
     <Content Include="Scripts\plugins\masonry\jquery.imagesloaded.min.js" />
     <Content Include="Scripts\plugins\masonry\jquery.masonry.min.js" />
     <Content Include="Scripts\plugins\masonry\masonry.pkgd.min.js" />
@@ -966,7 +970,6 @@
     <Content Include="Areas\Users\Views\Connections\Index.cshtml" />
     <Content Include="Areas\Users\Views\Index\Index.cshtml" />
     <Content Include="Areas\Users\Views\Settings\Index.cshtml" />
-    <Content Include="Areas\Users\Views\Upload\Index.cshtml" />
     <Content Include="Areas\Users\Views\Web.config" />
     <Content Include="Scripts\libraries\jquery-ui-1.10.2\MANIFEST" />
     <Content Include="Scripts\libraries\jquery-ui-1.10.2\package.json" />

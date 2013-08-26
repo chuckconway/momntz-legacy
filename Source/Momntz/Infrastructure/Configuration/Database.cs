@@ -10,7 +10,7 @@ namespace Momntz.Infrastructure.Configuration
         /// Creates the session factory.
         /// </summary>
         /// <returns>ISessionFactory.</returns>
-        public ISessionFactory CreateSessionFactory()
+        public static ISessionFactory CreateSessionFactory()
         {
             return Fluently.Configure()
                     .Database(MsSqlConfiguration.MsSql2012
@@ -24,7 +24,7 @@ namespace Momntz.Infrastructure.Configuration
         /// Creates the session factory.
         /// </summary>
         /// <returns>ISessionFactory.</returns>
-        public static ISessionFactory CreateSessionFactory(string connectionString)
+        public static  ISessionFactory CreateSessionFactory(string connectionString)
         {
             return Fluently.Configure()
                     .Database(MsSqlConfiguration.MsSql2012

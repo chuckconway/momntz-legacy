@@ -10,15 +10,15 @@ namespace Momntz.Data.ProjectionHandlers.Users
 {
     public class GetActiveUsersHandler : IProjectionHandler<object, IList<ActiveUsername>>
     {
-        private readonly ISession _session;
+        private readonly ISessionFactory _sessionFactory;
 
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="session">The session.</param>
-        public GetActiveUsersHandler(ISession session)
+        public GetActiveUsersHandler(ISessionFactory sessionFactory)
         {
-            _session = session;
+            _sessionFactory = sessionFactory;
         }
 
         /// <summary> Executes. </summary>
@@ -26,10 +26,10 @@ namespace Momntz.Data.ProjectionHandlers.Users
         /// <returns> . </returns>
         public IList<ActiveUsername> Execute(object args)
         {
-            //using (var session = _session.SessionFactory.OpenSession())
-            using (var trans = _session.BeginTransaction())
+            using (var session = _sessionFactory.OpenSession())
+            using (var trans = session.BeginTransaction())
             {
-                var items = _session.QueryOver<User>()
+                var items = session.QueryOver<User>()
                     .Where(Restrictions.Or(Restrictions.Eq("UserStatus", UserStatus.Active), Restrictions.Eq("UserStatus", UserStatus.Ghost)))
                     .List()
                     .Select(r => new ActiveUsername() {Username = r.Username})

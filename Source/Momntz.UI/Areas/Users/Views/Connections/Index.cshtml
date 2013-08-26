@@ -1,4 +1,5 @@
 ﻿@using System.Dynamic
+@using Momntz.UI.Areas.Users.Models
 @model Momntz.UI.Areas.Users.Models.IGroupedView
 
 @{
@@ -9,7 +10,7 @@
 
 @section Navigation
 {
-    @{ Html.RenderPartial("/Views/Shared/_MasonryNavigationPartial.cshtml", Model ); }
+    @{ Html.RenderPartial("/Views/Shared/_MasonryNavigationPartial.cshtml", new NavigationModel{SignedUser = Model, Visibility = NavigationVisiblity.None}); }
 }
 
 @{ Html.RenderPartial("_MasonryGroupedItemsPartial", Model); }
