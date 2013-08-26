@@ -22,18 +22,23 @@ namespace Momntz.UI.Areas.Api.Controllers
         private readonly ICommandHandler<AddAlbumCommand> _addAlbum;
         private readonly IProjectionHandler<AlbumTileScrollInParamters, List<Tile>> _getScrollTiles;
         private readonly IProjectionHandler<AutoScrollInParameters, List<IGroupItem>> _getScrollImages;
+        private readonly ICommandHandler<NewAlbumCommand> _newAlbum;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AlbumsController"/> class.
+        /// Initializes a new instance of the <see cref="AlbumsController" /> class.
         /// </summary>
-        /// <param name="processor">The processor.</param>
-        /// <param name="getLandingPageAlbum"></param>
-        /// <param name="command">The command.</param>
+        /// <param name="getLandingPageAlbum">The get landing page album.</param>
+        /// <param name="removeHandler">The remove handler.</param>
+        /// <param name="addAlbum">The add album.</param>
+        /// <param name="getScrollTiles">The get scroll tiles.</param>
+        /// <param name="getScrollImages">The get scroll images.</param>
+        /// <param name="newAlbum">The new album.</param>
         public AlbumsController(IProjectionHandler<AlbumNameSearchParameters, List<AlbumNameResult>> getLandingPageAlbum, 
             ICommandHandler<RemoveAlbumCommand> removeHandler,
             ICommandHandler<AddAlbumCommand> addAlbum,
             IProjectionHandler<AlbumTileScrollInParamters, List<Tile>> getScrollTiles,
-            IProjectionHandler<AutoScrollInParameters, List<IGroupItem>> getScrollImages )
+            IProjectionHandler<AutoScrollInParameters, List<IGroupItem>> getScrollImages,
+            ICommandHandler<NewAlbumCommand> newAlbum )
         {
 
             _getLandingPageAlbum = getLandingPageAlbum;
@@ -41,12 +46,13 @@ namespace Momntz.UI.Areas.Api.Controllers
             _addAlbum = addAlbum;
             _getScrollTiles = getScrollTiles;
             _getScrollImages = getScrollImages;
+            _newAlbum = newAlbum;
         }
 
         /// <summary>
         /// Indexes the specified term.
         /// </summary>
-        /// <param name="term">The term.</param>
+        /// <param name="name">The name.</param>
         /// <returns>ActionResult.</returns>
         public ActionResult Index(string name)
         {
@@ -55,6 +61,22 @@ namespace Momntz.UI.Areas.Api.Controllers
 
             var results = _getLandingPageAlbum.Execute(parameters);
             return  Json(results.Select(a=> new AutoComplete(a.Name)), JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// News the specified name.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <param name="story">The story.</param>
+        /// <returns>ActionResult.</returns>
+        [HttpPost]
+        public ActionResult New(string name, string story)
+        {
+            string username = GetUsername();
+            var command = new NewAlbumCommand {Name = name, Story = story, Username = username};
+
+            _newAlbum.Execute(command);
+            return Content(string.Empty);
         }
 
         /// <summary>

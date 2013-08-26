@@ -1,4 +1,5 @@
-﻿@model Momntz.UI.Areas.Users.Models.ISignedUser
+﻿@using Momntz.UI.Areas.Users.Models
+@model Momntz.UI.Areas.Users.Models.NavigationModel
 
 <ul>
     @if(@Model == null)
@@ -8,29 +9,36 @@
     }
     else 
     {
-        <li><button id="addimages" >+</button></li>
-        <li><strong><a href="/@Model.Username" title="@Model.DisplayName's homepage" >@Model.DisplayName</a></strong>
+        if (Model.SignedUser.IsAuthenticatedUser)
+        {
+            if (Model.Visibility == NavigationVisiblity.AddAlbum)
+            {
+                <li><a id="triggerAlbumAdd" class="add fontsize12" href="#addAlbum" >Add Album</a></li>
+            }
+            
+            if (Model.Visibility == NavigationVisiblity.AddImage)
+            {
+                <li><button id="addimages" title="Upload images to your account." ></button></li>
+            }
+        }
+        <li><button class="displayname" ><span id="displayname" ><a href="/@Model.SignedUser.Username" title="@Model.SignedUser.DisplayName's homepage" >@Model.SignedUser.DisplayName</a></span></button>
             <ul>
-                @if (Model.IsAuthenticatedUser)
+                <li><a href="/@Model.SignedUser.Username/albums" title="View albums" >Albums</a></li>
+                <li><a href="/@Model.SignedUser.Username/connections" title="View connections" >Connections</a></li>
+
+                @if (Model.SignedUser.IsAuthenticatedUser)
                 {
-                <li><a href="/@Model.Username/upload" title="Upload photos" >Add</a></li>
+                    @*<li><a href="/@Model.SignedUser.Username/settings" title="View connections" >Settings</a></li>*@
+                    <li><a href="/signout" title="Sign out of Momntz" >Sign Out</a></li>
                 }
 
-                <li><a href="/@Model.Username/albums" title="View albums" >Albums</a></li>
-                <li><a href="/@Model.Username/connections" title="View connections" >Connections</a></li>
-
-                @if (Model.IsAuthenticatedUser)
-                {
-                <li><a href="/@Model.Username/settings" title="View connections" >Settings</a></li>
-                <li><a href="/signout" title="Sign out of Momntz" >Sign Out</a></li>
-                }
-                else
-                {
-                <li><a href="/" title="Login into Momntz" >Login</a></li>
-                <li><a href="/join" title="Join Momntz" >Sign Up</a></li>
-                }
             </ul>
         </li>
+
+        if (!Model.SignedUser.IsAuthenticatedUser)
+        {
+            <li><a class="nonsignedinnav" href="/" title="Login into Momntz" >Login</a></li>
+        }
     }
 </ul>
 

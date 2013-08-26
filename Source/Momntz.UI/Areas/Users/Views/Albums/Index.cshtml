@@ -1,14 +1,13 @@
-﻿@model Momntz.UI.Areas.Users.Models.GroupView
+﻿@using Momntz.UI.Areas.Users.Models
+@model Momntz.UI.Areas.Users.Models.GroupView
 
 @{
     Layout = "~/Views/Shared/_MasonryMaster.cshtml";
-
 }
 
 @section Head
-{
+{ 
     <script type="text/javascript">
-
         function getItems(getData) {
             var oldest = $('input#oldest');
 
@@ -25,21 +24,55 @@
             $.post('/api/albums/albumscroll?oldest=' + oldest.val() + '&username=@Model.Username', executeOnData);
         }
 
-        function getTemplate() {
-            return $("#album-template").html();
-        }
+        function getTemplate() { return $("#album-template").html(); }
+
+        $(function () {
+            
+            $("a#triggerAlbumAdd").leanModal({ closeButton: "button#cancelAlbum" });
+            $("button#createalbum").click(function () {
+
+                var name = $("input#albumName").val();
+                var story = $("textarea#albumStory").val();
+
+                $.post('/api/albums/new', { name: name, story: story });
+                
+                $("#lean_overlay").fadeOut(200);
+                $('#addAlbum').css({ 'display': 'none' });
+                
+            });
+        });
 
     </script>
 }
+
 
 @if (Model.Items.Count > 0)
 {
     <input type="hidden" id="oldest" value="@Model.Items.Last().CreateDate.ToString()" />
 }
 
+<div id="addAlbum" class="modal" style="display: none;" >
+    <div class="header" >
+        <h2>Create an Album</h2>
+        <span class="required"><span class="required fontsize22">*</span> required.</span>
+    </div>
+    <p>
+        <label>Name<span class="required fontsize22">*</span></label>
+        <input type="text" id="albumName" />
+    </p>
+    <p>
+        <label>Story</label>
+        <textarea id="albumStory" ></textarea>
+    </p>
+    <p>
+        <button id="createalbum" class="action" >Create Album</button>
+        <button id="cancelAlbum" class="action">Canel</button>
+    </p>
+</div>
+
 @section Navigation
 {
-    @{ Html.RenderPartial("/Views/Shared/_MasonryNavigationPartial.cshtml", Model ); }
+    @{ Html.RenderPartial("/Views/Shared/_MasonryNavigationPartial.cshtml", new NavigationModel{ SignedUser = Model, Visibility = NavigationVisiblity.AddAlbum}); }
 }
 
 @{ Html.RenderPartial("_MasonryGroupedItemsPartial", Model); }

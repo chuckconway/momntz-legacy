@@ -1,4 +1,5 @@
-﻿@model Momntz.UI.Areas.Users.Models.ContentWithTitleView
+﻿@using Momntz.UI.Areas.Users.Models
+@model Momntz.UI.Areas.Users.Models.ContentWithTitleView
 
 @{
     Layout = "/Views/Shared/_MasonryMaster.cshtml";
@@ -40,7 +41,7 @@
 
 @section Navigation
 {
-    @{ Html.RenderPartial("/Views/Shared/_MasonryNavigationPartial.cshtml", Model); }
+    @{ Html.RenderPartial("/Views/Shared/_MasonryNavigationPartial.cshtml", new NavigationModel {SignedUser = Model, Visibility = NavigationVisiblity.AddImage}); }
 }
 
 
