@@ -23,8 +23,8 @@ namespace Momntz.UI.Areas.Users
 
             context.MapRoute(
             "Users_albums",
-            "{username}/albums/{name}",
-            new { controller = "albums", action = "name"},
+            "{username}/albums/{id}/{name}",
+            new { controller = "albums", action = "name", id="id"},
             constraints: new
             {
                 username = routeContraint,

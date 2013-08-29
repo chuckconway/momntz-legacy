@@ -210,7 +210,7 @@ function readView() {
             albums.text('In ');
 
             for (var index = 0; index < data.Albums.length; index++) {
-                albums.append(jQuery('<a>').attr('href', '/' + data.Username + '/albums/' + encodeURI(data.Albums[index])).text(data.Albums[index]));
+                albums.append(jQuery('<a>').attr('href', '/' + data.Username + '/albums/' + data.Albums[index].id +'/' + encodeURI(data.Albums[index].name)).text(data.Albums[index].name));
                 
                 if (data.Albums.length > 2 && index < data.Albums.length -1) {
                     albums.append(', ');

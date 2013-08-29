@@ -108,18 +108,17 @@ namespace Momntz.UI.Areas.Api.Controllers
         /// <summary>
         /// Tiles the scroll.
         /// </summary>
-        /// <param name="oldest">The oldest.</param>
-        /// <param name="name">The name.</param>
+        /// <param name="momentoId">The momento unique identifier.</param>
+        /// <param name="albumId">The album unique identifier.</param>
         /// <param name="username">The username.</param>
         /// <returns>ActionResult.</returns>
-        public ActionResult TileScroll(string oldest, string name, string username)
+        public ActionResult TileScroll(int momentoId, int albumId, string username)
         {
-            DateTime parsed = DateTime.Parse(oldest);
-            var items = _getScrollTiles.Execute(new AlbumTileScrollInParamters { CreateDate = parsed, Username = username, Name = name });
-
+            var items = _getScrollTiles.Execute(new AlbumTileScrollInParamters { MomentoId = momentoId, Username = username, AlbumId = albumId });
             return Json(items);
         }
 
+        
         /// <summary>
         /// Albums the scroll.
         /// </summary>
@@ -134,6 +133,5 @@ namespace Momntz.UI.Areas.Api.Controllers
 
             return Json(items);
         }
-
     }
 }

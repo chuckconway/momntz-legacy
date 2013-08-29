@@ -1,8 +1,7 @@
 ﻿using System;
-using Hypersonic.Attributes;
 using Momntz.Messaging.Models;
 
-namespace Momntz.Data.Commands.Queue
+namespace Momntz.Data.Commands.Media
 {
     public class CreateMediaCommand : ICommand
     {

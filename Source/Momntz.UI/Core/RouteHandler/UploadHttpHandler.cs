@@ -2,11 +2,11 @@
 using System.IO;
 using System.Web;
 using System.Web.Mvc;
+using Momntz.Core.Contants;
 using Momntz.Data.CommandHandlers;
-using Momntz.Data.Commands.Queue;
+using Momntz.Data.Commands.Media;
 using Momntz.Messaging.Models;
 using Momntz.UI.Core.Controllers;
-using StructureMap;
 
 
 namespace Momntz.UI.Core.RouteHandler
@@ -34,7 +34,8 @@ namespace Momntz.UI.Core.RouteHandler
 
             //Documents Formats
             //PDF, doc, docx, text
-            var file = context.Request.Files["file"];
+            var file = context.Request.Files[FormConstants.UploadParameterName];
+            var albumId = context.Request[FormConstants.AlbumIdParameterName];
 
             var bytes = GetBytes(file);
             var username = BaseController.AuthenticatedUsername();
@@ -44,6 +45,7 @@ namespace Momntz.UI.Core.RouteHandler
             var id = Guid.NewGuid();
             var media = new MediaMessage
             {
+                AlbumId = (string.IsNullOrEmpty(albumId) ? null : (int?)Convert.ToInt32(albumId)),
                 Extension = extension,
                 Filename = file.FileName,
                 Id = id,

@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Momntz.Core.Extensions;
 using Momntz.Data.Projections.Momentos;
 using Momntz.Data.Schema;
 using Momntz.Infrastructure.Configuration;
 
 using NHibernate;
+using NHibernate.Criterion;
+using NHibernate.SqlCommand;
 
 namespace Momntz.Data.ProjectionHandlers.Albums
 {
@@ -34,17 +37,29 @@ namespace Momntz.Data.ProjectionHandlers.Albums
         {
             using (var trans = _session.BeginTransaction())
             {
-                var items = _session.QueryOver<Momento>()
-                                    .Where((m) => m.User.Username == args.Username)
-                                    .And(m=>m.CreateDate < args.CreateDate)
-                                    .JoinQueryOver<Album>(m => m.Albums)
-                                    .Where(a => a.Name == args.Name)
-                                    .Take(40)
-                                    .List<Momento>();
+                var items = _session.CreateQueryProcedure<object>("Album_GetNext40Momentos", args)
+                    .List<object>();
+
+                var ids = items.Cast<IDictionary<string, string>>().Select(i => (object)i["Id"]).ToArray();
+
+                Momento m = null;
+               var momentos = _session.QueryOver<Momento>()
+                    .Where(Restrictions.In("Id", ids))
+                    .List()
+                    .ToList()
+                    .ConvertToTiles(_settings);
+
+                //var items = _session.QueryOver<Momento>()
+                //                    .Where((m) => m.User.Username == args.Username)
+                //                    .And(m=>m.CreateDate < args.CreateDate)
+                //                    .JoinQueryOver<Album>(m => m.Albums)
+                //                    .Where(a => a.Name == args.Name)
+                //                    .Take(40)
+                //                    .List<Momento>();
 
                 trans.Commit();
 
-                return items.ConvertToTiles(_settings);
+                return momentos;
             }
         }
     }
@@ -52,10 +67,10 @@ namespace Momntz.Data.ProjectionHandlers.Albums
     public class AlbumTileScrollInParamters
     {
         /// <summary>
-        /// Gets or sets the name.
+        /// Gets or sets the album unique identifier.
         /// </summary>
-        /// <value>The name.</value>
-        public string Name { get; set; }
+        /// <value>The album unique identifier.</value>
+        public int AlbumId { get; set; }
 
         /// <summary>
         /// Gets or sets the username.
@@ -67,6 +82,6 @@ namespace Momntz.Data.ProjectionHandlers.Albums
         /// Gets or sets the create date.
         /// </summary>
         /// <value>The create date.</value>
-        public DateTime CreateDate { get; set; }
+        public int  MomentoId { get; set; }
     }
 }

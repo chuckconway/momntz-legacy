@@ -30,7 +30,6 @@
         /// <value>The first name.</value>
         public string FirstName { get; set; }
 
-
         /// <summary>
         /// Gets or sets the last name.
         /// </summary>

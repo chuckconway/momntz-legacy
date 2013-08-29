@@ -6,6 +6,12 @@ namespace Momntz.UI.Areas.Users.Models
     public class ContentWithTitleView : ISignedUser
     {
         /// <summary>
+        /// Gets or sets the unique identifier.
+        /// </summary>
+        /// <value>The unique identifier.</value>
+        public int Id { get; set; } 
+
+        /// <summary>
         /// Gets or sets the title.
         /// </summary>
         /// <value>The title.</value>

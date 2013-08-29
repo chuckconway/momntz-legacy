@@ -3,7 +3,7 @@ using Momntz.Data.Projections;
 
 namespace Momntz.UI.Areas.Users.Models
 {
-    public class GroupView : ISignedUser, IGroupedView
+    public class GroupView : IGroupedView
     {
         /// <summary>
         /// Gets or sets the display name.

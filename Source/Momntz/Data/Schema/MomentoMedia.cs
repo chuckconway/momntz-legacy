@@ -26,7 +26,7 @@
         /// <value>
         /// The size.
         /// </value>
-        public virtual string Size { get; set; }
+        public virtual int Size { get; set; }
 
         /// <summary>
         /// Gets or sets the username.

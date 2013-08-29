@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace Momntz.Messaging.Models
 {
-   public class MediaMessage
+    public class MediaMessage
     {
         /// <summary>
         /// Gets or sets the id.
@@ -36,12 +36,18 @@ namespace Momntz.Messaging.Models
         public string Username { get; set; }
 
         /// <summary>
+        /// Gets or sets the album unique identifier.
+        /// </summary>
+        /// <value>The album unique identifier.</value>
+        public int? AlbumId { get; set; }
+
+        /// <summary>
         /// Returns a <see cref="System.String" /> that represents this instance.
         /// </summary>
         /// <returns>A <see cref="System.String" /> that represents this instance.</returns>
-       public override string ToString()
-       {
-           return JsonConvert.SerializeObject(this);
-       }
+        public override string ToString()
+        {
+            return JsonConvert.SerializeObject(this);
+        }
     }
 }

@@ -117,7 +117,7 @@ namespace Momntz.UI.Areas.Api.Controllers
                                     Added = detail.CreateDate.HasValue ? detail.CreateDate.Value.ToString("MMMM dd, yyyy") : string.Empty,
                                     AddedUrl = detail.CreateDate.HasValue ? string.Format("{0}/{1}/{2}", detail.CreateDate.Value.Year, detail.CreateDate.Value.Month, detail.CreateDate.Value.Day) : string.Empty,
                                     detail.UploadedBy,
-                                    Albums = detail.Albums.Select(a=> a.Name).ToArray(),
+                                    Albums = detail.Albums.Select(a=> new {id= a.Id, name=a.Name}).ToArray(),
                                     detail.Day,
                                     DisplayName = convertNullToEmptyString(detail.User.FullName),
                                     Location = convertNullToEmptyString(detail.Location),

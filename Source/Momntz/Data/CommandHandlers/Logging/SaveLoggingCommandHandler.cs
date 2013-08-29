@@ -2,7 +2,7 @@
 using System.Text;
 using ChuckConway.Cloud.Queue;
 using ChuckConway.Cloud.Storage;
-using Momntz.Data.CommandHandlers.Queue;
+using Momntz.Data.CommandHandlers.Media;
 using Momntz.Data.Commands.Logging;
 using Momntz.Infrastructure.Configuration;
 using Momntz.Infrastructure.Instrumentation.Logging.Models;
