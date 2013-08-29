@@ -101,13 +101,16 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Contants\FormConstants.cs" />
     <Compile Include="Core\Extensions\ListOfAlbums.cs" />
     <Compile Include="Core\Extensions\ListOfMomentos.cs" />
+    <Compile Include="Core\Extensions\nHibernateExtensions.cs" />
     <Compile Include="Core\TypeConverters\CreateMomentoCommandToMomentoConverter.cs" />
     <Compile Include="Data\CommandHandlers\Albums\AddAlbumCommandHandler.cs" />
     <Compile Include="Data\CommandHandlers\Albums\NewAlbumCommandHandler.cs" />
@@ -120,6 +123,8 @@
     <Compile Include="Data\Mappings\AlsoKnownAsMap.cs" />
     <Compile Include="Data\Mappings\ExifMap.cs" />
     <Compile Include="Data\ProjectionHandlers\Albums\AlbumNameScrollHandler.cs" />
+    <Compile Include="Data\ProjectionHandlers\MomentoMedia\FindMomentoBySizeAndNameProjectionHandler.cs" />
+    <Compile Include="Data\Projections\MomentoMedia\FindMomentoBySizeAndNameProjection.cs" />
     <Compile Include="Infrastructure\Configuration\Database.cs" />
     <Compile Include="Infrastructure\Configuration\IConfigurationService.cs" />
     <Compile Include="Infrastructure\Instrumentation\Logging\ILog.cs" />
@@ -127,6 +132,14 @@
     <Compile Include="Core\Contants\LoggingConstants.cs" />
     <Compile Include="Infrastructure\Instrumentation\Logging\Exceptions\LoggingPathNotSetException.cs" />
     <Compile Include="Infrastructure\Instrumentation\Logging\LogBase.cs" />
+    <Compile Include="Media\IMedia.cs" />
+    <Compile Include="Media\MediaSaga.cs" />
+    <Compile Include="Media\Types\Documents\DocumentProcessor.cs" />
+    <Compile Include="Media\Types\Images\ExifData.cs" />
+    <Compile Include="Media\Types\Images\ImageProcessor.cs" />
+    <Compile Include="Media\Types\Images\ImageType.cs" />
+    <Compile Include="Media\Types\IMediaTypes.cs" />
+    <Compile Include="Media\Types\Videos\VideoProcessor.cs" />
     <Compile Include="Messaging\Models\LogMessage.cs" />
     <Compile Include="Infrastructure\Instrumentation\Logging\LogToCloud.cs" />
     <Compile Include="Infrastructure\Instrumentation\Logging\LogToFile.cs" />
@@ -143,8 +156,7 @@
     <Compile Include="Data\CommandHandlers\Momentos\CreateMomentoMediaCommandHandler.cs" />
     <Compile Include="Data\CommandHandlers\Momentos\SaveMomentoDetailsCommandHandler.cs" />
     <Compile Include="Data\CommandHandlers\Momentos\UpdateMomentoCommandHandler.cs" />
-    <Compile Include="Data\CommandHandlers\Queue\CreateMediaCommandHandler.cs" />
-    <Compile Include="Data\CommandHandlers\Queue\CreateQueueCommandHandler.cs" />
+    <Compile Include="Data\CommandHandlers\Media\CreateMediaCommandHandler.cs" />
     <Compile Include="Data\CommandHandlers\Tags\CreateTagCommandHandler.cs" />
     <Compile Include="Data\CommandHandlers\Tags\DeleteTagCommandHandler.cs" />
     <Compile Include="Data\CommandHandlers\Users\CreateUserCommandHandler.cs" />
@@ -160,8 +172,7 @@
     <Compile Include="Data\Commands\Momentos\CreateMomentoMedia.cs" />
     <Compile Include="Data\Commands\Momentos\SaveMomentoDetailsCommand.cs" />
     <Compile Include="Data\Commands\Momentos\UpdateMomentoCommand.cs" />
-    <Compile Include="Data\Commands\Queue\CreateMediaCommand.cs" />
-    <Compile Include="Data\Commands\Queue\CreateQueueCommand.cs" />
+    <Compile Include="Data\Commands\Media\CreateMediaCommand.cs" />
     <Compile Include="Data\Commands\Tags\CreateTagCommand.cs" />
     <Compile Include="Data\Commands\Tags\DeleteTagCommand.cs" />
     <Compile Include="Data\Commands\Users\CreateUserCommand.cs" />

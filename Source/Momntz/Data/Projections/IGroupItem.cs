@@ -5,6 +5,12 @@ namespace Momntz.Data.Projections
     public interface IGroupItem
     {
         /// <summary>
+        /// Gets or sets the grouped unique identifier.
+        /// </summary>
+        /// <value>The grouped unique identifier.</value>
+        int Id { get; set; }
+
+        /// <summary>
         /// Gets or sets the username.
         /// </summary>
         /// <value>The username.</value>

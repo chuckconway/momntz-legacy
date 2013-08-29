@@ -5,39 +5,69 @@
     Layout = "/Views/Shared/_MasonryMaster.cshtml";
 }
 
-@section Head
+@section BottomScript
 {
-        <style>
-        h1{ text-align: center;margin-top: 0;font-size: 20px;clear: both;margin-bottom: 15px;}
+    <style>
+        h1 {text-align: center;margin-top: 0;font-size: 20px;clear: both;margin-bottom: 15px;}
     </style>
 
     <script type="text/javascript">
 
         function getItems(getData) {
-            var oldest = $('input#oldest');
+            var last = $('input#lastmomentid');
+            var albumId = $('input#albumId');
 
             function executeOnData(data) {
 
                 var item = data[data.length - 1];
-                oldest.val(item.CreateDate);
-
+                if (item !== undefined) {
+                    last.val(item.Id);
+                }
+                
                 getData(data);
             }
-            
-            $.post('/api/albums/TileScroll?name=@Model.Title&oldest=' + oldest.val() +'&username=@Model.Username' , executeOnData);
+
+            $.post('/api/albums/TileScroll?albumid=' + albumId.val() + '&momentoid=' + last.val() + '&username=@Model.Username', executeOnData);
         }
 
         function getTemplate() {
             return $("#entry-template").html();
         }
+
+        $(function() {
+            Dropzone.options.upload = {
+                init: function() {
+                    this.on("sending", function(file, xhr, formData) {
+                        var albumId = $("input#albumId").val();
+                        formData.append("albumid", albumId);
+                    });
+
+                    this.on("complete", function(file) {
+                        var albumId = $("input#albumId").val();
+                        var c = $('#container');
+                        $.post('/api/momentomedia/GetNewlyAddedPhoto?filename=' + file.name + '&size=' + file.size + '&albumid=' + albumId, function (data) {
+                            
+                            var last = $('input#lastmomentid');
+                            var item = data[data.length - 1];
+                            last.val(item.Id);
+
+                             addTiles(data, c);
+                        });
+                    });
+                }
+            };
+        });
+
     </script>
 }
 
 @if (Model.Items.Count > 0)
 {
-    <input type="hidden" id="oldest" value="@Model.Items.Last().CreateDate.ToString()" />
+    <input type="hidden" id="lastmomentid" value="@Model.Items.Last().Id" />
+    <input type="hidden" id="lastimage" value="" />
 }
 
+<input type="hidden" id="albumId" value="@Model.Id" />
 
 @section Navigation
 {

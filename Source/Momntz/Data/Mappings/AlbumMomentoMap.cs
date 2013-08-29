@@ -8,11 +8,11 @@ namespace Momntz.Data.Mappings
         public AlbumMomentoMap()
         {
             Id(x => x.Id);
-            References(a => a.Momento)
+            References(a => a.Momento, "MomentoId")
                 .ForeignKey("MomentoId")
                 .Not.LazyLoad();
 
-            References(a => a.Album)
+            References(a => a.Album, "AlbumId")
             .ForeignKey("AlbumId")
             .Not.LazyLoad();
 

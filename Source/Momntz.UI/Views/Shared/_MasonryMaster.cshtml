@@ -72,6 +72,32 @@
         <script type="text/javascript">
             var $container = $('#container');
             
+            function addTiles(data, container) {
+
+                if (data != null && data.length > 0) {
+                    var source = getTemplate();
+                    var template = Handlebars.compile(source);
+
+                    var html = '';
+
+                    for (var index = 0; index < data.length; index++) {
+
+                        html = html + template(data[index]);
+                    }
+
+                    html = $($.trim(html));
+
+                    html.imagesLoaded(function() {
+                        $('div#loading').remove();
+                        container.append(html);
+                        container.masonry('appended', html, true);
+                    });
+                } else {
+                    $('div#loading').remove();
+                }
+            }
+
+            
             $(window).scroll(function () {
 
                 var scrollTop = $(window).scrollTop();
@@ -84,28 +110,7 @@
 
                         $('<div id="loading"><img src="/Content/images/spinner.gif" title="Spinner " /></div>').insertAfter($container);
 
-                        getItems(function(data) {
-
-                            if (data != null && data.length > 0) {
-                                var source = getTemplate();
-                                var template = Handlebars.compile(source);
-
-                                var html = '';
-
-                                for (var index = 0; index < data.length; index++) {
-
-                                    html = html + template(data[index]);
-                                }
-
-                                html = $($.trim(html));
-
-                                html.imagesLoaded(function() {
-                                    $('div#loading').remove();
-                                    $container.append(html);
-                                    $container.masonry('appended', html, true);
-                                });
-                            }
-                        });
+                        getItems(function (data) { addTiles(data, $container);});
                     }
                 }
             });
@@ -141,8 +146,10 @@
                 };
                 $("a[rel='lightbox']").fancybox(fancyboxArgs);
             });
-
+            
+             
         </script>
+        @RenderSection("BottomScript", false)
         <script id="entry-template" type="text/x-handlebars-template">
             <div class="box photo col3">
                 <a href="{{ImageUrl}}" id="{{Id}}" rel="lightbox"  title="{{Title}}"><img class="phototag" src="{{ImageUrl}}" data-momentoid="{{Id}}" alt="{{Title}}" title="{{Title}}" /></a>
@@ -156,7 +163,7 @@
                     {{/if}}
                         
                     <hr style="border:none;border-top:1px solid #eee;margin:0;" />
-                        <img style="float: left;margin:5px;" src="/Content/comments.png" /> <a href="/{{Username}}/media/{{Id}}"><img style="float: right;margin:5px;" src="/Content/link.png" /></a>
+                        @*<img style="float: left;margin:5px;" src="/Content/comments.png" /> <a href="/{{Username}}/media/{{Id}}"><img style="float: right;margin:5px;" src="/Content/link.png" /></a>*@
                 </div>
             </div>        
         </script>

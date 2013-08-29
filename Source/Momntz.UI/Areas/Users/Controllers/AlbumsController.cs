@@ -15,9 +15,10 @@ namespace Momntz.UI.Areas.Users.Controllers
         private readonly IProjectionHandler<AlbumResultsParameters, List<IGroupItem>> _getAlbums;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AlbumsController"/> class.
+        /// Initializes a new instance of the <see cref="AlbumsController" /> class.
         /// </summary>
         /// <param name="processor">The processor.</param>
+        /// <param name="getAlbums">The get albums.</param>
         public AlbumsController(IProjectionHandler<AlbumMomentosParameters, List<Tile>> processor, IProjectionHandler<AlbumResultsParameters, List<IGroupItem>> getAlbums)
         {
             _processor = processor;
@@ -28,13 +29,15 @@ namespace Momntz.UI.Areas.Users.Controllers
         /// Names the specified name.
         /// </summary>
         /// <param name="name">The name.</param>
+        /// <param name="id">The unique identifier.</param>
         /// <returns>ActionResult.</returns>
-        public ActionResult Name(string name)
+        public ActionResult Name(string name, int id)
         {
             var view = CurrentSignedInUser<ContentWithTitleView>();
-            var results = _processor.Execute(new AlbumMomentosParameters() { Name = name, Username = view.Username });
+            var results = _processor.Execute(new AlbumMomentosParameters { Name = name, Username = view.Username });
             view.Items = results;
             view.Title = name;
+            view.Id = id;
 
             return View(view);
         }

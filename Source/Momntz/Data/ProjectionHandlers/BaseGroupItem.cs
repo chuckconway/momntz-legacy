@@ -6,11 +6,17 @@ namespace Momntz.Data.ProjectionHandlers
 {
     public class BaseGroupItem
     {
+        /// <summary>
+        /// Gets the items.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="settings">The settings.</param>
+        /// <param name="items">The items.</param>
+        /// <returns>List{IGroupItem}.</returns>
         public List<IGroupItem> GetItems<T>(ISettings settings, List<T> items) where T: IGroupItem
         {
-            string rootUrl = settings.CloudUrl;
-
-            List<IGroupItem> results = new List<IGroupItem>(); 
+            var rootUrl = settings.CloudUrl;
+            var results = new List<IGroupItem>(); 
 
             foreach (var result in items)
             {

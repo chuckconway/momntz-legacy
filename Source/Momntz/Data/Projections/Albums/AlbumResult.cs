@@ -5,6 +5,12 @@ namespace Momntz.Data.Projections.Albums
     public class AlbumResult : IGroupItem, IProjection
     {
         /// <summary>
+        /// Gets or sets the unique identifier.
+        /// </summary>
+        /// <value>The unique identifier.</value>
+        public int Id { get; set; }
+
+        /// <summary>
         /// Gets or sets the username.
         /// </summary>
         /// <value>The username.</value>
