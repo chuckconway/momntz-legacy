@@ -25,13 +25,6 @@ namespace Momntz.Core.Extensions
             }
 
             return results;
-
-                //return (from album in items 
-                //    let momento = album.Momentos.FirstOrDefault() 
-                //    let media = (momento != null ? momento.Media.Single(s => s.MediaType == MomentoMediaType.MediumImage)  : null) 
-                //    where momento != null
-                //    select new AlbumResult {Name = album.Name, Username = album.Username, CreateDate = album.CreateDate, Url = string.Format("{0}/{1}", rootUrl, media.Url)}).Cast<IGroupItem>()
-                //    .ToList();
         }
 
         /// <summary>
@@ -42,7 +35,7 @@ namespace Momntz.Core.Extensions
         /// <param name="results">The results.</param>
         private static void GetMedia(string rootUrl, Album album, List<IGroupItem> results)
         {
-            var momento = album.Momentos.FirstOrDefault();
+            var momento = (album.Momentos != null ?  album.Momentos.FirstOrDefault() : null);
 
             //get random image for Album cover image.
             if (momento != null)

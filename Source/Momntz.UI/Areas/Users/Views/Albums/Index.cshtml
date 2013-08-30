@@ -9,19 +9,19 @@
 { 
     <script type="text/javascript">
         function getItems(getData) {
-            var oldest = $('input#oldest');
+            var last = $('input#lastalbumid');
 
             function executeOnData(data) {
 
                 if (data != null && data.length > 0) {
                     var item = data[data.length - 1];
-                    oldest.val(item.CreateDate);
+                    last.val(item.Id);
 
                     getData(data);
                 }
             }
 
-            $.post('/api/albums/albumscroll?oldest=' + oldest.val() + '&username=@Model.Username', executeOnData);
+            $.post('/api/albums/albumscroll?albumid=' + last.val() + '&username=@Model.Username', executeOnData);
         }
 
         function getTemplate() { return $("#album-template").html(); }
@@ -31,14 +31,18 @@
             $("a#triggerAlbumAdd").leanModal({ closeButton: "button#cancelAlbum" });
             $("button#createalbum").click(function () {
 
-                var name = $("input#albumName").val();
-                var story = $("textarea#albumStory").val();
+                var name = $("input#albumName");
+                var story = $("textarea#albumStory");
 
-                $.post('/api/albums/new', { name: name, story: story });
+                var c = $('#container');
+
+                $.post('/api/albums/new', { name: name.val(), story: story.val() }, function (data){prependTiles(data, c);});
                 
                 $("#lean_overlay").fadeOut(200);
                 $('#addAlbum').css({ 'display': 'none' });
-                
+
+                name.val('');
+                story.val('');
             });
         });
 
@@ -48,7 +52,7 @@
 
 @if (Model.Items.Count > 0)
 {
-    <input type="hidden" id="oldest" value="@Model.Items.Last().CreateDate.ToString()" />
+    <input type="hidden" id="lastalbumid" value="@Model.Items.Last().Id" />
 }
 
 <div id="addAlbum" class="modal" style="display: none;" >

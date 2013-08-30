@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Momntz.Data.Projections;
 using Momntz.Data.Schema;
 using Momntz.Infrastructure.Configuration;
 
 using NHibernate;
 using Momntz.Core.Extensions;
+using NHibernate.Criterion;
 
 namespace Momntz.Data.ProjectionHandlers.Albums
 {
@@ -36,17 +38,35 @@ namespace Momntz.Data.ProjectionHandlers.Albums
 
             using (var trans = _session.BeginTransaction())
             {
-                var items = _session.QueryOver<Album>()
-                         .Where(a => a.Username == args.Username)
-                         .And(a=>a.CreateDate < args.CreateDate)
-                         .OrderBy(a => a.CreateDate).Desc
-                         .Take(40)
-                         .List();
+                var items = _session.CreateQueryProcedure<object>("Album_GetNext40Albums", args)
+                    .List<object>();
+
+                var ids = items.Cast<IDictionary<string, string>>().Select(i => (object)i["AlbumId"]).ToArray();
+
+                Album m = null;
+                var album = _session.QueryOver<Album>()
+                     .Where(Restrictions.In("Id", ids))
+                     .List()
+                     .ToList()
+                     .ConvertToGroupItems(rootUrl);
 
                 trans.Commit();
-
-                return items.ConvertToGroupItems(rootUrl);
+                return album;
             }
+
+            //using (var trans = _session.BeginTransaction())
+            //{
+            //    var items = _session.QueryOver<Album>()
+            //             .Where(a => a.Username == args.Username)
+            //             .And(a=>a.CreateDate < args.CreateDate)
+            //             .OrderBy(a => a.CreateDate).Desc
+            //             .Take(40)
+            //             .List();
+
+            //    trans.Commit();
+
+            //    return items.ConvertToGroupItems(rootUrl);
+            //}
         }
     }
 
@@ -62,6 +82,6 @@ namespace Momntz.Data.ProjectionHandlers.Albums
         /// Gets or sets the create date.
         /// </summary>
         /// <value>The create date.</value>
-        public DateTime CreateDate { get; set; }
+        public int AlbumId { get; set; }
     }
 }

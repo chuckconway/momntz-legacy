@@ -244,3 +244,45 @@ BEGIN
 	Select * From @Momento M
 	Where Row Between @BeginRow AND @RowCount
 END
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[Album_GetNext40Momentos]    Script Date: 8/30/2013 11:10:24 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+Create PROCEDURE [dbo].[Album_GetNext40Albums]
+(
+	@AlbumId int,
+	@Username nvarchar(100)
+)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	declare @Album table (AlbumId int, [Row] int);
+ 
+	Insert Into @Album(AlbumId,  [Row])
+	Select Id as AlbumId, 
+	Row_Number() over(Order by A.CreateDate desc) as Row
+	From [dbo].[Album] A
+	Where A.Username = @Username
+
+	declare @BeginRow int
+	Set @BeginRow = (Select Row From @Album Where AlbumId = @AlbumId) + 1
+
+	declare @RowCount int
+	Set @RowCount = 40 + @BeginRow
+
+	Select A.*
+	From @Album T
+	Inner Join Album A
+		On A.Id = T.AlbumId
+	Where Row Between @BeginRow AND @RowCount
+END
