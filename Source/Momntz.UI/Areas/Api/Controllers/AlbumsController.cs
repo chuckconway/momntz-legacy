@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using Momntz.Data.CommandHandlers;
@@ -23,6 +22,7 @@ namespace Momntz.UI.Areas.Api.Controllers
         private readonly IProjectionHandler<AlbumTileScrollInParamters, List<Tile>> _getScrollTiles;
         private readonly IProjectionHandler<AutoScrollInParameters, List<IGroupItem>> _getScrollImages;
         private readonly ICommandHandler<NewAlbumCommand> _newAlbum;
+        private readonly IProjectionHandler<FindAlbumByNameInParameters, List<IGroupItem>> _getNewlyAddedAlbum;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AlbumsController" /> class.
@@ -38,7 +38,8 @@ namespace Momntz.UI.Areas.Api.Controllers
             ICommandHandler<AddAlbumCommand> addAlbum,
             IProjectionHandler<AlbumTileScrollInParamters, List<Tile>> getScrollTiles,
             IProjectionHandler<AutoScrollInParameters, List<IGroupItem>> getScrollImages,
-            ICommandHandler<NewAlbumCommand> newAlbum )
+            ICommandHandler<NewAlbumCommand> newAlbum,
+            IProjectionHandler<FindAlbumByNameInParameters, List<IGroupItem>> getNewlyAddedAlbum)
         {
 
             _getLandingPageAlbum = getLandingPageAlbum;
@@ -47,6 +48,7 @@ namespace Momntz.UI.Areas.Api.Controllers
             _getScrollTiles = getScrollTiles;
             _getScrollImages = getScrollImages;
             _newAlbum = newAlbum;
+            _getNewlyAddedAlbum = getNewlyAddedAlbum;
         }
 
         /// <summary>
@@ -73,10 +75,10 @@ namespace Momntz.UI.Areas.Api.Controllers
         public ActionResult New(string name, string story)
         {
             string username = GetUsername();
-            var command = new NewAlbumCommand {Name = name, Story = story, Username = username};
+            _newAlbum.Execute(new NewAlbumCommand {Name = name, Story = story, Username = username});
 
-            _newAlbum.Execute(command);
-            return Content(string.Empty);
+            var items = _getNewlyAddedAlbum.Execute(new FindAlbumByNameInParameters {Name = name, Username = username});
+            return Json(items);
         }
 
         /// <summary>
@@ -118,18 +120,17 @@ namespace Momntz.UI.Areas.Api.Controllers
             return Json(items);
         }
 
-        
+
         /// <summary>
         /// Albums the scroll.
         /// </summary>
-        /// <param name="oldest">The oldest.</param>
+        /// <param name="albumId">The album unique identifier.</param>
         /// <param name="username">The username.</param>
         /// <returns>ActionResult.</returns>
         [HttpPost]
-        public ActionResult AlbumScroll(string oldest, string username)
+        public ActionResult AlbumScroll(int albumId, string username)
         {
-            DateTime parsed = DateTime.Parse(oldest);
-            var items = _getScrollImages.Execute(new AutoScrollInParameters { CreateDate = parsed, Username = username });
+            var items = _getScrollImages.Execute(new AutoScrollInParameters { AlbumId = albumId, Username = username });
 
             return Json(items);
         }

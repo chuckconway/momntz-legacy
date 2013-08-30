@@ -123,6 +123,7 @@
     <Compile Include="Data\Mappings\AlsoKnownAsMap.cs" />
     <Compile Include="Data\Mappings\ExifMap.cs" />
     <Compile Include="Data\ProjectionHandlers\Albums\AlbumNameScrollHandler.cs" />
+    <Compile Include="Data\ProjectionHandlers\Albums\FindAlbumByNameHandler.cs" />
     <Compile Include="Data\ProjectionHandlers\MomentoMedia\FindMomentoBySizeAndNameProjectionHandler.cs" />
     <Compile Include="Data\ProjectionHandlers\MomentoMedia\FindMomentoFromAlbumBySizeAndNameProjectionHandler.cs" />
     <Compile Include="Infrastructure\Configuration\Database.cs" />

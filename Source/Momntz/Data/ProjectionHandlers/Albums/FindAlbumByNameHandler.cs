@@ -1,14 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Momntz.Core.Extensions;
+using Momntz.Data.ProjectionHandlers.MomentoMedia;
+using Momntz.Data.Projections;
 using Momntz.Data.Projections.Momentos;
 using Momntz.Data.Schema;
 using Momntz.Infrastructure.Configuration;
 using NHibernate;
 
-namespace Momntz.Data.ProjectionHandlers.MomentoMedia
+namespace Momntz.Data.ProjectionHandlers.Albums
 {
-    public class FindMomentoBySizeAndNameProjectionHandler : IProjectionHandler<FindMomentoBySizeAndNameInParameters, Tile>
+    public class FindAlbumByNameHandler : IProjectionHandler<FindAlbumByNameInParameters, List<IGroupItem>>
     {
         private readonly ISession _session;
         private readonly ISettings _settings;
@@ -18,7 +21,7 @@ namespace Momntz.Data.ProjectionHandlers.MomentoMedia
         /// </summary>
         /// <param name="session">The session.</param>
         /// <param name="settings">The settings.</param>
-        public FindMomentoBySizeAndNameProjectionHandler(ISession session, ISettings settings)
+        public FindAlbumByNameHandler(ISession session, ISettings settings)
         {
             _session = session;
             _settings = settings;
@@ -29,26 +32,21 @@ namespace Momntz.Data.ProjectionHandlers.MomentoMedia
         /// </summary>
         /// <param name="args">The arguments.</param>
         /// <returns>Momento.</returns>
-        public Tile Execute(FindMomentoBySizeAndNameInParameters args)
+        public List<IGroupItem> Execute(FindAlbumByNameInParameters args)
         {
             using (var trans = _session.BeginTransaction())
             {
-                var momento = _session.QueryOver<Schema.MomentoMedia>()
-                    .Where(m => m.MediaType == MomentoMediaType.OriginalImage)
-                    .And(m=>m.Filename == args.Filename)
-                    .And(m=>m.Size == args.Size)
-                    .Where(m=>m.CreateDate > DateTime.UtcNow.AddHours(-1))
-
-                    .JoinQueryOver(a => a.Momento)
-                    .Where(e => e.User.Username == args.Username)
-                    .Select(f=>f.Momento)
-                    .List<Momento>();
+                var album = _session.QueryOver<Album>()
+                    .Where(m => m.Name == args.Name)
+                    .And(a => a.Username == args.Username)
+                    .And(m => m.CreateDate > DateTime.UtcNow.AddHours(-1))
+                    .List();
 
                 trans.Commit();
 
-                if (momento.Count() == 1)
+                if (album.Count() == 1)
                 {
-                    return momento.Single().ConvertToTile(_settings);
+                    return album.ConvertToGroupItems(_settings.CloudUrl);
                 }
                 
                 return null;
@@ -56,19 +54,14 @@ namespace Momntz.Data.ProjectionHandlers.MomentoMedia
         }
     }
 
-    public class FindMomentoBySizeAndNameInParameters
+    public class FindAlbumByNameInParameters
     {
-        /// <summary>
-        /// Gets or sets the size.
-        /// </summary>
-        /// <value>The size.</value>
-        public int Size { get; set; }
 
         /// <summary>
         /// Gets or sets the name.
         /// </summary>
         /// <value>The name.</value>
-        public string Filename { get; set; }
+        public string Name { get; set; }
 
         /// <summary>
         /// Gets or sets the username.
