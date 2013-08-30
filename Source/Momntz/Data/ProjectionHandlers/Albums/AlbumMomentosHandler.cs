@@ -35,8 +35,9 @@ namespace Momntz.Data.ProjectionHandlers.Albums
             {
                 var items = _session.QueryOver<Momento>()
                                     .Where((m) => m.User.Username == args.Username)
+                                    .OrderBy(m=>m.CreateDate).Desc
                                     .JoinQueryOver<Album>(m=>m.Albums)
-                                    .Where(a=>a.Name == args.Name)
+                                    .Where(a=>a.Id == args.AlbumId)
                                     .Take(40)
                                     .List<Momento>();
 
@@ -59,6 +60,6 @@ namespace Momntz.Data.ProjectionHandlers.Albums
         /// Gets or sets the name.
         /// </summary>
         /// <value>The name.</value>
-        public string Name { get; set; }
+        public int AlbumId { get; set; }
     }
 }

@@ -45,13 +45,13 @@
                     this.on("complete", function(file) {
                         var albumId = $("input#albumId").val();
                         var c = $('#container');
-                        $.post('/api/momentomedia/GetNewlyAddedPhoto?filename=' + file.name + '&size=' + file.size + '&albumid=' + albumId, function (data) {
+                        $.post('/api/momentomedia/GetNewlyAddedAlbumPhoto?filename=' + file.name + '&size=' + file.size + '&albumid=' + albumId, function (data) {
                             
                             var last = $('input#lastmomentid');
                             var item = data[data.length - 1];
                             last.val(item.Id);
 
-                             addTiles(data, c);
+                            prependTiles(data, c);
                         });
                     });
                 }

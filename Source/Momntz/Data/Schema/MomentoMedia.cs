@@ -1,11 +1,25 @@
-﻿namespace Momntz.Data.Schema
+﻿using System;
+
+namespace Momntz.Data.Schema
 {
     public class MomentoMedia
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MomentoMedia"/> class.
+        /// </summary>
+        public MomentoMedia()
+        {
+            CreateDate = DateTime.UtcNow;
+        }
+
         /// <summary> Gets or sets the identifier. </summary>
         /// <value> The identifier. </value>
         public virtual int Id { get; set; }
 
+        /// <summary>
+        /// Gets or sets the momento.
+        /// </summary>
+        /// <value>The momento.</value>
         public virtual Momento Momento { get; set; }
 
         /// <summary> Gets or sets the filename of the file. </summary>
@@ -35,6 +49,12 @@
         /// The username.
         /// </value>
         public virtual string Username { get; set; }
+
+        /// <summary>
+        /// Gets or sets the create date.
+        /// </summary>
+        /// <value>The create date.</value>
+        public virtual DateTime CreateDate { get; set; }
 
         /// <summary>
         /// Gets or sets the type of the media.

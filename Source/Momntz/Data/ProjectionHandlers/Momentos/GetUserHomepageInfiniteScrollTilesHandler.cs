@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Momntz.Core.Extensions;
 using Momntz.Data.Projections.Momentos;
 using Momntz.Data.Schema;
 using Momntz.Infrastructure.Configuration;
 using NHibernate;
+using NHibernate.Criterion;
 
 namespace Momntz.Data.ProjectionHandlers.Momentos
 {
@@ -33,16 +34,20 @@ namespace Momntz.Data.ProjectionHandlers.Momentos
         {
             using (var trans = _session.BeginTransaction())
             {
-                var items = _session.QueryOver<Momento>()
-                         .Where(m => m.CreateDate < args.CreateDate)
-                         .And(m=>m.User.Username == args.Username)
-                         .OrderBy(m => m.CreateDate).Desc
-                         .Take(20)
-                         .List();
+                var items = _session.CreateQueryProcedure<object>("Momento_GetNext40Momentos", args)
+                    .List<object>();
+
+                var ids = items.Cast<IDictionary<string, string>>().Select(i => (object)i["MomentoId"]).ToArray();
+
+                Momento m = null;
+                var momentos = _session.QueryOver<Momento>()
+                     .Where(Restrictions.In("Id", ids))
+                     .List()
+                     .ToList()
+                     .ConvertToTiles(_settings);
 
                 trans.Commit();
-
-                return items.ConvertToTiles(_settings);
+                return momentos;
             }
         }
     }
@@ -53,7 +58,7 @@ namespace Momntz.Data.ProjectionHandlers.Momentos
         /// Gets or sets the create date.
         /// </summary>
         /// <value>The create date.</value>
-        public DateTime CreateDate { get; set; }
+        public int MomentoId { get; set; }
 
         /// <summary>
         /// Gets or sets the username.

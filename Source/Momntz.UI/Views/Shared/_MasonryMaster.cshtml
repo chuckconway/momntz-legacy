@@ -43,9 +43,9 @@
         {
             <div style="" id="header">
                 <div class="col" >
-                   <form>
+@*                   <form>
                         <input name="search" type="text" style="width: 200px;"  /> <input type="submit" value="Search"  style="color:#aaa;background-color:#f9f9f9;"  />
-                    </form>
+                    </form>*@
                 </div>
                 <div class="col col2" >
                     <nav>@RenderSection("Navigation", false) </nav>
@@ -63,11 +63,11 @@
             </form>
         </div>
         <div id="container" style="margin-top: 60px;" class="clearfix">
-            
             @RenderBody()
         </div>
-        
-        @RenderSection("PageBottom", false)
+
+            @RenderSection("PageBottom", false)
+
 
         <script type="text/javascript">
             var $container = $('#container');
@@ -91,6 +91,31 @@
                         $('div#loading').remove();
                         container.append(html);
                         container.masonry('appended', html, true);
+                    });
+                } else {
+                    $('div#loading').remove();
+                }
+            }
+            
+            function prependTiles(data, container) {
+
+                if (data != null && data.length > 0) {
+                    var source = getTemplate();
+                    var template = Handlebars.compile(source);
+
+                    var html = '';
+
+                    for (var index = 0; index < data.length; index++) {
+
+                        html = html + template(data[index]);
+                    }
+
+                    html = $($.trim(html));
+
+                    html.imagesLoaded(function () {
+                        $('div#loading').remove();
+                        container.prepend(html);
+                        container.masonry('prepended', html, true);
                     });
                 } else {
                     $('div#loading').remove();

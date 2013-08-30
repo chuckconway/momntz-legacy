@@ -187,7 +187,7 @@ BEGIN
  
 	Insert Into @Ablum(AlbumId, MomentoId, [Row])
 	Select AlbumId, MomentoId,
-	Row_Number() over(Order by AM.CreateDate) as Row
+	Row_Number() over(Order by AM.CreateDate desc) as Row
 	From [dbo].[AlbumMomento] AM
 	Inner Join Album A
 		On AM.AlbumId = A.Id
@@ -203,5 +203,44 @@ BEGIN
 	From @Ablum A
 	Inner Join Momento M
 		On A.MomentoId = M.Id
+	Where Row Between @BeginRow AND @RowCount
+END
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[Momento_GetNext40Momentos]    Script Date: 8/30/2013 10:07:01 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+Create PROCEDURE [dbo].[Momento_GetNext40Momentos]
+(
+	@MomentoId int,
+	@Username nvarchar(100)
+)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	declare @Momento table (MomentoId int, [Row] int);
+ 
+	Insert Into @Momento(MomentoId, [Row])
+	Select Id as MomentoId,
+	Row_Number() over(Order by M.CreateDate desc) as Row
+	From [dbo].[Momento] M
+	Where M.Username = @Username
+
+	declare @BeginRow int
+	Set @BeginRow = (Select Row From @Momento Where MomentoId = @MomentoId) + 1
+
+	declare @RowCount int
+	Set @RowCount = 40 + @BeginRow
+
+	Select * From @Momento M
 	Where Row Between @BeginRow AND @RowCount
 END
