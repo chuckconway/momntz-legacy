@@ -10,17 +10,17 @@
     <script type="text/javascript">
 
         function getItems(getData) {
-            var oldest = $('input#oldest');
+            var last = $('input#lastmomentid');
 
             function executeOnData(data) {
 
                 var item = data[data.length - 1];
-                oldest.val(item.CreateDate);
+                last.val(item.Id);
 
                 getData(data);
             }
             
-            $.post('/api/momento/userscroll?username=@Model.Username&oldest=' + oldest.val(), executeOnData);
+            $.post('/api/momento/userscroll?username=@Model.Username&momentoid=' + last.val(), executeOnData);
         }
 
         function getTemplate() {
@@ -31,7 +31,31 @@
 
 @if (Model.Items.Count > 0)
 {
-    <input type="hidden" id="oldest" value="@Model.Items.Last().CreateDate.ToString()" />
+    <input type="hidden" id="lastmomentid" value="@Model.Items.Last().Id" />
+}
+
+@section PageBottom
+{
+                <script type="text/javascript">
+                    $(function () {
+                        Dropzone.options.upload = {
+                            init: function () {
+                                this.on("complete", function (file) {
+                                    var c = $('#container');
+                                    $.post('/api/momentomedia/GetNewlyAddedPhoto?filename=' + file.name + '&size=' + file.size, function (data) {
+
+                                        var last = $('input#lastmomentid');
+                                        var item = data[data.length - 1];
+                                        last.val(item.Id);
+
+                                        prependTiles(data, c);
+                                    });
+                                });
+                            }
+                        };
+                    });
+
+    </script>
 }
 
 @section Navigation

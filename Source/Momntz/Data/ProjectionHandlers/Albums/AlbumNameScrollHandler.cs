@@ -49,16 +49,7 @@ namespace Momntz.Data.ProjectionHandlers.Albums
                     .ToList()
                     .ConvertToTiles(_settings);
 
-                //var items = _session.QueryOver<Momento>()
-                //                    .Where((m) => m.User.Username == args.Username)
-                //                    .And(m=>m.CreateDate < args.CreateDate)
-                //                    .JoinQueryOver<Album>(m => m.Albums)
-                //                    .Where(a => a.Name == args.Name)
-                //                    .Take(40)
-                //                    .List<Momento>();
-
                 trans.Commit();
-
                 return momentos;
             }
         }

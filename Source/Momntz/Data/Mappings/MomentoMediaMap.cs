@@ -23,6 +23,9 @@ namespace Momntz.Data.Mappings
                 .Not.Nullable()
                 .Length(500);
 
+            Map(f => f.CreateDate)
+                .Not.Nullable();
+
             Map(x => x.Size)
                 .Not.Nullable();
 
@@ -35,7 +38,6 @@ namespace Momntz.Data.Mappings
                 .Length(50);
 
             Table("MomentoMedia");
-
         }
     }
 }

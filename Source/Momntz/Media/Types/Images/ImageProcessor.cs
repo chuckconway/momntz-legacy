@@ -13,6 +13,7 @@ using Momntz.Messaging;
 using Momntz.Messaging.Models;
 using Newtonsoft.Json;
 using NHibernate;
+using NHibernate.Util;
 
 namespace Momntz.Media.Types.Images
 {
@@ -114,6 +115,24 @@ namespace Momntz.Media.Types.Images
                 }
             }
         }
+
+        /// <summary>
+        /// Gets the exif.
+        /// </summary>
+        /// <param name="bytes">The bytes.</param>
+        /// <param name="format">The format.</param>
+        /// <returns>System.Byte[][].</returns>
+        public byte[] SetOrientation(byte[] bytes, ImageFormat format)
+        {
+            if (format.Equals(ImageFormat.Jpeg))
+            {
+                var orientation = new ImageOrientation(bytes);
+                bytes = orientation.OrientImage();
+            }
+
+            return bytes;
+        }
+
 
         /// <summary>
         /// Saves the automatic album.

@@ -88,15 +88,13 @@ namespace Momntz.UI.Areas.Api.Controllers
         /// <summary>
         /// Scrolls the specified oldest.
         /// </summary>
-        /// <param name="oldest">The oldest.</param>
+        /// <param name="momentoId">The momento unique identifier.</param>
         /// <param name="username">The username.</param>
         /// <returns>ActionResult.</returns>
         [HttpPost]
-        public ActionResult UserScroll(string oldest, string username)
+        public ActionResult UserScroll(int momentoId, string username)
         {
-            DateTime parsed = DateTime.Parse(oldest);
-            var items = _getuserScroll.Execute(new UserHomepageInfiniteScrollInParameters() { CreateDate = parsed, Username = username });
-
+            var items = _getuserScroll.Execute(new UserHomepageInfiniteScrollInParameters() { MomentoId = momentoId, Username = username });
             return Json(items);
         }
         

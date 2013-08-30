@@ -9,15 +9,18 @@ namespace Momntz.UI.Areas.Api.Controllers
 {
     public class MomentoMediaController : BaseController
     {
-        private readonly IProjectionHandler<FindMomentoSizeAndNameInParameters, Tile> _getmedia;
+        private readonly IProjectionHandler<FindMomentoFromAlbumBySizeAndNameInParameters, Tile> _getAlbumMedia;
+        private readonly IProjectionHandler<FindMomentoBySizeAndNameInParameters, Tile> _getMedia;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MomentoMediaController"/> class.
+        /// Initializes a new instance of the <see cref="MomentoMediaController" /> class.
         /// </summary>
-        /// <param name="getmedia">The getmedia.</param>
-        public MomentoMediaController(IProjectionHandler<FindMomentoSizeAndNameInParameters, Tile> getmedia)
+        /// <param name="getAlbumMedia">The get album media.</param>
+        public MomentoMediaController(IProjectionHandler<FindMomentoFromAlbumBySizeAndNameInParameters, Tile> getAlbumMedia,
+            IProjectionHandler<FindMomentoBySizeAndNameInParameters, Tile> getMedia)
         {
-            _getmedia = getmedia;
+            _getAlbumMedia = getAlbumMedia;
+            _getMedia = getMedia;
         }
 
         /// <summary>
@@ -28,10 +31,26 @@ namespace Momntz.UI.Areas.Api.Controllers
         /// <param name="albumId">The album unique identifier.</param>
         /// <returns>ActionResult.</returns>
         [HttpPost]
-        public ActionResult GetNewlyAddedPhoto(string filename, int size, int albumId)
+        public ActionResult GetNewlyAddedPhoto(string filename, int size)
         {
             string username = GetUsername();
-            var tile = _getmedia.Execute(new FindMomentoSizeAndNameInParameters{Filename = filename, Size = size, Username = username, AlbumId = albumId});
+            var tile = _getMedia.Execute(new FindMomentoBySizeAndNameInParameters { Filename = filename, Size = size, Username = username });
+
+            return Json(new List<Tile> { tile });
+        }
+
+        /// <summary>
+        /// Gets the newly added photo.
+        /// </summary>
+        /// <param name="filename">The filename.</param>
+        /// <param name="size">The size.</param>
+        /// <param name="albumId">The album unique identifier.</param>
+        /// <returns>ActionResult.</returns>
+        [HttpPost]
+        public ActionResult GetNewlyAddedAlbumPhoto(string filename, int size, int albumId)
+        {
+            string username = GetUsername();
+            var tile = _getAlbumMedia.Execute(new FindMomentoFromAlbumBySizeAndNameInParameters { Filename = filename, Size = size, Username = username, AlbumId = albumId });
 
             return Json(new List<Tile>{tile});
         }
