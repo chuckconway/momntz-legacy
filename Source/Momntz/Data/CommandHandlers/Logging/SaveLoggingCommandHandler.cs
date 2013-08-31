@@ -32,16 +32,16 @@ namespace Momntz.Data.CommandHandlers.Logging
         /// <summary>
         /// Executes the specified command.
         /// </summary>
-        /// <param name="command">The command.</param>
+        /// <param name="parameters">The command.</param>
         /// <exception cref="System.NotImplementedException"></exception>
-        public void Execute(SaveLoggingCommand command)
+        public void Execute(SaveLoggingCommand parameters)
         {
             try
             {
                 Guid id = Guid.NewGuid();
 
                 //save message to storage
-                _storage.AddFile(QueueConstants.LoggingQueue, id.ToString(), "application/octet-stream", Encoding.Default.GetBytes(command.Message));
+                _storage.AddFile(QueueConstants.LoggingQueue, id.ToString(), "application/octet-stream", Encoding.Default.GetBytes(parameters.Message));
 
                 //queue message for the logging service to process
                 _queue.Send(QueueConstants.LoggingQueue, new QueueLogMessage { Id = id, Endpoint = _settings.RestLoggingEndpoint});            

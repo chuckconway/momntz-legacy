@@ -22,19 +22,19 @@ namespace Momntz.Data.CommandHandlers.Momentos
         /// <summary>
         /// Executes the specified command.
         /// </summary>
-        /// <param name="command">The command.</param>
-        public void Execute(UpdateMomentoCommand command)
+        /// <param name="parameters">The command.</param>
+        public void Execute(UpdateMomentoCommand parameters)
         {
-            Func<string, int?> nullable = s => (string.IsNullOrEmpty(command.Day) ? null : (int?)Convert.ToInt32(command.Day));
+            Func<string, int?> nullable = s => (string.IsNullOrEmpty(parameters.Day) ? null : (int?)Convert.ToInt32(parameters.Day));
 
             using (var trans = _session.BeginTransaction())
             {
-                var momento = _session.Get<Momento>(command.Id);
-                momento.Title = command.Title;
-                momento.Story = command.Story;
-                momento.Day = nullable(command.Day);
-                momento.Month = nullable(command.Month);
-                momento.Year = nullable(command.Year); //(string.IsNullOrEmpty(command.Day) ? null : (int?)Convert.ToInt32(command.Day));
+                var momento = _session.Get<Momento>(parameters.Id);
+                momento.Title = parameters.Title;
+                momento.Story = parameters.Story;
+                momento.Day = nullable(parameters.Day);
+                momento.Month = nullable(parameters.Month);
+                momento.Year = nullable(parameters.Year); //(string.IsNullOrEmpty(command.Day) ? null : (int?)Convert.ToInt32(command.Day));
 
                 _session.Save(momento);
                 trans.Commit();

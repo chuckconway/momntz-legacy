@@ -12,10 +12,10 @@ namespace Momntz.Data.CommandHandlers.Momentos
             _database = database;
         }
 
-        public void Execute(SaveMomentoDetailsCommand command)
+        public void Execute(SaveMomentoDetailsCommand parameters)
         {
             _database.ConnectionStringName = "sql";
-            _database.NonQuery("Momento_SaveDetails", new { command.Day, command.Id, command.Location, command.Month, command.Story, command.Title, command.Year });
+            _database.NonQuery("Momento_SaveDetails", new { parameters.Day, parameters.Id, parameters.Location, parameters.Month, parameters.Story, parameters.Title, parameters.Year });
         }
     }
 }

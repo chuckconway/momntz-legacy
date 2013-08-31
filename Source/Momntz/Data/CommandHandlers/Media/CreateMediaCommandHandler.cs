@@ -24,11 +24,11 @@ namespace Momntz.Data.CommandHandlers.Media
         /// <summary>
         /// Executes the specified command.
         /// </summary>
-        /// <param name="command">The command.</param>
-        public void Execute(CreateMediaCommand command)
+        /// <param name="parameters">The command.</param>
+        public void Execute(CreateMediaCommand parameters)
         {
-            _storage.AddFile(QueueConstants.MediaQueue, command.Id.ToString(), "application/octet-stream", command.Bytes);
-            _saga.Consume(command.Message);
+            _storage.AddFile(QueueConstants.MediaQueue, parameters.Id.ToString(), "application/octet-stream", parameters.Bytes);
+            _saga.Consume(parameters.Message);
         }
     }
 }
