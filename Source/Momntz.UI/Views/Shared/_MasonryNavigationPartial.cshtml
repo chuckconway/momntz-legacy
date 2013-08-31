@@ -21,7 +21,7 @@
                 <li><button id="addimages" title="Upload images to your account." ></button></li>
             }
         }
-        <li><button class="displayname" ><span id="displayname" ><a href="/@Model.SignedUser.Username" title="@Model.SignedUser.DisplayName's homepage" >@Model.SignedUser.DisplayName</a></span></button>
+        <li><a class=" @((this.Model.SignedUser.IsAuthenticatedUser ? "displaynameleft" : "displaynameright" )) displaynameposition"   href="/@Model.SignedUser.Username" title="@Model.SignedUser.DisplayName's homepage" >@Model.SignedUser.DisplayName</a>
             <ul>
                 <li><a href="/@Model.SignedUser.Username/albums" title="View albums" >Albums</a></li>
                 <li><a href="/@Model.SignedUser.Username/connections" title="View connections" >Connections</a></li>
@@ -37,7 +37,7 @@
 
         if (!Model.SignedUser.IsAuthenticatedUser)
         {
-            <li><a class="nonsignedinnav" href="/" title="Login into Momntz" >Login</a></li>
+            <li><a class="nonsignedinnav" style="padding-top: 6px;"  href="/" title="Login into Momntz" >Login</a></li>
         }
     }
 </ul>
