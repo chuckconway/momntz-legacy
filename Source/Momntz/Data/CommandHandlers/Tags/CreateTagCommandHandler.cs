@@ -13,10 +13,10 @@ namespace Momntz.Data.CommandHandlers.Tags
             _database = database;
         }
 
-        public void Execute(CreateTagCommand command)
+        public void Execute(CreateTagCommand parameters)
         {
-            string newUsername = Regex.Replace(command.Name, @"\s", string.Empty).ToLower();
-            string fullName = command.Name;
+            string newUsername = Regex.Replace(parameters.Name, @"\s", string.Empty).ToLower();
+            string fullName = parameters.Name;
 
             //using (ISession session = _factory.OpenSession())
             //{
@@ -45,14 +45,14 @@ namespace Momntz.Data.CommandHandlers.Tags
                                                                   {
                                                                       newUsername,
                                                                       fullName,
-                                                                      command.Height,
-                                                                      command.Width,
-                                                                      CreatedBy = command.Username,
-                                                                      command.Username,
-                                                                      command.InternalId,
-                                                                      XAxis = command.Left,
-                                                                      YAxis = command.Top,
-                                                                      command.MomentoId
+                                                                      parameters.Height,
+                                                                      parameters.Width,
+                                                                      CreatedBy = parameters.Username,
+                                                                      parameters.Username,
+                                                                      parameters.InternalId,
+                                                                      XAxis = parameters.Left,
+                                                                      YAxis = parameters.Top,
+                                                                      parameters.MomentoId
 
                                                                   });
         }

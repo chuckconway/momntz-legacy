@@ -28,11 +28,11 @@ namespace Momntz.Data.CommandHandlers.Momentos
         /// <summary>
         /// Executes the specified command.
         /// </summary>
-        /// <param name="command">The command.</param>
-        public void Execute(CreateMomentoCommand command)
+        /// <param name="parameters">The command.</param>
+        public void Execute(CreateMomentoCommand parameters)
         {
-            var single = SaveMomento(command);
-            SaveMedia(command, single);
+            var single = SaveMomento(parameters);
+            SaveMedia(parameters, single);
         }
 
         /// <summary>

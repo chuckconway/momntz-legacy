@@ -19,11 +19,11 @@ namespace Momntz.Data.CommandHandlers.Tags
         /// <summary>
         /// Executes the specified command.
         /// </summary>
-        /// <param name="command">The command.</param>
+        /// <param name="parameters">The command.</param>
         /// 
-        public void Execute(DeleteTagCommand command)
+        public void Execute(DeleteTagCommand parameters)
         {
-            _database.NonQuery("TagPerson_Delete", command);
+            _database.NonQuery("TagPerson_Delete", parameters);
         }
     }
 }

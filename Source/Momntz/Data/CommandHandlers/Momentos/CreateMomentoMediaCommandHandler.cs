@@ -8,7 +8,7 @@ namespace Momntz.Data.CommandHandlers.Momentos
 {
     public class CreateMomentoMediaCommandHandler: ICommandHandler<CreateMomentoMediaCommand>
     {
-        public void Execute(CreateMomentoMediaCommand command)
+        public void Execute(CreateMomentoMediaCommand parameters)
         {
             throw new NotImplementedException();
         }

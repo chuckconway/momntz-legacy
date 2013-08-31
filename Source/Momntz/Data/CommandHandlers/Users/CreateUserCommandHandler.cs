@@ -22,14 +22,14 @@ namespace Momntz.Data.CommandHandlers.Users
         }
 
         /// <summary> Handles. </summary>
-        /// <param name="command"> The command. </param>
-        public void Execute(CreateUserCommand command)
+        /// <param name="parameters"> The command. </param>
+        public void Execute(CreateUserCommand parameters)
         {
-            command.Password = _crypto.Hash(command.Password);
+            parameters.Password = _crypto.Hash(parameters.Password);
 
             using (var trans =_session.BeginTransaction())
             {
-               _session.CreateCommandProcedure("User_Create", command)
+               _session.CreateCommandProcedure("User_Create", parameters)
                        .ExecuteUpdate();
 
                 trans.Commit();
