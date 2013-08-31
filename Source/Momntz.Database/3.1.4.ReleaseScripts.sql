@@ -59,7 +59,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-CREATE VIEW [dbo].[ConnectionView]
+Alter VIEW [dbo].[ConnectionView]
 AS
 SELECT        dbo.AlsoKnownAs.Username, dbo.Connection.Owner, dbo.AlsoKnownAs.FullName, dbo.Connection.Id
 FROM            dbo.AlsoKnownAs INNER JOIN

@@ -39,8 +39,8 @@ namespace Momntz.Data.ProjectionHandlers.Momentos
 
                 var ids = items.Cast<IDictionary<string, string>>().Select(i => (object)i["MomentoId"]).ToArray();
 
-                Momento m = null;
                 var momentos = _session.QueryOver<Momento>()
+                    .OrderBy(n=>n.CreateDate).Desc
                      .Where(Restrictions.In("Id", ids))
                      .List()
                      .ToList()

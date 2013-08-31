@@ -9,18 +9,21 @@
 {
     <script type="text/javascript">
 
-        function getItems(getData) {
+        function getItems(addTiles) {
             var last = $('input#lastmomentid');
 
-            function executeOnData(data) {
+            $.post('/api/momento/userscroll?username=@Model.Username&momentoid=' + last.val(), function(data) {
+
 
                 var item = data[data.length - 1];
-                last.val(item.Id);
+                if (item !== undefined) {
+                    last.val(item.Id);
+                }
 
-                getData(data);
-            }
-            
-            $.post('/api/momento/userscroll?username=@Model.Username&momentoid=' + last.val(), executeOnData);
+                addTiles(data);
+
+
+            });
         }
 
         function getTemplate() {

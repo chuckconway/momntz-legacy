@@ -84,9 +84,11 @@ a#triggerAlbumAdd{ padding-top: 8px;}
 .fontsize12 { font-size: 12px;}
 
 .add {border:none;margin: 0;padding: 0;height: 30px;font-weight: bold;color: #aaa;padding-left: 5px;padding-right: 20px;background-color: #fff;}
-button.displayname {margin: 0;padding: 0;border: none; border-left:1px solid #e0e0e0; border-radius: 0px 5px 5px 0px; height: 30px;font-weight: bold;color: #aaa;padding-left: 20px;padding-right: 20px;background-color: #fff;}
+.displaynameleft, .displaynameright {margin: 0;padding: 0;border: none; border-left:1px solid #e0e0e0; height: 30px;font-weight: bold;padding-left: 20px;padding-right: 20px;background-color: #fff;}
 
-span#displayname a{ font-weight: bold;padding-top: 2px; }
+.displaynameright{ border-left: none; border-right:1px solid #e0e0e0;margin-right: 10px;}
+
+.displaynameposition { font-weight: bold;padding-top: 6px; }
 
 
  /*

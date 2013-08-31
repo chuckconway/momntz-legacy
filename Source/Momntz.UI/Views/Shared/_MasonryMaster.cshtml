@@ -70,10 +70,11 @@
 
 
         <script type="text/javascript">
-            var $container = $('#container');
             
-            function addTiles(data, container) {
-
+            var container = $('#container');
+            
+            function addTiles(data) {
+                
                 if (data != null && data.length > 0) {
                     var source = getTemplate();
                     var template = Handlebars.compile(source);
@@ -97,9 +98,10 @@
                 }
             }
             
-            function prependTiles(data, container) {
+            function prependTiles(data) {
 
                 if (data != null && data.length > 0) {
+
                     var source = getTemplate();
                     var template = Handlebars.compile(source);
 
@@ -133,9 +135,9 @@
 
                     if ($('div#loading').length == 0) {
 
-                        $('<div id="loading"><img src="/Content/images/spinner.gif" title="Spinner " /></div>').insertAfter($container);
+                        $('<div id="loading"><img src="/Content/images/spinner.gif" title="Spinner " /></div>').insertAfter(container);
 
-                        getItems(function (data) { addTiles(data, $container);});
+                        getItems(addTiles);
                     }
                 }
             });
@@ -150,8 +152,8 @@
                     }
                 });
 
-                $container.imagesLoaded(function () {
-                    $container.masonry({
+                container.imagesLoaded(function () {
+                    container.masonry({
                         itemSelector: '.box',
                         columnWidth: 10
                     });
@@ -163,10 +165,10 @@
                     overlayColor: "#000",
                     autoScale: false,
                     overlayOpacity: 0.85,
-                    loadDetails: function (container, image) {
+                    loadDetails: function (c, image) {
 
                         var view = new afterLoad();
-                        view.load(this, container, image);
+                        view.load(this, c, image);
                     }
                 };
                 $("a[rel='lightbox']").fancybox(fancyboxArgs);
@@ -196,7 +198,7 @@
         <script id="album-template" type="text/x-handlebars-template">
             <div class="box photo col3">
 
-                    <a href="/{{Username}}/albums/{{Name}}" title="{{Name}}">
+                    <a href="/{{Username}}/albums/{{Id}}/{{Name}}" title="{{Name}}">
                         <img class="phototag" src="{{Url}}" alt="{{Name}}"  />
                     </a>
 
