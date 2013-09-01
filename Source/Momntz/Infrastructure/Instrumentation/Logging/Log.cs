@@ -1,24 +1,24 @@
 ﻿using System;
 using Momntz.Core.Contants;
 using Momntz.Data.CommandHandlers;
-using Momntz.Data.Commands.Logging;
+using Momntz.Data.CommandHandlers.Logging;
 using Momntz.Infrastructure.Configuration;
 
 namespace Momntz.Infrastructure.Instrumentation.Logging
 {
     public class Log: ILog
     {
-        private readonly ICommandHandler<SaveLoggingCommand> _handler;
+        private readonly ILoggingRepository _repository;
         private readonly ApplicationSettings _settings;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Log"/> class.
+        /// Initializes a new instance of the <see cref="Log" /> class.
         /// </summary>
-        /// <param name="processor">The processor.</param>
+        /// <param name="repository">The repository.</param>
         /// <param name="settings">The settings.</param>
-        public Log(ICommandHandler<SaveLoggingCommand> handler, ApplicationSettings settings)
+        public Log(ILoggingRepository repository, ApplicationSettings settings)
         {
-            _handler = handler;
+            _repository = repository;
             _settings = settings;
         }
 
@@ -31,7 +31,7 @@ namespace Momntz.Infrastructure.Instrumentation.Logging
         {
             if (logKey == LoggingConstants.Cloud)
             {
-                return new LogToCloud(_handler);
+                return new LogToCloud(_repository);
             }
 
             if (logKey == LoggingConstants.File)

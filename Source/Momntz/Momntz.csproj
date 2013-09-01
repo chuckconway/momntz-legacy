@@ -110,14 +110,17 @@
     <Compile Include="Core\Contants\FormConstants.cs" />
     <Compile Include="Core\Extensions\ListOfAlbums.cs" />
     <Compile Include="Core\Extensions\ListOfMomentos.cs" />
-    <Compile Include="Core\Extensions\nHibernateExtensions.cs" />
+    <Compile Include="Core\Extensions\NHibernateExtensions.cs" />
     <Compile Include="Core\TypeConverters\CreateMomentoCommandToMomentoConverter.cs" />
     <Compile Include="Data\CommandHandlers\Albums\AlbumRepository.cs" />
     <Compile Include="Data\CommandHandlers\Albums\IAlbumRepository.cs" />
     <Compile Include="Data\CommandHandlers\ICommandHandler.cs" />
-    <Compile Include="Data\CommandHandlers\Logging\SaveLoggingCommandHandler.cs" />
+    <Compile Include="Data\CommandHandlers\Logging\ILoggingRepository.cs" />
+    <Compile Include="Data\CommandHandlers\Logging\LoggingRepository.cs" />
     <Compile Include="Data\CommandHandlers\Albums\Parameters\NewAlbumParameters.cs" />
-    <Compile Include="Data\Commands\Logging\SaveLoggingCommand.cs" />
+    <Compile Include="Data\CommandHandlers\Media\IMediaRepository.cs" />
+    <Compile Include="Data\CommandHandlers\Media\MediaRepository.cs" />
+    <Compile Include="Data\CommandHandlers\Logging\Parameters\SaveLoggingParameters.cs" />
     <Compile Include="Data\Mappings\AlbumMomentoMap.cs" />
     <Compile Include="Data\Mappings\AlsoKnownAsMap.cs" />
     <Compile Include="Data\Mappings\ExifMap.cs" />
@@ -157,7 +160,6 @@
     <Compile Include="Data\CommandHandlers\Momentos\CreateMomentoMediaCommandHandler.cs" />
     <Compile Include="Data\CommandHandlers\Momentos\SaveMomentoDetailsCommandHandler.cs" />
     <Compile Include="Data\CommandHandlers\Momentos\UpdateMomentoCommandHandler.cs" />
-    <Compile Include="Data\CommandHandlers\Media\CreateMediaCommandHandler.cs" />
     <Compile Include="Data\CommandHandlers\Tags\CreateTagCommandHandler.cs" />
     <Compile Include="Data\CommandHandlers\Tags\DeleteTagCommandHandler.cs" />
     <Compile Include="Data\CommandHandlers\Users\CreateUserCommandHandler.cs" />
@@ -173,7 +175,7 @@
     <Compile Include="Data\Commands\Momentos\CreateMomentoMedia.cs" />
     <Compile Include="Data\Commands\Momentos\SaveMomentoDetailsCommand.cs" />
     <Compile Include="Data\Commands\Momentos\UpdateMomentoCommand.cs" />
-    <Compile Include="Data\Commands\Media\CreateMediaCommand.cs" />
+    <Compile Include="Data\CommandHandlers\Media\Parameters\SaveMediaParameters.cs" />
     <Compile Include="Data\Commands\Tags\CreateTagCommand.cs" />
     <Compile Include="Data\Commands\Tags\DeleteTagCommand.cs" />
     <Compile Include="Data\Commands\Users\CreateUserCommand.cs" />

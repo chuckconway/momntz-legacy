@@ -1,19 +1,19 @@
-﻿using Momntz.Data.CommandHandlers;
-using Momntz.Data.Commands.Logging;
+﻿using Momntz.Data.CommandHandlers.Logging;
+using Momntz.Data.CommandHandlers.Logging.Parameters;
 
 namespace Momntz.Infrastructure.Instrumentation.Logging
 {
     public class LogToCloud : LogBase
     {
-        private readonly ICommandHandler<SaveLoggingCommand> _handler;
+        private readonly ILoggingRepository _repository;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LogToCloud" /> class.
         /// </summary>
-        /// <param name="handler">The handler.</param>
-        public LogToCloud(ICommandHandler<SaveLoggingCommand> handler)
+        /// <param name="repository">The repository.</param>
+        public LogToCloud(ILoggingRepository repository)
         {
-            _handler = handler;
+            _repository = repository;
         }
 
         /// <summary>
@@ -23,8 +23,7 @@ namespace Momntz.Infrastructure.Instrumentation.Logging
         /// <exception cref="System.NotImplementedException"></exception>
         protected override void Persist(string message)
         {
-            var command = new SaveLoggingCommand {Message = message};
-            _handler.Execute(command);
+            _repository.Log(new SaveLoggingParameters(){Message = message});
         }
     }
 }
