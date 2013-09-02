@@ -5,6 +5,7 @@
 //using Momntz.Data.Commands.Tags;
 //using Momntz.Data.ProjectionHandlers;
 //using Momntz.Data.Projections.Api;
+//using Momntz.Data.Repositories.Momentos;
 //using Momntz.Data.Repositories.Search.Parameters;
 //using Momntz.UI.Areas.Api.Models;
 //using Momntz.UI.Core.Controllers;
@@ -13,10 +14,10 @@
 //{
 //    public class TagsController : BaseController
 //    {
-//        private readonly IProjectionHandler<NameAndUsername, List<NameSearchResult>> _getTagNames;
-//        private readonly ICommandHandler<DeleteTagCommand> _deleteTag;
-//        private readonly IProjectionHandler<int, IList<MomentoPerson>> _retreiveTagsByMomentoId;
-//        private readonly ICommandHandler<CreateTagCommand> _createTag;
+//        //private readonly IProjectionHandler<NameAndUsername, List<NameSearchResult>> _getTagNames;
+//        //private readonly ICommandHandler<DeleteTagCommand> _deleteTag;
+//        //private readonly IProjectionHandler<int, IList<MomentoPerson>> _retreiveTagsByMomentoId;
+//        //private readonly ICommandHandler<CreateTagCommand> _createTag;
 
 //        /// <summary>
 //        /// Initializes a new instance of the <see cref="TagsController"/> class.
@@ -26,16 +27,21 @@
 //        /// <param name="getTagNames"></param>
 //        /// <param name="deleteTag"></param>
 //        /// <param name="retreiveTagsByMomentoId"></param>
-//        public TagsController(IProjectionHandler<NameAndUsername, List<NameSearchResult>> getTagNames,
-//                              ICommandHandler<DeleteTagCommand> deleteTag, 
-//                              IProjectionHandler<int, IList<MomentoPerson>> retreiveTagsByMomentoId,
-//            ICommandHandler<CreateTagCommand> createTag
-//                              )
+//        //public TagsController(IProjectionHandler<NameAndUsername, List<NameSearchResult>> getTagNames,
+//        //                      ICommandHandler<DeleteTagCommand> deleteTag, 
+//        //                      IProjectionHandler<int, IList<MomentoPerson>> retreiveTagsByMomentoId,
+//        //    ICommandHandler<CreateTagCommand> createTag
+//        // )
+//        //{
+//        //    _getTagNames = getTagNames;
+//        //    _deleteTag = deleteTag;
+//        //    _retreiveTagsByMomentoId = retreiveTagsByMomentoId;
+//        //    _createTag = createTag;
+//        //}
+
+//        public TagsController(IMomentoRepository repository)
 //        {
-//            _getTagNames = getTagNames;
-//            _deleteTag = deleteTag;
-//            _retreiveTagsByMomentoId = retreiveTagsByMomentoId;
-//            _createTag = createTag;
+
 //        }
 
 //        /// <summary>
@@ -47,7 +53,7 @@
 //        public ActionResult Delete(int momentoId, int tagid)
 //        {
 //            _deleteTag.Execute(new DeleteTagCommand(momentoId, tagid));
-//            return Json(new {result=true}, JsonRequestBehavior.AllowGet);
+//            return Json(new { result = true }, JsonRequestBehavior.AllowGet);
 //        }
 
 //        /// <summary>
@@ -63,11 +69,7 @@
 //            return Json(results, JsonRequestBehavior.AllowGet);
 //        }
 
-//        /// <summary>
-//        /// Retrieves the specified momentoid.
-//        /// </summary>
-//        /// <param name="momentoid">The momentoid.</param>
-//        /// <returns>ActionResult.</returns>
+
 //        public ActionResult Retrieve(int momentoid)
 //        {
 //            var momentoTag = _retreiveTagsByMomentoId.Execute(momentoid);
@@ -127,10 +129,10 @@
 //        {
 //            _createTag.Execute(new CreateTagCommand(tag.Name, tag.Left, tag.Top, tag.Width, tag.Height, username, tag.MomentoId));
 
-//          var momentoTags = _retreiveTagsByMomentoId.Execute(tag.MomentoId);
+//            var momentoTags = _retreiveTagsByMomentoId.Execute(tag.MomentoId);
 //            MomentoPerson t = momentoTags.SingleOrDefault(m => m.MomentoId == tag.MomentoId && m.DisplayName == tag.Name);
 
-//            var tags = GetTags(new List<MomentoPerson> {t});
+//            var tags = GetTags(new List<MomentoPerson> { t });
 //            return tags;
 //        }
 //    }

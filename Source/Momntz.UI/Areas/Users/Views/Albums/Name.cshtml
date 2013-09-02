@@ -1,5 +1,7 @@
 ﻿@using Momntz.UI.Areas.Users.Models
-@model Momntz.UI.Areas.Users.Models.ContentWithTitleView
+@using SquishIt.Framework
+@using SquishIt.Mvc
+@model ContentWithTitleView
 
 @{
     Layout = "/Views/Shared/_MasonryMaster.cshtml";
@@ -11,54 +13,9 @@
         h1 {text-align: center;margin-top: 0;font-size: 20px;clear: both;margin-bottom: 15px;}
     </style>
 
-    <script type="text/javascript">
-
-        function getItems(getData) {
-            var last = $('input#lastmomentid');
-            var albumId = $('input#albumId');
-
-            function executeOnData(data) {
-
-                var item = data[data.length - 1];
-                if (item !== undefined) {
-                    last.val(item.Id);
-                }
-                
-                getData(data);
-            }
-
-            $.post('/api/scroll/TileScroll?albumid=' + albumId.val() + '&momentoid=' + last.val() + '&username=@Model.Username', executeOnData);
-        }
-
-        function getTemplate() {
-            return $("#entry-template").html();
-        }
-
-        $(function() {
-            Dropzone.options.upload = {
-                init: function() {
-                    this.on("sending", function(file, xhr, formData) {
-                        var albumId = $("input#albumId").val();
-                        formData.append("albumid", albumId);
-                    });
-
-                    this.on("complete", function(file) {
-                        var albumId = $("input#albumId").val();
-                        var c = $('#container');
-                        $.post('/api/momentomedia/GetNewlyAddedAlbumPhoto?filename=' + file.name + '&size=' + file.size + '&albumid=' + albumId, function (data) {
-                            
-                            var last = $('input#lastmomentid');
-                            var item = data[data.length - 1];
-                            last.val(item.Id);
-
-                            prependTiles(data, c);
-                        });
-                    });
-                }
-            };
-        });
-
-    </script>
+        @(Bundle.JavaScript()
+    .Add("~/Scripts/views/album/name.js")
+    .MvcRender("/scripts/combined_#.js"))
 }
 
 @if (Model.Items.Count > 0)
