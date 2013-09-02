@@ -1,5 +1,5 @@
-﻿using Momntz.Data.CommandHandlers.Logging;
-using Momntz.Data.CommandHandlers.Logging.Parameters;
+﻿using Momntz.Data.Repositories.Logging;
+using Momntz.Data.Repositories.Logging.Parameters;
 
 namespace Momntz.Infrastructure.Instrumentation.Logging
 {

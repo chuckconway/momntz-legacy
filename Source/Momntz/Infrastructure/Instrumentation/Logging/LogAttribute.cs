@@ -1,5 +1,5 @@
 ﻿using System;
-using Momntz.Data.CommandHandlers.Logging;
+using Momntz.Data.Repositories.Logging;
 using Momntz.Infrastructure.Configuration;
 using Newtonsoft.Json;
 using PostSharp.Aspects;
