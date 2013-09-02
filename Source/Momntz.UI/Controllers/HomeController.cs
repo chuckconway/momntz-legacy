@@ -1,5 +1,5 @@
 ﻿using System.Web.Mvc;
-using Momntz.Data.ProjectionHandlers.Users;
+using Momntz.Data.Repositories.Users.Parameters;
 using Momntz.UI.Core.Controllers;
 
 namespace Momntz.UI.Controllers

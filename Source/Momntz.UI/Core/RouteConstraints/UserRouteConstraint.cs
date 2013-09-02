@@ -3,19 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Routing;
-using Momntz.Data.ProjectionHandlers;
 using Momntz.Data.Projections.Users;
+using Momntz.Data.Repositories.Users;
 
 namespace Momntz.UI.Core.RouteConstraints
 {
     public class UserRouteConstraint : IRouteConstraint
     {
-        private readonly IProjectionHandler<object, IList<ActiveUsername>> _activeUsers;
+        private readonly IUserRepository _repository;
 
-
-        public UserRouteConstraint(IProjectionHandler<object, IList<ActiveUsername>> activeUsers)
+        public UserRouteConstraint(IUserRepository repository)
         {
-            _activeUsers = activeUsers;
+            _repository = repository;
         }
 
         /// <summary>
@@ -36,7 +35,7 @@ namespace Momntz.UI.Core.RouteConstraints
 
             if (values.Keys.Contains("username"))
             {
-                IList<ActiveUsername> users = _activeUsers.Execute(null);
+                IList<ActiveUsername> users = _repository.GetActiveUsers();
                 var username = Convert.ToString(values["username"]);
                 isMatch = users.Any(u => string.Equals(u.Username, username, StringComparison.CurrentCultureIgnoreCase));
 

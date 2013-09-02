@@ -28,6 +28,13 @@ namespace Momntz.Data.Repositories.Momentos
         Momento GetById(int id);
 
         /// <summary>
+        /// Gets the tile by unique identifier.
+        /// </summary>
+        /// <param name="id">The unique identifier.</param>
+        /// <returns>Tile.</returns>
+        Tile GetTileById(int id);
+
+        /// <summary>
         ///     Infinites the scroll.
         /// </summary>
         /// <param name="args">The arguments.</param>

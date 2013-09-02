@@ -1,7 +1,6 @@
 ﻿using System.Web.Mvc;
-using Momntz.Data.CommandHandlers.Albums;
-using Momntz.Data.CommandHandlers.Albums.Parameters;
-using Momntz.Data.Commands.Albums;
+using Momntz.Data.Repositories.Albums;
+using Momntz.Data.Repositories.Albums.Parameters;
 using Momntz.UI.Core.Controllers;
 
 namespace Momntz.UI.Areas.Api.Controllers

@@ -9,7 +9,7 @@ using NHibernate;
 
 namespace Momntz.Data.Repositories.MomentoMedia
 {
-    public class MomentoMedia : IMomentoMedia
+    public class MomentoMediaRepository : IMomentoMediaRepository
     {
         private readonly ISession _session;
         private readonly ISettings _settings;
@@ -19,7 +19,7 @@ namespace Momntz.Data.Repositories.MomentoMedia
         /// </summary>
         /// <param name="session">The session.</param>
         /// <param name="settings">The settings.</param>
-        public MomentoMedia(ISession session, ISettings settings)
+        public MomentoMediaRepository(ISession session, ISettings settings)
         {
             _session = session;
             _settings = settings;

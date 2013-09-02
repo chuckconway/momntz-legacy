@@ -113,13 +113,13 @@
     <Compile Include="Core\Extensions\NHibernateExtensions.cs" />
     <Compile Include="Core\TypeConverters\CreateMomentoCommandToMomentoConverter.cs" />
     <Compile Include="Data\Repositories\Users\Parameters\UsernameAndPassword.cs" />
-    <Compile Include="Data\Repositories\MomentoMedia\MomentoMedia.cs" />
+    <Compile Include="Data\Repositories\MomentoMedia\MomentoMediaRepository.cs" />
     <Compile Include="Data\Repositories\MomentoMedia\Parameters\FindMomentoFromAlbumBySizeAndNameInParameters.cs" />
     <Compile Include="Data\Repositories\MomentoMedia\Parameters\FindMomentoBySizeAndNameInParameters.cs" />
     <Compile Include="Data\Repositories\Connections\ConnectionRepository.cs" />
     <Compile Include="Data\Repositories\Connections\IConnectionRepository.cs" />
     <Compile Include="Data\Repositories\Connections\Parameters\ConnectionResultParameters.cs" />
-    <Compile Include="Data\Repositories\MomentoMedia\IMomdentoMedia.cs" />
+    <Compile Include="Data\Repositories\MomentoMedia\IMomentoMediaRepository.cs" />
     <Compile Include="Data\Repositories\Search\Parameters\NameAndUsername.cs" />
     <Compile Include="Data\Repositories\Albums\AlbumRepository.cs" />
     <Compile Include="Data\Repositories\Albums\IAlbumRepository.cs" />

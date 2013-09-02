@@ -65,6 +65,16 @@ namespace Momntz.Data.Repositories.Momentos
         }
 
         /// <summary>
+        /// Gets the tile by unique identifier.
+        /// </summary>
+        /// <param name="id">The unique identifier.</param>
+        /// <returns>Tile.</returns>
+        public Tile GetTileById(int id)
+        {
+            return GetById(id).ConvertToTile(_settings);
+        }
+
+        /// <summary>
         ///     Infinites the scroll.
         /// </summary>
         /// <param name="args">The arguments.</param>

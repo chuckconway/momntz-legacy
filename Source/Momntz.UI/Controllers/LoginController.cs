@@ -1,6 +1,5 @@
 ﻿using System.Web.Mvc;
-using Momntz.Data.ProjectionHandlers.Users;
-using Momntz.Infrastructure.Instrumentation.Logging;
+using Momntz.Data.Repositories.Users.Parameters;
 using Momntz.UI.Core.Controllers;
 using Momntz.UI.Models.Login;
 

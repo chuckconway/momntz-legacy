@@ -1,7 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Web.Mvc;
-using Momntz.Data.ProjectionHandlers;
-using Momntz.Data.Projections.Users;
+﻿using System.Web.Mvc;
+using Momntz.Data.Repositories.Users;
 using Momntz.UI.Core.RouteConstraints;
 
 namespace Momntz.UI.Areas.Users
@@ -19,7 +17,7 @@ namespace Momntz.UI.Areas.Users
 
         public override void RegisterArea(AreaRegistrationContext context)
         {
-            var routeContraint = new UserRouteConstraint(DependencyResolver.Current.GetService<IProjectionHandler<object, IList<ActiveUsername>>>());
+            var routeContraint = new UserRouteConstraint(DependencyResolver.Current.GetService<IUserRepository>());
 
             context.MapRoute(
             "Users_albums",
@@ -43,7 +41,7 @@ namespace Momntz.UI.Areas.Users
             context.MapRoute(
             "Users_media",
             "{username}/media/{id}",
-            new { controller = "MediaMessage", action = "Index" },
+            new { controller = "Media", action = "Index" },
             constraints: new { username = routeContraint });
 
             context.MapRoute(
@@ -51,8 +49,6 @@ namespace Momntz.UI.Areas.Users
                 "{username}/{controller}/{action}/{id}",
                 new {  controller = "index", action = "Index", id = UrlParameter.Optional },
                 constraints: new { username = routeContraint });
-
-
         }
     }
 }
