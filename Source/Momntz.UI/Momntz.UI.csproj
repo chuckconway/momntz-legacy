@@ -960,6 +960,7 @@
     <Content Include="Scripts\views\albums\index.js" />
     <Content Include="Scripts\views\albums\name.js" />
     <Content Include="Scripts\views\index\index.js" />
+    <Content Include="Scripts\views\masterview\master.js" />
     <Content Include="version.txt" />
   </ItemGroup>
   <ItemGroup>

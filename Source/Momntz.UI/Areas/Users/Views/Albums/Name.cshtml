@@ -14,8 +14,8 @@
     </style>
 
         @(Bundle.JavaScript()
-    .Add("~/Scripts/views/album/name.js")
-    .MvcRender("/scripts/combined_#.js"))
+        .Add("~/Scripts/views/album/name.js")
+        .MvcRender("/scripts/combined_#.js"))
 }
 
 @if (Model.Items.Count > 0)
