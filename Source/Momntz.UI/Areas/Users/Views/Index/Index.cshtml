@@ -12,7 +12,7 @@
         function getItems(addTiles) {
             var last = $('input#lastmomentid');
 
-            $.post('/api/momento/userscroll?username=@Model.Username&momentoid=' + last.val(), function(data) {
+            $.post('/api/scroll/userscroll?username=@Model.Username&momentoid=' + last.val(), function(data) {
 
 
                 var item = data[data.length - 1];

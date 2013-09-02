@@ -1,21 +1,27 @@
-﻿@model Momntz.Data.Projections.Momentos.Tile
+﻿@using Momntz.UI.Areas.Users.Models
+@model Momntz.UI.Models.Media.SingleMediaView
 
 @{
     ViewBag.Title = "title";
     Layout = "/Views/Shared/_MasonryMaster.cshtml";
 }
 
+@section Navigation
+{
+    @{ Html.RenderPartial("/Views/Shared/_MasonryNavigationPartial.cshtml", new NavigationModel {SignedUser = Model.SignedUser, Visibility = NavigationVisiblity.None}); }
+}
+
 <div id="singlecontent">
-    <img class="content" src="@Model.ImageUrl" title="@Model.Title" />
+    <img class="content" src="@Model.Tile.ImageUrl" title="@Model.Tile.Title" />
     <div id="details" >
         
         <div>
-            <span id="title">@Model.Title</span>
-            <span id="uploaded">Uploaded by <a href="/@Model.Username">@Model.FullName</a></span>
+            <span id="title">@Model.Tile.Title</span>
+            <span id="uploaded">Uploaded by <a href="/@Model.Tile.Username">@Model.Tile.FullName</a></span>
         </div>
         
         <div id="story">
-            @Model.Story
+            @Model.Tile.Story
         </div>
     </div>
 </div>
