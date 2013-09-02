@@ -957,6 +957,9 @@
     <Content Include="Scripts\plugins\tagit\css\tagit.ui-zendesk.css" />
     <Content Include="Scripts\plugins\tagit\tag-it.js" />
     <Content Include="Scripts\plugins\validation\jquery.mobile.validation.js" />
+    <Content Include="Scripts\views\albums\index.js" />
+    <Content Include="Scripts\views\albums\name.js" />
+    <Content Include="Scripts\views\index\index.js" />
     <Content Include="version.txt" />
   </ItemGroup>
   <ItemGroup>

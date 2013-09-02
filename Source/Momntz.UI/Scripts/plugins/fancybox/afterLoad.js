@@ -291,7 +291,7 @@ function readView() {
         addedDate.text('on ').append(jQuery('<a>').attr('href', '/' + data.UploadedBy + '/' + data.AddedUrl).text(data.Added));
         
         jQuery('img.phototag', image).photoTag({
-            requesTagstUrl: '/api/tags/retrieve',
+            requesTagstUrl: '/api/momento/retrieve',
             deleteTagsUrl: '/api/tags/delete',
             addTagUrl: '/api/tags/add',
             externalAddTagLinks: {
