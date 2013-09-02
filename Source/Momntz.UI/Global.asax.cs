@@ -13,8 +13,8 @@ using ChuckConway.Cryptography;
 using Hypersonic;
 using Momntz.Core.Contants;
 using Momntz.Core.TypeConverters;
-using Momntz.Data.Commands.Momentos;
-using Momntz.Data.ProjectionHandlers.Users;
+using Momntz.Data.Repositories.Momentos.Parameters;
+using Momntz.Data.Repositories.Users.Parameters;
 using Momntz.Data.Schema;
 using Momntz.Infrastructure;
 using Momntz.Infrastructure.Configuration;
@@ -150,7 +150,7 @@ namespace Momntz.UI
         /// </summary>
         public static void ConfigureAutoMapper()
         {
-            AutoMapper.Mapper.Initialize(c=> c.CreateMap<CreateMomentoCommand, Momento>().ConvertUsing(new CreateMomentoCommandToMomentoConverter()));
+            AutoMapper.Mapper.Initialize(c=> c.CreateMap<CreateMomentoParameters, Momento>().ConvertUsing(new CreateMomentoCommandToMomentoConverter()));
         }
 
     }

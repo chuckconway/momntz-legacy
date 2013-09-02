@@ -3,7 +3,7 @@ using Momntz.Data.Repositories.MomentoMedia.Parameters;
 
 namespace Momntz.Data.Repositories.MomentoMedia
 {
-    public interface IMomentoMedia
+    public interface IMomentoMediaRepository
     {
         /// <summary>
         /// Finds the name of the momento by size and name.

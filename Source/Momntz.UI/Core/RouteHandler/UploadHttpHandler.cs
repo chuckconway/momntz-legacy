@@ -1,27 +1,29 @@
 ﻿using System;
 using System.IO;
 using System.Web;
-using System.Web.Mvc;
 using Momntz.Core.Contants;
-using Momntz.Data.CommandHandlers;
-using Momntz.Data.Commands.Media;
+using Momntz.Data.Repositories.Media;
+using Momntz.Data.Repositories.Media.Parameters;
 using Momntz.Messaging.Models;
 using Momntz.UI.Core.Controllers;
+using StructureMap;
 
 
 namespace Momntz.UI.Core.RouteHandler
 {
     public class UploadHttpHandler : IHttpHandler
     {
-        private readonly ICommandHandler<CreateMediaCommand> _commandHandler;
+        private readonly IMediaRepository _repository;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="UploadHttpHandler" /> class.
         /// </summary>
-        public UploadHttpHandler()
+        public UploadHttpHandler(IMediaRepository repository)
         {
-            _commandHandler = DependencyResolver.Current.GetService<ICommandHandler<CreateMediaCommand>>();
+            _repository = repository;
         }
+
+        public UploadHttpHandler() : this(ObjectFactory.GetInstance<IMediaRepository>()) { }
 
         /// <summary>
         /// Enables processing of HTTP Web requests by a custom HttpHandler that implements the <see cref="T:System.Web.IHttpHandler" /> interface.
@@ -53,13 +55,14 @@ namespace Momntz.UI.Core.RouteHandler
                 Username = username
             };
 
-            //Save the media to storage
-            var command = new CreateMediaCommand(id, bytes, media);
-            _commandHandler.Execute(command);
-           
-            //context.Response.Write("1");
+            _repository.Save(new SaveMediaParameters(id, bytes, media));
         }
 
+        /// <summary>
+        /// Gets the bytes.
+        /// </summary>
+        /// <param name="file">The file.</param>
+        /// <returns>System.Byte[][].</returns>
         private static byte[] GetBytes(HttpPostedFile file)
         {
             var memoryStream = new MemoryStream();
@@ -68,6 +71,11 @@ namespace Momntz.UI.Core.RouteHandler
             return bytes;
         }
 
+        /// <summary>
+        /// Gets a value indicating whether another request can use the <see cref="T:System.Web.IHttpHandler" /> instance.
+        /// </summary>
+        /// <value><c>true</c> if this instance is reusable; otherwise, <c>false</c>.</value>
+        /// <returns>true if the <see cref="T:System.Web.IHttpHandler" /> instance is reusable; otherwise, false.</returns>
         public bool IsReusable
         {
             get { return true; }

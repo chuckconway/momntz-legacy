@@ -1,9 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System.Web;
 using System.Web.Mvc;
-using Momntz.Data.CommandHandlers.Albums;
-using Momntz.Data.CommandHandlers.Albums.Parameters;
-using Momntz.Data.ProjectionHandlers;
-using Momntz.Data.Projections.Momentos;
+using Momntz.Data.Repositories.Albums;
 using Momntz.UI.Areas.Users.Models;
 using Momntz.UI.Core.Controllers;
 
@@ -11,17 +8,14 @@ namespace Momntz.UI.Areas.Users.Controllers
 {
     public class AlbumsController : BaseController
     {
-        private readonly IProjectionHandler<AlbumMomentosParameters, List<Tile>> _processor;
         private readonly IAlbumRepository _repository;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AlbumsController" /> class.
         /// </summary>
-        /// <param name="processor">The processor.</param>
         /// <param name="repository">The repository.</param>
-        public AlbumsController(IProjectionHandler<AlbumMomentosParameters, List<Tile>> processor, IAlbumRepository repository)
+        public AlbumsController(IAlbumRepository repository)
         {
-            _processor = processor;
             _repository = repository;
         }
 
@@ -34,9 +28,8 @@ namespace Momntz.UI.Areas.Users.Controllers
         public ActionResult Name(string name, int id)
         {
             var view = CurrentSignedInUser<ContentWithTitleView>();
-            var results = _processor.Execute(new AlbumMomentosParameters { AlbumId = id, Username = view.Username });
-            view.Items = results;
-            view.Title = name;
+            view.Items = _repository.GetMomentosById(id, view.Username);
+            view.Title = HttpUtility.HtmlEncode(name);
             view.Id = id;
 
             return View(view);

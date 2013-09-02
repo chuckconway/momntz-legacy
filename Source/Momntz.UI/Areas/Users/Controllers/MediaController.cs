@@ -1,20 +1,19 @@
 ﻿using System.Web.Mvc;
-using Momntz.Data.ProjectionHandlers;
-using Momntz.Data.Projections.Momentos;
+using Momntz.Data.Repositories.Momentos;
 
 namespace Momntz.UI.Areas.Users.Controllers
 {
     public class MediaController : Controller
     {
-        private readonly IProjectionHandler<int, Tile> _getTilebyId;
+        private readonly IMomentoRepository _repository;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MediaController" /> class.
         /// </summary>
-        /// <param name="getTilebyId">The get tileby id.</param>
-        public MediaController(IProjectionHandler<int, Tile> getTilebyId )
+        /// <param name="repository">The repository.</param>
+        public MediaController(IMomentoRepository repository)
         {
-            _getTilebyId = getTilebyId;
+            _repository = repository;
         }
 
         /// <summary>
@@ -24,7 +23,7 @@ namespace Momntz.UI.Areas.Users.Controllers
         /// <returns>ActionResult.</returns>
         public ActionResult Index(int id)
         {
-            var tile = _getTilebyId.Execute(id);
+            var tile = _repository.GetTileById(id);
            return View(tile);
         }
 

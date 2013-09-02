@@ -1,8 +1,6 @@
 ﻿using System.IO;
 using Hypersonic;
 using Hypersonic.Session;
-using Momntz.Data.CommandHandlers.Users;
-using Momntz.Data.Commands.Users;
 using Momntz.Data.Schema;
 using NUnit.Framework;
 

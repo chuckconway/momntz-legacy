@@ -1,40 +1,30 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 
 using System.Web.Mvc;
-using Momntz.Data.CommandHandlers;
-using Momntz.Data.Commands.Momentos;
-using Momntz.Data.ProjectionHandlers;
-using Momntz.Data.ProjectionHandlers.Momentos;
-using Momntz.Data.Projections.Momentos;
+using Momntz.Data.Repositories.Momentos;
+using Momntz.Data.Repositories.Momentos.Parameters;
 using Momntz.Data.Schema;
-using Momntz.UI.Areas.Api.Models;
 using Momntz.UI.Core.Controllers;
 
 namespace Momntz.UI.Areas.Api.Controllers
 {
     public class MomentoController : BaseController
     {
-        private readonly ICommandHandler<SaveMomentoDetailsCommand> _processor;
-        private readonly IProjectionHandler<LocationAutoCompleteParameters, List<LocationAutoComplete>> _projection;
-        private readonly IProjectionHandler<DateTime, List<Tile>> _scroll;
-        private readonly IProjectionHandler<UserHomepageInfiniteScrollInParameters, List<Tile>> _getuserScroll;
-        private readonly IProjectionHandler<int, Momento> _getMomentoById;
+        private readonly IMomentoRepository _repository;
+        //private readonly ICommandHandler<SaveMomentoDetailsCommand> _processor;
+        //private readonly IProjectionHandler<LocationAutoCompleteParameters, List<LocationAutoComplete>> _projection;
+        //private readonly IProjectionHandler<DateTime, List<Tile>> _scroll;
+        //private readonly IProjectionHandler<UserHomepageInfiniteScrollInParameters, List<Tile>> _getuserScroll;
+        //private readonly IProjectionHandler<int, Momento> _getMomentoById;
 
-        public MomentoController(ICommandHandler<SaveMomentoDetailsCommand> processor, 
-                                 IProjectionHandler<LocationAutoCompleteParameters, List<LocationAutoComplete>> projection,
-                                IProjectionHandler<DateTime, List<Tile>> scroll,
-            IProjectionHandler<UserHomepageInfiniteScrollInParameters, List<Tile>> getuserScroll,
-            IProjectionHandler<int, Momento> getMomentoById 
-                        
-                                )
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MomentoController"/> class.
+        /// </summary>
+        /// <param name="repository">The repository.</param>
+        public MomentoController(IMomentoRepository repository)
         {
-            _processor = processor;
-            _projection = projection;
-            _scroll = scroll;
-            _getuserScroll = getuserScroll;
-            _getMomentoById = getMomentoById;
+            _repository = repository;
         }
 
         /// <summary>
@@ -49,41 +39,41 @@ namespace Momntz.UI.Areas.Api.Controllers
         /// <param name="albums">The albums.</param>
         /// <param name="location">The location.</param>
         /// <returns>ActionResult.</returns>
-        [HttpPost]
-        public ActionResult Save(int id, string title, string story, int? day, int? month, int? year, string albums, string location)
-        {
-            _processor.Execute(new SaveMomentoDetailsCommand(id, title, story, day, month, year, albums, location, GetUsername()));
-            return Content("1");
-        }
+        //[HttpPost]
+        //public ActionResult Save(int id, string title, string story, int? day, int? month, int? year, string albums, string location)
+        //{
+        //    _processor.Execute(new SaveMomentoDetailsCommand(id, title, story, day, month, year, albums, location, GetUsername()));
+        //    return Content("1");
+        //}
 
-        /// <summary>
-        /// Locations the search.
-        /// </summary>
-        /// <param name="term">The term.</param>
-        /// <returns>ActionResult.</returns>
-        public ActionResult LocationSearch(string term)
-        {
-            string username = GetUsername();
-            var results =
-                _projection.Execute(
-                    new LocationAutoCompleteParameters() {Term = term, Username = username});
+        ///// <summary>
+        ///// Locations the search.
+        ///// </summary>
+        ///// <param name="term">The term.</param>
+        ///// <returns>ActionResult.</returns>
+        //public ActionResult LocationSearch(string term)
+        //{
+        //    string username = GetUsername();
+        //    var results =
+        //        _projection.Execute(
+        //            new LocationAutoCompleteParameters() {Term = term, Username = username});
             
-            return Json(results.Select(a=> new AutoComplete(a.Location)), JsonRequestBehavior.AllowGet);
-        }
+        //    return Json(results.Select(a=> new AutoComplete(a.Location)), JsonRequestBehavior.AllowGet);
+        //}
 
         /// <summary>
         /// Scrolls the specified oldest.
         /// </summary>
         /// <param name="oldest">The oldest.</param>
         /// <returns>ActionResult.</returns>
-        [HttpPost]
-        public ActionResult Scroll(string oldest)
-        {
-            DateTime parsed = DateTime.Parse(oldest);
-            var items = _scroll.Execute(parsed);
+        //[HttpPost]
+        //public ActionResult Scroll(string oldest)
+        //{
+        //    DateTime parsed = DateTime.Parse(oldest);
+        //    var items = _.Execute(parsed);
 
-            return Json(items);
-        }
+        //    return Json(items);
+        //}
 
         /// <summary>
         /// Scrolls the specified oldest.
@@ -94,7 +84,7 @@ namespace Momntz.UI.Areas.Api.Controllers
         [HttpPost]
         public ActionResult UserScroll(int momentoId, string username)
         {
-            var items = _getuserScroll.Execute(new UserHomepageInfiniteScrollInParameters() { MomentoId = momentoId, Username = username });
+            var items =_repository.InfiniteScroll(new UserInfiniteScrollInParameters(){MomentoId = momentoId, Username = username});
             return Json(items);
         }
         
@@ -106,7 +96,8 @@ namespace Momntz.UI.Areas.Api.Controllers
         [HttpPost]
         public ActionResult ById(int id)
         {
-            Momento detail = _getMomentoById.Execute(id) ?? new Momento();
+           Momento detail = _repository.GetById(id);
+            detail = detail ?? new Momento();
 
             Func<string, string> convertNullToEmptyString = (s => s ?? string.Empty); 
 
