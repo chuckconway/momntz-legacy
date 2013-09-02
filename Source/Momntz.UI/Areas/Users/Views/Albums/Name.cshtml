@@ -27,7 +27,7 @@
                 getData(data);
             }
 
-            $.post('/api/albums/TileScroll?albumid=' + albumId.val() + '&momentoid=' + last.val() + '&username=@Model.Username', executeOnData);
+            $.post('/api/scroll/TileScroll?albumid=' + albumId.val() + '&momentoid=' + last.val() + '&username=@Model.Username', executeOnData);
         }
 
         function getTemplate() {

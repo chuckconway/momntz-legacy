@@ -21,7 +21,7 @@
                 }
             }
 
-            $.post('/api/albums/albumscroll?albumid=' + last.val() + '&username=@Model.Username', executeOnData);
+            $.post('/api/scroll/albumscroll?albumid=' + last.val() + '&username=@Model.Username', executeOnData);
         }
 
         function getTemplate() { return $("#album-template").html(); }

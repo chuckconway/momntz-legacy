@@ -35,31 +35,31 @@ namespace Momntz.UI.Areas.Api.Controllers
             return Json(items);
         }
 
-        /// <summary>
-        /// Tiles the scroll.
-        /// </summary>
-        /// <param name="momentoId">The momento unique identifier.</param>
-        /// <param name="albumId">The album unique identifier.</param>
-        /// <param name="username">The username.</param>
-        /// <returns>ActionResult.</returns>
-        public ActionResult TileScroll(int momentoId, int albumId, string username)
-        {
-           var items = _repository.GetNextMomentos(new AlbumTileScrollInParamters { MomentoId = momentoId, Username = username, AlbumId = albumId });
-            return Json(items);
-        }
+        ///// <summary>
+        ///// Tiles the scroll.
+        ///// </summary>
+        ///// <param name="momentoId">The momento unique identifier.</param>
+        ///// <param name="albumId">The album unique identifier.</param>
+        ///// <param name="username">The username.</param>
+        ///// <returns>ActionResult.</returns>
+        //public ActionResult TileScroll(int momentoId, int albumId, string username)
+        //{
+        //   var items = _repository.GetNextMomentos(new AlbumTileScrollInParamters { MomentoId = momentoId, Username = username, AlbumId = albumId });
+        //    return Json(items);
+        //}
 
 
-        /// <summary>
-        /// Albums the scroll.
-        /// </summary>
-        /// <param name="albumId">The album unique identifier.</param>
-        /// <param name="username">The username.</param>
-        /// <returns>ActionResult.</returns>
-        [HttpPost]
-        public ActionResult AlbumScroll(int albumId, string username)
-        {
-            var items = _repository.GetNextAlbums(new AutoScrollInParameters {AlbumId = albumId, Username = username});
-            return Json(items);
-        }
+        ///// <summary>
+        ///// Albums the scroll.
+        ///// </summary>
+        ///// <param name="albumId">The album unique identifier.</param>
+        ///// <param name="username">The username.</param>
+        ///// <returns>ActionResult.</returns>
+        //[HttpPost]
+        //public ActionResult AlbumScroll(int albumId, string username)
+        //{
+        //    var items = _repository.GetNextAlbums(new AutoScrollInParameters {AlbumId = albumId, Username = username});
+        //    return Json(items);
+        //}
     }
 }

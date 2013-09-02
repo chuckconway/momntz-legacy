@@ -1,0 +1,59 @@
+﻿  /*
+    BEGIN Modal
+ */
+
+#lean_overlay {
+    position: fixed;
+    z-index:10000;
+    top: 0;
+    left: 0;
+    height:100%;
+    width:100%;
+    background: #000;
+    display: none;
+}
+
+.modal {width: 400px;display: none;background: #FFF;border-radius: 5px;}
+
+.modal .header {
+    border-radius: 5px 5px 0 0;
+    background-color: #eee;
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+
+}
+
+.modal p {padding: 14px 20px;border-bottom: 1px solid #EEE;text-align: right;}
+.modal p label {display: block;
+    float: left;
+    font-size: 14px;
+    width: 80px;
+    padding-top: 8px;
+    color: #222;
+    text-align: left;}
+
+.modal p input,.modal p textarea {width: 220px;
+padding: 8px;
+border-radius: 4px;
+color: #222;
+background: #F7F7F7;
+outline: none;
+border-top: 1px solid #CCC;
+border-left: 1px solid #CCC;
+border-right: 1px solid #E7E6E6;
+border-bottom: 1px solid #E7E6E6;}
+
+.modal p textarea { min-height: 100px;}
+
+.modal .header h2 { color: #444;
+    font-size: 18px;
+font-weight: 700;
+margin-bottom: 3px;
+text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.required { color: red;}
+.fontsize22 { font-size: 22px;}  
+ /*
+    End Modal
+  */

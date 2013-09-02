@@ -1,0 +1,90 @@
+body {font-family: arial,helvetica,sans-serif; font-size: 0.875em; line-height: 1.5; background-color: #F3F3F3;}
+
+strong { font-weight: bold;}
+
+a, a.more-link p{ color:#3A80BC;text-decoration:none;}
+
+a:hover { text-decoration: underline; }
+
+a#editdetails{ display: none;}
+a.addTag{ display: none;}
+div#loading{ text-align: center;margin-bottom: 20px;}
+
+
+
+/*
+    Begin Image Area
+*/
+
+div#container{ width: 90%;margin-right: auto;margin-left: auto;}
+
+/*
+    End Image Area
+*/
+
+
+/*
+    BEGIN Header
+*/
+
+div#header {border-bottom: 1px solid #ccc;  padding: 5px; background-color: #fff; position: fixed;top: 0;z-index: 999;width: 100%;}
+div#header div.col {width: 50%; display: inline-block;}
+div#header div.col2{ width: 49%; text-align: right;vertical-align:middle;}
+
+ /*
+    END Header
+ */
+
+ 
+ /*
+    BEGIN Image Thumbnail styles
+ */
+
+.photo {  width: 240px;margin: 10px; border-radius: 5px; float: left; box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);background-color: #fff;}
+.photo a img.phototag {border-top-left-radius: 5px;border-top-right-radius: 5px; display: block; width: 100%;}
+.photo div.details {border-top: dotted 1px #eee;}
+.photo div.details label.title{color: #666; font-size: 11px;padding: 5px;margin-top: 5px;font-weight: bold;}
+.photo div.details div.description{color: #999;line-height: 13px; font-size: 11px;padding-left: 5px;padding-right: 5px;padding-bottom: 5px;text-align: justify;margin-top: 5px;}
+
+ /*
+    END Image Thumbnail styles
+ */
+ 
+  /*
+    BEGIN Single Image Page 
+ */
+
+div#singlecontent { width: 800px; border-radius: 5px;margin-left: auto;margin-right: auto;  box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);background-color: #fff;}
+div#singlecontent img.content { max-width: 800px;border-top-left-radius: 5px;border-top-right-radius: 5px;}
+div#singlecontent div#details { width: 100%;padding: 20px;border-top: dotted 1px #eee;}
+div#singlecontent div#details span#title { display: block;font-size: 14px;font-weight: bold;margin: 0;}
+div#singlecontent div#details span#uploaded { color: #666;font-size: 11px;margin: 0;}
+div#singlecontent div#details span#uploaded a { margin: 0;}
+div#singlecontent div#details div#story { margin-top: 20px;color: #666;}
+
+   /*
+    END Single Image Page 
+ */
+
+ /*
+    BEGIN login Page 
+ */
+
+.centered { position: fixed; top: 30%; left: 50%; margin-top: -162px; margin-left: -125px;}
+
+   /*
+    END Single Image Page 
+ */
+
+
+ /*
+    BEGIN FancyBox Styles
+ */
+
+.bold { font-weight: bold;}
+
+img#closefancybox{ padding: 10px 0 15px 15px;cursor: pointer;float: right;}
+
+   /*
+    END Single Image Page 
+ */

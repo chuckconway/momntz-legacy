@@ -75,18 +75,7 @@ namespace Momntz.UI.Areas.Api.Controllers
         //    return Json(items);
         //}
 
-        /// <summary>
-        /// Scrolls the specified oldest.
-        /// </summary>
-        /// <param name="momentoId">The momento unique identifier.</param>
-        /// <param name="username">The username.</param>
-        /// <returns>ActionResult.</returns>
-        [HttpPost]
-        public ActionResult UserScroll(int momentoId, string username)
-        {
-            var items =_repository.InfiniteScroll(new UserInfiniteScrollInParameters(){MomentoId = momentoId, Username = username});
-            return Json(items);
-        }
+
         
         /// <summary>
         /// Bies the id.
