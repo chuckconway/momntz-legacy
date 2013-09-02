@@ -2,7 +2,7 @@
 
 namespace Momntz.Data.Projections.Albums
 {
-    public class AlbumResult : IGroupItem, IProjection
+    public class AlbumResult : IGroupItem
     {
         /// <summary>
         /// Gets or sets the unique identifier.

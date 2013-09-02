@@ -2,7 +2,7 @@
 
 namespace Momntz.Data.Projections.Connections
 {
-    public class ConnectionResult : IProjection, IGroupItem
+    public class ConnectionResult :IGroupItem
     {
         /// <summary>
         /// Gets or sets the grouped unique identifier.

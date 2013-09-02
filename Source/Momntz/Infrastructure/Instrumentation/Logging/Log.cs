@@ -1,7 +1,6 @@
 ﻿using System;
 using Momntz.Core.Contants;
-using Momntz.Data.CommandHandlers;
-using Momntz.Data.CommandHandlers.Logging;
+using Momntz.Data.Repositories.Logging;
 using Momntz.Infrastructure.Configuration;
 
 namespace Momntz.Infrastructure.Instrumentation.Logging

@@ -2,10 +2,8 @@
 
 namespace Momntz.Data.Projections.Momentos
 {
-    public class Tile : IProjection
+    public class Tile
     {
-
-
         /// <summary>
         /// Gets or sets the image URL.
         /// </summary>
