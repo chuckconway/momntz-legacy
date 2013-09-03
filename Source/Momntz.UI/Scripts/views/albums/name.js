@@ -13,7 +13,7 @@
         getData(data);
     }
 
-    $.post('/api/scroll/TileScroll?albumid=' + albumId.val() + '&momentoid=' + last.val() + '&username=' + username, executeOnData);
+    $.post('/api/scroll/AlbumTileScroll?albumid=' + albumId.val() + '&momentoid=' + last.val() + '&username=' + username, executeOnData);
 }
 
 function getTemplate() {
