@@ -14,11 +14,12 @@
     .MvcRender("/scripts/combined_#.js"))
 }
 
+<input type="hidden" id="username" value="@Model.Username" />
+
 @if (Model.Items.Count > 0)
 {
     <input type="hidden" id="lastmomentid" value="@Model.Items.Last().Id" />
 }
-
 
 @section Navigation
 {

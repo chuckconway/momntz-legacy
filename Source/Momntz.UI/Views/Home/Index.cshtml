@@ -1,10 +1,25 @@
-﻿<!DOCTYPE html>
+﻿@using SquishIt.Framework
+@using SquishIt.Mvc
+<!DOCTYPE html>
 <html lang="en">
     <head>
         <title>Momntz.</title>
-        <link href="~/Content/css/site1.css" rel="stylesheet" />
-        <style type="text/css">
+        <link href="~/Content/css/site.css" rel="stylesheet" />
+
+                @(Bundle.Css()
+        .Add("/content/css/reset.css")
+        .Add("/content/css/site.css")
+        .Add("/content/css/forms.css")
+        .MvcRender("/content/combined_#.css")
+                      )
+        
+       <style type="text/css">
             body{background-color: #fff;}
+            p{margin-top: 15px;}
+
+            ul#signup, ul#signup li  { margin: 0;padding: 0;}
+            ul#signup { margin-top: 20px;}
+            ul#signup li { list-style: none;}
         </style>
     </head>
     <body>

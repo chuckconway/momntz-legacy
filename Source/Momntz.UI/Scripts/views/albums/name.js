@@ -1,6 +1,7 @@
 ﻿function getItems(getData) {
     var last = $('input#lastmomentid');
     var albumId = $('input#albumId');
+    var username = $('input#username').val();
 
     function executeOnData(data) {
 
@@ -12,7 +13,7 @@
         getData(data);
     }
 
-    $.post('/api/scroll/TileScroll?albumid=' + albumId.val() + '&momentoid=' + last.val() + '&username=@Model.Username', executeOnData);
+    $.post('/api/scroll/TileScroll?albumid=' + albumId.val() + '&momentoid=' + last.val() + '&username=' + username, executeOnData);
 }
 
 function getTemplate() {
