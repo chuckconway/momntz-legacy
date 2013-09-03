@@ -1,5 +1,6 @@
 ﻿function getItems(getData) {
     var last = $('input#lastalbumid');
+    var username = $('input#username').val();
 
     function executeOnData(data) {
 
@@ -11,7 +12,7 @@
         }
     }
 
-    $.post('/api/scroll/albumscroll?albumid=' + last.val() + '&username=@Model.Username', executeOnData);
+    $.post('/api/scroll/albumscroll?albumid=' + last.val() + '&username='+ username, executeOnData);
 }
 
 function getTemplate() { return $("#album-template").html(); }

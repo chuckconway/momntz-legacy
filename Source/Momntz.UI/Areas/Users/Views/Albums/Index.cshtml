@@ -10,10 +10,11 @@
 @section Head
 { 
         @(Bundle.JavaScript()
-    .Add("~/Scripts/views/album/index.js")
-    .MvcRender("/scripts/combined_#.js"))
+        .Add("~/Scripts/views/album/index.js")
+        .MvcRender("/scripts/combined_#.js"))
 }
 
+<input type="hidden" id="username" value="@Model.Username" />
 
 @if (Model.Items.Count > 0)
 {

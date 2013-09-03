@@ -155,7 +155,6 @@
     <Compile Include="Areas\Users\UsersAreaRegistration.cs" />
     <Compile Include="Controllers\ForgotController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\SignoutController.cs" />
     <Compile Include="Core\ActionFilters\ApiAuthorization.cs" />
     <Compile Include="Core\ActionResults\FormResult.cs" />

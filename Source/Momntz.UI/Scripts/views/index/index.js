@@ -1,7 +1,8 @@
 ﻿function getItems(addTiles) {
     var last = $('input#lastmomentid');
+    var username = $('input#username').val();
 
-    $.post('/api/scroll/userscroll?username=@Model.Username&momentoid=' + last.val(), function (data) {
+    $.post('/api/scroll/userscroll?username=' + username +'&momentoid=' + last.val(), function (data) {
 
         var item = data[data.length - 1];
         if (item !== undefined) {
