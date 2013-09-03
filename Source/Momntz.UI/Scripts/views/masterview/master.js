@@ -23,6 +23,7 @@ function addTiles(data) {
         });
     } else {
         $('div#loading').remove();
+        $('<div id="loading">You have reached the end.</div>').insertAfter(container);
     }
 }
 
