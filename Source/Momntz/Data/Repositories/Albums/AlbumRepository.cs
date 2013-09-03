@@ -115,9 +115,10 @@ namespace Momntz.Data.Repositories.Albums
                 IList<object> items = _session.CreateQueryProcedure<object>("Album_GetNext40Albums", args)
                     .List<object>();
 
-                object[] ids = items.Cast<IDictionary<string, string>>().Select(i => (object) i["AlbumId"]).ToArray();
+                object[] ids = items.Cast<IDictionary<string, string>>().Select(i => (object) i["Id"]).ToArray();
 
                 List<IGroupItem> album = _session.QueryOver<Album>()
+                    .OrderBy(a=>a.CreateDate).Desc
                     .Where(Restrictions.In("Id", ids))
                     .List()
                     .ToList()

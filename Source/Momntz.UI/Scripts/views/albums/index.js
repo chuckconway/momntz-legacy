@@ -7,9 +7,10 @@
         if (data != null && data.length > 0) {
             var item = data[data.length - 1];
             last.val(item.Id);
-
-            getData(data);
         }
+        
+        getData(data);
+        
     }
 
     $.post('/api/scroll/albumscroll?albumid=' + last.val() + '&username='+ username, executeOnData);
