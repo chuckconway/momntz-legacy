@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using Momntz.Infrastructure.Instrumentation.Logging.Exceptions;
 
 namespace Momntz.Infrastructure.Instrumentation.Logging
 {

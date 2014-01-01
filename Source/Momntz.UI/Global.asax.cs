@@ -93,7 +93,6 @@ namespace Momntz.UI
         private void RegisterDependencyInjection()
         {
             var settings = MomntzConfiguration.GetSettings();
-
             SetLogging(settings);
 
             ObjectFactory.Initialize(x => x.Scan(s =>

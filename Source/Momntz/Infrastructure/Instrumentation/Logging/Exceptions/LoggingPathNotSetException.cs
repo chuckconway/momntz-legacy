@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Momntz.Infrastructure.Instrumentation.Logging
+namespace Momntz.Infrastructure.Instrumentation.Logging.Exceptions
 {
     public class LoggingPathNotSetException : Exception
     {

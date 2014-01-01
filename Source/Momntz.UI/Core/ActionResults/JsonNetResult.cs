@@ -16,6 +16,7 @@ namespace Momntz.UI.Core.ActionResults
             {
                 throw new ArgumentNullException("context");
             }
+
             if (JsonRequestBehavior == JsonRequestBehavior.DenyGet &&
                 String.Equals(context.HttpContext.Request.HttpMethod, "GET", StringComparison.OrdinalIgnoreCase))
             {
@@ -32,6 +33,7 @@ namespace Momntz.UI.Core.ActionResults
             {
                 response.ContentType = "application/json";
             }
+
             if (ContentEncoding != null)
             {
                 response.ContentEncoding = ContentEncoding;
